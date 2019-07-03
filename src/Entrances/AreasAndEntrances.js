@@ -30,7 +30,8 @@ export default {
             "type": "overworld"
         },
         "Redead Grotto": {
-            "type": "grotto"
+            "type": "grotto",
+            "display": "dead boy grotto"
         }
     },
     "Hyrule Field": {

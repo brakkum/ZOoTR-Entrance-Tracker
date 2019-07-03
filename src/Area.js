@@ -1,6 +1,6 @@
 import Areas from "./Entrances/AreasAndEntrances";
-import React from "react";
 import Entrance from "./Entrance";
+import React from "react";
 
 export default class Area extends React.Component {
 

@@ -1,6 +1,6 @@
 import AreaEntranceSeparator from "./AreaEntranceSeparator";
-import SetLinksHouse from "./SetLinksHouse";
 import Areas from "./Entrances/AreasAndEntrances";
+import SetLinksHouse from "./SetLinksHouse";
 import React from "react";
 import Area from "./Area";
 
@@ -20,8 +20,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     setOverworldToOverworld = (area, entrance, nextAreaAndEntrance) => {
         let [nextArea, nextEntrance] = nextAreaAndEntrance.split(AreaEntranceSeparator);
         let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
-        console.log(area, entrance)
-        console.log(nextArea, nextEntrance)
+
         this.addArea(area);
         this.addArea(nextArea);
 
@@ -151,8 +150,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                 Object.keys(Areas[area]).forEach(entrance => {
                     let type = Areas[area][entrance].type;
                     let entranceName = `${area}${AreaEntranceSeparator}${entrance}`;
+                    let interiorName = Areas[area][entrance].display || entrance;
                     availableEntrances[type].push(entranceName);
-                    availableInteriors[type].push(entrance);
+                    availableInteriors[type].push(interiorName);
                     availableAreas[area][entrance] = "";
                 });
             });

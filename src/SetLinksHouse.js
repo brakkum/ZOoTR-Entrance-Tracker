@@ -1,5 +1,5 @@
-import React from "react";
 import AreaEntranceSeparator from "./AreaEntranceSeparator";
+import React from "react";
 
 export default class SetLinksHouse extends React.Component {
 
