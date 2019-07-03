@@ -3,31 +3,27 @@ import React from "react";
 
 export default class Entrance extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            area: this.props.area,
-            type: Areas[this.props.area][this.props.entrance].type
-        };
-    }
-
     setLocation = event => {
-        if (this.state.type === "overworld") {
-            this.props.setOverworldToOverworld(this.state.area, this.props.entrance, event.target.value);
-            this.setState({interior: event.target.value})
+        let area = this.props.area;
+        let entrance = this.props.entrance;
+        let selection = event.target.value;
+        let type = Areas[area][entrance].type;
+        if (type === "overworld") {
+            this.props.setOverworldToOverworld(area, entrance, selection);
         } else {
-            this.props.setInteriorToAreaAndEntrance(this.props.area, this.props.entrance, event.target.value);
-            this.setState({interior: event.target.value})
+            this.props.setInteriorToAreaAndEntrance(area, entrance, selection);
         }
     };
 
     resetEntrance = () => {
-        if (this.state.type === "overworld") {
-            this.setState({interior: ""});
-            this.props.resetOverworldEntrance(this.state.area, this.props.entrance, this.props.interior);
+        let area = this.props.area;
+        let entrance = this.props.entrance;
+        let interior = this.props.interior;
+        let type = Areas[area][entrance].type;
+        if (type === "overworld") {
+            this.props.resetOverworldEntrance(area, entrance, interior);
         } else {
-            this.setState({interior: ""});
-            this.props.resetEntrance(this.state.area, this.props.entrance, this.props.interior);
+            this.props.resetEntrance(area, entrance, interior);
         }
     };
 

@@ -20,7 +20,8 @@ export default class ZOoTREntranceTracker extends React.Component {
     setOverworldToOverworld = (area, entrance, nextAreaAndEntrance) => {
         let [nextArea, nextEntrance] = nextAreaAndEntrance.split(AreaEntranceSeparator);
         let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
-
+        console.log(area, entrance)
+        console.log(nextArea, nextEntrance)
         this.addArea(area);
         this.addArea(nextArea);
 
@@ -86,7 +87,6 @@ export default class ZOoTREntranceTracker extends React.Component {
         let areas = this.state.openAreas;
         let area = areas[areaName];
         let empty = true;
-        console.log("checking area: ", areaName);
         if (!area) {
             return;
         }
@@ -112,6 +112,7 @@ export default class ZOoTREntranceTracker extends React.Component {
             return;
         }
         openAreas[area] = this.state.availableAreas[area];
+        this.setState({openAreas: {}});
         this.setState({openAreas: openAreas});
     };
 
@@ -120,7 +121,6 @@ export default class ZOoTREntranceTracker extends React.Component {
         let elements = this.state[array];
         elements[type].splice(indexOfElement, 1);
         this.setState({[array]: elements});
-        console.log(`removed ${interior} from ${array}[${type}]`);
     };
 
     componentDidMount() {
@@ -187,7 +187,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                     />
                     : ""
                 }
-                {Object.keys(areas).map((area, i) => {
+                {Object.keys(areas).sort().map((area, i) => {
                     return <Area
                         key={i}
                         area={area}

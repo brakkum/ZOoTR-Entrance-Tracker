@@ -4,17 +4,9 @@ import Entrance from "./Entrance";
 
 export default class Area extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            area: this.props.area,
-            entrances: Object.keys(this.props.entrances)
-        };
-    };
-
     render() {
-        let area = this.state.area;
-        let entrances = this.state.entrances;
+        let area = this.props.area;
+        let entrances =  Object.keys(this.props.entrances);
         let availableInteriors = this.props.availableInteriors;
         let availableEntrances = this.props.availableEntrances;
         return(
@@ -31,9 +23,8 @@ export default class Area extends React.Component {
                         resetOverworldEntrance={this.props.resetOverworldEntrance}
                         setOverworldToOverworld={this.props.setOverworldToOverworld}
                         setInteriorToAreaAndEntrance={this.props.setInteriorToAreaAndEntrance}
-                        entrenceType={entranceType}
                         interior={this.props.entrances[entrance]}
-                        area={this.state.area}
+                        area={this.props.area}
                         entrance={entrance}
                         key={i}
                     />

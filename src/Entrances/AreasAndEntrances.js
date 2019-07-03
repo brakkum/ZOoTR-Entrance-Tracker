@@ -1,5 +1,13 @@
 
 export default {
+    "Death Mountain Trail": {
+        "Dodongo's Cavern": {
+            "type": "dungeon"
+        },
+        "Goron City": {
+            "type": "overworld"
+        }
+    },
     "Kokiri Forest": {
         "Link's House": {
             "type": "house"
@@ -23,14 +31,6 @@ export default {
         },
         "Redead Grotto": {
             "type": "grotto"
-        }
-    },
-    "Death Mountain Trail": {
-        "Dodongo's Cavern": {
-            "type": "dungeon"
-        },
-        "Goron City": {
-            "type": "overworld"
         }
     },
     "Hyrule Field": {
