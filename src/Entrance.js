@@ -1,6 +1,7 @@
 import EntranceTypes from "./DataObjects/EntranceTypeEnum";
 import Areas from "./DataObjects/AreasAndEntrances";
 import React from "react";
+import AreaEntranceSeparator from "./AreaEntranceSeparator";
 
 export default class Entrance extends React.Component {
 
@@ -30,6 +31,7 @@ export default class Entrance extends React.Component {
 
     render() {
         let availableLocations = this.props.availableLocations;
+        let area = this.props.area;
         let entrance = this.props.entrance;
         let interior = this.props.interior;
         return(
@@ -48,6 +50,10 @@ export default class Entrance extends React.Component {
                         <select onChange={this.setLocation}>
                             <option value={"Not Checked"}>Not Checked</option>
                             {availableLocations.map((location, i) => {
+                                if (Areas[area][entrance].type === EntranceTypes.Overworld &&
+                                    location === `${area}${AreaEntranceSeparator}${entrance}`) {
+                                    return "";
+                                }
                                 return <option key={i}>{location}</option>
                             })}
                         </select>
