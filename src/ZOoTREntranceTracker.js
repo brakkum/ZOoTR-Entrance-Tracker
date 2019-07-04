@@ -175,10 +175,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 {/* search section */}
                 {/* from a currently active location to another currently active location only */}
 
-                {/* collection of areas */}
-                {/* these contain a list of entrances */}
-                {/* these entrances can be linked to entrances in other areas */}
-                {/* this triggers another area to be added to the collection */}
+                {/* on load, set location of Link's House */}
                 {showStartSelection ?
                     <SetLinksHouse
                         availableEntrances={availableHouses}
@@ -187,6 +184,10 @@ export default class ZOoTREntranceTracker extends React.Component {
                     />
                     : ""
                 }
+                {/* collection of areas */}
+                {/* these contain a list of entrances */}
+                {/* these entrances can be linked to entrances in other areas */}
+                {/* this triggers another area to be added to the collection */}
                 {Object.keys(areas).sort().map((area, i) => {
                     return <Area
                         key={i}
