@@ -32,8 +32,8 @@ export default class Area extends React.Component {
                         setOverworldToOverworld={this.props.setOverworldToOverworld}
                         setInteriorToAreaAndEntrance={this.props.setInteriorToAreaAndEntrance}
                         interior={this.props.entrances[entrance]}
-                        area={this.props.area}
                         entrance={entrance}
+                        area={area}
                         key={i}
                     />
                 })}
