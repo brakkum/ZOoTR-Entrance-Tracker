@@ -1,50 +1,51 @@
+import EntranceTypes from "./EntranceTypeEnum";
 
 export default {
     "Death Mountain Trail": {
         "Dodongo's Cavern": {
-            "type": "dungeon"
+            "type": EntranceTypes.Dungeon
         },
         "Goron City": {
-            "type": "overworld"
+            "type": EntranceTypes.Overworld
         },
         "Storms Grotto": {
-            "type": "grotto"
+            "type": EntranceTypes.Grotto
         }
     },
     "Kokiri Forest": {
         "Link's House": {
-            "type": "house"
+            "type": EntranceTypes.House
         },
         "Shop": {
-            "type": "house"
+            "type": EntranceTypes.House
         },
         "Hyrule Field": {
-            "type": "overworld"
+            "type": EntranceTypes.Overworld
         },
         "Storms Grotto": {
-            "type": "grotto"
+            "type": EntranceTypes.Grotto
         }
     },
     "Kakariko Village": {
         "Skulltula House": {
-            "type": "house"
+            "type": EntranceTypes.House
         },
         "Windmill": {
-            "type": "house"
+            "type": EntranceTypes.House
         },
         "Hyrule Field": {
-            "type": "overworld"
+            "type": EntranceTypes.Overworld
         },
         "Redead Grotto": {
-            "type": "grotto"
+            "type": EntranceTypes.Grotto
         }
     },
     "Hyrule Field": {
         "Kakariko Village": {
-            "type": "overworld"
+            "type": EntranceTypes.Overworld
         },
         "Kokiri Forest": {
-            "type": "overworld"
+            "type": EntranceTypes.Overworld
         }
     },
 };

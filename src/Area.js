@@ -1,4 +1,5 @@
-import Areas from "./Entrances/AreasAndEntrances";
+import EntranceTypes from "./DataObjects/EntranceTypeEnum";
+import Areas from "./DataObjects/AreasAndEntrances";
 import Entrance from "./Entrance";
 import React from "react";
 
@@ -15,9 +16,9 @@ export default class Area extends React.Component {
                 {entrances.map((entrance, i) => {
                     let entranceType = Areas[area][entrance].type;
                     return <Entrance
-                        availableLocations={entranceType === "house" ? availableInteriors.house
-                            : entranceType === "dungeon" ? availableInteriors.dungeon
-                                : entranceType === "overworld" ? availableEntrances.overworld
+                        availableLocations={entranceType === EntranceTypes.House ? availableInteriors.house
+                            : entranceType === EntranceTypes.Dungeon ? availableInteriors.dungeon
+                                : entranceType === EntranceTypes.Overworld ? availableEntrances.overworld
                                     : availableInteriors.grotto}
                         resetEntrance={this.props.resetEntrance}
                         resetOverworldEntrance={this.props.resetOverworldEntrance}

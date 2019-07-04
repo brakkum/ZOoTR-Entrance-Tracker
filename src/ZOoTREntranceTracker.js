@@ -1,5 +1,6 @@
 import AreaEntranceSeparator from "./AreaEntranceSeparator";
-import Areas from "./Entrances/AreasAndEntrances";
+import EntranceTypes from "./DataObjects/EntranceTypeEnum";
+import Areas from "./DataObjects/AreasAndEntrances";
 import SetLinksHouse from "./SetLinksHouse";
 import React from "react";
 import Area from "./Area";
@@ -11,7 +12,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         showStartSelection: false,
         // Interiors that have not yet been assigned
         availableInteriors: {},
-        // Entrances that have not yet been assigned
+        // DataObjects that have not yet been assigned
         availableEntrances: {},
         // Interior keys with an array of their location
         interiorLocations: {},
@@ -34,8 +35,8 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.addInteriorOrAreaLocation(nextAreaAndEntrance, area);
         this.addInteriorOrAreaLocation(currentAreaAndEntrance, nextArea);
 
-        this.removeElementFromStateArray("availableEntrances", "overworld", nextAreaAndEntrance);
-        this.removeElementFromStateArray("availableEntrances", "overworld", currentAreaAndEntrance);
+        this.removeElementFromStateArray("availableEntrances", EntranceTypes.Overworld, nextAreaAndEntrance);
+        this.removeElementFromStateArray("availableEntrances", EntranceTypes.Overworld, currentAreaAndEntrance);
 
         this.setEntrance(nextArea, nextEntrance, currentAreaAndEntrance);
         this.setEntrance(area, entrance, nextAreaAndEntrance);
@@ -97,8 +98,8 @@ export default class ZOoTREntranceTracker extends React.Component {
 
         // add the freed entrances back into the pool
         let availableEntrances = this.state.availableEntrances;
-        availableEntrances["overworld"].push(nextAreaAndEntrance);
-        availableEntrances["overworld"].push(currentAreaAndEntrance);
+        availableEntrances[EntranceTypes.Overworld].push(nextAreaAndEntrance);
+        availableEntrances[EntranceTypes.Overworld].push(currentAreaAndEntrance);
         this.setState({availableEntrances: availableEntrances});
 
         this.removeAreaIfEmpty(area);
@@ -166,17 +167,17 @@ export default class ZOoTREntranceTracker extends React.Component {
         } else {
 
             let availableEntrances = {
-                "house": [],
-                "overworld": [],
-                "grotto": [],
-                "dungeon": []
+                [EntranceTypes.House]: [],
+                [EntranceTypes.Overworld]: [],
+                [EntranceTypes.Grotto]: [],
+                [EntranceTypes.Dungeon]: []
             };
 
             let availableInteriors = {
-                "house": [],
-                "overworld": [],
-                "grotto": [],
-                "dungeon": []
+                [EntranceTypes.House]: [],
+                [EntranceTypes.Overworld]: [],
+                [EntranceTypes.Grotto]: [],
+                [EntranceTypes.Dungeon]: []
             };
 
             let availableAreas = {};

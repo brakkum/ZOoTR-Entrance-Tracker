@@ -1,4 +1,5 @@
-import Areas from "./Entrances/AreasAndEntrances";
+import EntranceTypes from "./DataObjects/EntranceTypeEnum";
+import Areas from "./DataObjects/AreasAndEntrances";
 import React from "react";
 
 export default class Entrance extends React.Component {
@@ -8,7 +9,7 @@ export default class Entrance extends React.Component {
         let entrance = this.props.entrance;
         let selection = event.target.value;
         let type = Areas[area][entrance].type;
-        if (type === "overworld") {
+        if (type === EntranceTypes.Overworld) {
             this.props.setOverworldToOverworld(area, entrance, selection);
         } else {
             this.props.setInteriorToAreaAndEntrance(area, entrance, selection);
@@ -20,7 +21,7 @@ export default class Entrance extends React.Component {
         let entrance = this.props.entrance;
         let interior = this.props.interior;
         let type = Areas[area][entrance].type;
-        if (type === "overworld") {
+        if (type === EntranceTypes.Overworld) {
             this.props.resetOverworldEntrance(area, entrance, interior);
         } else {
             this.props.resetEntrance(area, entrance, interior);
