@@ -6,6 +6,9 @@ export default {
         },
         "Goron City": {
             "type": "overworld"
+        },
+        "Storms Grotto": {
+            "type": "grotto"
         }
     },
     "Kokiri Forest": {
@@ -17,6 +20,9 @@ export default {
         },
         "Hyrule Field": {
             "type": "overworld"
+        },
+        "Storms Grotto": {
+            "type": "grotto"
         }
     },
     "Kakariko Village": {
@@ -30,8 +36,7 @@ export default {
             "type": "overworld"
         },
         "Redead Grotto": {
-            "type": "grotto",
-            "display": "dead boy grotto"
+            "type": "grotto"
         }
     },
     "Hyrule Field": {

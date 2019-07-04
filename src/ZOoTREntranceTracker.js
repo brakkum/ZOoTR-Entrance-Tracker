@@ -7,11 +7,18 @@ import Area from "./Area";
 export default class ZOoTREntranceTracker extends React.Component {
 
     state = {
+        // should prompt for Link's House location show
         showStartSelection: false,
-        availableInteriors: {}, // Interiors that have not yet been assigned
-        availableEntrances: {}, // Entrances that have not yet been assigned
-        availableAreas: {}, // Areas that have not yet been accessed
-        openAreas: {} // This defines what the current layout is
+        // Interiors that have not yet been assigned
+        availableInteriors: {},
+        // Entrances that have not yet been assigned
+        availableEntrances: {},
+        // Interior keys with an array of their location
+        interiorLocations: {},
+        // Areas that have not yet been accessed
+        availableAreas: {},
+        // This tracks all current areas and state involved
+        openAreas: {}
     };
 
     // area: the area that the overworld pointer is located in
@@ -23,6 +30,9 @@ export default class ZOoTREntranceTracker extends React.Component {
 
         this.addArea(area);
         this.addArea(nextArea);
+
+        this.addInteriorOrAreaLocation(nextAreaAndEntrance, area);
+        this.addInteriorOrAreaLocation(currentAreaAndEntrance, nextArea);
 
         this.removeElementFromStateArray("availableEntrances", "overworld", nextAreaAndEntrance);
         this.removeElementFromStateArray("availableEntrances", "overworld", currentAreaAndEntrance);
@@ -40,12 +50,32 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.removeElementFromStateArray("availableInteriors", type, interior);
         this.addArea(area);
 
+        this.addInteriorOrAreaLocation(`${area}${AreaEntranceSeparator}${entrance}`, interior);
+
         this.setEntrance(area, entrance, interior);
         this.removeElementFromStateArray("availableEntrances", type, interior);
 
         if (this.state.showStartSelection) {
             this.setState({showStartSelection: false});
         }
+    };
+
+    addInteriorOrAreaLocation = (locationPointer, interior) => {
+        let interiorLocations = this.state.interiorLocations;
+        if (interiorLocations[interior] === undefined) {
+            interiorLocations[interior] = [];
+        }
+        interiorLocations[interior].push(locationPointer);
+        this.setState({interiorLocations: interiorLocations});
+    };
+
+    removeInteriorOrAreaLocation = (locationPointer, interior) => {
+        let interiorLocations = this.state.interiorLocations;
+        interiorLocations[interior].splice(interiorLocations[interior].indexOf(locationPointer), 1);
+        if (interiorLocations[interior].length === 0) {
+            delete interiorLocations[interior];
+        }
+        this.setState({interiorLocations: interiorLocations});
     };
 
     // area: the area the overworld pointer is set in
@@ -61,6 +91,10 @@ export default class ZOoTREntranceTracker extends React.Component {
         openAreas[nextArea][nextEntrance] = "";
         this.setState({openAreas: openAreas});
 
+        // remove from interiorLocation array
+        this.removeInteriorOrAreaLocation(nextAreaAndEntrance, area);
+        this.removeInteriorOrAreaLocation(currentAreaAndEntrance, nextArea);
+
         // add the freed entrances back into the pool
         let availableEntrances = this.state.availableEntrances;
         availableEntrances["overworld"].push(nextAreaAndEntrance);
@@ -75,6 +109,8 @@ export default class ZOoTREntranceTracker extends React.Component {
         let openAreas = this.state.openAreas;
         openAreas[area][entrance] = "";
         let type = Areas[area][entrance].type;
+
+        this.removeInteriorOrAreaLocation(`${area}${AreaEntranceSeparator}${entrance}`, interior);
 
         let availableInteriors = this.state.availableInteriors;
         availableInteriors[type].push(interior);
@@ -144,6 +180,7 @@ export default class ZOoTREntranceTracker extends React.Component {
             };
 
             let availableAreas = {};
+            let interiorLocations = {};
 
             Object.keys(Areas).forEach(area => {
                 availableAreas[area] = {};
@@ -160,8 +197,9 @@ export default class ZOoTREntranceTracker extends React.Component {
             this.setState({
                 availableInteriors: availableInteriors,
                 availableEntrances: availableEntrances,
+                interiorLocations: interiorLocations,
                 availableAreas: availableAreas,
-                showStartSelection: true,
+                showStartSelection: true
             });
         }
     };
