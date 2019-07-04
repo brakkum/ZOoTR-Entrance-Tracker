@@ -52,9 +52,9 @@ export default class Entrance extends React.Component {
                             {availableLocations.map((location, i) => {
                                 if (Areas[area][entrance].type === EntranceTypes.Overworld &&
                                     location === `${area}${AreaEntranceSeparator}${entrance}`) {
-                                    return "";
+                                    return;
                                 }
-                                return <option key={i}>{location}</option>
+                                return <option key={i} value={location}>{location}</option>
                             })}
                         </select>
                     </div>
