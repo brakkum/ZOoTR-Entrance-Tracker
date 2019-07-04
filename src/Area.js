@@ -5,6 +5,12 @@ import React from "react";
 
 export default class Area extends React.Component {
 
+    returnUniqueItems = array => {
+        return array.filter((item, i) => {
+            return array.indexOf(item) === i;
+        });
+    };
+
     render() {
         let area = this.props.area;
         let entrances =  Object.keys(this.props.entrances);
@@ -16,10 +22,11 @@ export default class Area extends React.Component {
                 {entrances.map((entrance, i) => {
                     let entranceType = Areas[area][entrance].type;
                     return <Entrance
-                        availableLocations={entranceType === EntranceTypes.House ? availableInteriors.house
+                        availableLocations={
+                            entranceType === EntranceTypes.House ? this.returnUniqueItems(availableInteriors.house)
                             : entranceType === EntranceTypes.Dungeon ? availableInteriors.dungeon
                                 : entranceType === EntranceTypes.Overworld ? availableEntrances.overworld
-                                    : availableInteriors.grotto}
+                                    : this.returnUniqueItems(availableInteriors.grotto)}
                         resetEntrance={this.props.resetEntrance}
                         resetOverworldEntrance={this.props.resetOverworldEntrance}
                         setOverworldToOverworld={this.props.setOverworldToOverworld}

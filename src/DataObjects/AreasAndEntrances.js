@@ -1,4 +1,5 @@
 import EntranceTypes from "./EntranceTypeEnum";
+import CommonInteriors from "./CommonInteriors";
 
 export default {
     "Death Mountain Trail": {
@@ -17,7 +18,7 @@ export default {
             "type": EntranceTypes.House
         },
         "Shop": {
-            "type": EntranceTypes.House
+            "type": EntranceTypes.House,
         },
         "Hyrule Field": {
             "type": EntranceTypes.Overworld
@@ -35,6 +36,10 @@ export default {
         },
         "Hyrule Field": {
             "type": EntranceTypes.Overworld
+        },
+        "Open Grotto": {
+            "type": EntranceTypes.Grotto,
+            "display": CommonInteriors.Grotto
         },
         "Redead Grotto": {
             "type": EntranceTypes.Grotto
