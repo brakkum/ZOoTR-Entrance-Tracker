@@ -3,7 +3,8 @@ const EntranceTypes = {
     "Dungeon": "dungeon",
     "Grotto": "grotto",
     "House": "house",
-    "Overworld": "overworld"
-}
+    "Overworld": "overworld",
+    "KaeporaGaebora": "kaeporaGaebora"
+};
 
 export default EntranceTypes;

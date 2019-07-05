@@ -1,5 +1,5 @@
 import AreaEntranceSeparator from "./AreaEntranceSeparator";
-import EntranceTypes from "./DataObjects/EntranceTypeEnum";
+import EntranceTypes from "./DataObjects/EntranceTypes";
 import Areas from "./DataObjects/AreasAndEntrances";
 import SetLinksHouse from "./SetLinksHouse";
 import React from "react";
@@ -16,7 +16,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         availableEntrances: {},
         // Interior keys with an array of their location
         interiorLocations: {},
-        // Areas that have not yet been accessed
+        // Overworld Area objects that are added to openAreas when found
         availableAreas: {},
         // This tracks all current areas and state involved
         openAreas: {}
@@ -61,6 +61,42 @@ export default class ZOoTREntranceTracker extends React.Component {
         }
     };
 
+    // area: the area that the overworld pointer is located in
+    // entrance: the overworld entrance in the area
+    // landingAreaAndEntrance: the area->entrance pointer that is the new connection
+    setKaeporaGaeboraEntrance = (area, entrance, landingAreaAndEntrance) => {
+        // next area is the import part
+        let [landingArea] = landingAreaAndEntrance.split(AreaEntranceSeparator);
+        let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
+
+        this.addArea(landingArea);
+
+        this.addInteriorOrAreaLocation(currentAreaAndEntrance, landingArea);
+
+        this.setEntrance(area, entrance, landingAreaAndEntrance);
+    };
+
+    // area: the area that the overworld pointer is located in
+    // entrance: the overworld entrance in the area, will always be KG
+    // landingAreaAndEntrance: the area->entrance pointer that was used
+    resetKaeporaGaeboraEntrance = (area, entrance, landingAreaAndEntrance) => {
+        let [landingArea] = landingAreaAndEntrance.split(AreaEntranceSeparator);
+        let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
+
+        // reset kaepora overworld pointer to empty
+        let openAreas = this.state.openAreas;
+        openAreas[area][entrance] = "";
+        this.setState({openAreas: openAreas});
+
+        // remove from interiorLocation array
+        this.removeInteriorOrAreaLocation(currentAreaAndEntrance, landingArea);
+
+        this.removeAreaIfEmpty(area);
+        this.removeAreaIfEmpty(landingArea);
+    };
+
+    // locationPointer: an area->entrance pointer
+    // interior: interior name to be used as key for array of pointers
     addInteriorOrAreaLocation = (locationPointer, interior) => {
         let interiorLocations = this.state.interiorLocations;
         if (interiorLocations[interior] === undefined) {
@@ -70,6 +106,8 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({interiorLocations: interiorLocations});
     };
 
+    // locationPointer: an area->entrance pointer
+    // interior: interior name that is used as key for array of location pointers
     removeInteriorOrAreaLocation = (locationPointer, interior) => {
         let interiorLocations = this.state.interiorLocations;
         interiorLocations[interior].splice(interiorLocations[interior].indexOf(locationPointer), 1);
@@ -82,28 +120,28 @@ export default class ZOoTREntranceTracker extends React.Component {
     // area: the area the overworld pointer is set in
     // entrance: the entrance it is assigned to
     // nextAreaAndEntrance the area->entrance pointer for where the entrance leads
-    resetOverworldEntrance = (area, entrance, nextAreaAndEntrance) => {
-        let [nextArea, nextEntrance] = nextAreaAndEntrance.split(AreaEntranceSeparator);
+    resetOverworldEntrance = (area, entrance, connectedAreaAndEntrance) => {
+        let [otherArea, otherEntrance] = connectedAreaAndEntrance.split(AreaEntranceSeparator);
         let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
 
         // reset both overworld pointers to empty
         let openAreas = this.state.openAreas;
         openAreas[area][entrance] = "";
-        openAreas[nextArea][nextEntrance] = "";
+        openAreas[otherArea][otherEntrance] = "";
         this.setState({openAreas: openAreas});
 
         // remove from interiorLocation array
-        this.removeInteriorOrAreaLocation(nextAreaAndEntrance, area);
-        this.removeInteriorOrAreaLocation(currentAreaAndEntrance, nextArea);
+        this.removeInteriorOrAreaLocation(connectedAreaAndEntrance, area);
+        this.removeInteriorOrAreaLocation(currentAreaAndEntrance, otherArea);
 
         // add the freed entrances back into the pool
         let availableEntrances = this.state.availableEntrances;
-        availableEntrances[EntranceTypes.Overworld].push(nextAreaAndEntrance);
+        availableEntrances[EntranceTypes.Overworld].push(connectedAreaAndEntrance);
         availableEntrances[EntranceTypes.Overworld].push(currentAreaAndEntrance);
         this.setState({availableEntrances: availableEntrances});
 
         this.removeAreaIfEmpty(area);
-        this.removeAreaIfEmpty(nextArea);
+        this.removeAreaIfEmpty(otherArea);
     };
 
     resetEntrance = (area, entrance, interior) => {
@@ -165,19 +203,20 @@ export default class ZOoTREntranceTracker extends React.Component {
         if (local) {
 
         } else {
-
             let availableEntrances = {
                 [EntranceTypes.House]: [],
                 [EntranceTypes.Overworld]: [],
                 [EntranceTypes.Grotto]: [],
-                [EntranceTypes.Dungeon]: []
+                [EntranceTypes.Dungeon]: [],
+                [EntranceTypes.KaeporaGaebora]: []
             };
 
             let availableInteriors = {
                 [EntranceTypes.House]: [],
                 [EntranceTypes.Overworld]: [],
                 [EntranceTypes.Grotto]: [],
-                [EntranceTypes.Dungeon]: []
+                [EntranceTypes.Dungeon]: [],
+                [EntranceTypes.KaeporaGaebora]: []
             };
 
             let availableAreas = {};
@@ -191,6 +230,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                     let interiorName = Areas[area][entrance].display || entrance;
                     availableEntrances[type].push(entranceName);
                     availableInteriors[type].push(interiorName);
+                    if (type === EntranceTypes.Overworld) {
+                        availableEntrances[EntranceTypes.KaeporaGaebora].push(entranceName);
+                    }
                     availableAreas[area][entrance] = "";
                 });
             });
@@ -237,6 +279,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                         availableInteriors={this.state.availableInteriors}
                         availableEntrances={this.state.availableEntrances}
                         resetOverworldEntrance={this.resetOverworldEntrance}
+                        resetKaeporaGaeboraEntrance={this.resetKaeporaGaeboraEntrance}
+                        setKaeporaGaeboraEntrance={this.setKaeporaGaeboraEntrance}
                         entrances={areas[area]}
                     />
                 })}

@@ -1,7 +1,7 @@
-import EntranceTypes from "./DataObjects/EntranceTypeEnum";
+import AreaEntranceSeparator from "./AreaEntranceSeparator";
+import EntranceTypes from "./DataObjects/EntranceTypes";
 import Areas from "./DataObjects/AreasAndEntrances";
 import React from "react";
-import AreaEntranceSeparator from "./AreaEntranceSeparator";
 
 export default class Entrance extends React.Component {
 
@@ -12,6 +12,8 @@ export default class Entrance extends React.Component {
         let type = Areas[area][entrance].type;
         if (type === EntranceTypes.Overworld) {
             this.props.setOverworldToOverworld(area, entrance, selection);
+        } else if (type === EntranceTypes.KaeporaGaebora) {
+            this.props.setKaeporaGaeboraEntrance(area, entrance, selection);
         } else {
             this.props.setInteriorToAreaAndEntrance(area, entrance, selection);
         }
@@ -24,6 +26,8 @@ export default class Entrance extends React.Component {
         let type = Areas[area][entrance].type;
         if (type === EntranceTypes.Overworld) {
             this.props.resetOverworldEntrance(area, entrance, interior);
+        } else if (type === EntranceTypes.KaeporaGaebora) {
+            this.props.resetKaeporaGaeboraEntrance(area, entrance, interior);
         } else {
             this.props.resetEntrance(area, entrance, interior);
         }
@@ -52,7 +56,7 @@ export default class Entrance extends React.Component {
                             {availableLocations.map((location, i) => {
                                 if (Areas[area][entrance].type === EntranceTypes.Overworld &&
                                     location === `${area}${AreaEntranceSeparator}${entrance}`) {
-                                    return;
+                                    return null;
                                 }
                                 return <option key={i} value={location}>{location}</option>
                             })}

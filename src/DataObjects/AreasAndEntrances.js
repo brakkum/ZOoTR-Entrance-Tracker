@@ -1,9 +1,13 @@
-import EntranceTypes from "./EntranceTypeEnum";
-import CommonInteriors from "./CommonInteriors";
+import OverworldAreas from "./OverworldAreas";
+import EntranceTypes from "./EntranceTypes";
+import Entrances from "./Entrances";
+import Dungeons from "./Dungeons";
+import Grottos from "./Grottos";
+import Houses from "./Houses";
 
 export default {
     "Death Mountain Trail": {
-        "Dodongo's Cavern": {
+        [Dungeons.DodongosCavern]: {
             "type": EntranceTypes.Dungeon
         },
         "Goron City": {
@@ -13,18 +17,23 @@ export default {
             "type": EntranceTypes.Grotto
         }
     },
-    "Kokiri Forest": {
+    [OverworldAreas.KokiriForest]: {
         "Link's House": {
-            "type": EntranceTypes.House
+            "type": EntranceTypes.House,
+            "display": Houses.LinksHouse
         },
         "Shop": {
             "type": EntranceTypes.House,
         },
-        "Hyrule Field": {
+        [OverworldAreas.LostWoods]: {
             "type": EntranceTypes.Overworld
         },
-        "Storms Grotto": {
-            "type": EntranceTypes.Grotto
+        [OverworldAreas.LostWoodsBridge]: {
+            "type": EntranceTypes.Overworld
+        },
+        [Entrances.StormsGrotto]: {
+            "type": EntranceTypes.Grotto,
+            "display": Grottos.Grotto
         }
     },
     "Kakariko Village": {
@@ -34,23 +43,53 @@ export default {
         "Windmill": {
             "type": EntranceTypes.House
         },
-        "Hyrule Field": {
+        [OverworldAreas.HyruleField]: {
             "type": EntranceTypes.Overworld
         },
         "Open Grotto": {
             "type": EntranceTypes.Grotto,
-            "display": CommonInteriors.Grotto
+            "display": Grottos.Grotto
         },
         "Redead Grotto": {
             "type": EntranceTypes.Grotto
         }
     },
-    "Hyrule Field": {
-        "Kakariko Village": {
+    [OverworldAreas.HyruleField]: {
+        [OverworldAreas.KakarikoVillage]: {
             "type": EntranceTypes.Overworld
         },
-        "Kokiri Forest": {
+        [OverworldAreas.LostWoodsBridge]: {
             "type": EntranceTypes.Overworld
         }
     },
+    [OverworldAreas.LakeHylia]: {
+        [OverworldAreas.HyruleField]: {
+            "type": EntranceTypes.Overworld
+        },
+        [Entrances.KaeporaGaebora]: {
+            "type": EntranceTypes.KaeporaGaebora
+        },
+        [Houses.LakeHyliaLab]: {
+            "type": EntranceTypes.House
+        }
+    },
+    [OverworldAreas.LostWoods]: {
+        [OverworldAreas.KokiriForest]: {
+            "type": EntranceTypes.Overworld
+        },
+        [OverworldAreas.LostWoodsBridge]: {
+            "type": EntranceTypes.Overworld
+        }
+    },
+    [OverworldAreas.LostWoodsBridge]: {
+        [OverworldAreas.KokiriForest]: {
+            "type": EntranceTypes.Overworld
+        },
+        [OverworldAreas.HyruleField]: {
+            "type": EntranceTypes.Overworld
+        },
+        [OverworldAreas.LostWoods]: {
+            "type": EntranceTypes.Overworld
+        }
+    }
 };

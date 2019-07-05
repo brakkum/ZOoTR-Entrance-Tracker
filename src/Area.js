@@ -1,4 +1,4 @@
-import EntranceTypes from "./DataObjects/EntranceTypeEnum";
+import EntranceTypes from "./DataObjects/EntranceTypes";
 import Areas from "./DataObjects/AreasAndEntrances";
 import Entrance from "./Entrance";
 import React from "react";
@@ -13,7 +13,8 @@ export default class Area extends React.Component {
 
     render() {
         let area = this.props.area;
-        let entrances =  Object.keys(this.props.entrances);
+        let entranceObject = this.props.entrances;
+        let entrances =  Object.keys(entranceObject);
         let availableInteriors = this.props.availableInteriors;
         let availableEntrances = this.props.availableEntrances;
         return(
@@ -23,15 +24,25 @@ export default class Area extends React.Component {
                     let entranceType = Areas[area][entrance].type;
                     return <Entrance
                         availableLocations={
-                            entranceType === EntranceTypes.House ? this.returnUniqueItems(availableInteriors.house)
-                            : entranceType === EntranceTypes.Dungeon ? availableInteriors.dungeon
-                                : entranceType === EntranceTypes.Overworld ? availableEntrances.overworld
-                                    : this.returnUniqueItems(availableInteriors.grotto)}
+                            entranceType === EntranceTypes.House ?
+                            this.returnUniqueItems(availableInteriors.house)
+                                : entranceType === EntranceTypes.Dungeon ?
+                                availableInteriors.dungeon
+                                    : entranceType === EntranceTypes.Overworld ?
+                                    availableEntrances.overworld
+                                        : entranceType === EntranceTypes.Grotto ?
+                                        this.returnUniqueItems(availableInteriors.grotto)
+                                            : entranceType === EntranceTypes.KaeporaGaebora ?
+                                            availableEntrances.kaeporaGaebora
+                                                : [] // How did you get here??
+                        }
                         resetEntrance={this.props.resetEntrance}
                         resetOverworldEntrance={this.props.resetOverworldEntrance}
                         setOverworldToOverworld={this.props.setOverworldToOverworld}
                         setInteriorToAreaAndEntrance={this.props.setInteriorToAreaAndEntrance}
-                        interior={this.props.entrances[entrance]}
+                        setKaeporaGaeboraEntrance={this.props.setKaeporaGaeboraEntrance}
+                        resetKaeporaGaeboraEntrance={this.props.resetKaeporaGaeboraEntrance}
+                        interior={entranceObject[entrance]}
                         entrance={entrance}
                         area={area}
                         key={i}
