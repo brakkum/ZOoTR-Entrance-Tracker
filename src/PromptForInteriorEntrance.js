@@ -1,13 +1,12 @@
 import AreaEntranceSeparator from "./AreaEntranceSeparator";
 import React from "react";
 
-export default class SetLinksHouse extends React.Component {
+export default class PromptForInteriorEntrance extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            selectedLocation: this.props.availableEntrances[0],
-            availableEntrances: this.props.availableEntrances
+            selectedLocation: "",
         }
     }
 
@@ -16,16 +15,26 @@ export default class SetLinksHouse extends React.Component {
     };
 
     setInteriorToAreaAndEntrance = () => {
-        let [area, entrance] = this.state.selectedLocation.split(AreaEntranceSeparator);
-        this.props.setInteriorToAreaAndEntrance(area, entrance, "Link's House");
+        let interiorToPromptFor = this.props.interiorToPromptFor;
+        let selectedLocation = this.state.selectedLocation;
+        if (selectedLocation === "") {
+            return;
+        }
+        let [area, entrance] = selectedLocation.split(AreaEntranceSeparator);
+        this.props.setInteriorToAreaAndEntrance(area, entrance, interiorToPromptFor);
+        this.setState({selectedLocation: ""})
     };
 
     render() {
-        let availableEntrances = this.state.availableEntrances;
+        let interiorToPromptFor = this.props.interiorToPromptFor;
+        let availableEntrances = this.props.availableEntrances;
+        if (!availableEntrances) {
+            return null;
+        }
         return (
             <div className="prompt">
                 <h3 className="is-size-3 has-text-centered">
-                    Where does Link's house go to?
+                    Where does {interiorToPromptFor} go to?
                 </h3>
                 <div className="field is-grouped has-addons has-addons-centered">
                     <div className="select control">
@@ -33,6 +42,7 @@ export default class SetLinksHouse extends React.Component {
                             onChange={this.onSelectChange}
                             value={this.state.selectedLocation}
                         >
+                            <option value="">Select a location</option>
                             {availableEntrances.map((entrance, i) => {
                                 return <option
                                     key={i}

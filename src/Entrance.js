@@ -2,6 +2,7 @@ import AreaEntranceSeparator from "./AreaEntranceSeparator";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import Areas from "./DataObjects/AreasAndEntrances";
 import React from "react";
+import Houses from "./DataObjects/Houses";
 
 export default class Entrance extends React.Component {
 
@@ -45,7 +46,7 @@ export default class Entrance extends React.Component {
                     <div className="interior-display">
                         <span>{interior}</span>
                         {/* once Link's House is set, leave it */}
-                        {interior === "Link's House" ?
+                        {interior === Houses.LinksHouse ?
                             "" :
                             <span className="delete is-pulled-right" onClick={this.resetEntrance}>x</span>
                         }

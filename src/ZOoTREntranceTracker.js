@@ -1,15 +1,15 @@
+import PromptForInteriorEntrance from "./PromptForInteriorEntrance";
 import AreaEntranceSeparator from "./AreaEntranceSeparator";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import Areas from "./DataObjects/AreasAndEntrances";
-import SetLinksHouse from "./SetLinksHouse";
+import Grottos from "./DataObjects/Grottos";
+import Houses from "./DataObjects/Houses";
 import React from "react";
 import Area from "./Area";
 
 export default class ZOoTREntranceTracker extends React.Component {
 
     state = {
-        // should prompt for Link's House location show
-        showStartSelection: false,
         // Interiors that have not yet been assigned
         availableInteriors: {},
         // DataObjects that have not yet been assigned
@@ -55,10 +55,6 @@ export default class ZOoTREntranceTracker extends React.Component {
 
         this.setEntrance(area, entrance, interior);
         this.removeElementFromStateArray("availableEntrances", type, interior);
-
-        if (this.state.showStartSelection) {
-            this.setState({showStartSelection: false});
-        }
     };
 
     // area: the area that the overworld pointer is located in
@@ -197,6 +193,17 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({[array]: elements});
     };
 
+    interiorToPromptForBasedOnState = () => {
+        let interiorLocations = this.state.interiorLocations;
+        if (interiorLocations[Houses.LinksHouse] === undefined) {
+            return Houses.LinksHouse;
+        } else if (interiorLocations[Grottos.DampesGrave] !== undefined &&
+                    interiorLocations[Houses.Windmill] === undefined) {
+            return Houses.Windmill;
+        }
+        return "";
+    };
+
     componentDidMount() {
         // TODO: check for local storage here later
         let local = false;
@@ -241,15 +248,15 @@ export default class ZOoTREntranceTracker extends React.Component {
                 availableInteriors: availableInteriors,
                 availableEntrances: availableEntrances,
                 interiorLocations: interiorLocations,
-                availableAreas: availableAreas,
-                showStartSelection: true
+                availableAreas: availableAreas
             });
         }
     };
 
     render() {
-        let showStartSelection = this.state.showStartSelection;
         let areas = this.state.openAreas;
+        let interiorToPromptFor = this.interiorToPromptForBasedOnState();
+
         return (
             <div className="zootr-entrance-tracker">
                 {/* search section */}
@@ -257,9 +264,9 @@ export default class ZOoTREntranceTracker extends React.Component {
 
                 <div className="user-prompts">
                     {/* on load, set location of Link's House */}
-                    {showStartSelection ?
-                        // TODO: Make this more reusable component, Dampe's Grave requires similar attention
-                        <SetLinksHouse
+                    {interiorToPromptFor !== "" ?
+                        <PromptForInteriorEntrance
+                            interiorToPromptFor={interiorToPromptFor}
                             availableEntrances={this.state.availableEntrances.house}
                             resetEntrance={this.resetEntrance}
                             setInteriorToAreaAndEntrance={this.setInteriorToAreaAndEntrance}
