@@ -249,41 +249,45 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     render() {
         let showStartSelection = this.state.showStartSelection;
-        let availableHouses = this.state.availableEntrances.house;
         let areas = this.state.openAreas;
         return (
-            <div className="app">
+            <div className="zootr-entrance-tracker">
                 {/* search section */}
                 {/* from a currently active location to another currently active location only */}
 
-                {/* on load, set location of Link's House */}
-                {showStartSelection ?
-                    <SetLinksHouse
-                        availableEntrances={availableHouses}
-                        resetEntrance={this.resetEntrance}
-                        setInteriorToAreaAndEntrance={this.setInteriorToAreaAndEntrance}
-                    />
-                    : ""
-                }
+                <div className="user-prompts">
+                    {/* on load, set location of Link's House */}
+                    {showStartSelection ?
+                        // TODO: Make this more reusable component, Dampe's Grave requires similar attention
+                        <SetLinksHouse
+                            availableEntrances={this.state.availableEntrances.house}
+                            resetEntrance={this.resetEntrance}
+                            setInteriorToAreaAndEntrance={this.setInteriorToAreaAndEntrance}
+                        />
+                        : ""
+                    }
+                </div>
                 {/* collection of areas */}
                 {/* these contain a list of entrances */}
                 {/* these entrances can be linked to entrances in other areas */}
                 {/* this triggers another area to be added to the collection */}
-                {Object.keys(areas).sort().map((area, i) => {
-                    return <Area
-                        key={i}
-                        area={area}
-                        resetEntrance={this.resetEntrance}
-                        setOverworldToOverworld={this.setOverworldToOverworld}
-                        setInteriorToAreaAndEntrance={this.setInteriorToAreaAndEntrance}
-                        availableInteriors={this.state.availableInteriors}
-                        availableEntrances={this.state.availableEntrances}
-                        resetOverworldEntrance={this.resetOverworldEntrance}
-                        resetKaeporaGaeboraEntrance={this.resetKaeporaGaeboraEntrance}
-                        setKaeporaGaeboraEntrance={this.setKaeporaGaeboraEntrance}
-                        entrances={areas[area]}
-                    />
-                })}
+                <div className="is-flex-desktop is-flex-tablet is-multiline flex-wraps">
+                    {Object.keys(areas).sort().map((area, i) => {
+                        return <Area
+                            key={i}
+                            area={area}
+                            resetEntrance={this.resetEntrance}
+                            setOverworldToOverworld={this.setOverworldToOverworld}
+                            setInteriorToAreaAndEntrance={this.setInteriorToAreaAndEntrance}
+                            availableInteriors={this.state.availableInteriors}
+                            availableEntrances={this.state.availableEntrances}
+                            resetOverworldEntrance={this.resetOverworldEntrance}
+                            resetKaeporaGaeboraEntrance={this.resetKaeporaGaeboraEntrance}
+                            setKaeporaGaeboraEntrance={this.setKaeporaGaeboraEntrance}
+                            entrances={areas[area]}
+                        />
+                    })}
+                </div>
             </div>
         );
     }

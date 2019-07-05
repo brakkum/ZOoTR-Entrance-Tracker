@@ -23,26 +23,30 @@ export default class SetLinksHouse extends React.Component {
     render() {
         let availableEntrances = this.state.availableEntrances;
         return (
-            <div>
-                <h2>
+            <div className="prompt">
+                <h3 className="is-size-3 has-text-centered">
                     Where does Link's house go to?
-                </h2>
-                <select
-                    onChange={this.onSelectChange}
-                    value={this.state.selectedLocation}
-                >
-                    {availableEntrances.map((entrance, i) => {
-                        return <option
-                            key={i}
-                            value={entrance}
+                </h3>
+                <div className="field is-grouped has-addons has-addons-centered">
+                    <div className="select control">
+                        <select
+                            onChange={this.onSelectChange}
+                            value={this.state.selectedLocation}
                         >
-                            {entrance}
-                        </option>
-                    })}
-                </select>
-                <button onClick={this.setInteriorToAreaAndEntrance}>
-                    Add Link's House
-                </button>
+                            {availableEntrances.map((entrance, i) => {
+                                return <option
+                                    key={i}
+                                    value={entrance}
+                                >
+                                    {entrance}
+                                </option>
+                            })}
+                        </select>
+                    </div>
+                    <button className="button control" onClick={this.setInteriorToAreaAndEntrance}>
+                        Add Link's House
+                    </button>
+                </div>
             </div>
         )
     }

@@ -18,8 +18,8 @@ export default class Area extends React.Component {
         let availableInteriors = this.props.availableInteriors;
         let availableEntrances = this.props.availableEntrances;
         return(
-            <div>
-                <h2>{area}</h2>
+            <div className="box area-box">
+                <h4 className="is-size-4">{area}</h4>
                 {entrances.map((entrance, i) => {
                     let entranceType = Areas[area][entrance].type;
                     return <Entrance
