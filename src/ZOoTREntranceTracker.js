@@ -2,6 +2,7 @@ import PromptForInteriorEntrance from "./PromptForInteriorEntrance";
 import AreaEntranceSeparator from "./AreaEntranceSeparator";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import Areas from "./DataObjects/AreasAndEntrances";
+import AreasToAdd from "./DataObjects/AreasToAdd";
 import Grottos from "./DataObjects/Grottos";
 import Houses from "./DataObjects/Houses";
 import React from "react";
@@ -24,13 +25,20 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     // area: the area that the overworld pointer is located in
     // entrance: the overworld entrance in the area
-    // location: the area->entrance pointer that is the new connection
+    // nextAreaAndEntrance: the area->entrance pointer that is the new connection
     setOverworldToOverworld = (area, entrance, nextAreaAndEntrance) => {
         let [nextArea, nextEntrance] = nextAreaAndEntrance.split(AreaEntranceSeparator);
         let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
 
-        this.addArea(area);
-        this.addArea(nextArea);
+        // add the areas (kinda overkill since one has to be defined already)
+        this.addAreaIfNotAvailable(area);
+        this.addAreaIfNotAvailable(nextArea);
+        // add any secondary areas if applicable
+        if (AreasToAdd[nextArea] !== undefined) {
+            AreasToAdd[nextArea].forEach(area => {
+                this.addAreaIfNotAvailable(area);
+            })
+        }
 
         this.addInteriorOrAreaLocation(nextAreaAndEntrance, area);
         this.addInteriorOrAreaLocation(currentAreaAndEntrance, nextArea);
@@ -46,10 +54,16 @@ export default class ZOoTREntranceTracker extends React.Component {
     // entrance: the entrance being assigned and interior
     // interior: the house/dungeon/grotto being assigned to a location
     setInteriorToAreaAndEntrance = (area, entrance, interior) => {
-        let type = Areas[area][entrance].type;
+        let type = Areas[area].entrances[entrance].type;
 
         this.removeElementFromStateArray("availableInteriors", type, interior);
-        this.addArea(area);
+        this.addAreaIfNotAvailable(area);
+        // add any secondary areas if applicable
+        if (AreasToAdd[interior] !== undefined) {
+            AreasToAdd[interior].forEach(area => {
+                this.addAreaIfNotAvailable(area);
+            })
+        }
 
         this.addInteriorOrAreaLocation(`${area}${AreaEntranceSeparator}${entrance}`, interior);
 
@@ -65,7 +79,13 @@ export default class ZOoTREntranceTracker extends React.Component {
         let [landingArea] = landingAreaAndEntrance.split(AreaEntranceSeparator);
         let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
 
-        this.addArea(landingArea);
+        this.addAreaIfNotAvailable(landingArea);
+        // add any secondary areas if applicable
+        if (AreasToAdd[landingArea] !== undefined) {
+            AreasToAdd[landingArea].forEach(area => {
+                this.addAreaIfNotAvailable(area);
+            })
+        }
 
         this.addInteriorOrAreaLocation(currentAreaAndEntrance, landingArea);
 
@@ -143,7 +163,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     resetEntrance = (area, entrance, interior) => {
         let openAreas = this.state.openAreas;
         openAreas[area][entrance] = "";
-        let type = Areas[area][entrance].type;
+        let type = Areas[area].entrances[entrance].type;
 
         this.removeInteriorOrAreaLocation(`${area}${AreaEntranceSeparator}${entrance}`, interior);
 
@@ -175,7 +195,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({openAreas: openAreas});
     };
 
-    addArea = area => {
+    addAreaIfNotAvailable = area => {
         let openAreas = this.state.openAreas;
         if (area in openAreas) {
             // area is already available
@@ -231,10 +251,11 @@ export default class ZOoTREntranceTracker extends React.Component {
 
             Object.keys(Areas).forEach(area => {
                 availableAreas[area] = {};
-                Object.keys(Areas[area]).forEach(entrance => {
-                    let type = Areas[area][entrance].type;
+                Object.keys(Areas[area].entrances).forEach(entrance => {
+                    let entranceObject = Areas[area].entrances[entrance];
+                    let type = entranceObject.type;
                     let entranceName = `${area}${AreaEntranceSeparator}${entrance}`;
-                    let interiorName = Areas[area][entrance].display || entrance;
+                    let interiorName = entranceObject.display || entrance;
                     availableEntrances[type].push(entranceName);
                     availableInteriors[type].push(interiorName);
                     if (type === EntranceTypes.Overworld) {

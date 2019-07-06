@@ -10,7 +10,7 @@ const Dungeons = {
     "BottomOfTheWell": "Bottom of the Well",
     "ShadowTemple": "Shadow Temple",
     "GerudoTrainingGrounds": "Gerudo Training Grounds",
-    "SpiritTemple": "SpiritTemple"
+    "SpiritTemple": "Spirit Temple"
 };
 
 export default Dungeons;

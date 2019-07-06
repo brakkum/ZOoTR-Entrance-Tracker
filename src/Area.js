@@ -17,11 +17,12 @@ export default class Area extends React.Component {
         let entrances =  Object.keys(entranceObject);
         let availableInteriors = this.props.availableInteriors;
         let availableEntrances = this.props.availableEntrances;
+        let backgroundColor = Areas[area].color || "transparent";
         return(
-            <div className="box area-box">
+            <div className="box area-box" style={{border: `3px solid ${backgroundColor}`}}>
                 <h4 className="is-size-4">{area}</h4>
                 {entrances.map((entrance, i) => {
-                    let entranceType = Areas[area][entrance].type;
+                    let entranceType = Areas[area].entrances[entrance].type;
                     return <Entrance
                         availableLocations={
                             entranceType === EntranceTypes.House ?

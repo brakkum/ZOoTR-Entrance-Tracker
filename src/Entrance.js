@@ -10,7 +10,7 @@ export default class Entrance extends React.Component {
         let area = this.props.area;
         let entrance = this.props.entrance;
         let selection = event.target.value;
-        let type = Areas[area][entrance].type;
+        let type = Areas[area].entrances[entrance].type;
         if (type === EntranceTypes.Overworld) {
             this.props.setOverworldToOverworld(area, entrance, selection);
         } else if (type === EntranceTypes.KaeporaGaebora) {
@@ -24,7 +24,7 @@ export default class Entrance extends React.Component {
         let area = this.props.area;
         let entrance = this.props.entrance;
         let interior = this.props.interior;
-        let type = Areas[area][entrance].type;
+        let type = Areas[area].entrances[entrance].type;
         if (type === EntranceTypes.Overworld) {
             this.props.resetOverworldEntrance(area, entrance, interior);
         } else if (type === EntranceTypes.KaeporaGaebora) {
@@ -55,7 +55,7 @@ export default class Entrance extends React.Component {
                         <select className="" onChange={this.setLocation}>
                             <option className="input" value={"Not Checked"}>Not Checked</option>
                             {availableLocations.map((location, i) => {
-                                if (Areas[area][entrance].type === EntranceTypes.Overworld &&
+                                if (Areas[area].entrances[entrance].type === EntranceTypes.Overworld &&
                                     location === `${area}${AreaEntranceSeparator}${entrance}`) {
                                     return null;
                                 }
