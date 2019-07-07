@@ -1,4 +1,4 @@
-import AreaEntranceSeparator from "./AreaEntranceSeparator";
+import AreaEntranceSeparator from "./Constants/AreaEntranceSeparator";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import Areas from "./DataObjects/AreasAndEntrances";
 import React from "react";
@@ -41,7 +41,7 @@ export default class Entrance extends React.Component {
         let interior = this.props.interior;
         return(
             <div>
-                <h5 className="is-size-5">{entrance}</h5>
+                <h6 className="is-size-6">{entrance}</h6>
                 {interior !== "" ?
                     <div className="interior-display">
                         <span>{interior}</span>

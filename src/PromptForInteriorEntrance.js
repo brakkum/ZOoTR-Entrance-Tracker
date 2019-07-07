@@ -1,4 +1,4 @@
-import AreaEntranceSeparator from "./AreaEntranceSeparator";
+import AreaEntranceSeparator from "./Constants/AreaEntranceSeparator";
 import React from "react";
 
 export default class PromptForInteriorEntrance extends React.Component {
@@ -32,7 +32,7 @@ export default class PromptForInteriorEntrance extends React.Component {
             return null;
         }
         return (
-            <div className="prompt">
+            <div className="prompt section">
                 <h3 className="is-size-3 has-text-centered">
                     Where does {interiorToPromptFor} go to?
                 </h3>

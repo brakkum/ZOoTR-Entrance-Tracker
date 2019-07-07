@@ -394,7 +394,7 @@ export default {
             [Houses.Shop]: {
                 "type": EntranceTypes.House,
             },
-            [Entrances.StormsGrotto]: {
+            [Grottos.StormsGrotto]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto
             }
@@ -432,7 +432,8 @@ export default {
     [OverworldAreas.LonLonRanch]: {
         "colors": [
             "#c5aa79",
-            "#d0bfb2"
+            "#d0bfb2",
+            "#8fc771"
         ],
         "entrances": {
             [OverworldAreas.HyruleField]: {

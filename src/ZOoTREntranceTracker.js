@@ -1,10 +1,13 @@
+import AreaEntranceSeparator from "./Constants/AreaEntranceSeparator";
 import PromptForInteriorEntrance from "./PromptForInteriorEntrance";
-import AreaEntranceSeparator from "./AreaEntranceSeparator";
 import EntranceTypes from "./DataObjects/EntranceTypes";
+import LocalStorage from "./Constants/LocalStorage";
 import Areas from "./DataObjects/AreasAndEntrances";
 import AreasToAdd from "./DataObjects/AreasToAdd";
 import Grottos from "./DataObjects/Grottos";
 import Houses from "./DataObjects/Houses";
+import Songs from "./DataObjects/Songs";
+import Menu from "./DataObjects/Menu";
 import React from "react";
 import Area from "./Area";
 
@@ -20,7 +23,9 @@ export default class ZOoTREntranceTracker extends React.Component {
         // Overworld Area objects that are added to openAreas when found
         availableAreas: {},
         // This tracks all current areas and state involved
-        openAreas: {}
+        openAreas: {},
+        // Songs that the user poses
+        songs: {}
     };
 
     // area: the area that the overworld pointer is located in
@@ -209,63 +214,92 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     interiorToPromptForBasedOnState = () => {
         let interiorLocations = this.state.interiorLocations;
+        let songs = this.state.songs;
         if (interiorLocations[Houses.LinksHouse] === undefined) {
             return Houses.LinksHouse;
         } else if (interiorLocations[Grottos.DampesGrave] !== undefined &&
                 interiorLocations[Houses.Windmill] === undefined) {
             return Houses.Windmill;
+        } else if (interiorLocations[Houses.TempleOfTime] !== undefined &&
+                songs[Songs.PreludeOfLight] !== undefined) {
+            return Houses.TempleOfTime;
         }
         return "";
     };
 
+    // TODO: Methods for adding and removing songs
+
     componentDidMount() {
-        // TODO: check for local storage here later
-        let local = false;
-        if (local) {
+        this.setupTracker();
+        this.loadState();
+    };
 
+    setupTracker = () => {
+        let availableEntrances = {
+            [EntranceTypes.House]: [],
+            [EntranceTypes.Overworld]: [],
+            [EntranceTypes.Grotto]: [],
+            [EntranceTypes.Dungeon]: [],
+            [EntranceTypes.KaeporaGaebora]: []
+        };
+
+        let availableInteriors = {
+            [EntranceTypes.House]: [],
+            [EntranceTypes.Overworld]: [],
+            [EntranceTypes.Grotto]: [],
+            [EntranceTypes.Dungeon]: [],
+            [EntranceTypes.KaeporaGaebora]: []
+        };
+
+        let availableAreas = {};
+        let interiorLocations = {};
+
+        Object.keys(Areas).forEach(area => {
+            availableAreas[area] = {};
+            Object.keys(Areas[area].entrances).forEach(entrance => {
+                let entranceObject = Areas[area].entrances[entrance];
+                let type = entranceObject.type;
+                let entranceName = `${area}${AreaEntranceSeparator}${entrance}`;
+                let interiorName = entranceObject.display || entrance;
+                availableEntrances[type].push(entranceName);
+                availableInteriors[type].push(interiorName);
+                if (type === EntranceTypes.Overworld) {
+                    availableEntrances[EntranceTypes.KaeporaGaebora].push(entranceName);
+                }
+                availableAreas[area][entrance] = "";
+            });
+        });
+
+        this.setState({
+            availableInteriors: availableInteriors,
+            availableEntrances: availableEntrances,
+            interiorLocations: interiorLocations,
+            availableAreas: availableAreas,
+            openAreas: {},
+            songs: {}
+        });
+    };
+
+    saveState = () => {
+        let state = this.state;
+        localStorage.setItem(LocalStorage.state, JSON.stringify(state));
+    };
+
+    loadState = () => {
+        let stringState = localStorage.getItem(LocalStorage.state);
+        let state;
+
+        state = JSON.parse(stringState);
+        if (state) {
+            this.setState(state);
         } else {
-            let availableEntrances = {
-                [EntranceTypes.House]: [],
-                [EntranceTypes.Overworld]: [],
-                [EntranceTypes.Grotto]: [],
-                [EntranceTypes.Dungeon]: [],
-                [EntranceTypes.KaeporaGaebora]: []
-            };
-
-            let availableInteriors = {
-                [EntranceTypes.House]: [],
-                [EntranceTypes.Overworld]: [],
-                [EntranceTypes.Grotto]: [],
-                [EntranceTypes.Dungeon]: [],
-                [EntranceTypes.KaeporaGaebora]: []
-            };
-
-            let availableAreas = {};
-            let interiorLocations = {};
-
-            Object.keys(Areas).forEach(area => {
-                availableAreas[area] = {};
-                Object.keys(Areas[area].entrances).forEach(entrance => {
-                    let entranceObject = Areas[area].entrances[entrance];
-                    let type = entranceObject.type;
-                    let entranceName = `${area}${AreaEntranceSeparator}${entrance}`;
-                    let interiorName = entranceObject.display || entrance;
-                    availableEntrances[type].push(entranceName);
-                    availableInteriors[type].push(interiorName);
-                    if (type === EntranceTypes.Overworld) {
-                        availableEntrances[EntranceTypes.KaeporaGaebora].push(entranceName);
-                    }
-                    availableAreas[area][entrance] = "";
-                });
-            });
-
-            this.setState({
-                availableInteriors: availableInteriors,
-                availableEntrances: availableEntrances,
-                interiorLocations: interiorLocations,
-                availableAreas: availableAreas
-            });
+            this.setupTracker();
         }
+    };
+
+    resetState = () => {
+        localStorage.removeItem(LocalStorage.state);
+        this.setupTracker();
     };
 
     render() {
@@ -276,6 +310,13 @@ export default class ZOoTREntranceTracker extends React.Component {
             <div className="zootr-entrance-tracker">
                 {/* search section */}
                 {/* from a currently active location to another currently active location only */}
+
+                {/* TODO: song picker */}
+
+                <Menu
+                    saveState={this.saveState}
+                    resetState={this.resetState}
+                />
 
                 <div className="user-prompts">
                     {/* on load, set location of Link's House */}

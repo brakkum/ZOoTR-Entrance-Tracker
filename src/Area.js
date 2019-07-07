@@ -22,11 +22,11 @@ export default class Area extends React.Component {
             <div className="area-box box" style={{
                     background: backgroundColors.length === 1 ?
                         backgroundColors[0] :
-                        `linear-gradient(to right, ${backgroundColors.join(", ")}`
+                        `linear-gradient(to bottom right, ${backgroundColors.join(", ")}`
                 }}
             >
                 <div className="box">
-                    <h4 className="is-size-4">{area}</h4>
+                    <h5 className="is-size-5">{area}</h5>
                     {entrances.map((entrance, i) => {
                         let entranceType = Areas[area].entrances[entrance].type;
                         return <Entrance
