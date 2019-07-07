@@ -1,7 +1,14 @@
 
+.areas-container {
+    max-width: 95%;
+    margin: auto;
+    align-items: flex-start;
+}
+
 .area-box {
     min-width: 400px;
-    margin: 20px;
+    margin: 20px auto 0 auto;
+    padding: 5px;
 }
 
 .interior-display {

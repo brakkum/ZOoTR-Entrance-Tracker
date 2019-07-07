@@ -54,7 +54,7 @@ export default class PromptForInteriorEntrance extends React.Component {
                         </select>
                     </div>
                     <button className="button control" onClick={this.setInteriorToAreaAndEntrance}>
-                        Add Link's House
+                        Add {interiorToPromptFor}
                     </button>
                 </div>
             </div>

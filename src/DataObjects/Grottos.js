@@ -1,13 +1,37 @@
 
 const Grottos = {
+    "BombGrotto": "Bomb Grotto",
+    "BoulderAcrossRiver": "Boulder Across River ",
+    "Boulder": "Boulder",
+    "BoulderInTrees": "Boulder in Trees",
+    "BoulderOnLedge": "Boulder On Ledge",
+    "BoulderNearCastleTown": "Boulder Near Castle Town",
+    "BoulderNearDeathMountainTrail": "Boulder Grotto Near Death Mountain Trail",
+    "BoulderNearGerudoValley": "Boulder Near Gerudo Valley",
+    "BoulderNearGoronCity": "Boulder Grotto Near Goron City",
+    "BoulderNearSacredForestMeadow": "Boulder Near Sacred Forest Meadow",
+    "CowGrotto": "Cow Grotto",
+    "DampesGrave": "Dampe's Grave",
+    "DivingGrotto": "Diving Grotto",
+    "DivingRupeeGrotto": "Diving Rupee Grotto",
+    "FairyFountain": "Fairy Fountain",
+    "ForestStage": "Forest Stage",
+    "Grave": "Grave",
     "Grotto": "Grotto",
+    "NearLakeHyliaBombGrotto": "Near Lake Hylia Bomb Grotto",
     "OneScrub": "1 Scrub",
+    "OpenGrotto": "Open Grotto",
     "RedeadGrave": "Redead Grave",
+    "RedeadGrotto": "Redead Grotto",
+    "RoyalGrave": "Royal Grave",
     "ShieldGrave": "Shield Grave",
+    "SkulltulaGrotto": "Skulltula Grotto",
+    "StormsGrotto": "Song of Storms Grotto",
     "TwoScrubs": "2 Scrubs",
     "ThreeScrubs": "3 Scrubs",
-    "WolfosGrotto": "Wolfos Grotto",
-    "DampesGrave": "Dampe's Grave"
+    "TreeNearKakarikoBombGrotto": "Tree Near Kakariko Grotto",
+    "TreeNearLonLonBombGrotto": "Tree Near Lon Lon Ranch Grotto",
+    "WolfosGrotto": "Wolfos Grotto"
 };
 
 export default Grottos;

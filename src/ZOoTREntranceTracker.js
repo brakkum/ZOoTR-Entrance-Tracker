@@ -33,12 +33,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         // add the areas (kinda overkill since one has to be defined already)
         this.addAreaIfNotAvailable(area);
         this.addAreaIfNotAvailable(nextArea);
-        // add any secondary areas if applicable
-        if (AreasToAdd[nextArea] !== undefined) {
-            AreasToAdd[nextArea].forEach(area => {
-                this.addAreaIfNotAvailable(area);
-            })
-        }
+        this.addAdditionalAreas(nextArea);
 
         this.addInteriorOrAreaLocation(nextAreaAndEntrance, area);
         this.addInteriorOrAreaLocation(currentAreaAndEntrance, nextArea);
@@ -58,12 +53,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
         this.removeElementFromStateArray("availableInteriors", type, interior);
         this.addAreaIfNotAvailable(area);
-        // add any secondary areas if applicable
-        if (AreasToAdd[interior] !== undefined) {
-            AreasToAdd[interior].forEach(area => {
-                this.addAreaIfNotAvailable(area);
-            })
-        }
+        this.addAdditionalAreas(interior);
 
         this.addInteriorOrAreaLocation(`${area}${AreaEntranceSeparator}${entrance}`, interior);
 
@@ -80,16 +70,19 @@ export default class ZOoTREntranceTracker extends React.Component {
         let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
 
         this.addAreaIfNotAvailable(landingArea);
-        // add any secondary areas if applicable
-        if (AreasToAdd[landingArea] !== undefined) {
-            AreasToAdd[landingArea].forEach(area => {
-                this.addAreaIfNotAvailable(area);
-            })
-        }
+        this.addAdditionalAreas(landingArea);
 
         this.addInteriorOrAreaLocation(currentAreaAndEntrance, landingArea);
 
         this.setEntrance(area, entrance, landingAreaAndEntrance);
+    };
+
+    addAdditionalAreas = area => {
+        if (AreasToAdd[area] !== undefined) {
+            AreasToAdd[area].forEach(area => {
+                this.addAreaIfNotAvailable(area);
+            })
+        }
     };
 
     // area: the area that the overworld pointer is located in
@@ -169,6 +162,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
         let availableInteriors = this.state.availableInteriors;
         availableInteriors[type].push(interior);
+        // TODO: alphabetize interiors
         this.setState({availableInteriors: availableInteriors});
         this.setState({openAreas: openAreas});
     };
@@ -202,7 +196,7 @@ export default class ZOoTREntranceTracker extends React.Component {
             return;
         }
         openAreas[area] = this.state.availableAreas[area];
-        this.setState({openAreas: {}});
+        // this.setState({openAreas: {}});
         this.setState({openAreas: openAreas});
     };
 
@@ -218,7 +212,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         if (interiorLocations[Houses.LinksHouse] === undefined) {
             return Houses.LinksHouse;
         } else if (interiorLocations[Grottos.DampesGrave] !== undefined &&
-                    interiorLocations[Houses.Windmill] === undefined) {
+                interiorLocations[Houses.Windmill] === undefined) {
             return Houses.Windmill;
         }
         return "";
@@ -299,7 +293,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 {/* these contain a list of entrances */}
                 {/* these entrances can be linked to entrances in other areas */}
                 {/* this triggers another area to be added to the collection */}
-                <div className="is-flex-desktop is-flex-tablet is-multiline flex-wraps">
+                <div className="areas-container is-flex-desktop is-flex-tablet is-multiline flex-wraps">
                     {Object.keys(areas).sort().map((area, i) => {
                         return <Area
                             key={i}
