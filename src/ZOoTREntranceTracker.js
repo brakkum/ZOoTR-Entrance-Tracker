@@ -152,6 +152,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         let availableEntrances = this.state.availableEntrances;
         availableEntrances[EntranceTypes.Overworld].push(connectedAreaAndEntrance);
         availableEntrances[EntranceTypes.Overworld].push(currentAreaAndEntrance);
+        availableEntrances[EntranceTypes.Overworld] = availableEntrances[EntranceTypes.Overworld].sort();
         this.setState({availableEntrances: availableEntrances});
 
         this.removeAreaIfEmpty(area);
@@ -167,7 +168,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
         let availableInteriors = this.state.availableInteriors;
         availableInteriors[type].push(interior);
-        // TODO: alphabetize interiors
+        availableInteriors[type] = availableInteriors[type].sort();
         this.setState({availableInteriors: availableInteriors});
         this.setState({openAreas: openAreas});
     };
@@ -266,6 +267,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                 if (type === EntranceTypes.Overworld) {
                     availableEntrances[EntranceTypes.KaeporaGaebora].push(entranceName);
                 }
+                availableEntrances[type] = availableEntrances[type].sort();
+                availableInteriors[type] = availableInteriors[type].sort();
                 availableAreas[area][entrance] = "";
             });
         });
@@ -290,10 +293,9 @@ export default class ZOoTREntranceTracker extends React.Component {
         let state;
 
         state = JSON.parse(stringState);
+
         if (state) {
             this.setState(state);
-        } else {
-            this.setupTracker();
         }
     };
 
@@ -351,6 +353,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                         />
                     })}
                 </div>
+
+                <div className="bottom-padding" style={{height: "50px"}} />
             </div>
         );
     }

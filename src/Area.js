@@ -26,7 +26,7 @@ export default class Area extends React.Component {
                 }}
             >
                 <div className="box">
-                    <h5 className="is-size-5">{area}</h5>
+                    <h4 className="is-size-4 has-text-weight-semibold">{area}</h4>
                     {entrances.map((entrance, i) => {
                         let entranceType = Areas[area].entrances[entrance].type;
                         return <Entrance

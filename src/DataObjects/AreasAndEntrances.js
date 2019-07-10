@@ -469,6 +469,9 @@ export default {
             [OverworldAreas.SacredForestMeadow]: {
                 "type": EntranceTypes.Overworld
             },
+            [OverworldAreas.ZorasRiver]: {
+                "type": EntranceTypes.Overworld
+            },
             [Grottos.ForestStage]: {
                 "type": EntranceTypes.Grotto
             },

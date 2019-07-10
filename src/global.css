@@ -1,4 +1,14 @@
 
+.nav-bottom {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-bottom-item {
+    margin: 10px;
+    cursor: pointer;
+}
+
 .areas-container {
     max-width: 95%;
     margin: auto;
@@ -12,6 +22,10 @@
 }
 
 .interior-display {
+    margin: 10px;
+}
+
+.entrance-select {
     margin: 10px;
 }
 

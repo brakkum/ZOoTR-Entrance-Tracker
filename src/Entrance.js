@@ -41,7 +41,10 @@ export default class Entrance extends React.Component {
         let interior = this.props.interior;
         return(
             <div>
-                <h6 className="is-size-6">{entrance}</h6>
+                <h6 className={
+                    "is-size-6 has-text-weight-semibold " +
+                    (interior === "" ? "has-text-danger" : "")
+                }>{entrance}</h6>
                 {interior !== "" ?
                     <div className="interior-display">
                         <span>{interior}</span>
@@ -51,8 +54,8 @@ export default class Entrance extends React.Component {
                             <span className="delete is-pulled-right" onClick={this.resetEntrance}>x</span>
                         }
                     </div> :
-                    <div className="select is-small">
-                        <select className="" onChange={this.setLocation}>
+                    <div className="select is-small entrance-select">
+                        <select className="" value="Not Checked" onChange={this.setLocation}>
                             <option className="" value="Not Checked">Not Checked</option>
                             {availableLocations.map((location, i) => {
                                 if (Areas[area].entrances[entrance].type === EntranceTypes.Overworld &&
