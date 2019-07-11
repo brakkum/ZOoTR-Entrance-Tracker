@@ -55,8 +55,8 @@ export default class Entrance extends React.Component {
                         }
                     </div> :
                     <div className="select is-small entrance-select">
-                        <select className="" value="Not Checked" onChange={this.setLocation}>
-                            <option className="" value="Not Checked">Not Checked</option>
+                        <select value="Not Checked" onChange={this.setLocation}>
+                            <option value="Not Checked">Not Checked</option>
                             {availableLocations.map((location, i) => {
                                 if (Areas[area].entrances[entrance].type === EntranceTypes.Overworld &&
                                     location === `${area}${AreaEntranceSeparator}${entrance}`) {

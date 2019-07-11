@@ -33,11 +33,12 @@ export default class PromptForInteriorEntrance extends React.Component {
         }
         return (
             <div className="prompt section">
-                <h3 className="is-size-3 has-text-centered">
+                <h4 className="is-size-4 has-text-centered">
                     Where does {interiorToPromptFor} go to?
-                </h3>
+                </h4>
+                <br />
                 <div className="field is-grouped has-addons has-addons-centered">
-                    <div className="select control">
+                    <div className="select is-small control">
                         <select
                             onChange={this.onSelectChange}
                             value={this.state.selectedLocation}
@@ -53,7 +54,7 @@ export default class PromptForInteriorEntrance extends React.Component {
                             })}
                         </select>
                     </div>
-                    <button className="button control" onClick={this.setInteriorToAreaAndEntrance}>
+                    <button className="button is-small control" onClick={this.setInteriorToAreaAndEntrance}>
                         Add {interiorToPromptFor}
                     </button>
                 </div>

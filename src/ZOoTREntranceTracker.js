@@ -10,6 +10,7 @@ import Songs from "./DataObjects/Songs";
 import Menu from "./DataObjects/Menu";
 import React from "react";
 import Area from "./Area";
+import Song from "./Song";
 
 export default class ZOoTREntranceTracker extends React.Component {
 
@@ -221,14 +222,51 @@ export default class ZOoTREntranceTracker extends React.Component {
         } else if (interiorLocations[Grottos.DampesGrave] !== undefined &&
                 interiorLocations[Houses.Windmill] === undefined) {
             return Houses.Windmill;
-        } else if (interiorLocations[Houses.TempleOfTime] !== undefined &&
-                songs[Songs.PreludeOfLight] !== undefined) {
+        } else if (songs["Prelude of Light"].collected &&
+            interiorLocations[Houses.TempleOfTime] === undefined) {
             return Houses.TempleOfTime;
         }
-        return "";
+        return null;
     };
 
-    // TODO: Methods for adding and removing songs
+    resetHouseInteriorLocation = interior => {
+        let interiors = this.state.interiorLocations;
+        let availableInteriors = this.state.availableInteriors;
+        let openAreas = this.state.openAreas;
+        if (!(interior in interiors)) {
+            return;
+        }
+        let [area, entrance] = interiors[interior][0].split(AreaEntranceSeparator);
+        openAreas[area][entrance] = "";
+        this.setState({openAreas: openAreas});
+        delete interiors[interior];
+        availableInteriors[EntranceTypes.House].push(interior);
+        this.setState({
+            interiorLocations: interiors,
+            availableInteriors: availableInteriors
+        });
+        this.removeAreaIfEmpty(area);
+    };
+
+    addSong = song => {
+        let songs = this.state.songs;
+        songs[song.name].collected = true;
+        if (song.areaType === EntranceTypes.Overworld) {
+            this.addAreaIfNotAvailable(song.area);
+        }
+        this.setState({songs: songs})
+    };
+
+    removeSong = song => {
+        let songs = this.state.songs;
+        songs[song.name].collected = false;
+        if (song.areaType === EntranceTypes.Overworld) {
+            this.removeAreaIfEmpty(song.area);
+        } else if (song.areaType === EntranceTypes.House) {
+            this.resetHouseInteriorLocation(song.area);
+        }
+        this.setState({songs: songs});
+    };
 
     componentDidMount() {
         this.setupTracker();
@@ -279,7 +317,7 @@ export default class ZOoTREntranceTracker extends React.Component {
             interiorLocations: interiorLocations,
             availableAreas: availableAreas,
             openAreas: {},
-            songs: {}
+            songs: Songs
         });
     };
 
@@ -290,10 +328,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     loadState = () => {
         let stringState = localStorage.getItem(LocalStorage.state);
-        let state;
-
-        state = JSON.parse(stringState);
-
+        let state = JSON.parse(stringState);
         if (state) {
             this.setState(state);
         }
@@ -307,13 +342,12 @@ export default class ZOoTREntranceTracker extends React.Component {
     render() {
         let areas = this.state.openAreas;
         let interiorToPromptFor = this.interiorToPromptForBasedOnState();
+        let songs = this.state.songs;
 
         return (
             <div className="zootr-entrance-tracker">
                 {/* search section */}
                 {/* from a currently active location to another currently active location only */}
-
-                {/* TODO: song picker */}
 
                 <Menu
                     saveState={this.saveState}
@@ -321,8 +355,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 />
 
                 <div className="user-prompts">
-                    {/* on load, set location of Link's House */}
-                    {interiorToPromptFor !== "" ?
+                    {interiorToPromptFor !== null ?
                         <PromptForInteriorEntrance
                             interiorToPromptFor={interiorToPromptFor}
                             availableEntrances={this.state.availableEntrances.house}
@@ -332,6 +365,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                         : ""
                     }
                 </div>
+
                 {/* collection of areas */}
                 {/* these contain a list of entrances */}
                 {/* these entrances can be linked to entrances in other areas */}
@@ -354,7 +388,18 @@ export default class ZOoTREntranceTracker extends React.Component {
                     })}
                 </div>
 
-                <div className="bottom-padding" style={{height: "50px"}} />
+                <div className="bottom-padding" />
+
+                <div className="songs-container navbar is-fixed-bottom has-background-dark">
+                    {Object.keys(songs).map((song, i) => {
+                        return <Song
+                            key={i}
+                            song={songs[song]}
+                            addSong={this.addSong}
+                            removeSong={this.removeSong}
+                        />
+                    })}
+                </div>
             </div>
         );
     }

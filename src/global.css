@@ -39,3 +39,7 @@
 .flex-wraps {
     flex-wrap: wrap;
 }
+
+.bottom-padding {
+    height: 300px;
+}

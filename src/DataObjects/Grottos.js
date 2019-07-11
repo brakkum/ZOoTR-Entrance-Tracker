@@ -1,14 +1,14 @@
 
 const Grottos = {
     "BombGrotto": "Bomb Grotto",
-    "BoulderAcrossRiver": "Boulder Across River ",
-    "Boulder": "Boulder",
+    "Boulder": "Boulder Grotto",
+    "BoulderAcrossRiver": "NW Boulder Across River",
     "BoulderInTrees": "Boulder in Trees",
     "BoulderOnLedge": "Boulder On Ledge",
     "BoulderNearCastleTown": "Boulder Near Castle Town",
-    "BoulderNearDeathMountainTrail": "Boulder Grotto Near Death Mountain Trail",
+    "BoulderNearDeathMountainTrail": "Boulder Near Death Mountain Trail",
     "BoulderNearGerudoValley": "Boulder Near Gerudo Valley",
-    "BoulderNearGoronCity": "Boulder Grotto Near Goron City",
+    "BoulderNearGoronCity": "Boulder Near Goron City",
     "BoulderNearSacredForestMeadow": "Boulder Near Sacred Forest Meadow",
     "CowGrotto": "Cow Grotto",
     "DampesGrave": "Dampe's Grave",
@@ -23,14 +23,14 @@ const Grottos = {
     "OpenGrotto": "Open Grotto",
     "RedeadGrave": "Redead Grave",
     "RedeadGrotto": "Redead Grotto",
-    "RoyalGrave": "Royal Grave",
+    "RoyalGrave": "Royal Family's Tomb",
     "ShieldGrave": "Shield Grave",
     "SkulltulaGrotto": "Skulltula Grotto",
     "StormsGrotto": "Song of Storms Grotto",
     "TwoScrubs": "2 Scrubs",
     "ThreeScrubs": "3 Scrubs",
     "TreeNearKakarikoBombGrotto": "Tree Near Kakariko Grotto",
-    "TreeNearLonLonBombGrotto": "Tree Near Lon Lon Ranch Grotto",
+    "TreeNearLonLonBombGrotto": "Lone Tree In West Field",
     "WolfosGrotto": "Wolfos Grotto"
 };
 

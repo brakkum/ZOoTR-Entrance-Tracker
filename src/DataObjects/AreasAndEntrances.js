@@ -377,19 +377,23 @@ export default {
                 "type": EntranceTypes.Dungeon
             },
             [Houses.KnowItAllHouse]: {
-                "type": EntranceTypes.House
+                "type": EntranceTypes.House,
+                "display": Houses.House
             },
             [Houses.MidosHouse]: {
-                "type": EntranceTypes.House
+                "type": EntranceTypes.House,
+                "display": Houses.House
             },
             [Houses.LinksHouse]: {
                 "type": EntranceTypes.House
             },
             [Houses.SariasHouse]: {
-                "type": EntranceTypes.House
+                "type": EntranceTypes.House,
+                "display": Houses.House
             },
             [Houses.TwinsHouse]: {
-                "type": EntranceTypes.House
+                "type": EntranceTypes.House,
+                "display": Houses.House
             },
             [Houses.Shop]: {
                 "type": EntranceTypes.House,
@@ -416,7 +420,8 @@ export default {
                 "type": EntranceTypes.KaeporaGaebora
             },
             [Grottos.Grave]: {
-                "type": EntranceTypes.Grotto
+                "type": EntranceTypes.Grotto,
+                "display": Grottos.ThreeScrubs
             },
             [Houses.LakeHyliaLab]: {
                 "type": EntranceTypes.House
@@ -442,7 +447,7 @@ export default {
             [Houses.TalonsHouse]: {
                 "type": EntranceTypes.House
             },
-            [Houses.Stables]: {
+            [Houses.Stable]: {
                 "type": EntranceTypes.House
             },
             [Houses.LonLonTower]: {
@@ -521,7 +526,8 @@ export default {
                 "display": Houses.Shop
             },
             [Houses.PotionShop]: {
-                "type": EntranceTypes.House
+                "type": EntranceTypes.House,
+                "display": Houses.Shop
             },
             [Houses.ShootingGallery]: {
                 "type": EntranceTypes.House
@@ -601,7 +607,8 @@ export default {
                 "type": EntranceTypes.Overworld
             },
             [Houses.Shop]: {
-                "type": EntranceTypes.House
+                "type": EntranceTypes.House,
+                "display": Houses.Shop
             },
             [Grottos.StormsGrotto]: {
                 "type": EntranceTypes.Grotto,

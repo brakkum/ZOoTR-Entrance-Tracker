@@ -1,36 +1,49 @@
 import OverworldAreas from "./OverworldAreas";
+import EntranceTypes from "./EntranceTypes";
 import Houses from "./Houses";
 
 const Songs = {
-    "MinuetOfForest": {
+    "Minuet of Forest": {
         "name": "Minuet of Forest",
-        "color": "#00a700",
-        "area": OverworldAreas.SacredForestMeadow
+        "color": "#6db863",
+        "area": OverworldAreas.SacredForestMeadow,
+        "areaType": EntranceTypes.Overworld,
+        "collected": false
     },
-    "BoleroOfFire": {
+    "Bolero of Fire": {
         "name": "Bolero of Fire",
-        "color": "#c92d23",
-        "area": OverworldAreas.DeathMountainCrater
+        "color": "#eb5d49",
+        "area": OverworldAreas.DeathMountainCrater,
+        "areaType": EntranceTypes.Overworld,
+        "collected": false
     },
-    "SerenadeOfWater": {
+    "Serenade of Water": {
         "name": "Serenade of Water",
-        "color": "#3562c4",
-        "area": OverworldAreas.LakeHylia
+        "color": "#7a8cd6",
+        "area": OverworldAreas.LakeHylia,
+        "areaType": EntranceTypes.Overworld,
+        "collected": false
     },
-    "RequiemOfSpirit": {
+    "Requiem of Spirit": {
         "name": "Requiem of Spirit",
-        "color": "#e3af61",
-        "area": OverworldAreas.DesertColossus
+        "color": "#eec68b",
+        "area": OverworldAreas.DesertColossus,
+        "areaType": EntranceTypes.Overworld,
+        "collected": false
     },
-    "NocturneOfShadow": {
+    "Nocturne of Shadow": {
         "name": "Nocturne of Shadow",
-        "color": "#76457f",
-        "area": OverworldAreas.Graveyard
+        "color": "#a371a9",
+        "area": OverworldAreas.Graveyard,
+        "areaType": EntranceTypes.Overworld,
+        "collected": false
     },
-    "PreludeOfLight": {
+    "Prelude of Light": {
         "name": "Prelude of Light",
-        "color": "#faf475",
-        "area": Houses.TempleOfTime
+        "color": "#fff89d",
+        "area": Houses.TempleOfTime,
+        "areaType": EntranceTypes.House,
+        "collected": false
     }
 };
 

@@ -26,7 +26,7 @@ const Houses = {
     "ShootingGallery": "Shooting Gallery",
     "Shop": "Shop",
     "SkulltulaHouse": "Skulltula House",
-    "Stables": "Stables",
+    "Stable": "Stable",
     "TalonsHouse": "Talon's House",
     "TempleOfTime": "Temple of Time",
     "TreasureChestGame": "Treasure Chest Game",
