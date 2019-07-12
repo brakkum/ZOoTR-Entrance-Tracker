@@ -57,6 +57,9 @@ export default {
             "#916249"
         ],
         "entrances": {
+            [OverworldAreas.KakarikoVillage]: {
+                "type": EntranceTypes.Overworld
+            },
             [Dungeons.DodongosCavern]: {
                 "type": EntranceTypes.Dungeon
             },
