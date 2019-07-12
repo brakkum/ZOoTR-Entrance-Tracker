@@ -18,6 +18,9 @@ export default class Area extends React.Component {
         let availableInteriors = this.props.availableInteriors;
         let availableEntrances = this.props.availableEntrances;
         let backgroundColors = Areas[area].colors;
+        let firstCol = [];
+        let secondCol = [];
+
         return(
             <div className="area-box box" style={{
                     background: backgroundColors.length === 1 ?
@@ -28,8 +31,10 @@ export default class Area extends React.Component {
                 <div className="box">
                     <h4 className="is-size-4 has-text-weight-semibold">{area}</h4>
                     {entrances.map((entrance, i) => {
+                        let entrancesLength = entrances.length;
                         let entranceType = Areas[area].entrances[entrance].type;
-                        return <Entrance
+                        let arrayToAddTo = i < entrancesLength / 2 ? firstCol : secondCol;
+                        arrayToAddTo.push(<Entrance
                             availableLocations={
                                 entranceType === EntranceTypes.House ?
                                 this.returnUniqueItems(availableInteriors.house)
@@ -53,8 +58,19 @@ export default class Area extends React.Component {
                             entrance={entrance}
                             area={area}
                             key={i}
-                        />
+                        />);
+                        return null;
                     })}
+                    <div className="columns">
+                        <div className="column">
+                            {firstCol}
+                        </div>
+                        {secondCol.length > 0 ?
+                            <div className="column">
+                                {secondCol}
+                            </div>
+                            : ""}
+                    </div>
                 </div>
             </div>
         )

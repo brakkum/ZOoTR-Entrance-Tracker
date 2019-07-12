@@ -16,13 +16,21 @@
 }
 
 .area-box {
-    min-width: 400px;
+    min-width: 48%;
+    max-width: 90%;
     margin: 20px auto 0 auto;
     padding: 5px;
 }
 
 .interior-display {
+    padding: 5px;
     margin: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.entrance {
+    width: 100%;
 }
 
 .entrance-select {

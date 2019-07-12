@@ -40,18 +40,20 @@ export default class Entrance extends React.Component {
         let entrance = this.props.entrance;
         let interior = this.props.interior;
         return(
-            <div>
+            <div className="entrance">
                 <h6 className={
                     "is-size-6 has-text-weight-semibold " +
                     (interior === "" ? "has-text-danger" : "")
                 }>{entrance}</h6>
                 {interior !== "" ?
-                    <div className="interior-display">
-                        <span>{interior}</span>
+                    <div className="interior-display is-flex">
+                        <span>
+                            {interior}
+                        </span>
                         {/* once Link's House is set, leave it */}
                         {interior === Houses.LinksHouse ?
                             "" :
-                            <span className="delete is-pulled-right" onClick={this.resetEntrance}>x</span>
+                            <span className="delete is-pulled-right" onClick={this.resetEntrance}></span>
                         }
                     </div> :
                     <div className="select is-small entrance-select">
