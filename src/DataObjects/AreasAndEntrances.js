@@ -222,8 +222,9 @@ export default {
     },
     [OverworldAreas.HyruleGanonsCastle]: {
         "colors": [
-            "#797596",
-            "#965053"
+            "#a7a4e1",
+            "#e9ecee",
+            "#964145"
         ],
         "entrances": {
             // TODO: where does ZL output to
