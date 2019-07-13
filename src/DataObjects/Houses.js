@@ -13,7 +13,7 @@ const Houses = {
     "Fishing": "Fishing",
     "GrannysPotionShop": "Granny's Potion Shop",
     "GreatFairyFountain": "Great Fairy's Fountain",
-    "GuardHutPoeShop": "Guard Hut/Poe Shop",
+    "GuardHutPoeCollector": "Guard Hut/Poe Collector",
     "House": "House",
     "ImpasHouseCow": "Impa's House Cow",
     "ImpasHouseFront": "Impa's House Front",

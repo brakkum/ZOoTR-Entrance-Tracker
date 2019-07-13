@@ -18,7 +18,7 @@ export default {
             [OverworldAreas.Market]: {
                 "type": EntranceTypes.Overworld
             },
-            [Houses.GuardHutPoeShop]: {
+            [Houses.GuardHutPoeCollector]: {
                 "type": EntranceTypes.House
             }
         }
@@ -227,7 +227,6 @@ export default {
             "#964145"
         ],
         "entrances": {
-            // TODO: where does ZL output to
             [Houses.ChildGreatFairy]: {
                 "type": EntranceTypes.House,
                 "display": Houses.GreatFairyFountain
@@ -345,10 +344,6 @@ export default {
                 "type": EntranceTypes.House
             },
             [Houses.Bazaar]: {
-                "type": EntranceTypes.House,
-                "display": Houses.Shop
-            },
-            [Houses.PotionShop]: {
                 "type": EntranceTypes.House,
                 "display": Houses.Shop
             },
