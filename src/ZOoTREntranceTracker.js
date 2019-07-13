@@ -354,6 +354,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                     resetState={this.resetState}
                 />
 
+                <div className="top-padding" />
                 <div className="user-prompts">
                     {interiorToPromptFor !== null ?
                         <PromptForInteriorEntrance

@@ -40,7 +40,7 @@ const Songs = {
     },
     "Prelude of Light": {
         "name": "Prelude of Light",
-        "color": "#fff89d",
+        "color": "#fff877",
         "area": Houses.TempleOfTime,
         "areaType": EntranceTypes.House,
         "collected": false

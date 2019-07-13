@@ -28,7 +28,7 @@ export default class Menu extends React.Component {
 
     render() {
         return(
-            <div className="navbar is-dark">
+            <div className="navbar is-fixed-top is-dark">
                 <div style={{width: "100%", maxWidth: "1000px", margin: "auto"}}>
                     <nav>
                         <h4 className="is-size-4 navbar-item has-text-white has-text-weight-bold">

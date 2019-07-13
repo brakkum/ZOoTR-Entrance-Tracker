@@ -48,6 +48,10 @@
     flex-wrap: wrap;
 }
 
+.top-padding {
+    height: 100px;
+}
+
 .bottom-padding {
     height: 300px;
 }
