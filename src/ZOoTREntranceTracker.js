@@ -420,15 +420,15 @@ export default class ZOoTREntranceTracker extends React.Component {
                                     let entrance = area.entrances[entranceName];
                                     let options = entrance.type === EntranceTypes.House ?
                                         this.returnUniqueItems(this.state.availableHouses)
-                                        : entrance.type === EntranceTypes.Dungeon ?
-                                        this.state.availableDungeons
-                                        : entrance.type === EntranceTypes.Overworld ?
-                                            this.state.availableOverworldEntrances
-                                            : entrance.type === EntranceTypes.Grotto ?
-                                                this.returnUniqueItems(this.state.availableGrottos)
-                                                : entrance.type === EntranceTypes.KaeporaGaebora ?
-                                                    this.state.allAreas
-                                                    : []; // How did you get here??
+                                            : entrance.type === EntranceTypes.Dungeon ?
+                                            this.state.availableDungeons
+                                                : entrance.type === EntranceTypes.Overworld ?
+                                                this.state.availableOverworldEntrances
+                                                    : entrance.type === EntranceTypes.Grotto ?
+                                                    this.returnUniqueItems(this.state.availableGrottos)
+                                                        : entrance.type === EntranceTypes.KaeporaGaebora ?
+                                                        this.state.allAreas
+                                                            : []; // How did you get here??
 
                                     arrayToAddTo.push(
                                         <div className="entrance" key={j}>
@@ -460,12 +460,12 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                     <select value="Not Checked" onChange={this.setLocation}>
                                                         <option value="Not Checked">Not Checked</option>
                                                         {options instanceof Array ?
-                                                            options.map((interiorName, l) => {
+                                                            options.map((interiorName, k) => {
                                                                 if (entrance.type === EntranceTypes.Overworld &&
                                                                     entranceName === interiorName) {
                                                                     return null;
                                                                 }
-                                                                return <option key={l} value={interiorName}>
+                                                                return <option key={k} value={interiorName}>
                                                                     {interiorName}
                                                                 </option>
                                                             })
@@ -507,7 +507,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                                         <div className="column">
                                             {secondCol}
                                         </div>
-                                        : ""}
+                                        : ""
+                                    }
                                 </div>
                             </div>
                         </div>
