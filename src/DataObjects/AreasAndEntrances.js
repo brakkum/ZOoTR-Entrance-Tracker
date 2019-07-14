@@ -114,7 +114,8 @@ export default {
                 "leadsTo": null
             },
             [Entrances.KaeporaGaebora]: {
-                "type": EntranceTypes.KaeporaGaebora
+                "type": EntranceTypes.KaeporaGaebora,
+                "leadsTo": null
             }
         }
     },
@@ -601,7 +602,8 @@ export default {
                 "leadsTo": null
             },
             [Entrances.KaeporaGaebora]: {
-                "type": EntranceTypes.KaeporaGaebora
+                "type": EntranceTypes.KaeporaGaebora,
+                "leadsTo": null
             },
             [Grottos.Grave]: {
                 "type": EntranceTypes.Grotto,

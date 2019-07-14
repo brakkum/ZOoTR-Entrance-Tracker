@@ -29,10 +29,6 @@ export default class ZOoTREntranceTracker extends React.Component {
         songs: {} // songs state
     };
 
-    setEntrance = () => {
-        // TODO
-    };
-
     // area: the area that the overworld pointer is located in
     // entrance: the overworld entrance in the area
     // nextAreaAndEntrance: the area->entrance pointer that is the new connection
@@ -200,12 +196,6 @@ export default class ZOoTREntranceTracker extends React.Component {
         }
     };
 
-    setEntrance = (area, entrance, interior) => {
-        let openAreas = this.state.openAreas;
-        openAreas[area][entrance] = interior;
-        this.setState({openAreas: openAreas});
-    };
-
     addAreaIfNotAvailable = area => {
         let openAreas = this.state.openAreas;
         if (area in openAreas) {
@@ -361,6 +351,12 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setupTracker();
     };
 
+    // TODO
+    setEntrance = (entranceSelected, selection) => {
+        console.log(entranceSelected, selection);
+
+    };
+
     componentDidMount() {
         this.setupTracker();
         this.loadState();
@@ -394,17 +390,20 @@ export default class ZOoTREntranceTracker extends React.Component {
                     }
                 </div>
 
-                {/* collection of areas */}
-                {/* these contain a list of entrances */}
-                {/* these entrances can be linked to entrances in other areas */}
-                {/* this triggers another area to be added to the collection */}
+
                 <div className="areas-container is-flex-desktop is-flex-tablet is-multiline flex-wraps">
+                    {/* iterate through the current areas that are open */}
                     {openAreas.map((areaName, i) => {
+                        // get the current areas object from state
                         let area = areasAndEntrances[areaName];
+                        // area entrances shown in two columns
+                        // to prevent extremely tall areas
                         let firstCol = [];
                         let secondCol = [];
                         return <div className="area-box box" key={i}
                             style={{
+                                // set border to selected colors
+                                // default solid grey
                                 background: area.colors.length > 1 ?
                                     `linear-gradient(to bottom right, ${area.colors.join(", ")}`
                                     : area.colors.length === 1 ?
@@ -414,10 +413,15 @@ export default class ZOoTREntranceTracker extends React.Component {
                         >
                             <div className="box">
                                 <h4 className="is-size-4 has-text-weight-semibold">{areaName}</h4>
+                                {/* iterate through the entrances of the area */}
                                 {Object.keys(area.entrances).sort().map((entranceName, j) => {
+                                    // column layout
                                     let entrancesLength = Object.keys(area.entrances).length;
                                     let arrayToAddTo = j < entrancesLength / 2 ? firstCol : secondCol;
+                                    // entrance object derived from the area object
                                     let entrance = area.entrances[entranceName];
+                                    // the type of entrance determines what
+                                    // options are displayed to pick from
                                     let options = entrance.type === EntranceTypes.House ?
                                         this.returnUniqueItems(this.state.availableHouses)
                                             : entrance.type === EntranceTypes.Dungeon ?
@@ -430,18 +434,22 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                         this.state.allAreas
                                                             : []; // How did you get here??
 
+                                    // add to the correct column in area container
                                     arrayToAddTo.push(
                                         <div className="entrance" key={j}>
                                             <h6 className={
                                                 "is-size-6 has-text-weight-semibold " +
+                                                // entrance has no assignment, make it clear
                                                 (entrance.interior === null || entrance.leadsTo === null ? "has-text-danger" : "")
                                             }>{entranceName}</h6>
                                             {entrance.interior !== undefined && entrance.interior !== null ?
+                                                // has an interior defined, so just display it
                                                 <div className="interior-display is-flex">
                                                     <span>
                                                         {entrance.interior}
                                                     </span>
-                                                    {/* once Link's House is set, leave it */}
+                                                    {/* x icon for resetting an entrance to unchecked */}
+                                                    {/* but once Link's House is set, leave it */}
                                                     {entrance.interior === Houses.LinksHouse ?
                                                         "" :
                                                         <span className="delete is-pulled-right" onClick={this.resetEntrance} />
@@ -450,28 +458,54 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                 :
                                                 entrance.leadsTo !== undefined && entrance.leadsTo !== null
                                                 ?
+                                                // points to an area, and maybe an entrance
                                                 <div className="interior-display is-flex">
                                                     <span>
-                                                        {entrance.leadsTo.area}: {entrance.leadsTo.entrance} Entrance
+                                                        {/* show area at least */}
+                                                        {entrance.leadsTo.area +
+                                                        // show entrance if defined
+                                                        entrance.leadsTo.entrance !== undefined ?
+                                                            `: ${entrance.leadsTo.entrance} Entrance` : ""}
                                                     </span>
+                                                    <span className="delete is-pulled-right" onClick={this.resetEntrance} />
                                                 </div>
                                                 :
+                                                // no interior or area is set, so display available options to select
                                                 <div className="select is-small entrance-select">
-                                                    <select value="Not Checked" onChange={this.setLocation}>
+                                                    <select value="Not Checked" onChange={event =>
+                                                        this.setEntrance(
+                                                            // the area and entrance and type that is being assigned
+                                                            // used to determine steps to take in this.setEntrance
+                                                            {
+                                                                area: areaName,
+                                                                entrance: entranceName,
+                                                                type: entrance.type
+                                                            },
+                                                            // object that has interior key for houses, grottos, dungeons
+                                                            // or area and entrance keys for overworld and kaepora gaebora
+                                                            JSON.parse(event.target.value)
+                                                        )
+                                                    }>
                                                         <option value="Not Checked">Not Checked</option>
                                                         {options instanceof Array ?
+                                                            // if its an array, it's areas, houses, or grottos
+                                                            // map over them and make them options
                                                             options.map((interiorName, k) => {
-                                                                if (entrance.type === EntranceTypes.Overworld &&
-                                                                    entranceName === interiorName) {
-                                                                    return null;
-                                                                }
-                                                                return <option key={k} value={interiorName}>
+                                                                return <option key={k} value={JSON.stringify({interior: interiorName})}>
                                                                     {interiorName}
                                                                 </option>
                                                             })
                                                             :
+                                                            // it's an overworld selection
+                                                            // iterate through the area keys and make them optGroups
+                                                            // make the entrance of that area selection options
                                                             Object.keys(options).sort().map((optgroupArea, k) => {
-                                                                if (options[optgroupArea].length === 0) {
+                                                                // don't make optGroups for empty areas
+                                                                // also don't show empty optGroup if it's
+                                                                // only entrance is the current entrance
+                                                                if (options[optgroupArea].length === 0 ||
+                                                                    (options[optgroupArea].length === 1 &&
+                                                                        options[optgroupArea][0] === entranceName)) {
                                                                     return null;
                                                                 }
                                                                 return <optgroup
@@ -479,6 +513,10 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                                     label={optgroupArea}
                                                                 >
                                                                     {options[optgroupArea].map((optgroupEntrance, l) => {
+                                                                        // don't show current entrance as selectable option
+                                                                        if (areaName === optgroupArea && entranceName === optgroupEntrance) {
+                                                                            return null;
+                                                                        }
                                                                         return <option
                                                                             key={l}
                                                                             value={JSON.stringify({
@@ -499,6 +537,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                                     );
                                     return null;
                                 })}
+                                {/* output the columns of area entrances */}
                                 <div className="columns">
                                     <div className="column">
                                         {firstCol}
@@ -517,6 +556,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
                 <div className="bottom-padding" />
 
+                {/* display songs that can be collected and may open new areas */}
                 <div className="songs-container navbar is-fixed-bottom has-background-dark">
                     {Object.keys(songs).map((song, i) => {
                         return <Song
