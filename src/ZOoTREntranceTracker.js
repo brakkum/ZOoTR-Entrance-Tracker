@@ -444,7 +444,15 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                 <div className="select is-small entrance-select">
                                                     <select value="Not Checked" onChange={this.setLocation}>
                                                         <option value="Not Checked">Not Checked</option>
-                                                        {typeof options === "object" ?
+                                                        {options instanceof Array ?
+                                                            options.map((interiorName, l) => {
+                                                                if (entrance.type === EntranceTypes.Overworld &&
+                                                                    entranceName === interiorName) {
+                                                                    return null;
+                                                                }
+                                                                return <option key={l} value={interiorName}>{interiorName}</option>
+                                                            })
+                                                            :
                                                             Object.keys(options).sort().map((optgroupArea, k) => {
                                                                 return <optgroup
                                                                     key={k}
@@ -462,14 +470,6 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                                         </option>
                                                                     })}
                                                                 </optgroup>
-                                                            })
-                                                            :
-                                                            options.map((interiorName, l) => {
-                                                                if (entrance.type === EntranceTypes.Overworld &&
-                                                                    entranceName === interiorName) {
-                                                                    return null;
-                                                                }
-                                                                return <option key={l} value={interiorName}>{interiorName}</option>
                                                             })
                                                         }
                                                     </select>
