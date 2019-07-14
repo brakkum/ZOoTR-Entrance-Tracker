@@ -1,8 +1,8 @@
 import AreaEntranceSeparator from "./Constants/AreaEntranceSeparator";
-import PromptForInteriorEntrance from "./PromptForInteriorEntrance";
+import PromptForHouseEntrance from "./PromptForHouseEntrance";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import LocalStorage from "./Constants/LocalStorage";
-import Areas from "./DataObjects/AreasAndEntrances";
+import AreasAndEntrances from "./DataObjects/AreasAndEntrances";
 import AreasToAdd from "./DataObjects/AreasToAdd";
 import Grottos from "./DataObjects/Grottos";
 import Houses from "./DataObjects/Houses";
@@ -11,22 +11,25 @@ import Menu from "./DataObjects/Menu";
 import React from "react";
 import Area from "./Area";
 import Song from "./Song";
+import Entrance from "./Entrance";
 
 export default class ZOoTREntranceTracker extends React.Component {
 
     state = {
-        // Interiors that have not yet been assigned
-        availableInteriors: {},
-        // DataObjects that have not yet been assigned
-        availableEntrances: {},
-        // Interior keys with an array of their location
-        interiorLocations: {},
-        // Overworld Area objects that are added to openAreas when found
-        availableAreas: {},
-        // This tracks all current areas and state involved
-        openAreas: {},
-        // Songs that the user poses
-        songs: {}
+        areasAndEntrances: {}, // master world state
+        interiorEntrances: {}, // area/interior keys access array of location objects
+        availableEntrances: {}, // area key accesses array of entrances
+        availableDungeons: [], // dungeons not yet assigned to dungeon entrance
+        availableHouses: [], // houses not yet assigned to house entrance
+        availableHouseEntrances: {},
+        availableGrottos: [], // grottos not yet assigned to grotto entrance
+        allAreas: [], // array of all area names for Kaepora Gaebora
+        openAreas: [], // the areas that can currently be accessed
+        songs: {} // songs state
+    };
+
+    setEntrance = () => {
+        // TODO
     };
 
     // area: the area that the overworld pointer is located in
@@ -54,17 +57,19 @@ export default class ZOoTREntranceTracker extends React.Component {
     // area: the area that the entrance is located in
     // entrance: the entrance being assigned and interior
     // interior: the house/dungeon/grotto being assigned to a location
-    setInteriorToAreaAndEntrance = (area, entrance, interior) => {
-        let type = Areas[area].entrances[entrance].type;
+    setHouseToAreaAndEntrance = (house, entranceObj) => {
+        let areasAndEntrances = this.state.areasAndEntrances;
+        let availableHouses = this.state.availableHouses;
+        let availableHouseEntrances = this.state.availableHouseEntrances;
+        let area = entranceObj.area;
+        let entrance = entranceObj.entrance;
 
-        this.removeElementFromStateArray("availableInteriors", type, interior);
+        areasAndEntrances[area].entrances[entrance].interior = house;
+        availableHouses.splice(availableHouses.indexOf(house), 1);
+        availableHouseEntrances[area].splice(availableHouses.indexOf(house), 1);
+
         this.addAreaIfNotAvailable(area);
-        this.addAdditionalAreas(interior);
-
-        this.addInteriorOrAreaLocation(`${area}${AreaEntranceSeparator}${entrance}`, interior);
-
-        this.setEntrance(area, entrance, interior);
-        this.removeElementFromStateArray("availableEntrances", type, interior);
+        this.addAdditionalAreas(house);
     };
 
     // area: the area that the overworld pointer is located in
@@ -160,10 +165,11 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.removeAreaIfEmpty(otherArea);
     };
 
+    // TODO
     resetEntrance = (area, entrance, interior) => {
         let openAreas = this.state.openAreas;
         openAreas[area][entrance] = "";
-        let type = Areas[area].entrances[entrance].type;
+        let type = AreasAndEntrances[area].entrances[entrance].type;
 
         this.removeInteriorOrAreaLocation(`${area}${AreaEntranceSeparator}${entrance}`, interior);
 
@@ -202,8 +208,7 @@ export default class ZOoTREntranceTracker extends React.Component {
             // area is already available
             return;
         }
-        openAreas[area] = this.state.availableAreas[area];
-        // this.setState({openAreas: {}});
+        openAreas.push(area);
         this.setState({openAreas: openAreas});
     };
 
@@ -214,16 +219,16 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({[array]: elements});
     };
 
-    interiorToPromptForBasedOnState = () => {
-        let interiorLocations = this.state.interiorLocations;
+    houseToPromptForBasedOnState = () => {
+        let interiorEntrances = this.state.interiorEntrances;
         let songs = this.state.songs;
-        if (interiorLocations[Houses.LinksHouse] === undefined) {
+        if (interiorEntrances[Houses.LinksHouse] === undefined) {
             return Houses.LinksHouse;
-        } else if (interiorLocations[Grottos.DampesGrave] !== undefined &&
-                interiorLocations[Houses.Windmill] === undefined) {
+        } else if (interiorEntrances[Grottos.DampesGrave] !== undefined &&
+                interiorEntrances[Houses.Windmill] === undefined) {
             return Houses.Windmill;
         } else if (songs["Prelude of Light"].collected &&
-            interiorLocations[Houses.TempleOfTime] === undefined) {
+            interiorEntrances[Houses.TempleOfTime] === undefined) {
             return Houses.TempleOfTime;
         }
         return null;
@@ -268,56 +273,65 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({songs: songs});
     };
 
-    componentDidMount() {
-        this.setupTracker();
-        this.loadState();
-    };
-
     setupTracker = () => {
-        let availableEntrances = {
-            [EntranceTypes.House]: [],
-            [EntranceTypes.Overworld]: [],
-            [EntranceTypes.Grotto]: [],
-            [EntranceTypes.Dungeon]: [],
-            [EntranceTypes.KaeporaGaebora]: []
-        };
 
-        let availableInteriors = {
-            [EntranceTypes.House]: [],
-            [EntranceTypes.Overworld]: [],
-            [EntranceTypes.Grotto]: [],
-            [EntranceTypes.Dungeon]: [],
-            [EntranceTypes.KaeporaGaebora]: []
-        };
+        let areasAndEntrances = AreasAndEntrances; // master world state
+        let interiorEntrances = {}; // area/interior keys access array of location objects
+        let availableEntrances = {}; // area key accesses array of entrances
+        let availableDungeons = []; // dungeons not yet assigned to dungeon entrance
+        let availableHouses = []; // houses not yet assigned to house entrance
+        let availableHouseEntrances = {}; // areas and the houses within them
+        let availableGrottos = []; // grottos not yet assigned to grotto entrance
+        let allAreas = []; // array of all area names for Kaepora Gaebora
+        let openAreas = []; // the areas that can currently be accessed
+        let songs = Songs; // songs state
 
-        let availableAreas = {};
-        let interiorLocations = {};
+        Object.keys(areasAndEntrances).forEach(area => {
+            allAreas.push(area);
+            availableEntrances[area] = [];
 
-        Object.keys(Areas).forEach(area => {
-            availableAreas[area] = {};
-            Object.keys(Areas[area].entrances).forEach(entrance => {
-                let entranceObject = Areas[area].entrances[entrance];
-                let type = entranceObject.type;
-                let entranceName = `${area}${AreaEntranceSeparator}${entrance}`;
-                let interiorName = entranceObject.display || entrance;
-                availableEntrances[type].push(entranceName);
-                availableInteriors[type].push(interiorName);
-                if (type === EntranceTypes.Overworld) {
-                    availableEntrances[EntranceTypes.KaeporaGaebora].push(entranceName);
+
+            Object.keys(areasAndEntrances[area].entrances).forEach(entranceName => {
+
+                availableEntrances[area].push(entranceName);
+                let entrance = areasAndEntrances[area].entrances[entranceName];
+                let type = entrance.type;
+
+                if (type === EntranceTypes.Dungeon) {
+                    availableDungeons.push(entranceName);
+                } else {
+                    let displayName = entrance.display || entranceName;
+
+                    if (type === EntranceTypes.House) {
+                        availableHouses.push(displayName);
+                        if (availableHouseEntrances[area] === undefined) {
+                            availableHouseEntrances[area] = [];
+                        }
+                        availableHouseEntrances[area].push(entranceName);
+                    } else if (type === EntranceTypes.Grotto) {
+                        availableGrottos.push(displayName);
+                    }
                 }
-                availableEntrances[type] = availableEntrances[type].sort();
-                availableInteriors[type] = availableInteriors[type].sort();
-                availableAreas[area][entrance] = "";
             });
         });
 
         this.setState({
-            availableInteriors: availableInteriors,
+            areasAndEntrances: areasAndEntrances,
+            interiorEntrances: interiorEntrances,
             availableEntrances: availableEntrances,
-            interiorLocations: interiorLocations,
-            availableAreas: availableAreas,
-            openAreas: {},
-            songs: Songs
+            availableDungeons: availableDungeons,
+            availableHouses: availableHouses,
+            availableHouseEntrances: availableHouseEntrances,
+            availableGrottos: availableGrottos,
+            allAreas: allAreas,
+            openAreas: openAreas,
+            songs: songs
+        });
+    };
+
+    returnUniqueItems = array => {
+        return array.filter((item, i) => {
+            return array.indexOf(item) === i;
         });
     };
 
@@ -339,9 +353,15 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setupTracker();
     };
 
+    componentDidMount() {
+        this.setupTracker();
+        this.loadState();
+    };
+
     render() {
-        let areas = this.state.openAreas;
-        let interiorToPromptFor = this.interiorToPromptForBasedOnState();
+        let areasAndEntrances = this.state.areasAndEntrances;
+        let openAreas = this.state.openAreas;
+        let houseToPromptFor = this.houseToPromptForBasedOnState();
         let songs = this.state.songs;
 
         return (
@@ -356,12 +376,11 @@ export default class ZOoTREntranceTracker extends React.Component {
 
                 <div className="top-padding" />
                 <div className="user-prompts">
-                    {interiorToPromptFor !== null ?
-                        <PromptForInteriorEntrance
-                            interiorToPromptFor={interiorToPromptFor}
-                            availableEntrances={this.state.availableEntrances.house}
-                            resetEntrance={this.resetEntrance}
-                            setInteriorToAreaAndEntrance={this.setInteriorToAreaAndEntrance}
+                    {houseToPromptFor !== null ?
+                        <PromptForHouseEntrance
+                            houseToPromptFor={houseToPromptFor}
+                            availableEntrances={this.state.availableHouseEntrances}
+                            setHouseToAreaAndEntrance={this.setHouseToAreaAndEntrance}
                         />
                         : ""
                     }
@@ -372,20 +391,60 @@ export default class ZOoTREntranceTracker extends React.Component {
                 {/* these entrances can be linked to entrances in other areas */}
                 {/* this triggers another area to be added to the collection */}
                 <div className="areas-container is-flex-desktop is-flex-tablet is-multiline flex-wraps">
-                    {Object.keys(areas).sort().map((area, i) => {
-                        return <Area
-                            key={i}
-                            area={area}
-                            resetEntrance={this.resetEntrance}
-                            setOverworldToOverworld={this.setOverworldToOverworld}
-                            setInteriorToAreaAndEntrance={this.setInteriorToAreaAndEntrance}
-                            availableInteriors={this.state.availableInteriors}
-                            availableEntrances={this.state.availableEntrances}
-                            resetOverworldEntrance={this.resetOverworldEntrance}
-                            resetKaeporaGaeboraEntrance={this.resetKaeporaGaeboraEntrance}
-                            setKaeporaGaeboraEntrance={this.setKaeporaGaeboraEntrance}
-                            entrances={areas[area]}
-                        />
+                    {openAreas.map((areaName, i) => {
+                        let area = areasAndEntrances[areaName];
+                        let firstCol = [];
+                        let secondCol = [];
+                        return <div className="area-box box" key={i} style={{
+                            background: area.colors.length === 1 ?
+                                area.colors[0] :
+                                `linear-gradient(to bottom right, ${area.colors.join(", ")}`
+                        }}
+                        >
+                            <div className="box">
+                                <h4 className="is-size-4 has-text-weight-semibold">{areaName}</h4>
+                                {Object.keys(area.entrances).sort().map((entrance, j) => {
+                                    let entrancesLength = Object.keys(area.entrances).length;
+                                    let entranceType = area.entrances[entrance].type;
+                                    let arrayToAddTo = j < entrancesLength / 2 ? firstCol : secondCol;
+                                    arrayToAddTo.push(<Entrance
+                                        availableLocations={
+                                            entranceType === EntranceTypes.House ?
+                                            this.returnUniqueItems(this.state.availableHouses)
+                                                : entranceType === EntranceTypes.Dungeon ?
+                                                this.state.availableDungeons
+                                                    : entranceType === EntranceTypes.Overworld ?
+                                                    this.state.availableEntrances
+                                                        : entranceType === EntranceTypes.Grotto ?
+                                                        this.returnUniqueItems(this.state.availableGrottos)
+                                                            : entranceType === EntranceTypes.KaeporaGaebora ?
+                                                            this.state.allAreas
+                                                                : [] // How did you get here??
+                                        }
+                                        resetEntrance={this.resetEntrance}
+                                        resetOverworldEntrance={this.resetOverworldEntrance}
+                                        setOverworldToOverworld={this.setOverworldToOverworld}
+                                        setInteriorToAreaAndEntrance={this.setHouseToAreaAndEntrance}
+                                        setKaeporaGaeboraEntrance={this.setKaeporaGaeboraEntrance}
+                                        resetKaeporaGaeboraEntrance={this.resetKaeporaGaeboraEntrance}
+                                        entrance={entrance}
+                                        area={area}
+                                        key={j}
+                                    />);
+                                    return null;
+                                })}
+                                <div className="columns">
+                                    <div className="column">
+                                        {firstCol}
+                                    </div>
+                                    {secondCol.length > 0 ?
+                                        <div className="column">
+                                            {secondCol}
+                                        </div>
+                                        : ""}
+                                </div>
+                            </div>
+                        </div>
                     })}
                 </div>
 

@@ -1,7 +1,7 @@
 import AreaEntranceSeparator from "./Constants/AreaEntranceSeparator";
 import React from "react";
 
-export default class PromptForInteriorEntrance extends React.Component {
+export default class PromptForHouseEntrance extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,18 +15,18 @@ export default class PromptForInteriorEntrance extends React.Component {
     };
 
     setInteriorToAreaAndEntrance = () => {
-        let interiorToPromptFor = this.props.interiorToPromptFor;
+        let houseToPromptFor = this.props.houseToPromptFor;
         let selectedLocation = this.state.selectedLocation;
         if (selectedLocation === "") {
             return;
         }
-        let [area, entrance] = selectedLocation.split(AreaEntranceSeparator);
-        this.props.setInteriorToAreaAndEntrance(area, entrance, interiorToPromptFor);
-        this.setState({selectedLocation: ""})
+        let entranceObj = JSON.parse(selectedLocation);
+        this.props.setHouseToAreaAndEntrance(houseToPromptFor, entranceObj);
+        this.setState({selectedLocation: ""});
     };
 
     render() {
-        let interiorToPromptFor = this.props.interiorToPromptFor;
+        let houseToPromptFor = this.props.houseToPromptFor;
         let availableEntrances = this.props.availableEntrances;
         if (!availableEntrances) {
             return null;
@@ -34,7 +34,7 @@ export default class PromptForInteriorEntrance extends React.Component {
         return (
             <div className="prompt section">
                 <h4 className="is-size-4 has-text-centered">
-                    Where does {interiorToPromptFor} go to?
+                    Where does {houseToPromptFor} exit to?
                 </h4>
                 <br />
                 <div className="field is-grouped has-addons has-addons-centered">
@@ -44,18 +44,25 @@ export default class PromptForInteriorEntrance extends React.Component {
                             value={this.state.selectedLocation}
                         >
                             <option value="">Select a location</option>
-                            {availableEntrances.map((entrance, i) => {
-                                return <option
+                            {Object.keys(availableEntrances).sort().map((area, i) => {
+                                return <optgroup
                                     key={i}
-                                    value={entrance}
+                                    label={area}
                                 >
-                                    {entrance}
-                                </option>
+                                    {availableEntrances[area].map((entrance, i) => {
+                                        return <option
+                                            key={i}
+                                            value={JSON.stringify({area, entrance})}
+                                        >
+                                            {entrance}
+                                        </option>
+                                    })}
+                                </optgroup>
                             })}
                         </select>
                     </div>
                     <button className="button is-small control" onClick={this.setInteriorToAreaAndEntrance}>
-                        Add {interiorToPromptFor}
+                        Add {houseToPromptFor}
                     </button>
                 </div>
             </div>

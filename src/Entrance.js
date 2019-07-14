@@ -16,7 +16,7 @@ export default class Entrance extends React.Component {
         } else if (type === EntranceTypes.KaeporaGaebora) {
             this.props.setKaeporaGaeboraEntrance(area, entrance, selection);
         } else {
-            this.props.setInteriorToAreaAndEntrance(area, entrance, selection);
+            this.props.setHouseToAreaAndEntrance(area, entrance, selection);
         }
     };
 
@@ -38,14 +38,16 @@ export default class Entrance extends React.Component {
         let availableLocations = this.props.availableLocations;
         let area = this.props.area;
         let entrance = this.props.entrance;
-        let interior = this.props.interior;
+        let interior = area.entrances[entrance].interior;
+        let leadsTo = area.entrances[entrance].leadsTo;
+        console.log(area)
         return(
             <div className="entrance">
                 <h6 className={
                     "is-size-6 has-text-weight-semibold " +
-                    (interior === "" ? "has-text-danger" : "")
+                    (interior === null || leadsTo === null ? "has-text-danger" : "")
                 }>{entrance}</h6>
-                {interior !== "" ?
+                {interior !== null ?
                     <div className="interior-display is-flex">
                         <span>
                             {interior}

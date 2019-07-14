@@ -12,9 +12,8 @@ export default class Area extends React.Component {
     };
 
     render() {
-        let area = this.props.area;
-        let entranceObject = this.props.entrances;
-        let entrances =  Object.keys(entranceObject).sort();
+        let area = this.props.area; // area object
+        let entrances = area.entrances;
         let availableInteriors = this.props.availableInteriors;
         let availableEntrances = this.props.availableEntrances;
         let backgroundColors = Areas[area].colors;
@@ -51,10 +50,10 @@ export default class Area extends React.Component {
                             resetEntrance={this.props.resetEntrance}
                             resetOverworldEntrance={this.props.resetOverworldEntrance}
                             setOverworldToOverworld={this.props.setOverworldToOverworld}
-                            setInteriorToAreaAndEntrance={this.props.setInteriorToAreaAndEntrance}
+                            setInteriorToAreaAndEntrance={this.props.setHouseToAreaAndEntrance}
                             setKaeporaGaeboraEntrance={this.props.setKaeporaGaeboraEntrance}
                             resetKaeporaGaeboraEntrance={this.props.resetKaeporaGaeboraEntrance}
-                            interior={entranceObject[entrance]}
+                            // interior={entranceObject[entrance]}
                             entrance={entrance}
                             area={area}
                             key={i}
