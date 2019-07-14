@@ -40,7 +40,7 @@ export default class Entrance extends React.Component {
         let entrance = this.props.entrance;
         let interior = area.entrances[entrance].interior;
         let leadsTo = area.entrances[entrance].leadsTo;
-        console.log(area)
+
         return(
             <div className="entrance">
                 <h6 className={

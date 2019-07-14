@@ -19,6 +19,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         areasAndEntrances: {}, // master world state
         interiorEntrances: {}, // area/interior keys access array of location objects
         availableEntrances: {}, // area key accesses array of entrances
+        availableOverworldEntrances: {}, // area key accesses array of overworld entrances
         availableDungeons: [], // dungeons not yet assigned to dungeon entrance
         availableHouses: [], // houses not yet assigned to house entrance
         availableHouseEntrances: {},
@@ -278,6 +279,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         let areasAndEntrances = AreasAndEntrances; // master world state
         let interiorEntrances = {}; // area/interior keys access array of location objects
         let availableEntrances = {}; // area key accesses array of entrances
+        let availableOverworldEntrances = {}; // available entrances of type Overworld
         let availableDungeons = []; // dungeons not yet assigned to dungeon entrance
         let availableHouses = []; // houses not yet assigned to house entrance
         let availableHouseEntrances = {}; // areas and the houses within them
@@ -289,7 +291,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         Object.keys(areasAndEntrances).forEach(area => {
             allAreas.push(area);
             availableEntrances[area] = [];
-
+            availableOverworldEntrances[area] = [];
 
             Object.keys(areasAndEntrances[area].entrances).forEach(entranceName => {
 
@@ -297,7 +299,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                 let entrance = areasAndEntrances[area].entrances[entranceName];
                 let type = entrance.type;
 
-                if (type === EntranceTypes.Dungeon) {
+                if (type === EntranceTypes.Overworld) {
+                    availableOverworldEntrances[area].push(entranceName);
+                } else if (type === EntranceTypes.Dungeon) {
                     availableDungeons.push(entranceName);
                 } else {
                     let displayName = entrance.display || entranceName;
@@ -319,6 +323,7 @@ export default class ZOoTREntranceTracker extends React.Component {
             areasAndEntrances: areasAndEntrances,
             interiorEntrances: interiorEntrances,
             availableEntrances: availableEntrances,
+            availableOverworldEntrances: availableOverworldEntrances,
             availableDungeons: availableDungeons,
             availableHouses: availableHouses,
             availableHouseEntrances: availableHouseEntrances,
@@ -403,34 +408,75 @@ export default class ZOoTREntranceTracker extends React.Component {
                         >
                             <div className="box">
                                 <h4 className="is-size-4 has-text-weight-semibold">{areaName}</h4>
-                                {Object.keys(area.entrances).sort().map((entrance, j) => {
+                                {Object.keys(area.entrances).sort().map((entranceName, j) => {
                                     let entrancesLength = Object.keys(area.entrances).length;
-                                    let entranceType = area.entrances[entrance].type;
                                     let arrayToAddTo = j < entrancesLength / 2 ? firstCol : secondCol;
-                                    arrayToAddTo.push(<Entrance
-                                        availableLocations={
-                                            entranceType === EntranceTypes.House ?
-                                            this.returnUniqueItems(this.state.availableHouses)
-                                                : entranceType === EntranceTypes.Dungeon ?
-                                                this.state.availableDungeons
-                                                    : entranceType === EntranceTypes.Overworld ?
-                                                    this.state.availableEntrances
-                                                        : entranceType === EntranceTypes.Grotto ?
-                                                        this.returnUniqueItems(this.state.availableGrottos)
-                                                            : entranceType === EntranceTypes.KaeporaGaebora ?
-                                                            this.state.allAreas
-                                                                : [] // How did you get here??
-                                        }
-                                        resetEntrance={this.resetEntrance}
-                                        resetOverworldEntrance={this.resetOverworldEntrance}
-                                        setOverworldToOverworld={this.setOverworldToOverworld}
-                                        setInteriorToAreaAndEntrance={this.setHouseToAreaAndEntrance}
-                                        setKaeporaGaeboraEntrance={this.setKaeporaGaeboraEntrance}
-                                        resetKaeporaGaeboraEntrance={this.resetKaeporaGaeboraEntrance}
-                                        entrance={entrance}
-                                        area={area}
-                                        key={j}
-                                    />);
+                                    let entrance = area.entrances[entranceName];
+                                    let options = entrance.type === EntranceTypes.House ?
+                                        this.returnUniqueItems(this.state.availableHouses)
+                                        : entrance.type === EntranceTypes.Dungeon ?
+                                        this.state.availableDungeons
+                                        : entrance.type === EntranceTypes.Overworld ?
+                                            this.state.availableOverworldEntrances
+                                            : entrance.type === EntranceTypes.Grotto ?
+                                                this.returnUniqueItems(this.state.availableGrottos)
+                                                : entrance.type === EntranceTypes.KaeporaGaebora ?
+                                                    this.state.allAreas
+                                                    : []; // How did you get here??
+
+                                    arrayToAddTo.push(
+                                        <div className="entrance" key={j}>
+                                            <h6 className={
+                                                "is-size-6 has-text-weight-semibold " +
+                                                (entrance.interior === null || entrance.leadsTo === null ? "has-text-danger" : "")
+                                            }>{entranceName}</h6>
+                                            {entrance.interior !== undefined && entrance.interior !== null ?
+                                                <div className="interior-display is-flex">
+                                                    <span>
+                                                        {entrance.interior}
+                                                    </span>
+                                                    {/* once Link's House is set, leave it */}
+                                                    {entrance.interior === Houses.LinksHouse ?
+                                                        "" :
+                                                        <span className="delete is-pulled-right" onClick={this.resetEntrance} />
+                                                    }
+                                                </div> :
+                                                <div className="select is-small entrance-select">
+                                                    <select value="Not Checked" onChange={this.setLocation}>
+                                                        <option value="Not Checked">Not Checked</option>
+                                                        {typeof options === "object" ?
+                                                            Object.keys(options).sort().map((optgroupArea, k) => {
+                                                                return <optgroup
+                                                                    key={k}
+                                                                    label={optgroupArea}
+                                                                >
+                                                                    {options[optgroupArea].map((optgroupEntrance, l) => {
+                                                                        return <option
+                                                                            key={l}
+                                                                            value={JSON.stringify({
+                                                                                area: optgroupArea,
+                                                                                entrance: optgroupEntrance
+                                                                            })}
+                                                                        >
+                                                                            {optgroupEntrance}
+                                                                        </option>
+                                                                    })}
+                                                                </optgroup>
+                                                            })
+                                                            :
+                                                            options.map((interiorName, l) => {
+                                                                if (entrance.type === EntranceTypes.Overworld &&
+                                                                    entranceName === interiorName) {
+                                                                    return null;
+                                                                }
+                                                                return <option key={l} value={interiorName}>{interiorName}</option>
+                                                            })
+                                                        }
+                                                    </select>
+                                                </div>
+                                            }
+                                        </div>
+                                    );
                                     return null;
                                 })}
                                 <div className="columns">
