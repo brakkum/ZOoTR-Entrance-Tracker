@@ -62,15 +62,18 @@ export default class ZOoTREntranceTracker extends React.Component {
         let areasAndEntrances = this.state.areasAndEntrances;
         let availableHouses = this.state.availableHouses;
         let availableHouseEntrances = this.state.availableHouseEntrances;
+        let interiorEntrances = this.state.interiorEntrances;
         let area = entranceObj.area;
         let entrance = entranceObj.entrance;
 
         areasAndEntrances[area].entrances[entrance].interior = house;
         availableHouses.splice(availableHouses.indexOf(house), 1);
         availableHouseEntrances[area].splice(availableHouses.indexOf(house), 1);
+        interiorEntrances[house] = [];
+        interiorEntrances[house].push(entranceObj);
 
         this.addAreaIfNotAvailable(area);
-        this.addAdditionalAreas(house);
+        this.addAdditionalAreas(area);
     };
 
     // area: the area that the overworld pointer is located in
@@ -400,11 +403,14 @@ export default class ZOoTREntranceTracker extends React.Component {
                         let area = areasAndEntrances[areaName];
                         let firstCol = [];
                         let secondCol = [];
-                        return <div className="area-box box" key={i} style={{
-                            background: area.colors.length === 1 ?
-                                area.colors[0] :
-                                `linear-gradient(to bottom right, ${area.colors.join(", ")}`
-                        }}
+                        return <div className="area-box box" key={i}
+                            style={{
+                                background: area.colors.length > 1 ?
+                                    `linear-gradient(to bottom right, ${area.colors.join(", ")}`
+                                    : area.colors.length === 1 ?
+                                        area.colors.length[0]
+                                        : "grey"
+                            }}
                         >
                             <div className="box">
                                 <h4 className="is-size-4 has-text-weight-semibold">{areaName}</h4>
@@ -440,7 +446,16 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                         "" :
                                                         <span className="delete is-pulled-right" onClick={this.resetEntrance} />
                                                     }
-                                                </div> :
+                                                </div>
+                                                :
+                                                entrance.leadsTo !== undefined && entrance.leadsTo !== null
+                                                ?
+                                                <div className="interior-display is-flex">
+                                                    <span>
+                                                        {entrance.leadsTo.area}: {entrance.leadsTo.entrance} Entrance
+                                                    </span>
+                                                </div>
+                                                :
                                                 <div className="select is-small entrance-select">
                                                     <select value="Not Checked" onChange={this.setLocation}>
                                                         <option value="Not Checked">Not Checked</option>
@@ -450,10 +465,15 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                                     entranceName === interiorName) {
                                                                     return null;
                                                                 }
-                                                                return <option key={l} value={interiorName}>{interiorName}</option>
+                                                                return <option key={l} value={interiorName}>
+                                                                    {interiorName}
+                                                                </option>
                                                             })
                                                             :
                                                             Object.keys(options).sort().map((optgroupArea, k) => {
+                                                                if (options[optgroupArea].length === 0) {
+                                                                    return null;
+                                                                }
                                                                 return <optgroup
                                                                     key={k}
                                                                     label={optgroupArea}
