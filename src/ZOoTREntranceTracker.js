@@ -83,7 +83,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         if (interiorEntrances[Houses.LinksHouse] === undefined) {
             return Houses.LinksHouse;
         } else if (interiorEntrances[Grottos.DampesGrave] !== undefined &&
-            interiorEntrances[Houses.Windmill] === undefined) {
+            interiorEntrances[Houses.Windmill].length <= 1) {
             return Houses.Windmill;
         } else if (songs["Prelude of Light"].collected &&
             interiorEntrances[Houses.TempleOfTime].length === 1) {
@@ -108,18 +108,6 @@ export default class ZOoTREntranceTracker extends React.Component {
     resetState = () => {
         localStorage.removeItem(LocalStorage.state);
         this.setupTracker();
-    };
-
-    addInteriorEntrance = (location, entranceObject) => {
-          let interiorEntrances = this.state.interiorEntrances;
-          if (interiorEntrances[location] === undefined) {
-              interiorEntrances[location] = [];
-          }
-          interiorEntrances[location].push(entranceObject);
-          if (InteriorConnection[location] !== undefined && InteriorConnection[location] !== null) {
-              interiorEntrances[location].push(InteriorConnection[location]);
-          }
-          this.setState({interiorEntrances});
     };
 
     addAdditionalAreas = area => {
@@ -152,8 +140,33 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({hyrule});
     };
 
+    addInteriorEntrance = (location, entranceObject) => {
+        let interiorEntrances = this.state.interiorEntrances;
+        if (interiorEntrances[location] === undefined) {
+            interiorEntrances[location] = [];
+        }
+        interiorEntrances[location].push(entranceObject);
+        if (InteriorConnection[location] !== undefined) {
+            this.addInteriorEntrance(
+                InteriorConnection[location].leadsTo,
+                {area: null, entrance: location}
+            );
+        }
+        this.setState({interiorEntrances});
+    };
+
     removeInteriorEntrance = (type, location, entranceObject) => {
         let interiorEntrances = this.state.interiorEntrances;
+        if (InteriorConnection[location] !== undefined) {
+            this.removeInteriorEntrance(
+                "",
+                InteriorConnection[location].leadsTo,
+                {area: null, entrance: location}
+            );
+        }
+        if (interiorEntrances[location] === undefined) {
+            return;
+        }
         interiorEntrances[location] = interiorEntrances[location].filter(entrance => {
             if (type === EntranceTypes.Song) {
                 return entrance.song !== entranceObject.song;
@@ -162,11 +175,6 @@ export default class ZOoTREntranceTracker extends React.Component {
                     entrance.entrance !== entranceObject.entrance;
             }
         });
-        if (InteriorConnection[location] !== undefined) {
-            interiorEntrances[location] = interiorEntrances[location].filter(entrance => {
-                return entrance.interior !== InteriorConnection[location].interior
-            });
-        }
         if (interiorEntrances[location].length === 0) {
             delete interiorEntrances[location];
         }
