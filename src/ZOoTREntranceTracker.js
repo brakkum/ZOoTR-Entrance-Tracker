@@ -66,14 +66,14 @@ export default class ZOoTREntranceTracker extends React.Component {
         });
 
         this.setState({
-            hyrule: hyrule,
-            interiorEntrances: interiorEntrances,
-            availableOverworldEntrances: availableOverworldEntrances,
-            availableDungeons: availableDungeons,
-            availableHouses: availableHouses,
-            availableHouseEntrances: availableHouseEntrances,
-            availableGrottos: availableGrottos,
-            songs: songs
+            hyrule,
+            interiorEntrances,
+            availableOverworldEntrances,
+            availableDungeons,
+            availableHouses,
+            availableHouseEntrances,
+            availableGrottos,
+            songs
         });
     };
 
