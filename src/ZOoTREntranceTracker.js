@@ -29,221 +29,6 @@ export default class ZOoTREntranceTracker extends React.Component {
         songs: {} // songs state
     };
 
-    // area: the area that the overworld pointer is located in
-    // entrance: the overworld entrance in the area
-    // nextAreaAndEntrance: the area->entrance pointer that is the new connection
-    setOverworldToOverworld = (area, entrance, nextAreaAndEntrance) => {
-        let [nextArea, nextEntrance] = nextAreaAndEntrance.split(AreaEntranceSeparator);
-        let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
-
-        // add the areas (kinda overkill since one has to be defined already)
-        this.addAreaIfNotAvailable(area);
-        this.addAreaIfNotAvailable(nextArea);
-        this.addAdditionalAreas(nextArea);
-
-        this.addInteriorOrAreaLocation(nextAreaAndEntrance, area);
-        this.addInteriorOrAreaLocation(currentAreaAndEntrance, nextArea);
-
-        this.removeElementFromStateArray("availableEntrances", EntranceTypes.Overworld, nextAreaAndEntrance);
-        this.removeElementFromStateArray("availableEntrances", EntranceTypes.Overworld, currentAreaAndEntrance);
-
-        this.setEntrance(nextArea, nextEntrance, currentAreaAndEntrance);
-        this.setEntrance(area, entrance, nextAreaAndEntrance);
-    };
-
-    // area: the area that the entrance is located in
-    // entrance: the entrance being assigned and interior
-    // interior: the house/dungeon/grotto being assigned to a location
-    setHouseToAreaAndEntrance = (house, entranceObj) => {
-        let Hyrule = this.state.hyrule;
-        let availableHouses = this.state.availableHouses;
-        let availableHouseEntrances = this.state.availableHouseEntrances;
-        let interiorEntrances = this.state.interiorEntrances;
-        let area = entranceObj.area;
-        let entrance = entranceObj.entrance;
-
-        Hyrule[area].entrances[entrance].interior = house;
-        availableHouses.splice(availableHouses.indexOf(house), 1);
-        availableHouseEntrances[area].splice(availableHouses.indexOf(house), 1);
-        interiorEntrances[house] = [];
-        interiorEntrances[house].push(entranceObj);
-
-        this.addAreaIfNotAvailable(area);
-        this.addAdditionalAreas(area);
-    };
-
-    // area: the area that the overworld pointer is located in
-    // entrance: the overworld entrance in the area
-    // landingAreaAndEntrance: the area->entrance pointer that is the new connection
-    setKaeporaGaeboraEntrance = (area, entrance, landingAreaAndEntrance) => {
-        // next area is the import part
-        let [landingArea] = landingAreaAndEntrance.split(AreaEntranceSeparator);
-        let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
-
-        this.addAreaIfNotAvailable(landingArea);
-        this.addAdditionalAreas(landingArea);
-
-        this.addInteriorOrAreaLocation(currentAreaAndEntrance, landingArea);
-
-        this.setEntrance(area, entrance, landingAreaAndEntrance);
-    };
-
-    // area: the area that the overworld pointer is located in
-    // entrance: the overworld entrance in the area, will always be KG
-    // landingAreaAndEntrance: the area->entrance pointer that was used
-    resetKaeporaGaeboraEntrance = (area, entrance, landingAreaAndEntrance) => {
-        let [landingArea] = landingAreaAndEntrance.split(AreaEntranceSeparator);
-        let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
-
-        // reset kaepora overworld pointer to empty
-        let openAreas = this.state.openAreas;
-        openAreas[area][entrance] = "";
-        this.setState({openAreas: openAreas});
-
-        // remove from interiorLocation array
-        this.removeInteriorOrAreaLocation(currentAreaAndEntrance, landingArea);
-
-        this.removeAreaIfEmpty(area);
-        this.removeAreaIfEmpty(landingArea);
-    };
-
-    // locationPointer: an area->entrance pointer
-    // interior: interior name to be used as key for array of pointers
-    addInteriorOrAreaLocation = (locationPointer, interior) => {
-        let interiorLocations = this.state.interiorLocations;
-        if (interiorLocations[interior] === undefined) {
-            interiorLocations[interior] = [];
-        }
-        interiorLocations[interior].push(locationPointer);
-        this.setState({interiorLocations: interiorLocations});
-    };
-
-    // locationPointer: an area->entrance pointer
-    // interior: interior name that is used as key for array of location pointers
-    removeInteriorOrAreaLocation = (locationPointer, interior) => {
-        let interiorLocations = this.state.interiorLocations;
-        interiorLocations[interior].splice(interiorLocations[interior].indexOf(locationPointer), 1);
-        if (interiorLocations[interior].length === 0) {
-            delete interiorLocations[interior];
-        }
-        this.setState({interiorLocations: interiorLocations});
-    };
-
-    // area: the area the overworld pointer is set in
-    // entrance: the entrance it is assigned to
-    // nextAreaAndEntrance the area->entrance pointer for where the entrance leads
-    resetOverworldEntranceOld = (area, entrance, connectedAreaAndEntrance) => {
-        let [otherArea, otherEntrance] = connectedAreaAndEntrance.split(AreaEntranceSeparator);
-        let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
-
-        // reset both overworld pointers to empty
-        let openAreas = this.state.openAreas;
-        openAreas[area][entrance] = "";
-        openAreas[otherArea][otherEntrance] = "";
-        this.setState({openAreas: openAreas});
-
-        // remove from interiorLocation array
-        this.removeInteriorOrAreaLocation(connectedAreaAndEntrance, area);
-        this.removeInteriorOrAreaLocation(currentAreaAndEntrance, otherArea);
-
-        // add the freed entrances back into the pool
-        let availableEntrances = this.state.availableEntrances;
-        availableEntrances[EntranceTypes.Overworld].push(connectedAreaAndEntrance);
-        availableEntrances[EntranceTypes.Overworld].push(currentAreaAndEntrance);
-        availableEntrances[EntranceTypes.Overworld] = availableEntrances[EntranceTypes.Overworld].sort();
-        this.setState({availableEntrances: availableEntrances});
-
-        this.removeAreaIfEmpty(area);
-        this.removeAreaIfEmpty(otherArea);
-    };
-
-    // TODO
-    resetEntranceOld = (area, entrance, interior) => {
-        let openAreas = this.state.openAreas;
-        openAreas[area][entrance] = "";
-        let type = Hyrule[area].entrances[entrance].type;
-
-        this.removeInteriorOrAreaLocation(`${area}${AreaEntranceSeparator}${entrance}`, interior);
-
-        let availableInteriors = this.state.availableInteriors;
-        availableInteriors[type].push(interior);
-        availableInteriors[type] = availableInteriors[type].sort();
-        this.setState({availableInteriors: availableInteriors});
-        this.setState({openAreas: openAreas});
-    };
-
-    removeAreaIfEmptyOld = areaName => {
-        let areas = this.state.openAreas;
-        let area = areas[areaName];
-        let empty = true;
-        if (!area) {
-            return;
-        }
-        Object.keys(area).forEach(entrance => {
-            if (area[entrance] !== "") { empty = false; }
-        });
-        if (empty) {
-            delete areas[areaName];
-            this.setState({openAreas: areas});
-        }
-    };
-
-    addAreaIfNotAvailable = area => {
-        let openAreas = this.state.openAreas;
-        if (area in openAreas) {
-            // area is already available
-            return;
-        }
-        openAreas.push(area);
-        this.setState({openAreas: openAreas});
-    };
-
-    removeElementFromStateArray = (array, type, interior) => {
-        let indexOfElement = this.state[array][type].indexOf(interior);
-        let elements = this.state[array];
-        elements[type].splice(indexOfElement, 1);
-        this.setState({[array]: elements});
-    };
-
-    resetHouseInteriorLocation = interior => {
-        let interiors = this.state.interiorLocations;
-        let availableInteriors = this.state.availableInteriors;
-        let openAreas = this.state.openAreas;
-        if (!(interior in interiors)) {
-            return;
-        }
-        let [area, entrance] = interiors[interior][0].split(AreaEntranceSeparator);
-        openAreas[area][entrance] = "";
-        this.setState({openAreas: openAreas});
-        delete interiors[interior];
-        availableInteriors[EntranceTypes.House].push(interior);
-        this.setState({
-            interiorLocations: interiors,
-            availableInteriors: availableInteriors
-        });
-        this.removeAreaIfEmpty(area);
-    };
-
-    addSong = song => {
-        let songs = this.state.songs;
-        songs[song.name].collected = true;
-        if (song.areaType === EntranceTypes.Overworld) {
-            this.addAreaIfNotAvailable(song.area);
-        }
-        this.setState({songs: songs})
-    };
-
-    removeSongOld = song => {
-        let songs = this.state.songs;
-        songs[song.name].collected = false;
-        if (song.areaType === EntranceTypes.Overworld) {
-            this.removeAreaIfEmpty(song.area);
-        } else if (song.areaType === EntranceTypes.House) {
-            this.resetHouseInteriorLocation(song.area);
-        }
-        this.setState({songs: songs});
-    };
-
     setupTracker = () => {
 
         let hyrule = Hyrule; // master world state
@@ -352,11 +137,19 @@ export default class ZOoTREntranceTracker extends React.Component {
     addAdditionalAreas = area => {
         let hyrule = this.state.hyrule;
         if (AreasToAdd[area] !== undefined) {
-            AreasToAdd[area].forEach(area => {
-                hyrule[area].isAccessible = true;
+            AreasToAdd[area].forEach(addOnArea => {
+                hyrule[addOnArea].isAccessible = true;
             })
         }
         this.setState({hyrule});
+    };
+
+    removeAdditionalAreas = area => {
+        if (AreasToAdd[area] !== undefined) {
+            AreasToAdd[area].forEach(addOnArea => {
+                this.removeAreaIfEmpty(addOnArea);
+            });
+        }
     };
 
     setOverworldEntrance = (area, entrance, obj) => {
@@ -546,6 +339,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.addInteriorBackIntoPool(entranceObj.type, interior);
                 this.removeInteriorEntrance(entranceObj.type, interior, entranceObj);
                 this.removeAreaIfEmpty(area);
+                this.removeAdditionalAreas(interior);
                 break;
             }
             case EntranceTypes.KaeporaGaebora: {
@@ -606,7 +400,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.removeInteriorFromPool(vanilla.type, interior);
 
                 this.addInteriorEntrance(interior, {area, entrance});
-                this.addAdditionalAreas(area);
+                this.addAdditionalAreas(interior);
                 break;
             }
             case EntranceTypes.KaeporaGaebora: {
