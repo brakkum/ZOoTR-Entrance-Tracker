@@ -1,5 +1,5 @@
 import EntranceTypes from "./DataObjects/EntranceTypes";
-import Areas from "./DataObjects/AreasAndEntrances";
+import Hyrule from "./DataObjects/Hyrule";
 import Entrance from "./Entrance";
 import React from "react";
 
@@ -16,7 +16,7 @@ export default class Area extends React.Component {
         let entrances = area.entrances;
         let availableInteriors = this.props.availableInteriors;
         let availableEntrances = this.props.availableEntrances;
-        let backgroundColors = Areas[area].colors;
+        let backgroundColors = Hyrule[area].colors;
         let firstCol = [];
         let secondCol = [];
 
@@ -31,7 +31,7 @@ export default class Area extends React.Component {
                     <h4 className="is-size-4 has-text-weight-semibold">{area}</h4>
                     {entrances.map((entrance, i) => {
                         let entrancesLength = entrances.length;
-                        let entranceType = Areas[area].entrances[entrance].type;
+                        let entranceType = Hyrule[area].entrances[entrance].type;
                         let arrayToAddTo = i < entrancesLength / 2 ? firstCol : secondCol;
                         arrayToAddTo.push(<Entrance
                             availableLocations={

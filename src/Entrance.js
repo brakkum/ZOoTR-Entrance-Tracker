@@ -1,6 +1,6 @@
 import AreaEntranceSeparator from "./Constants/AreaEntranceSeparator";
 import EntranceTypes from "./DataObjects/EntranceTypes";
-import Areas from "./DataObjects/AreasAndEntrances";
+import Hyrule from "./DataObjects/Hyrule";
 import React from "react";
 import Houses from "./DataObjects/Houses";
 
@@ -10,7 +10,7 @@ export default class Entrance extends React.Component {
         let area = this.props.area;
         let entrance = this.props.entrance;
         let selection = event.target.value;
-        let type = Areas[area].entrances[entrance].type;
+        let type = Hyrule[area].entrances[entrance].type;
         if (type === EntranceTypes.Overworld) {
             this.props.setOverworldToOverworld(area, entrance, selection);
         } else if (type === EntranceTypes.KaeporaGaebora) {
@@ -24,7 +24,7 @@ export default class Entrance extends React.Component {
         let area = this.props.area;
         let entrance = this.props.entrance;
         let interior = this.props.interior;
-        let type = Areas[area].entrances[entrance].type;
+        let type = Hyrule[area].entrances[entrance].type;
         if (type === EntranceTypes.Overworld) {
             this.props.resetOverworldEntrance(area, entrance, interior);
         } else if (type === EntranceTypes.KaeporaGaebora) {
@@ -62,7 +62,7 @@ export default class Entrance extends React.Component {
                         <select value="Not Checked" onChange={this.setLocation}>
                             <option value="Not Checked">Not Checked</option>
                             {availableLocations.map((location, i) => {
-                                if (Areas[area].entrances[entrance].type === EntranceTypes.Overworld &&
+                                if (Hyrule[area].entrances[entrance].type === EntranceTypes.Overworld &&
                                     location === `${area}${AreaEntranceSeparator}${entrance}`) {
                                     return null;
                                 }

@@ -2,7 +2,7 @@ import AreaEntranceSeparator from "./Constants/AreaEntranceSeparator";
 import PromptForHouseEntrance from "./PromptForHouseEntrance";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import LocalStorage from "./Constants/LocalStorage";
-import AreasAndEntrances from "./DataObjects/AreasAndEntrances";
+import Hyrule from "./DataObjects/Hyrule";
 import AreasToAdd from "./DataObjects/AreasToAdd";
 import Grottos from "./DataObjects/Grottos";
 import Houses from "./DataObjects/Houses";
@@ -12,11 +12,12 @@ import React from "react";
 import Area from "./Area";
 import Song from "./Song";
 import Entrance from "./Entrance";
+import OverworldAreas from "./DataObjects/OverworldAreas";
 
 export default class ZOoTREntranceTracker extends React.Component {
 
     state = {
-        areasAndEntrances: {}, // master world state
+        hyrule: {}, // master world state
         interiorEntrances: {}, // area/interior keys access array of location objects
         availableEntrances: {}, // area key accesses array of entrances
         availableOverworldEntrances: {}, // area key accesses array of overworld entrances
@@ -55,14 +56,14 @@ export default class ZOoTREntranceTracker extends React.Component {
     // entrance: the entrance being assigned and interior
     // interior: the house/dungeon/grotto being assigned to a location
     setHouseToAreaAndEntrance = (house, entranceObj) => {
-        let areasAndEntrances = this.state.areasAndEntrances;
+        let Hyrule = this.state.hyrule;
         let availableHouses = this.state.availableHouses;
         let availableHouseEntrances = this.state.availableHouseEntrances;
         let interiorEntrances = this.state.interiorEntrances;
         let area = entranceObj.area;
         let entrance = entranceObj.entrance;
 
-        areasAndEntrances[area].entrances[entrance].interior = house;
+        Hyrule[area].entrances[entrance].interior = house;
         availableHouses.splice(availableHouses.indexOf(house), 1);
         availableHouseEntrances[area].splice(availableHouses.indexOf(house), 1);
         interiorEntrances[house] = [];
@@ -169,7 +170,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     resetEntrance = (area, entrance, interior) => {
         let openAreas = this.state.openAreas;
         openAreas[area][entrance] = "";
-        let type = AreasAndEntrances[area].entrances[entrance].type;
+        let type = Hyrule[area].entrances[entrance].type;
 
         this.removeInteriorOrAreaLocation(`${area}${AreaEntranceSeparator}${entrance}`, interior);
 
@@ -269,7 +270,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     setupTracker = () => {
 
-        let areasAndEntrances = AreasAndEntrances; // master world state
+        let hyrule = Hyrule; // master world state
         let interiorEntrances = {}; // area/interior keys access array of location objects
         let availableEntrances = {}; // area key accesses array of entrances
         let availableOverworldEntrances = {}; // available entrances of type Overworld
@@ -281,15 +282,15 @@ export default class ZOoTREntranceTracker extends React.Component {
         let openAreas = []; // the areas that can currently be accessed
         let songs = Songs; // songs state
 
-        Object.keys(areasAndEntrances).forEach(area => {
+        Object.keys(Hyrule).forEach(area => {
             allAreas.push(area);
             availableEntrances[area] = [];
             availableOverworldEntrances[area] = [];
 
-            Object.keys(areasAndEntrances[area].entrances).forEach(entranceName => {
+            Object.keys(Hyrule[area].entrances).forEach(entranceName => {
 
                 availableEntrances[area].push(entranceName);
-                let entrance = areasAndEntrances[area].entrances[entranceName];
+                let entrance = Hyrule[area].entrances[entranceName];
                 let type = entrance.type;
 
                 if (type === EntranceTypes.Overworld) {
@@ -313,7 +314,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         });
 
         this.setState({
-            areasAndEntrances: areasAndEntrances,
+            hyrule: hyrule,
             interiorEntrances: interiorEntrances,
             availableEntrances: availableEntrances,
             availableOverworldEntrances: availableOverworldEntrances,
@@ -352,9 +353,72 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     // TODO
-    setEntrance = (entranceSelected, selection) => {
-        console.log(entranceSelected, selection);
+    setEntrance = (vanilla, selection) => {
+        let hyrule = this.state.hyrule;
+        let interiorEntrances = this.state.interiorEntrances;
+        console.log(vanilla, selection);
 
+        switch (vanilla.type) {
+            case EntranceTypes.Overworld: {
+                let area = vanilla.area;
+                let entrance = vanilla.entrance;
+                let selectedArea = selection.area;
+                let selectedEntrance = selection.entrance;
+                hyrule[area].entrances[entrance].leadsTo = {area: selectedArea, entrance: selectedEntrance};
+                hyrule[selectedArea].entrances[selectedEntrance].leadsTo = {area, entrance};
+                if (interiorEntrances[area] === undefined) {
+                    interiorEntrances[area] = [];
+                }
+                if (interiorEntrances[selectedArea] === undefined) {
+                    interiorEntrances[selectedArea] = [];
+                }
+                interiorEntrances[area].push({area: selectedArea, entrance: selectedEntrance});
+                interiorEntrances[selectedArea].push({area, entrance});
+                hyrule[area].isAccessible = true;
+                hyrule[selectedArea].isAccessible = true;
+                break;
+            }
+            // grottos, houses, and dungeons all
+            // use the same 'interior' attribute
+            case EntranceTypes.Grotto:
+            case EntranceTypes.House:
+            case EntranceTypes.Dungeon: {
+                let area = vanilla.area;
+                let entrance = vanilla.entrance;
+                let interior = selection.interior;
+                // set the entrance inside the area to the interior selected
+                hyrule[area].entrances[entrance].interior = interior;
+                hyrule[area].isAccessible = true;
+                // push the location object into the interiors location stack
+                if (interiorEntrances[interior] === undefined) {
+                    interiorEntrances[interior] = [];
+                }
+                interiorEntrances[interior].push({area, entrance});
+
+                break;
+            }
+            case EntranceTypes.KaeporaGaebora: {
+                let area = vanilla.area;
+                let entrance = vanilla.entrance;
+                let selectedArea = selection.area;
+
+                hyrule[area].entrances[entrance].leadsTo = {area: selectedArea};
+
+                let kaeporaSource = area === OverworldAreas.DeathMountainTrail
+                    ? "hasKaeporaDeathMountainTrailLanding" : "hasKaeporaLakeHyliaLanding";
+                hyrule[selectedArea][kaeporaSource] = true;
+                hyrule[selectedArea].isAccessible = true;
+                if (interiorEntrances[selectedArea] === undefined) {
+                    interiorEntrances[selectedArea] = [];
+                }
+                interiorEntrances[selectedArea].push({area, entrance});
+                break;
+            }
+            default: {
+                throw Error("Invalid type: " + vanilla.type);
+            }
+        }
+        this.setState({hyrule: hyrule, interiorEntrances: interiorEntrances});
     };
 
     componentDidMount() {
@@ -363,8 +427,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     render() {
-        let areasAndEntrances = this.state.areasAndEntrances;
-        let openAreas = this.state.openAreas;
+        let hyrule = this.state.hyrule;
         let houseToPromptFor = this.houseToPromptForBasedOnState();
         let songs = this.state.songs;
 
@@ -384,7 +447,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                         <PromptForHouseEntrance
                             houseToPromptFor={houseToPromptFor}
                             availableEntrances={this.state.availableHouseEntrances}
-                            setHouseToAreaAndEntrance={this.setHouseToAreaAndEntrance}
+                            setEntrance={this.setEntrance}
                         />
                         : ""
                     }
@@ -392,10 +455,14 @@ export default class ZOoTREntranceTracker extends React.Component {
 
 
                 <div className="areas-container is-flex-desktop is-flex-tablet is-multiline flex-wraps">
-                    {/* iterate through the current areas that are open */}
-                    {openAreas.map((areaName, i) => {
+                    {/* iterate through the areas of Hyrule */}
+                    {hyrule !== undefined && Object.keys(hyrule).sort().map((areaName, i) => {
                         // get the current areas object from state
-                        let area = areasAndEntrances[areaName];
+                        let area = Hyrule[areaName];
+                        // if it's not accessible, we don't want to display it
+                        if (!area.isAccessible) {
+                            return null;
+                        }
                         // area entrances shown in two columns
                         // to prevent extremely tall areas
                         let firstCol = [];
@@ -462,10 +529,11 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                 <div className="interior-display is-flex">
                                                     <span>
                                                         {/* show area at least */}
-                                                        {entrance.leadsTo.area +
-                                                        // show entrance if defined
-                                                        entrance.leadsTo.entrance !== undefined ?
-                                                            `: ${entrance.leadsTo.entrance} Entrance` : ""}
+                                                        {entrance.leadsTo.area}
+                                                        {/* show entrance if defined */}
+                                                        {entrance.leadsTo.entrance !== undefined &&
+                                                            <div>{entrance.leadsTo.entrance} Entrance</div>
+                                                        }
                                                     </span>
                                                     <span className="delete is-pulled-right" onClick={this.resetEntrance} />
                                                 </div>
@@ -491,7 +559,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                             // if its an array, it's areas, houses, or grottos
                                                             // map over them and make them options
                                                             options.map((interiorName, k) => {
-                                                                return <option key={k} value={JSON.stringify({interior: interiorName})}>
+                                                                let objKey = entrance.type === EntranceTypes.KaeporaGaebora ? "area" : "interior";
+                                                                return <option key={k} value={JSON.stringify({[objKey]: interiorName})}>
                                                                     {interiorName}
                                                                 </option>
                                                             })

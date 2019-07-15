@@ -1,5 +1,5 @@
-import AreaEntranceSeparator from "./Constants/AreaEntranceSeparator";
 import React from "react";
+import EntranceTypes from "./DataObjects/EntranceTypes";
 
 export default class PromptForHouseEntrance extends React.Component {
 
@@ -21,7 +21,8 @@ export default class PromptForHouseEntrance extends React.Component {
             return;
         }
         let entranceObj = JSON.parse(selectedLocation);
-        this.props.setHouseToAreaAndEntrance(houseToPromptFor, entranceObj);
+        entranceObj.type = EntranceTypes.House;
+        this.props.setEntrance(entranceObj, {interior: houseToPromptFor});
         this.setState({selectedLocation: ""});
     };
 
