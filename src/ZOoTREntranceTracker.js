@@ -283,7 +283,7 @@ export default class ZOoTREntranceTracker extends React.Component {
             }
         });
         Object.keys(AreasToAdd).forEach(areaToAddFor => {
-            if (AreasToAdd[areaToAddFor].includes(areaName)) {
+            if (AreasToAdd[areaToAddFor].includes(areaName) && hyrule[areaToAddFor].isAccessible) {
                 empty = false;
             }
         });
