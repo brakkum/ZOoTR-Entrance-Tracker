@@ -1,3 +1,4 @@
+import InteriorConnection from "./DataObjects/InteriorConnection";
 import PromptForHouseEntrance from "./PromptForHouseEntrance";
 import OverworldAreas from "./DataObjects/OverworldAreas";
 import EntranceTypes from "./DataObjects/EntranceTypes";
@@ -115,6 +116,9 @@ export default class ZOoTREntranceTracker extends React.Component {
               interiorEntrances[location] = [];
           }
           interiorEntrances[location].push(entranceObject);
+          if (InteriorConnection[location] !== undefined && InteriorConnection[location] !== null) {
+              interiorEntrances[location].push(InteriorConnection[location]);
+          }
           this.setState({interiorEntrances});
     };
 
@@ -158,6 +162,11 @@ export default class ZOoTREntranceTracker extends React.Component {
                     entrance.entrance !== entranceObject.entrance;
             }
         });
+        if (InteriorConnection[location] !== undefined) {
+            interiorEntrances[location] = interiorEntrances[location].filter(entrance => {
+                return entrance.interior !== InteriorConnection[location].interior
+            });
+        }
         if (interiorEntrances[location].length === 0) {
             delete interiorEntrances[location];
         }
