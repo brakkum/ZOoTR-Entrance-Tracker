@@ -1,31 +1,29 @@
 import AreaEntranceSeparator from "./Constants/AreaEntranceSeparator";
 import PromptForHouseEntrance from "./PromptForHouseEntrance";
+import OverworldAreas from "./DataObjects/OverworldAreas";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import LocalStorage from "./Constants/LocalStorage";
-import Hyrule from "./DataObjects/Hyrule";
 import AreasToAdd from "./DataObjects/AreasToAdd";
 import Grottos from "./DataObjects/Grottos";
+import Hyrule from "./DataObjects/Hyrule";
 import Houses from "./DataObjects/Houses";
 import Songs from "./DataObjects/Songs";
 import Menu from "./DataObjects/Menu";
+import Entrance from "./Entrance";
 import React from "react";
 import Area from "./Area";
 import Song from "./Song";
-import Entrance from "./Entrance";
-import OverworldAreas from "./DataObjects/OverworldAreas";
 
 export default class ZOoTREntranceTracker extends React.Component {
 
     state = {
         hyrule: {}, // master world state
         interiorEntrances: {}, // area/interior keys access array of location objects
-        availableEntrances: {}, // area key accesses array of entrances
         availableOverworldEntrances: {}, // area key accesses array of overworld entrances
         availableDungeons: [], // dungeons not yet assigned to dungeon entrance
         availableHouses: [], // houses not yet assigned to house entrance
-        availableHouseEntrances: {},
+        availableHouseEntrances: {}, // house entrances that have not been used
         availableGrottos: [], // grottos not yet assigned to grotto entrance
-        openAreas: [], // the areas that can currently be accessed
         songs: {} // songs state
     };
 
@@ -33,22 +31,18 @@ export default class ZOoTREntranceTracker extends React.Component {
 
         let hyrule = Hyrule; // master world state
         let interiorEntrances = {}; // area/interior keys access array of location objects
-        let availableEntrances = {}; // area key accesses array of entrances
         let availableOverworldEntrances = {}; // available entrances of type Overworld
         let availableDungeons = []; // dungeons not yet assigned to dungeon entrance
         let availableHouses = []; // houses not yet assigned to house entrance
         let availableHouseEntrances = {}; // areas and the houses within them
         let availableGrottos = []; // grottos not yet assigned to grotto entrance
-        let openAreas = []; // the areas that can currently be accessed
         let songs = Songs; // songs state
 
         Object.keys(Hyrule).forEach(area => {
-            availableEntrances[area] = [];
             availableOverworldEntrances[area] = [];
 
             Object.keys(Hyrule[area].entrances).forEach(entranceName => {
 
-                availableEntrances[area].push(entranceName);
                 let entrance = Hyrule[area].entrances[entranceName];
                 let type = entrance.type;
 
@@ -75,13 +69,11 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({
             hyrule: hyrule,
             interiorEntrances: interiorEntrances,
-            availableEntrances: availableEntrances,
             availableOverworldEntrances: availableOverworldEntrances,
             availableDungeons: availableDungeons,
             availableHouses: availableHouses,
             availableHouseEntrances: availableHouseEntrances,
             availableGrottos: availableGrottos,
-            openAreas: openAreas,
             songs: songs
         });
     };
@@ -164,17 +156,6 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({hyrule});
     };
 
-    acquireSong = song => {
-        let songs = this.state.songs;
-        songs[song].collected = true;
-        if (songs[song].areaType === EntranceTypes.Overworld) {
-            this.setAreaToAccessible(songs[song].area);
-        }
-        this.addInteriorEntrance(songs[song].area, {song});
-        this.addAdditionalAreas(songs[song].area);
-        this.setState({songs});
-    };
-
     removeInteriorEntrance = (type, location, entranceObject) => {
         let interiorEntrances = this.state.interiorEntrances;
         interiorEntrances[location] = interiorEntrances[location].filter(entrance => {
@@ -189,6 +170,17 @@ export default class ZOoTREntranceTracker extends React.Component {
             delete interiorEntrances[location];
         }
         this.setState({interiorEntrances});
+    };
+
+    acquireSong = song => {
+        let songs = this.state.songs;
+        songs[song].collected = true;
+        if (songs[song].areaType === EntranceTypes.Overworld) {
+            this.setAreaToAccessible(songs[song].area);
+        }
+        this.addInteriorEntrance(songs[song].area, {song});
+        this.addAdditionalAreas(songs[song].area);
+        this.setState({songs});
     };
 
     removeSong = song => {
@@ -309,6 +301,18 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({hyrule});
     };
 
+    removeAvailableHouseEntrance = (area, entrance) => {
+        let availableHouseEntrances = this.state.availableHouseEntrances;
+        availableHouseEntrances[area].splice(availableHouseEntrances[area].indexOf(entrance), 1);
+        this.setState({availableHouseEntrances});
+    };
+
+    addAvailableHouseEntrance = (area, entrance) => {
+        let availableHouseEntrances = this.state.availableHouseEntrances;
+        availableHouseEntrances[area].push(entrance);
+        this.setState({availableHouseEntrances});
+    };
+
     resetEntrance = (entranceObj) => {
         switch (entranceObj.type) {
             case EntranceTypes.Overworld: {
@@ -316,6 +320,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 let entrance = entranceObj.entrance;
                 let leadsToArea = entranceObj.leadsTo.area;
                 let leadsToEntrance = entranceObj.leadsTo.entrance;
+
                 this.resetOverworldEntrance(area, entrance);
                 this.resetOverworldEntrance(leadsToArea, leadsToEntrance);
 
@@ -335,11 +340,17 @@ export default class ZOoTREntranceTracker extends React.Component {
                 let area = entranceObj.area;
                 let entrance = entranceObj.entrance;
                 let interior = entranceObj.interior;
+
                 this.resetInterior(area, entrance);
+
                 this.addInteriorBackIntoPool(entranceObj.type, interior);
                 this.removeInteriorEntrance(entranceObj.type, interior, entranceObj);
+
                 this.removeAreaIfEmpty(area);
                 this.removeAdditionalAreas(interior);
+                if (entranceObj.type === EntranceTypes.House) {
+                    this.addAvailableHouseEntrance(area, entrance);
+                }
                 break;
             }
             case EntranceTypes.KaeporaGaebora: {
@@ -372,14 +383,14 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.setOverworldEntrance(area, entrance, {area: selectedArea, entrance: selectedEntrance});
                 this.setOverworldEntrance(selectedArea, selectedEntrance, {area, entrance});
 
+                this.removeOverworldEntranceFromPool(area, entrance);
+                this.removeOverworldEntranceFromPool(selectedArea, selectedEntrance);
+
                 this.addInteriorEntrance(area, {area: selectedArea, entrance: selectedEntrance});
                 this.addInteriorEntrance(selectedArea, {area, entrance});
 
                 this.setAreaToAccessible(area);
                 this.setAreaToAccessible(selectedArea);
-
-                this.removeOverworldEntranceFromPool(area, entrance);
-                this.removeOverworldEntranceFromPool(selectedArea, selectedEntrance);
 
                 this.addAdditionalAreas(area);
                 this.addAdditionalAreas(selectedArea);
@@ -395,12 +406,16 @@ export default class ZOoTREntranceTracker extends React.Component {
                 let interior = selection.interior;
 
                 this.setInterior(area, entrance, interior);
-                this.setAreaToAccessible(area);
 
                 this.removeInteriorFromPool(vanilla.type, interior);
-
                 this.addInteriorEntrance(interior, {area, entrance});
+
+                this.setAreaToAccessible(area);
                 this.addAdditionalAreas(interior);
+                this.addAdditionalAreas(area);
+                if (vanilla.type === EntranceTypes.House) {
+                    this.removeAvailableHouseEntrance(area, entrance);
+                }
                 break;
             }
             case EntranceTypes.KaeporaGaebora: {
@@ -408,13 +423,12 @@ export default class ZOoTREntranceTracker extends React.Component {
                 let entrance = vanilla.entrance;
                 let selectedArea = selection.area;
 
+                this.setKaeporaLanding(area, selectedArea);
                 this.setOverworldEntrance(area, entrance, {area: selectedArea});
 
-                this.setKaeporaLanding(area, selectedArea);
+                this.addInteriorEntrance(selectedArea, {area, entrance});
 
                 this.setAreaToAccessible(selectedArea);
-
-                this.addInteriorEntrance(selectedArea, {area, entrance});
                 this.addAdditionalAreas(selectedArea);
                 break;
             }

@@ -46,6 +46,9 @@ export default class PromptForHouseEntrance extends React.Component {
                         >
                             <option value="">Select a location</option>
                             {Object.keys(availableEntrances).sort().map((area, i) => {
+                                if (availableEntrances[area].length === 0) {
+                                    return null;
+                                }
                                 return <optgroup
                                     key={i}
                                     label={area}
