@@ -1,5 +1,4 @@
 import EntranceTypes from "./DataObjects/EntranceTypes";
-import Hyrule from "./DataObjects/Hyrule";
 import Entrance from "./Entrance";
 import React from "react";
 
@@ -12,54 +11,63 @@ export default class Area extends React.Component {
     };
 
     render() {
-        let area = this.props.area; // area object
-        let entrances = area.entrances;
-        let availableInteriors = this.props.availableInteriors;
-        let availableEntrances = this.props.availableEntrances;
-        let backgroundColors = Hyrule[area].colors;
+        let areaName = this.props.areaName;
+        let hyrule = this.props.hyrule;
+        let state = this.props.state;
+        let area = this.props.area;
         let firstCol = [];
         let secondCol = [];
 
         return(
-            <div className="area-box box" style={{
-                    background: backgroundColors.length === 1 ?
-                        backgroundColors[0] :
-                        `linear-gradient(to bottom right, ${backgroundColors.join(", ")}`
-                }}
+            <div className="area-box box"
+                 style={{
+                     // set border to selected colors
+                     // default solid grey
+                     background: area.colors.length > 1 ?
+                         `linear-gradient(to bottom right, ${area.colors.join(", ")}`
+                         : area.colors.length === 1 ?
+                             area.colors.length[0]
+                             : "grey"
+                 }}
             >
                 <div className="box">
-                    <h4 className="is-size-4 has-text-weight-semibold">{area}</h4>
-                    {entrances.map((entrance, i) => {
-                        let entrancesLength = entrances.length;
-                        let entranceType = Hyrule[area].entrances[entrance].type;
+                    <h4 className="is-size-4 has-text-weight-semibold">{areaName}</h4>
+                    {/* iterate through the entrances of the area */}
+                    {Object.keys(area.entrances).sort().map((entranceName, i) => {
+                        // column layout
+                        let entrancesLength = Object.keys(area.entrances).length;
                         let arrayToAddTo = i < entrancesLength / 2 ? firstCol : secondCol;
-                        arrayToAddTo.push(<Entrance
-                            availableLocations={
-                                entranceType === EntranceTypes.House ?
-                                this.returnUniqueItems(availableInteriors.house)
-                                    : entranceType === EntranceTypes.Dungeon ?
-                                    availableInteriors.dungeon
-                                        : entranceType === EntranceTypes.Overworld ?
-                                        availableEntrances.overworld
-                                            : entranceType === EntranceTypes.Grotto ?
-                                            this.returnUniqueItems(availableInteriors.grotto)
-                                                : entranceType === EntranceTypes.KaeporaGaebora ?
-                                                availableEntrances.kaeporaGaebora
-                                                    : [] // How did you get here??
-                            }
-                            resetEntrance={this.props.resetEntrance}
-                            resetOverworldEntrance={this.props.resetOverworldEntrance}
-                            setOverworldToOverworld={this.props.setOverworldToOverworld}
-                            setInteriorToAreaAndEntrance={this.props.setHouseToAreaAndEntrance}
-                            setKaeporaGaeboraEntrance={this.props.setKaeporaGaeboraEntrance}
-                            resetKaeporaGaeboraEntrance={this.props.resetKaeporaGaeboraEntrance}
-                            // interior={entranceObject[entrance]}
-                            entrance={entrance}
-                            area={area}
-                            key={i}
-                        />);
+                        // entrance object derived from the area object
+                        let entrance = area.entrances[entranceName];
+                        // the type of entrance determines what
+                        // options are displayed to pick from
+                        let options = entrance.type === EntranceTypes.House ?
+                            this.returnUniqueItems(state.availableHouses)
+                            : entrance.type === EntranceTypes.Dungeon ?
+                                state.availableDungeons
+                                : entrance.type === EntranceTypes.Overworld ?
+                                    state.availableOverworldEntrances
+                                    : entrance.type === EntranceTypes.Grotto ?
+                                        this.returnUniqueItems(state.availableGrottos)
+                                        : entrance.type === EntranceTypes.KaeporaGaebora ?
+                                            Object.keys(hyrule).sort()
+                                            : []; // How did you get here??
+
+                        // add to the correct column in area container
+                        arrayToAddTo.push(
+                            <Entrance
+                                key={i}
+                                options={options}
+                                entrance={entrance}
+                                areaName={areaName}
+                                entranceName={entranceName}
+                                setEntrance={this.props.setEntrance}
+                                resetEntrance={this.props.resetEntrance}
+                            />
+                        );
                         return null;
                     })}
+                    {/* output the columns of area entrances */}
                     <div className="columns">
                         <div className="column">
                             {firstCol}
@@ -68,7 +76,8 @@ export default class Area extends React.Component {
                             <div className="column">
                                 {secondCol}
                             </div>
-                            : ""}
+                            : ""
+                        }
                     </div>
                 </div>
             </div>
