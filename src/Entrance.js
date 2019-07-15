@@ -13,7 +13,7 @@ export default class Entrance extends React.Component {
         return(
             <div className="entrance">
                 <h6 className={
-                    "is-size-6 has-text-weight-semibold " +
+                    "is-size-6 has-text-weight-bold " +
                     // entrance has no assignment, make it clear
                     (entrance.interior === null || entrance.leadsTo === null ? "has-text-danger" : "")
                 }>{entranceName}</h6>
@@ -36,13 +36,15 @@ export default class Entrance extends React.Component {
                     entrance.leadsTo !== undefined && entrance.leadsTo !== null
                         ?
                         // points to an area, and maybe an entrance
-                        <div className="interior-display is-flex">
+                        <div className="interior-display has-text-weight-semibold is-flex">
                             <span>
                                 {/* show area at least */}
                                 {entrance.leadsTo.area}
                                 {/* show entrance if defined */}
                                 {entrance.leadsTo.entrance !== undefined &&
-                                <div>{entrance.leadsTo.entrance} Entrance</div>
+                                <h6 className="entrance-name has-text-weight-normal">
+                                    {entrance.leadsTo.entrance} Entrance
+                                </h6>
                                 }
                             </span>
                             <span className="delete is-pulled-right" onClick={() =>
