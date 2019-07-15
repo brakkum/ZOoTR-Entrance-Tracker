@@ -89,14 +89,6 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setEntrance(area, entrance, landingAreaAndEntrance);
     };
 
-    addAdditionalAreas = area => {
-        if (AreasToAdd[area] !== undefined) {
-            AreasToAdd[area].forEach(area => {
-                this.addAreaIfNotAvailable(area);
-            })
-        }
-    };
-
     // area: the area that the overworld pointer is located in
     // entrance: the overworld entrance in the area, will always be KG
     // landingAreaAndEntrance: the area->entrance pointer that was used
@@ -352,11 +344,19 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setupTracker();
     };
 
-    // TODO
+    addAdditionalAreas = area => {
+        let hyrule = this.state.hyrule;
+        if (AreasToAdd[area] !== undefined) {
+            AreasToAdd[area].forEach(area => {
+                hyrule[area].isAccessible = true;
+            })
+        }
+        this.setState({hyrule});
+    };
+
     setEntrance = (vanilla, selection) => {
         let hyrule = this.state.hyrule;
         let interiorEntrances = this.state.interiorEntrances;
-        console.log(vanilla, selection);
 
         switch (vanilla.type) {
             case EntranceTypes.Overworld: {
@@ -376,6 +376,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                 interiorEntrances[selectedArea].push({area, entrance});
                 hyrule[area].isAccessible = true;
                 hyrule[selectedArea].isAccessible = true;
+                this.addAdditionalAreas(area);
+                this.addAdditionalAreas(selectedArea);
                 break;
             }
             // grottos, houses, and dungeons all
@@ -394,7 +396,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                     interiorEntrances[interior] = [];
                 }
                 interiorEntrances[interior].push({area, entrance});
-
+                this.addAdditionalAreas(area);
                 break;
             }
             case EntranceTypes.KaeporaGaebora: {
@@ -412,6 +414,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                     interiorEntrances[selectedArea] = [];
                 }
                 interiorEntrances[selectedArea].push({area, entrance});
+                this.addAdditionalAreas(selectedArea);
                 break;
             }
             default: {
