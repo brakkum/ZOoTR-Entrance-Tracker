@@ -28,7 +28,7 @@ export default class PromptForHouseEntrance extends React.Component {
 
     render() {
         let houseToPromptFor = this.props.houseToPromptFor;
-        let availableEntrances = this.props.availableEntrances;
+        let availableEntrances = this.props.availableHouseEntrances;
         if (!availableEntrances) {
             return null;
         }

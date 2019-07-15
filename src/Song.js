@@ -17,9 +17,9 @@ export default class Song extends React.Component {
     addOrResetSong = () => {
         let song = this.props.song;
         if (song.collected) {
-            this.props.removeSong(song);
+            this.props.removeSong(song.name);
         } else {
-            this.props.addSong(song);
+            this.props.acquireSong(song.name);
         }
     };
 

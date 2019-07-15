@@ -25,7 +25,6 @@ export default class ZOoTREntranceTracker extends React.Component {
         availableHouses: [], // houses not yet assigned to house entrance
         availableHouseEntrances: {},
         availableGrottos: [], // grottos not yet assigned to grotto entrance
-        allAreas: [], // array of all area names for Kaepora Gaebora
         openAreas: [], // the areas that can currently be accessed
         songs: {} // songs state
     };
@@ -133,7 +132,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     // area: the area the overworld pointer is set in
     // entrance: the entrance it is assigned to
     // nextAreaAndEntrance the area->entrance pointer for where the entrance leads
-    resetOverworldEntrance = (area, entrance, connectedAreaAndEntrance) => {
+    resetOverworldEntranceOld = (area, entrance, connectedAreaAndEntrance) => {
         let [otherArea, otherEntrance] = connectedAreaAndEntrance.split(AreaEntranceSeparator);
         let currentAreaAndEntrance = `${area}${AreaEntranceSeparator}${entrance}`;
 
@@ -159,7 +158,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     // TODO
-    resetEntrance = (area, entrance, interior) => {
+    resetEntranceOld = (area, entrance, interior) => {
         let openAreas = this.state.openAreas;
         openAreas[area][entrance] = "";
         let type = Hyrule[area].entrances[entrance].type;
@@ -173,7 +172,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({openAreas: openAreas});
     };
 
-    removeAreaIfEmpty = areaName => {
+    removeAreaIfEmptyOld = areaName => {
         let areas = this.state.openAreas;
         let area = areas[areaName];
         let empty = true;
@@ -206,21 +205,6 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({[array]: elements});
     };
 
-    houseToPromptForBasedOnState = () => {
-        let interiorEntrances = this.state.interiorEntrances;
-        let songs = this.state.songs;
-        if (interiorEntrances[Houses.LinksHouse] === undefined) {
-            return Houses.LinksHouse;
-        } else if (interiorEntrances[Grottos.DampesGrave] !== undefined &&
-                interiorEntrances[Houses.Windmill] === undefined) {
-            return Houses.Windmill;
-        } else if (songs["Prelude of Light"].collected &&
-            interiorEntrances[Houses.TempleOfTime] === undefined) {
-            return Houses.TempleOfTime;
-        }
-        return null;
-    };
-
     resetHouseInteriorLocation = interior => {
         let interiors = this.state.interiorLocations;
         let availableInteriors = this.state.availableInteriors;
@@ -249,7 +233,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({songs: songs})
     };
 
-    removeSong = song => {
+    removeSongOld = song => {
         let songs = this.state.songs;
         songs[song.name].collected = false;
         if (song.areaType === EntranceTypes.Overworld) {
@@ -270,12 +254,10 @@ export default class ZOoTREntranceTracker extends React.Component {
         let availableHouses = []; // houses not yet assigned to house entrance
         let availableHouseEntrances = {}; // areas and the houses within them
         let availableGrottos = []; // grottos not yet assigned to grotto entrance
-        let allAreas = []; // array of all area names for Kaepora Gaebora
         let openAreas = []; // the areas that can currently be accessed
         let songs = Songs; // songs state
 
         Object.keys(Hyrule).forEach(area => {
-            allAreas.push(area);
             availableEntrances[area] = [];
             availableOverworldEntrances[area] = [];
 
@@ -314,10 +296,24 @@ export default class ZOoTREntranceTracker extends React.Component {
             availableHouses: availableHouses,
             availableHouseEntrances: availableHouseEntrances,
             availableGrottos: availableGrottos,
-            allAreas: allAreas,
             openAreas: openAreas,
             songs: songs
         });
+    };
+
+    houseToPromptForBasedOnState = () => {
+        let interiorEntrances = this.state.interiorEntrances;
+        let songs = this.state.songs;
+        if (interiorEntrances[Houses.LinksHouse] === undefined) {
+            return Houses.LinksHouse;
+        } else if (interiorEntrances[Grottos.DampesGrave] !== undefined &&
+            interiorEntrances[Houses.Windmill] === undefined) {
+            return Houses.Windmill;
+        } else if (songs["Prelude of Light"].collected &&
+            interiorEntrances[Houses.TempleOfTime].length === 1) {
+            return Houses.TempleOfTime;
+        }
+        return null;
     };
 
     returnUniqueItems = array => {
@@ -344,6 +340,15 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setupTracker();
     };
 
+    addInteriorEntrance = (location, entranceObject) => {
+          let interiorEntrances = this.state.interiorEntrances;
+          if (interiorEntrances[location] === undefined) {
+              interiorEntrances[location] = [];
+          }
+          interiorEntrances[location].push(entranceObject);
+          this.setState({interiorEntrances});
+    };
+
     addAdditionalAreas = area => {
         let hyrule = this.state.hyrule;
         if (AreasToAdd[area] !== undefined) {
@@ -354,28 +359,234 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({hyrule});
     };
 
-    setEntrance = (vanilla, selection) => {
+    setOverworldEntrance = (area, entrance, obj) => {
         let hyrule = this.state.hyrule;
-        let interiorEntrances = this.state.interiorEntrances;
+        hyrule[area].entrances[entrance].leadsTo = obj;
+        this.setState({hyrule});
+    };
 
+    setAreaToAccessible = area => {
+        let hyrule = this.state.hyrule;
+        hyrule[area].isAccessible = true;
+        this.setState({hyrule});
+    };
+
+    acquireSong = song => {
+        let songs = this.state.songs;
+        songs[song].collected = true;
+        if (songs[song].areaType === EntranceTypes.Overworld) {
+            this.setAreaToAccessible(songs[song].area);
+        }
+        this.addInteriorEntrance(songs[song].area, {song});
+        this.addAdditionalAreas(songs[song].area);
+        this.setState({songs});
+    };
+
+    removeInteriorEntrance = (type, location, entranceObject) => {
+        let interiorEntrances = this.state.interiorEntrances;
+        interiorEntrances[location] = interiorEntrances[location].filter(entrance => {
+            if (type === EntranceTypes.Song) {
+                return entrance.song !== entranceObject.song;
+            } else {
+                return entrance.area !== entranceObject.area ||
+                    entrance.entrance !== entranceObject.entrance;
+            }
+        });
+        if (interiorEntrances[location].length === 0) {
+            delete interiorEntrances[location];
+        }
+        this.setState({interiorEntrances});
+    };
+
+    removeSong = song => {
+        let songs = this.state.songs;
+        songs[song].collected = false;
+        if (songs[song].areaType === EntranceTypes.Overworld) {
+            this.removeAreaIfEmpty(songs[song].area);
+        }
+        this.removeInteriorEntrance(EntranceTypes.Song, songs[song].area, {song});
+        this.setState({songs});
+    };
+
+    setKaeporaLanding = (sourceArea, destinationArea) => {
+        let hyrule = this.state.hyrule;
+        if (sourceArea === OverworldAreas.DeathMountainTrail) {
+            hyrule[destinationArea].hasKaeporaDeathMountainTrailLanding = true;
+        } else if (sourceArea === OverworldAreas.LakeHylia) {
+            hyrule[destinationArea].hasKaeporaLakeHyliaLanding = true;
+        }
+        this.setState({hyrule});
+    };
+
+    removeKaeporaLanding = (sourceArea, destinationArea) => {
+        let hyrule = this.state.hyrule;
+        if (sourceArea === OverworldAreas.DeathMountainTrail) {
+            hyrule[destinationArea].hasKaeporaDeathMountainTrailLanding = false;
+        } else if (sourceArea === OverworldAreas.LakeHylia) {
+            hyrule[destinationArea].hasKaeporaLakeHyliaLanding = false;
+        }
+        this.setState({hyrule});
+    };
+
+    setInterior = (area, entrance, interior) => {
+        let hyrule = this.state.hyrule;
+        hyrule[area].entrances[entrance].interior = interior;
+        this.setState({hyrule});
+    };
+
+    resetOverworldEntrance = (area, entrance) => {
+        let hyrule = this.state.hyrule;
+        hyrule[area].entrances[entrance].leadsTo = null;
+        this.setState({hyrule});
+    };
+
+    removeOverworldEntranceFromPool = (area, entrance) => {
+        let availableOverworldEntrances = this.state.availableOverworldEntrances;
+        availableOverworldEntrances[area].splice(availableOverworldEntrances[area].indexOf(entrance), 1);
+        this.setState({availableOverworldEntrances});
+    };
+
+    removeInteriorFromPool = (type, interior) => {
+        let array;
+        if (type === EntranceTypes.House) {
+            array = this.state.availableHouses;
+        } else if (type === EntranceTypes.Dungeon) {
+            array = this.state.availableDungeons;
+        } else if (type === EntranceTypes.Grotto) {
+            array = this.state.availableGrottos;
+        }
+        if (!array) {
+            return;
+        }
+        array.splice(array.indexOf(interior), 1);
+        this.setState({[`available${type}s`]: array});
+    };
+
+    addInteriorBackIntoPool = (type, interior) => {
+        let array;
+        if (type === EntranceTypes.House) {
+            array = this.state.availableHouses;
+        } else if (type === EntranceTypes.Dungeon) {
+            array = this.state.availableDungeons;
+        } else if (type === EntranceTypes.Grotto) {
+            array = this.state.availableGrottos;
+        }
+        if (!array) {
+            return;
+        }
+        array.push(interior);
+        this.setState({[`available${type}s`]: array});
+    };
+
+    resetInterior = (area, entrance) => {
+        let hyrule = this.state.hyrule;
+        hyrule[area].entrances[entrance].interior = null;
+        this.setState({hyrule});
+    };
+
+    addOverworldEntranceBackIntoPool = (area, entrance) => {
+        let availableOverworldEntrances = this.state.availableOverworldEntrances;
+        availableOverworldEntrances[area].push(entrance);
+        this.setState({availableOverworldEntrances});
+    };
+
+    removeAreaIfEmpty = areaName => {
+        let hyrule = this.state.hyrule;
+        let area = hyrule[areaName];
+        if (area.hasKaeporaLakeHyliaLanding || area.hasKaeporaDeathMountainTrailLanding) {
+            return;
+        }
+        let empty = true;
+        Object.keys(area.entrances).forEach(key => {
+            let entrance = area.entrances[key];
+            if (entrance.interior !== undefined && entrance.interior !== null) {
+                empty = false;
+            } else if (entrance.leadsTo !== undefined && entrance.leadsTo !== null) {
+                empty = false;
+            }
+        });
+        if (empty) {
+            hyrule[areaName].isAccessible = false;
+            if (AreasToAdd[areaName] !== undefined) {
+                AreasToAdd[areaName].forEach(name => {
+                    this.removeAreaIfEmpty(name);
+                });
+            }
+        }
+        this.setState({hyrule});
+    };
+
+    resetEntrance = (entranceObj) => {
+        switch (entranceObj.type) {
+            case EntranceTypes.Overworld: {
+                let area = entranceObj.area;
+                let entrance = entranceObj.entrance;
+                let leadsToArea = entranceObj.leadsTo.area;
+                let leadsToEntrance = entranceObj.leadsTo.entrance;
+                this.resetOverworldEntrance(area, entrance);
+                this.resetOverworldEntrance(leadsToArea, leadsToEntrance);
+
+                this.addOverworldEntranceBackIntoPool(area, entrance);
+                this.addOverworldEntranceBackIntoPool(leadsToArea, leadsToEntrance);
+
+                this.removeInteriorEntrance(entranceObj.type, area, entranceObj.leadsTo);
+                this.removeInteriorEntrance(entranceObj.type, leadsToArea, entranceObj);
+
+                this.removeAreaIfEmpty(area);
+                this.removeAreaIfEmpty(leadsToArea);
+                break;
+            }
+            case EntranceTypes.Grotto:
+            case EntranceTypes.House:
+            case EntranceTypes.Dungeon: {
+                let area = entranceObj.area;
+                let entrance = entranceObj.entrance;
+                let interior = entranceObj.interior;
+                this.resetInterior(area, entrance);
+                this.addInteriorBackIntoPool(entranceObj.type, interior);
+                this.removeInteriorEntrance(entranceObj.type, interior, entranceObj);
+                this.removeAreaIfEmpty(area);
+                break;
+            }
+            case EntranceTypes.KaeporaGaebora: {
+                let area = entranceObj.area;
+                let leadsToArea = entranceObj.leadsTo.area;
+
+                this.removeKaeporaLanding(area, leadsToArea);
+                this.resetOverworldEntrance(area, entranceObj.entrance);
+
+                this.removeInteriorEntrance(entranceObj.type, leadsToArea, entranceObj);
+
+                this.removeAreaIfEmpty(area);
+                this.removeAreaIfEmpty(leadsToArea);
+                break;
+            }
+            default: {
+                throw Error("Invalid type: " + entranceObj.type);
+            }
+        }
+    };
+
+    setEntrance = (vanilla, selection) => {
         switch (vanilla.type) {
             case EntranceTypes.Overworld: {
                 let area = vanilla.area;
                 let entrance = vanilla.entrance;
                 let selectedArea = selection.area;
                 let selectedEntrance = selection.entrance;
-                hyrule[area].entrances[entrance].leadsTo = {area: selectedArea, entrance: selectedEntrance};
-                hyrule[selectedArea].entrances[selectedEntrance].leadsTo = {area, entrance};
-                if (interiorEntrances[area] === undefined) {
-                    interiorEntrances[area] = [];
-                }
-                if (interiorEntrances[selectedArea] === undefined) {
-                    interiorEntrances[selectedArea] = [];
-                }
-                interiorEntrances[area].push({area: selectedArea, entrance: selectedEntrance});
-                interiorEntrances[selectedArea].push({area, entrance});
-                hyrule[area].isAccessible = true;
-                hyrule[selectedArea].isAccessible = true;
+
+                this.setOverworldEntrance(area, entrance, {area: selectedArea, entrance: selectedEntrance});
+                this.setOverworldEntrance(selectedArea, selectedEntrance, {area, entrance});
+
+                this.addInteriorEntrance(area, {area: selectedArea, entrance: selectedEntrance});
+                this.addInteriorEntrance(selectedArea, {area, entrance});
+
+                this.setAreaToAccessible(area);
+                this.setAreaToAccessible(selectedArea);
+
+                this.removeOverworldEntranceFromPool(area, entrance);
+                this.removeOverworldEntranceFromPool(selectedArea, selectedEntrance);
+
                 this.addAdditionalAreas(area);
                 this.addAdditionalAreas(selectedArea);
                 break;
@@ -388,14 +599,13 @@ export default class ZOoTREntranceTracker extends React.Component {
                 let area = vanilla.area;
                 let entrance = vanilla.entrance;
                 let interior = selection.interior;
-                // set the entrance inside the area to the interior selected
-                hyrule[area].entrances[entrance].interior = interior;
-                hyrule[area].isAccessible = true;
-                // push the location object into the interiors location stack
-                if (interiorEntrances[interior] === undefined) {
-                    interiorEntrances[interior] = [];
-                }
-                interiorEntrances[interior].push({area, entrance});
+
+                this.setInterior(area, entrance, interior);
+                this.setAreaToAccessible(area);
+
+                this.removeInteriorFromPool(vanilla.type, interior);
+
+                this.addInteriorEntrance(interior, {area, entrance});
                 this.addAdditionalAreas(area);
                 break;
             }
@@ -404,16 +614,13 @@ export default class ZOoTREntranceTracker extends React.Component {
                 let entrance = vanilla.entrance;
                 let selectedArea = selection.area;
 
-                hyrule[area].entrances[entrance].leadsTo = {area: selectedArea};
+                this.setOverworldEntrance(area, entrance, {area: selectedArea});
 
-                let kaeporaSource = area === OverworldAreas.DeathMountainTrail
-                    ? "hasKaeporaDeathMountainTrailLanding" : "hasKaeporaLakeHyliaLanding";
-                hyrule[selectedArea][kaeporaSource] = true;
-                hyrule[selectedArea].isAccessible = true;
-                if (interiorEntrances[selectedArea] === undefined) {
-                    interiorEntrances[selectedArea] = [];
-                }
-                interiorEntrances[selectedArea].push({area, entrance});
+                this.setKaeporaLanding(area, selectedArea);
+
+                this.setAreaToAccessible(selectedArea);
+
+                this.addInteriorEntrance(selectedArea, {area, entrance});
                 this.addAdditionalAreas(selectedArea);
                 break;
             }
@@ -421,7 +628,6 @@ export default class ZOoTREntranceTracker extends React.Component {
                 throw Error("Invalid type: " + vanilla.type);
             }
         }
-        this.setState({hyrule: hyrule, interiorEntrances: interiorEntrances});
     };
 
     componentDidMount() {
@@ -449,7 +655,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                     {houseToPromptFor !== null ?
                         <PromptForHouseEntrance
                             houseToPromptFor={houseToPromptFor}
-                            availableEntrances={this.state.availableHouseEntrances}
+                            availableHouseEntrances={this.state.availableHouseEntrances}
                             setEntrance={this.setEntrance}
                         />
                         : ""
@@ -501,7 +707,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                     : entrance.type === EntranceTypes.Grotto ?
                                                     this.returnUniqueItems(this.state.availableGrottos)
                                                         : entrance.type === EntranceTypes.KaeporaGaebora ?
-                                                        this.state.allAreas
+                                                        Object.keys(hyrule).sort()
                                                             : []; // How did you get here??
 
                                     // add to the correct column in area container
@@ -522,7 +728,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                     {/* but once Link's House is set, leave it */}
                                                     {entrance.interior === Houses.LinksHouse ?
                                                         "" :
-                                                        <span className="delete is-pulled-right" onClick={this.resetEntrance} />
+                                                        <span className="delete is-pulled-right" onClick={
+                                                            () => this.resetEntrance({...entrance, area: areaName, entrance: entranceName})
+                                                        } />
                                                     }
                                                 </div>
                                                 :
@@ -538,7 +746,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                             <div>{entrance.leadsTo.entrance} Entrance</div>
                                                         }
                                                     </span>
-                                                    <span className="delete is-pulled-right" onClick={this.resetEntrance} />
+                                                    <span className="delete is-pulled-right" onClick={
+                                                        () => this.resetEntrance({...entrance, area: areaName, entrance: entranceName})
+                                                    } />
                                                 </div>
                                                 :
                                                 // no interior or area is set, so display available options to select
@@ -561,7 +771,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                                                         {options instanceof Array ?
                                                             // if its an array, it's areas, houses, or grottos
                                                             // map over them and make them options
-                                                            options.map((interiorName, k) => {
+                                                            options.sort().map((interiorName, k) => {
                                                                 let objKey = entrance.type === EntranceTypes.KaeporaGaebora ? "area" : "interior";
                                                                 return <option key={k} value={JSON.stringify({[objKey]: interiorName})}>
                                                                     {interiorName}
@@ -634,7 +844,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                         return <Song
                             key={i}
                             song={songs[song]}
-                            addSong={this.addSong}
+                            acquireSong={this.acquireSong}
                             removeSong={this.removeSong}
                         />
                     })}

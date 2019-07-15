@@ -1,10 +1,11 @@
 
 const EntranceTypes = {
-    "Dungeon": "dungeon",
-    "Grotto": "grotto",
-    "House": "house",
-    "Overworld": "overworld",
-    "KaeporaGaebora": "kaeporaGaebora"
+    "Dungeon": "Dungeon",
+    "Grotto": "Grotto",
+    "House": "House",
+    "Overworld": "Overworld",
+    "KaeporaGaebora": "KaeporaGaebora",
+    "Song": "Song"
 };
 
 export default EntranceTypes;
