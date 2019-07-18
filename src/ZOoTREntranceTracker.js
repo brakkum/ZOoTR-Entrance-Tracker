@@ -1,8 +1,8 @@
 import InteriorConnection from "./DataObjects/InteriorConnection";
 import PromptForHouseEntrance from "./PromptForHouseEntrance";
+import LocalStorageKey from "./Constants/LocalStorageKey";
 import OverworldAreas from "./DataObjects/OverworldAreas";
 import EntranceTypes from "./DataObjects/EntranceTypes";
-import LocalStorage from "./Constants/LocalStorage";
 import AreasToAdd from "./DataObjects/AreasToAdd";
 import Grottos from "./DataObjects/Grottos";
 import Hyrule from "./DataObjects/Hyrule";
@@ -27,7 +27,6 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     setupTracker = () => {
-
         let hyrule = Hyrule; // master world state
         let interiorEntrances = {}; // area/interior keys access array of location objects
         let availableOverworldEntrances = {}; // available entrances of type Overworld
@@ -94,11 +93,11 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     saveState = () => {
         let state = this.state;
-        localStorage.setItem(LocalStorage.state, JSON.stringify(state));
+        localStorage.setItem(LocalStorageKey.state, JSON.stringify(state));
     };
 
     loadState = () => {
-        let stringState = localStorage.getItem(LocalStorage.state);
+        let stringState = localStorage.getItem(LocalStorageKey.state);
         let state = JSON.parse(stringState);
         if (state) {
             this.setState(state);
@@ -106,24 +105,24 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     resetState = () => {
-        localStorage.removeItem(LocalStorage.state);
+        localStorage.removeItem(LocalStorageKey.state);
         this.setupTracker();
     };
 
     addAdditionalAreas = area => {
-        let hyrule = this.state.hyrule;
         if (AreasToAdd[area] !== undefined) {
+            let hyrule = this.state.hyrule;
             AreasToAdd[area].forEach(addOnArea => {
                 hyrule[addOnArea].isAccessible = true;
-            })
+            });
+            this.setState({hyrule});
         }
-        this.setState({hyrule});
     };
 
-    removeAdditionalAreas = area => {
-        if (AreasToAdd[area] !== undefined) {
-            AreasToAdd[area].forEach(addOnArea => {
-                this.removeAreaIfEmpty(addOnArea);
+    removeAdditionalAreas = areaName => {
+        if (AreasToAdd[areaName] !== undefined) {
+            AreasToAdd[areaName].forEach(area => {
+                this.removeAreaIfEmpty(area);
             });
         }
     };
@@ -140,18 +139,19 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({hyrule});
     };
 
-    addInteriorEntrance = (location, entranceObject) => {
+    addInteriorEntrance = (location, obj) => {
         let interiorEntrances = this.state.interiorEntrances;
         if (interiorEntrances[location] === undefined) {
             interiorEntrances[location] = [];
         }
-        interiorEntrances[location].push(entranceObject);
+        interiorEntrances[location].push(obj);
         if (InteriorConnection[location] !== undefined) {
             this.addInteriorEntrance(
                 InteriorConnection[location].leadsTo,
                 {area: null, entrance: location}
             );
         }
+        console.log(location, obj);
         this.setState({interiorEntrances});
     };
 
@@ -169,10 +169,10 @@ export default class ZOoTREntranceTracker extends React.Component {
         }
         interiorEntrances[location] = interiorEntrances[location].filter(entrance => {
             if (type === EntranceTypes.Song) {
-                return entrance.song !== entranceObject.song;
+                return !(entrance.song === entranceObject.song);
             } else {
-                return entrance.area !== entranceObject.area ||
-                    entrance.entrance !== entranceObject.entrance;
+                return !(entrance.area === entranceObject.area &&
+                    entrance.entrance === entranceObject.entrance);
             }
         });
         if (interiorEntrances[location].length === 0) {
@@ -329,13 +329,13 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({availableHouseEntrances});
     };
 
-    resetEntrance = (entranceObj) => {
-        switch (entranceObj.type) {
+    resetEntrance = (obj) => {
+        switch (obj.type) {
             case EntranceTypes.Overworld: {
-                let area = entranceObj.area;
-                let entrance = entranceObj.entrance;
-                let leadsToArea = entranceObj.leadsTo.area;
-                let leadsToEntrance = entranceObj.leadsTo.entrance;
+                let area = obj.area;
+                let entrance = obj.entrance;
+                let leadsToArea = obj.leadsTo.area;
+                let leadsToEntrance = obj.leadsTo.entrance;
 
                 this.resetOverworldEntrance(area, entrance);
                 this.resetOverworldEntrance(leadsToArea, leadsToEntrance);
@@ -343,8 +343,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.addOverworldEntranceBackIntoPool(area, entrance);
                 this.addOverworldEntranceBackIntoPool(leadsToArea, leadsToEntrance);
 
-                this.removeInteriorEntrance(entranceObj.type, area, entranceObj.leadsTo);
-                this.removeInteriorEntrance(entranceObj.type, leadsToArea, entranceObj);
+                this.removeInteriorEntrance(obj.type, area, obj.leadsTo);
+                this.removeInteriorEntrance(obj.type, leadsToArea, obj);
 
                 this.removeAreaIfEmpty(area);
                 this.removeAreaIfEmpty(leadsToArea);
@@ -353,37 +353,37 @@ export default class ZOoTREntranceTracker extends React.Component {
             case EntranceTypes.Grotto:
             case EntranceTypes.House:
             case EntranceTypes.Dungeon: {
-                let area = entranceObj.area;
-                let entrance = entranceObj.entrance;
-                let interior = entranceObj.interior;
+                let area = obj.area;
+                let entrance = obj.entrance;
+                let interior = obj.interior;
 
                 this.resetInterior(area, entrance);
 
-                this.addInteriorBackIntoPool(entranceObj.type, interior);
-                this.removeInteriorEntrance(entranceObj.type, interior, entranceObj);
+                this.addInteriorBackIntoPool(obj.type, interior);
+                this.removeInteriorEntrance(obj.type, interior, obj);
 
                 this.removeAreaIfEmpty(area);
                 this.removeAdditionalAreas(interior);
-                if (entranceObj.type === EntranceTypes.House) {
+                if (obj.type === EntranceTypes.House) {
                     this.addAvailableHouseEntrance(area, entrance);
                 }
                 break;
             }
             case EntranceTypes.KaeporaGaebora: {
-                let area = entranceObj.area;
-                let leadsToArea = entranceObj.leadsTo.area;
+                let area = obj.area;
+                let leadsToArea = obj.leadsTo.area;
 
                 this.removeKaeporaLanding(area, leadsToArea);
-                this.resetOverworldEntrance(area, entranceObj.entrance);
+                this.resetOverworldEntrance(area, obj.entrance);
 
-                this.removeInteriorEntrance(entranceObj.type, leadsToArea, entranceObj);
+                this.removeInteriorEntrance(obj.type, leadsToArea, obj);
 
                 this.removeAreaIfEmpty(area);
                 this.removeAreaIfEmpty(leadsToArea);
                 break;
             }
             default: {
-                throw Error("Invalid type: " + entranceObj.type);
+                throw Error("Invalid type: " + obj.type);
             }
         }
     };
