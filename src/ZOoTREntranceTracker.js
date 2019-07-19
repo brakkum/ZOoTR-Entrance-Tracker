@@ -198,10 +198,10 @@ export default class ZOoTREntranceTracker extends React.Component {
         console.log("remove song: ", song)
         let songs = this.state.songs;
         songs[song].collected = false;
+        this.removeInteriorEntrance(songs[song].area, {song}, true);
         if (songs[song].areaType === EntranceTypes.Overworld) {
             this.removeAreaIfEmpty(songs[song].area);
         }
-        this.removeInteriorEntrance(songs[song].area, {song}, true);
         this.setState({songs});
     };
 
@@ -288,6 +288,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     removeAreaIfEmpty = areaName => {
+        let interiorEntrances = this.state.interiorEntrances;
         let hyrule = this.state.hyrule;
         let area = hyrule[areaName];
         if (area.hasKaeporaLakeHyliaLanding || area.hasKaeporaDeathMountainTrailLanding) {
@@ -309,6 +310,10 @@ export default class ZOoTREntranceTracker extends React.Component {
                 empty = false;
             }
         });
+        if (interiorEntrances[areaName] !== undefined &&
+            interiorEntrances[areaName].length > 0) {
+            empty = false;
+        }
         if (empty) {
             hyrule[areaName].isAccessible = false;
         }
