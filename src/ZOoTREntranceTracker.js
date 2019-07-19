@@ -12,6 +12,7 @@ import Menu from "./Menu";
 import React from "react";
 import Area from "./Area";
 import Song from "./Song";
+import RouteFinder from "./RouteFinder";
 
 export default class ZOoTREntranceTracker extends React.Component {
 
@@ -23,7 +24,12 @@ export default class ZOoTREntranceTracker extends React.Component {
         availableHouses: [], // houses not yet assigned to house entrance
         availableHouseEntrances: {}, // house entrances that have not been used
         availableGrottos: [], // grottos not yet assigned to grotto entrance
-        songs: {} // songs state
+        songs: {}, // songs state
+        showRouteFinder: false // show route finder
+    };
+
+    toggleRouteFinder = () => {
+        this.setState({showRouteFinder: !this.state.showRouteFinder});
     };
 
     setupTracker = () => {
@@ -473,18 +479,28 @@ export default class ZOoTREntranceTracker extends React.Component {
         let hyrule = this.state.hyrule;
         let houseToPromptFor = this.houseToPromptForBasedOnState();
         let songs = this.state.songs;
+        let showRouteFinder = this.state.showRouteFinder;
 
         return (
             <div className="zootr-entrance-tracker">
-                {/* search section */}
-                {/* from a currently active location to another currently active location only */}
 
                 <Menu
                     saveState={this.saveState}
                     resetState={this.resetState}
+                    toggleRouteFinder={this.toggleRouteFinder}
+                    routeFinderVisible={showRouteFinder}
                 />
 
                 <div className="top-padding" />
+
+                {showRouteFinder ?
+                    <RouteFinder
+                        availableLocations={this.state.interiorEntrances}
+                    />
+                    :
+                    ""
+                }
+
                 <div className="user-prompts">
                     {houseToPromptFor !== null ?
                         <PromptForHouseEntrance
@@ -496,7 +512,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                     }
                 </div>
 
-                <div className="areas-container is-flex-desktop is-flex-tablet is-multiline flex-wraps">
+                <div className="app-container is-flex-desktop is-flex-tablet is-multiline flex-wraps">
                     {/* iterate through the areas of Hyrule */}
                     {hyrule !== undefined && Object.keys(hyrule).sort().map((areaName, i) => {
                         // get the current areas object from state

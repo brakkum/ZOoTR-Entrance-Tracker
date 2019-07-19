@@ -36,14 +36,24 @@ export default class Menu extends React.Component {
                         </h4>
                     </nav>
                     <div className="has-background-dark nav-bottom">
-                        <div className="nav-bottom-item has-text-white has-text-weight-bold">
-                            {this.state.message}
+                        <div className="nav-bottom-left">
+                            <div
+                                className="nav-bottom-item"
+                                onClick={this.props.toggleRouteFinder}
+                            >
+                                {this.props.routeFinderVisible ? "Hide" : "Show"} Route Finder
+                            </div>
                         </div>
-                        <div className="nav-bottom-item has-text-primary" onClick={this.saveState}>
-                            Save
-                        </div>
-                        <div className="nav-bottom-item has-text-grey-light" onClick={this.resetState}>
-                            Reset
+                        <div className="nav-bottom-right">
+                            <div className="nav-bottom-item has-text-white has-text-weight-bold">
+                                {this.state.message}
+                            </div>
+                            <div className="nav-bottom-item has-text-primary" onClick={this.saveState}>
+                                Save
+                            </div>
+                            <div className="nav-bottom-item has-text-grey-light" onClick={this.resetState}>
+                                Reset
+                            </div>
                         </div>
                     </div>
                 </div>

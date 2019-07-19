@@ -1,15 +1,43 @@
 
 .nav-bottom {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+.nav-bottom-left,
+.nav-bottom-right {
+    display: flex;
 }
 
 .nav-bottom-item {
-    margin: 10px;
+    padding: 4px;
+    margin: 6px;
     cursor: pointer;
 }
 
-.areas-container {
+.route-points-select {
+    width: 95%;
+    max-width: 900px;
+    margin: auto;
+}
+
+.route-select-from,
+.route-select-to {
+    width: 80%;
+    max-width: 600px;
+    margin: 10px auto;
+    justify-content: space-between;
+}
+
+.selected-location {
+    align-items: center;
+}
+
+.selected-location .delete {
+    margin-left: 10px;
+}
+
+.app-container {
     max-width: 95%;
     margin: auto;
     align-items: flex-start;
