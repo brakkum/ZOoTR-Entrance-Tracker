@@ -8,7 +8,7 @@ import Grottos from "./DataObjects/Grottos";
 import Hyrule from "./DataObjects/Hyrule";
 import Houses from "./DataObjects/Houses";
 import Songs from "./DataObjects/Songs";
-import Menu from "./DataObjects/Menu";
+import Menu from "./Menu";
 import React from "react";
 import Area from "./Area";
 import Song from "./Song";
