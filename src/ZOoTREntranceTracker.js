@@ -147,11 +147,10 @@ export default class ZOoTREntranceTracker extends React.Component {
         interiorEntrances[location].push(obj);
         if (InteriorConnection[location] !== undefined) {
             this.addInteriorEntrance(
-                InteriorConnection[location].leadsTo,
-                {area: null, entrance: location}
+                InteriorConnection[location].location,
+                InteriorConnection[location].entranceObject
             );
         }
-        console.log(location, obj);
         this.setState({interiorEntrances});
     };
 
@@ -160,8 +159,8 @@ export default class ZOoTREntranceTracker extends React.Component {
         if (InteriorConnection[location] !== undefined) {
             this.removeInteriorEntrance(
                 "",
-                InteriorConnection[location].leadsTo,
-                {area: null, entrance: location}
+                InteriorConnection[location].location,
+                InteriorConnection[location].entranceObject
             );
         }
         if (interiorEntrances[location] === undefined) {
