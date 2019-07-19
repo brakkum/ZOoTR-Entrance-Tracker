@@ -150,6 +150,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                 InteriorConnection[location].location,
                 InteriorConnection[location].entranceObject
             );
+            if (InteriorConnection[location].type === EntranceTypes.Overworld) {
+                this.setAreaToAccessible(InteriorConnection[location].location);
+            }
         }
         this.setState({interiorEntrances});
     };
@@ -164,6 +167,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                 InteriorConnection[location].location,
                 InteriorConnection[location].entranceObject
             );
+            if (InteriorConnection[location].type === EntranceTypes.Overworld) {
+                this.removeAreaIfEmpty(InteriorConnection[location].location);
+            }
         }
         if (interiorEntrances[location] === undefined) {
             return;
