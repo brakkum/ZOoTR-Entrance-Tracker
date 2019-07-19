@@ -6,43 +6,67 @@ const Songs = {
     "Minuet of Forest": {
         "name": "Minuet of Forest",
         "color": "#6db863",
-        "area": OverworldAreas.SacredForestMeadow,
-        "areaType": EntranceTypes.Overworld,
+        "location": OverworldAreas.SacredForestMeadow,
+        "locationType": EntranceTypes.Overworld,
+        "object": {
+            "area": null,
+            "entrance": "Minuet of Forest"
+        },
         "collected": false
     },
     "Bolero of Fire": {
         "name": "Bolero of Fire",
         "color": "#eb5d49",
-        "area": OverworldAreas.DeathMountainCrater,
-        "areaType": EntranceTypes.Overworld,
+        "location": OverworldAreas.DeathMountainCrater,
+        "locationType": EntranceTypes.Overworld,
+        "object": {
+            "area": null,
+            "entrance": "Bolero of Fire"
+        },
         "collected": false
     },
     "Serenade of Water": {
         "name": "Serenade of Water",
         "color": "#7a8cd6",
-        "area": OverworldAreas.LakeHylia,
-        "areaType": EntranceTypes.Overworld,
+        "location": OverworldAreas.LakeHylia,
+        "locationType": EntranceTypes.Overworld,
+        "object": {
+            "area": null,
+            "entrance": "Serenade of Water"
+        },
         "collected": false
     },
     "Requiem of Spirit": {
         "name": "Requiem of Spirit",
         "color": "#eec68b",
-        "area": OverworldAreas.DesertColossus,
-        "areaType": EntranceTypes.Overworld,
+        "location": OverworldAreas.DesertColossus,
+        "locationType": EntranceTypes.Overworld,
+        "object": {
+            "area": null,
+            "entrance": "Requiem of Spirit"
+        },
         "collected": false
     },
     "Nocturne of Shadow": {
         "name": "Nocturne of Shadow",
         "color": "#a371a9",
-        "area": OverworldAreas.Graveyard,
-        "areaType": EntranceTypes.Overworld,
+        "location": OverworldAreas.Graveyard,
+        "locationType": EntranceTypes.Overworld,
+        "object": {
+            "area": null,
+            "entrance": "Nocturne of Shadow"
+        },
         "collected": false
     },
     "Prelude of Light": {
         "name": "Prelude of Light",
         "color": "#fff877",
-        "area": Houses.TempleOfTime,
-        "areaType": EntranceTypes.House,
+        "location": Houses.TempleOfTime,
+        "locationType": EntranceTypes.House,
+        "object": {
+            "area": null,
+            "entrance": "Prelude of Light"
+        },
         "collected": false
     }
 };

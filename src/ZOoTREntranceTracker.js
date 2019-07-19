@@ -158,7 +158,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     // type is only necessary for songs at the moment
-    removeInteriorEntrance = (location, obj, isSong = false) => {
+    removeInteriorEntrance = (location, obj) => {
         console.log("removing interior entrance: ", location, obj);
         let interiorEntrances = this.state.interiorEntrances;
         if (InteriorConnection[location] !== undefined) {
@@ -175,12 +175,8 @@ export default class ZOoTREntranceTracker extends React.Component {
             return;
         }
         interiorEntrances[location] = interiorEntrances[location].filter(entrance => {
-            if (isSong === EntranceTypes.Song) {
-                return !(entrance.song === obj.song);
-            } else {
-                return !(entrance.area === obj.area &&
-                    entrance.entrance === obj.entrance);
-            }
+            return !(entrance.area === obj.area &&
+                entrance.entrance === obj.entrance);
         });
         if (interiorEntrances[location].length === 0) {
             delete interiorEntrances[location];
@@ -192,11 +188,11 @@ export default class ZOoTREntranceTracker extends React.Component {
         console.log("add song: ", song)
         let songs = this.state.songs;
         songs[song].collected = true;
-        if (songs[song].areaType === EntranceTypes.Overworld) {
-            this.setAreaToAccessible(songs[song].area);
+        if (songs[song].locationType === EntranceTypes.Overworld) {
+            this.setAreaToAccessible(songs[song].location);
         }
-        this.addInteriorEntrance(songs[song].area, {song});
-        this.addAdditionalAreas(songs[song].area);
+        this.addInteriorEntrance(songs[song].location, songs[song].object);
+        this.addAdditionalAreas(songs[song].location);
         this.setState({songs});
     };
 
@@ -204,9 +200,9 @@ export default class ZOoTREntranceTracker extends React.Component {
         console.log("remove song: ", song)
         let songs = this.state.songs;
         songs[song].collected = false;
-        this.removeInteriorEntrance(songs[song].area, {song}, true);
-        if (songs[song].areaType === EntranceTypes.Overworld) {
-            this.removeAreaIfEmpty(songs[song].area);
+        this.removeInteriorEntrance(songs[song].location, songs[song].object);
+        if (songs[song].locationType === EntranceTypes.Overworld) {
+            this.removeAreaIfEmpty(songs[song].location);
         }
         this.setState({songs});
     };
@@ -355,8 +351,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.addOverworldEntranceBackIntoPool(area, entrance);
                 this.addOverworldEntranceBackIntoPool(leadsToArea, leadsToEntrance);
 
-                this.removeInteriorEntrance(area, obj.leadsTo, obj.type === EntranceTypes.Song);
-                this.removeInteriorEntrance(leadsToArea, obj, obj.type === EntranceTypes.Song);
+                this.removeInteriorEntrance(area, obj.leadsTo);
+                this.removeInteriorEntrance(leadsToArea, obj);
 
                 this.removeAdditionalAreas(area);
                 this.removeAdditionalAreas(leadsToArea);
@@ -375,7 +371,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.resetInterior(area, entrance);
 
                 this.addInteriorBackIntoPool(obj.type, interior);
-                this.removeInteriorEntrance(interior, obj, obj.type === EntranceTypes.Song);
+                this.removeInteriorEntrance(interior, obj);
 
                 this.removeAreaIfEmpty(area);
                 if (obj.type === EntranceTypes.House) {
@@ -390,7 +386,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.removeKaeporaLanding(area, leadsToArea);
                 this.resetOverworldEntrance(area, obj.entrance);
 
-                this.removeInteriorEntrance(leadsToArea, obj, obj.type === EntranceTypes.Song);
+                this.removeInteriorEntrance(leadsToArea, obj);
 
                 this.removeAreaIfEmpty(area);
                 this.removeAreaIfEmpty(leadsToArea);
