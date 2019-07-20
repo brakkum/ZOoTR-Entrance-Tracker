@@ -9,8 +9,7 @@ const Songs = {
         "location": OverworldAreas.SacredForestMeadow,
         "locationType": EntranceTypes.Overworld,
         "object": {
-            "area": null,
-            "entrance": "Minuet of Forest"
+            "song": "Minuet of Forest"
         },
         "collected": false
     },
@@ -20,8 +19,7 @@ const Songs = {
         "location": OverworldAreas.DeathMountainCrater,
         "locationType": EntranceTypes.Overworld,
         "object": {
-            "area": null,
-            "entrance": "Bolero of Fire"
+            "song": "Bolero of Fire"
         },
         "collected": false
     },
@@ -31,8 +29,7 @@ const Songs = {
         "location": OverworldAreas.LakeHylia,
         "locationType": EntranceTypes.Overworld,
         "object": {
-            "area": null,
-            "entrance": "Serenade of Water"
+            "song": "Serenade of Water"
         },
         "collected": false
     },
@@ -42,8 +39,7 @@ const Songs = {
         "location": OverworldAreas.DesertColossus,
         "locationType": EntranceTypes.Overworld,
         "object": {
-            "area": null,
-            "entrance": "Requiem of Spirit"
+            "song": "Requiem of Spirit"
         },
         "collected": false
     },
@@ -53,8 +49,7 @@ const Songs = {
         "location": OverworldAreas.Graveyard,
         "locationType": EntranceTypes.Overworld,
         "object": {
-            "area": null,
-            "entrance": "Nocturne of Shadow"
+            "song": "Nocturne of Shadow"
         },
         "collected": false
     },
@@ -64,8 +59,7 @@ const Songs = {
         "location": Houses.TempleOfTime,
         "locationType": EntranceTypes.House,
         "object": {
-            "area": null,
-            "entrance": "Prelude of Light"
+            "song": "Prelude of Light"
         },
         "collected": false
     }

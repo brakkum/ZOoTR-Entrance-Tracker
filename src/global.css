@@ -21,8 +21,8 @@
     margin: auto;
 }
 
-.route-select-from,
-.route-select-to {
+.route-select-start,
+.route-select-end {
     width: 80%;
     max-width: 600px;
     margin: 10px auto;

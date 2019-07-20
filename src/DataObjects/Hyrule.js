@@ -676,9 +676,6 @@ export default {
         "isAccessible": false,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
-        "attachedArea": {
-            "name": OverworldAreas.LostWoodsBridge
-        },
         "entrances": {
             [OverworldAreas.KokiriForest]: {
                 "type": EntranceTypes.Overworld,
