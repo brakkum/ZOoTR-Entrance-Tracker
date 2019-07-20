@@ -49,7 +49,7 @@ export default class Area extends React.Component {
                                     state.availableOverworldEntrances
                                     : entrance.type === EntranceTypes.Grotto ?
                                         this.returnUniqueItems(state.availableGrottos)
-                                        : entrance.type === EntranceTypes.KaeporaGaebora ?
+                                        : entrance.type === EntranceTypes["Kaepora Gaebora"] ?
                                             Object.keys(hyrule).sort()
                                             : []; // How did you get here??
 

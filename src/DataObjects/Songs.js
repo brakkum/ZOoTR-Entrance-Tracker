@@ -6,7 +6,7 @@ const Songs = {
     "Minuet of Forest": {
         "name": "Minuet of Forest",
         "color": "#6db863",
-        "location": OverworldAreas.SacredForestMeadow,
+        "location": OverworldAreas["Sacred Forest Meadow"],
         "locationType": EntranceTypes.Overworld,
         "object": {
             "song": "Minuet of Forest"
@@ -16,7 +16,7 @@ const Songs = {
     "Bolero of Fire": {
         "name": "Bolero of Fire",
         "color": "#eb5d49",
-        "location": OverworldAreas.DeathMountainCrater,
+        "location": OverworldAreas["Death Mountain Crater"],
         "locationType": EntranceTypes.Overworld,
         "object": {
             "song": "Bolero of Fire"
@@ -26,7 +26,7 @@ const Songs = {
     "Serenade of Water": {
         "name": "Serenade of Water",
         "color": "#7a8cd6",
-        "location": OverworldAreas.LakeHylia,
+        "location": OverworldAreas["Lake Hylia"],
         "locationType": EntranceTypes.Overworld,
         "object": {
             "song": "Serenade of Water"
@@ -36,7 +36,7 @@ const Songs = {
     "Requiem of Spirit": {
         "name": "Requiem of Spirit",
         "color": "#eec68b",
-        "location": OverworldAreas.DesertColossus,
+        "location": OverworldAreas["Desert Colossus"],
         "locationType": EntranceTypes.Overworld,
         "object": {
             "song": "Requiem of Spirit"
@@ -56,7 +56,7 @@ const Songs = {
     "Prelude of Light": {
         "name": "Prelude of Light",
         "color": "#fff877",
-        "location": Houses.TempleOfTime,
+        "location": Houses["Temple of Time"],
         "locationType": EntranceTypes.House,
         "object": {
             "song": "Prelude of Light"

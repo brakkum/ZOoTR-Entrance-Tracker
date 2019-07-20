@@ -1,4 +1,5 @@
 import React from "react";
+import Houses from "./DataObjects/Houses";
 
 export default class RouteFinder extends React.Component {
 
@@ -32,17 +33,19 @@ export default class RouteFinder extends React.Component {
 
     // start is always the same, as we look for it from end
     searchAvailableLocationsForStart = (start, end, availableLocations, locationsBeingSearched = [], locationsFullySearched = []) => {
-        console.log(start,end)
         let result = [];
         if (availableLocations[end] === undefined) {
             return result;
         }
         if (locationsFullySearched.includes(end)) {
+            console.log(`${end} already searched fully`)
             return result;
         }
         if (locationsBeingSearched.includes(end)) {
+            console.log(`${end} already being searched currently`)
             return result;
         } else {
+            console.log(`now beginning search of ${end}`)
             locationsBeingSearched.push(end);
         }
         for (let i = 0; i < availableLocations[end].length; i ++ ) {
@@ -51,6 +54,8 @@ export default class RouteFinder extends React.Component {
                 return [{song: obj.song}];
             }
         }
+        let isHouse = Houses[end] !== undefined;
+        console.log(`${end} is house? ${isHouse}`)
         for (let i = 0; i < availableLocations[end].length; i ++ ) {
             let obj = availableLocations[end][i];
             if (obj.area === start) {
@@ -64,14 +69,11 @@ export default class RouteFinder extends React.Component {
             } else if (obj.entrance !== undefined && obj.entrance !== null && obj.interior === start) {
                 console.log("interior equal to start ",obj.interior);
                 return [{area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}];
-            } else if (obj.interior !== undefined && obj.interior !== null) {
+            } else if (obj.interior !== undefined && obj.interior !== null && !isHouse) {
                 let r = this.searchAvailableLocationsForStart(start, obj.interior, availableLocations, locationsBeingSearched, locationsFullySearched);
                 if (r.length > 0) {
                     result.push(...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song});
                 }
-            } else if (obj.entrance === start) {
-                console.log("entrance equal to start ",obj.entrance);
-                return [{area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}];
             } else if (obj.entrance !== undefined && obj.entrance !== null) {
                 let r = this.searchAvailableLocationsForStart(start, obj.entrance, availableLocations, locationsBeingSearched, locationsFullySearched);
                 if (r.length > 0) {

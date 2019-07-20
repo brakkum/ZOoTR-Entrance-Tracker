@@ -4,7 +4,7 @@ const EntranceTypes = {
     "Grotto": "Grotto",
     "House": "House",
     "Overworld": "Overworld",
-    "KaeporaGaebora": "KaeporaGaebora",
+    "Kaepora Gaebora": "Kaepora Gaebora",
     "Song": "Song"
 };
 

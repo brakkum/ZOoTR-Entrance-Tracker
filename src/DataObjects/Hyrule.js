@@ -6,7 +6,7 @@ import Grottos from "./Grottos";
 import Houses from "./Houses";
 
 export default {
-    [OverworldAreas.CastleTownEntrance]: {
+    [OverworldAreas["Castle Town Entrance"]]: {
         "colors": [
             "#dddddd",
             "#cdcdcd"
@@ -15,7 +15,7 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.HyruleField]: {
+            [OverworldAreas["Hyrule Field"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
@@ -23,14 +23,14 @@ export default {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Houses.GuardHutPoeCollector]: {
+            [Houses["Guard Hut/Poe Collector"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.DeathMountainCrater]: {
+    [OverworldAreas["Death Mountain Crater"]]: {
         "colors": [
             "#633c13",
             "#90201e"
@@ -39,39 +39,39 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.DeathMountainTrail]: {
+            [OverworldAreas["Death Mountain Trail"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.GoronCity]: {
+            [OverworldAreas["Goron City"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos.BoulderNearDeathMountainTrail]: {
+            [Grottos["Boulder Near Death Mountain Trail"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.BoulderNearGoronCity]: {
+            [Grottos["Boulder Near Goron City"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.ThreeScrubs,
+                "display": Grottos["3 Scrubs"],
                 "clear": false,
                 "interior": null
             },
-            [Houses.GreatFairyFountain]: {
+            [Houses["Great Fairy's Fountain"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             },
-            [Dungeons.FireTemple]: {
+            [Dungeons["Fire Temple"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.DeathMountainTrail]: {
+    [OverworldAreas["Death Mountain Trail"]]: {
         "colors": [
             "#a07136",
             "#916249"
@@ -80,46 +80,46 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.KakarikoVillage]: {
+            [OverworldAreas["Kakariko Village"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Dungeons.DodongosCavern]: {
+            [Dungeons["Dodongo's Cavern"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             },
-            [OverworldAreas.GoronCity]: {
+            [OverworldAreas["Goron City"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos.StormsGrotto]: {
+            [Grottos["Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.CowGrotto]: {
+            [Grottos["Cow Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Houses.GreatFairyFountain]: {
+            [Houses["Great Fairy's Fountain"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             },
-            [OverworldAreas.DeathMountainCrater]: {
+            [OverworldAreas["Death Mountain Crater"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Entrances.KaeporaGaebora]: {
-                "type": EntranceTypes.KaeporaGaebora,
+            [Entrances["Kaepora Gaebora"]]: {
+                "type": EntranceTypes["Kaepora Gaebora"],
                 "leadsTo": null
             }
         }
     },
-    [OverworldAreas.DesertColossus]: {
+    [OverworldAreas["Desert Colossus"]]: {
         "colors": [
             "#b79f60",
             "#c1ad96"
@@ -128,29 +128,29 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [Grottos.Boulder]: {
+            [Grottos["Boulder Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.TwoScrubs,
+                "display": Grottos["2 Scrubs"],
                 "clear": false,
                 "interior": null
             },
-            [Houses.GreatFairyFountain]: {
+            [Houses["Great Fairy's Fountain"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             },
-            [Dungeons.SpiritTemple]: {
+            [Dungeons["Spirit Temple"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             },
-            [OverworldAreas.HauntedWasteland]: {
+            [OverworldAreas["Haunted Wasteland"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             }
         }
     },
-    [OverworldAreas.GerudosFortress]: {
+    [OverworldAreas["Gerudos Fortress"]]: {
         "colors": [
             "#947d5a",
             "#cbb186"
@@ -159,28 +159,28 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [Dungeons.GerudoTrainingGrounds]: {
+            [Dungeons["Gerudo Training Grounds"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             },
-            [OverworldAreas.GerudoValley]: {
+            [OverworldAreas["Gerudo Valley"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.HauntedWasteland]: {
+            [OverworldAreas["Haunted Wasteland"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos.StormsGrotto]: {
+            [Grottos["Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.FairyFountain,
+                "display": Grottos["Fairy Fountain"],
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.GerudoValley]: {
+    [OverworldAreas["Gerudo Valley"]]: {
         "colors": [
             "#946333",
             "#cbc3ae"
@@ -189,37 +189,37 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "attachedArea": {
-            "name": OverworldAreas.LakeHylia
+            "name": OverworldAreas["Lake Hylia"]
         },
         "entrances": {
-            [OverworldAreas.HyruleField]: {
+            [OverworldAreas["Hyrule Field"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.GerudosFortress]: {
+            [OverworldAreas["Gerudos Fortress"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos.BoulderOnLedge]: {
+            [Grottos["Boulder on Ledge"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.DivingRupeeGrotto,
+                "display": Grottos["Diving Rupee Grotto"],
                 "clear": false,
                 "interior": null
             },
-            [Grottos.StormsGrotto]: {
+            [Grottos["Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.TwoScrubs,
+                "display": Grottos["2 Scrubs"],
                 "clear": false,
                 "interior": null
             },
-            [Houses.BossesHut]: {
+            [Houses["Bosses Hut"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.GoronCity]: {
+    [OverworldAreas["Goron City"]]: {
         "colors": [
             "#c09557",
             "#c07b50"
@@ -228,15 +228,15 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.DeathMountainTrail]: {
+            [OverworldAreas["Death Mountain Trail"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.DeathMountainCrater]: {
+            [OverworldAreas["Death Mountain Crater"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.LostWoods]: {
+            [OverworldAreas["Lost Woods"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
@@ -245,9 +245,9 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Grottos.OpenGrotto]: {
+            [Grottos["Open Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.ThreeScrubs,
+                "display": Grottos["Three Scrubs"],
                 "clear": false,
                 "interior": null
             }
@@ -263,44 +263,44 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.KakarikoVillage]: {
+            [OverworldAreas["Kakariko Village"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null,
             },
-            [Dungeons.ShadowTemple]: {
+            [Dungeons["Shadow Temple"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             },
-            [Houses.DampesHut]: {
+            [Houses["Dampe's Hut"]]: {
                 "type": EntranceTypes.House,
                 "display": Houses.House,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.RoyalGrave]: {
+            [Grottos["Royal Family's Tomb"]]: {
                 "type": EntranceTypes.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.ShieldGrave]: {
+            [Grottos["Shield Grave"]]: {
                 "type": EntranceTypes.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.RedeadGrave]: {
+            [Grottos["Redead Grave"]]: {
                 "type": EntranceTypes.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.DampesGrave]: {
+            [Grottos["Dampe's Grave"]]: {
                 "type": EntranceTypes.Grotto,
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.HauntedWasteland]: {
+    [OverworldAreas["Haunted Wasteland"]]: {
         "colors": [
             "#d0b682",
             "#6e6d82"
@@ -309,17 +309,17 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.GerudosFortress]: {
+            [OverworldAreas["Gerudos Fortress"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.DesertColossus]: {
+            [OverworldAreas["Desert Colossus"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             }
         }
     },
-    [OverworldAreas.HyruleGanonsCastle]: {
+    [OverworldAreas["Hyrule/Ganon's Castle"]]: {
         "colors": [
             "#a7a4e1",
             "#e9ecee",
@@ -329,15 +329,15 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [Houses.ChildGreatFairy]: {
+            [Houses["Child Great Fairy's Fountain"]]: {
                 "type": EntranceTypes.House,
-                "display": Houses.GreatFairyFountain,
+                "display": Houses["Great Fairy's Fountain"],
                 "clear": false,
                 "interior": null
             },
-            [Houses.AdultGreatFairy]: {
+            [Houses["Adult Great Fairy's Fountain"]]: {
                 "type": EntranceTypes.House,
-                "display": Houses.GreatFairyFountain,
+                "display": Houses["Great Fairy's Fountain"],
                 "clear": false,
                 "interior": null
             },
@@ -345,15 +345,15 @@ export default {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos.StormsGrotto]: {
+            [Grottos["Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.SkulltulaGrotto,
+                "display": Grottos["Skulltula Grotto"],
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.HyruleField]: {
+    [OverworldAreas["Hyrule Field"]]: {
         "colors": [
             "#7cab61",
             "#c9bc80"
@@ -362,77 +362,77 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.LostWoodsBridge]: {
+            [OverworldAreas["Lost Woods Bridge"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.ZorasRiver]: {
+            [OverworldAreas["Zora's River"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.KakarikoVillage]: {
+            [OverworldAreas["Kakariko Village"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos.TreeNearKakarikoBombGrotto]: {
+            [Grottos["Tree Near Kakariko Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.SkulltulaGrotto,
+                "display": Grottos["Skulltula Grotto"],
                 "clear": false,
                 "interior": null
             },
-            [OverworldAreas.CastleTownEntrance]: {
+            [OverworldAreas["Castle Town Entrance"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos.BoulderNearCastleTown]: {
-                "type": EntranceTypes.Grotto,
-                "display": Grottos.Grotto,
-                "clear": false,
-                "interior": null
-            },
-            [OverworldAreas.LonLonRanch]: {
-                "type": EntranceTypes.Overworld,
-                "leadsTo": null
-            },
-            [Grottos.BoulderAcrossRiver]: {
-                "type": EntranceTypes.Grotto,
-                "display": Grottos.FairyFountain,
-                "clear": false,
-                "interior": null
-            },
-            [Grottos.TreeNearLonLonBombGrotto]: {
-                "type": EntranceTypes.Grotto,
-                "display": Grottos.DivingGrotto,
-                "clear": false,
-                "interior": null
-            },
-            [Grottos.BoulderNearGerudoValley]: {
-                "type": EntranceTypes.Grotto,
-                "display": Grottos.SkulltulaGrotto,
-                "clear": false,
-                "interior": null
-            },
-            [OverworldAreas.GerudoValley]: {
-                "type": EntranceTypes.Overworld,
-                "leadsTo": null
-            },
-            [OverworldAreas.LakeHylia]: {
-                "type": EntranceTypes.Overworld,
-                "leadsTo": null
-            },
-            [Grottos.NearLakeHyliaBombGrotto]: {
-                "type": EntranceTypes.Grotto,
-                "display": Grottos.OneScrub,
-                "clear": false,
-                "interior": null
-            },
-            [Grottos.OpenGrotto]: {
+            [Grottos["Boulder Near Castle Town"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.BoulderInTrees]: {
+            [OverworldAreas["Lon Lon Ranch"]]: {
+                "type": EntranceTypes.Overworld,
+                "leadsTo": null
+            },
+            [Grottos["Boulder Across River"]]: {
+                "type": EntranceTypes.Grotto,
+                "display": Grottos["Fairy Fountain"],
+                "clear": false,
+                "interior": null
+            },
+            [Grottos["Lone Tree In West Field"]]: {
+                "type": EntranceTypes.Grotto,
+                "display": Grottos["Diving Grotto"],
+                "clear": false,
+                "interior": null
+            },
+            [Grottos["Boulder Near Gerudo Valley"]]: {
+                "type": EntranceTypes.Grotto,
+                "display": Grottos["Skulltula Grotto"],
+                "clear": false,
+                "interior": null
+            },
+            [OverworldAreas["Gerudo Valley"]]: {
+                "type": EntranceTypes.Overworld,
+                "leadsTo": null
+            },
+            [OverworldAreas["Lake Hylia"]]: {
+                "type": EntranceTypes.Overworld,
+                "leadsTo": null
+            },
+            [Grottos["Near Lake Hylia Bomb Grotto"]]: {
+                "type": EntranceTypes.Grotto,
+                "display": Grottos["1 Scrub"],
+                "clear": false,
+                "interior": null
+            },
+            [Grottos["Open Grotto"]]: {
+                "type": EntranceTypes.Grotto,
+                "display": Grottos.Grotto,
+                "clear": false,
+                "interior": null
+            },
+            [Grottos["Boulder in Trees"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto,
                 "clear": false,
@@ -440,7 +440,7 @@ export default {
             }
         }
     },
-    [OverworldAreas.KakarikoVillage]: {
+    [OverworldAreas["Kakariko Village"]]: {
         "colors": [
             "#a5aa9c",
             "#aa9191"
@@ -449,11 +449,11 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.HyruleField]: {
+            [OverworldAreas["Hyrule Field"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.DeathMountainTrail]: {
+            [OverworldAreas["Death Mountain Trail"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
@@ -461,12 +461,12 @@ export default {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Dungeons.BottomOfTheWell]: {
+            [Dungeons["Bottom of the Well"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             },
-            [Houses.SkulltulaHouse]: {
+            [Houses["Skulltula House"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
@@ -476,24 +476,24 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Houses.ImpasHouseFront]: {
+            [Houses["Impa's House Front"]]: {
                 "type": EntranceTypes.House,
                 "display": Houses.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.ImpasHouseCow]: {
+            [Houses["Impa's House Cow"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.BottomHouse]: {
+            [Houses["Bottom House"]]: {
                 "type": EntranceTypes.House,
                 "display": Houses.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.ShootingGallery]: {
+            [Houses["Shooting Gallery"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
@@ -504,26 +504,26 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Houses.GrannysPotionShop]: {
+            [Houses["Granny's Potion Shop"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.OpenGrotto]: {
+            [Grottos["Open Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.BombGrotto]: {
+            [Grottos["Bomb Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.RedeadGrotto,
+                "display": Grottos["Redead Grotto"],
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.KokiriForest]: {
+    [OverworldAreas["Kokiri Forest"]]: {
         "colors": [
             "#82b047",
             "#644e42"
@@ -532,43 +532,43 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.LostWoodsBridge]: {
+            [OverworldAreas["Lost Woods Bridge"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.LostWoods]: {
+            [OverworldAreas["Lost Woods"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Dungeons.DekuTree]: {
+            [Dungeons["Deku Tree"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             },
-            [Houses.KnowItAllHouse]: {
+            [Houses["Know-It-All House"]]: {
                 "type": EntranceTypes.House,
                 "display": Houses.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.MidosHouse]: {
+            [Houses["Mido's House"]]: {
                 "type": EntranceTypes.House,
                 "display": Houses.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.LinksHouse]: {
+            [Houses["Link's House"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.SariasHouse]: {
+            [Houses["Saria's House"]]: {
                 "type": EntranceTypes.House,
                 "display": Houses.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.TwinsHouse]: {
+            [Houses["Twins House"]]: {
                 "type": EntranceTypes.House,
                 "display": Houses.House,
                 "clear": false,
@@ -579,7 +579,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Grottos.StormsGrotto]: {
+            [Grottos["Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto,
                 "clear": false,
@@ -587,7 +587,7 @@ export default {
             }
         }
     },
-    [OverworldAreas.LakeHylia]: {
+    [OverworldAreas["Lake Hylia"]]: {
         "colors": [
             "#888bb0",
             "#8cabb0"
@@ -596,25 +596,25 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.HyruleField]: {
+            [OverworldAreas["Hyrule Field"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.ZorasDomain]: {
+            [OverworldAreas["Zora's Domain"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Entrances.KaeporaGaebora]: {
-                "type": EntranceTypes.KaeporaGaebora,
+            [Entrances["Kaepora Gaebora"]]: {
+                "type": EntranceTypes["Kaepora Gaebora"],
                 "leadsTo": null
             },
             [Grottos.Grave]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.ThreeScrubs,
+                "display": Grottos["Three Scrubs"],
                 "clear": false,
                 "interior": null
             },
-            [Houses.LakeHyliaLab]: {
+            [Houses["Lake Hylia Lab"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
@@ -624,14 +624,14 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Dungeons.WaterTemple]: {
+            [Dungeons["Water Temple"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.LonLonRanch]: {
+    [OverworldAreas["Lon Lon Ranch"]]: {
         "colors": [
             "#c5aa79",
             "#d0bfb2",
@@ -641,11 +641,11 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.HyruleField]: {
+            [OverworldAreas["Hyrule Field"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Houses.TalonsHouse]: {
+            [Houses["Talon's House"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
@@ -655,20 +655,20 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Houses.LonLonTower]: {
+            [Houses["Lon Lon Tower"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.OpenGrotto]: {
+            [Grottos["Open Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.ThreeScrubs,
+                "display": Grottos["Three Scrubs"],
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.LostWoods]: {
+    [OverworldAreas["Lost Woods"]]: {
         "colors": [
             "#51852b",
             "#a4af32"
@@ -677,42 +677,42 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.KokiriForest]: {
+            [OverworldAreas["Kokiri Forest"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.GoronCity]: {
+            [OverworldAreas["Goron City"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.SacredForestMeadow]: {
+            [OverworldAreas["Sacred Forest Meadow"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.ZorasRiver]: {
+            [OverworldAreas["Zora's River"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos.ForestStage]: {
+            [Grottos["Forest Stage"]]: {
                 "type": EntranceTypes.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.BoulderNearGoronCity]: {
+            [Grottos["Boulder Near Goron City"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.BoulderNearSacredForestMeadow]: {
+            [Grottos["Boulder Near Sacred Forest Meadow"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.TwoScrubs,
+                "display": Grottos["2 Scrubs"],
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.LostWoodsBridge]: {
+    [OverworldAreas["Lost Woods Bridge"]]: {
         "colors": [
             "#51852b",
             "#796b4f",
@@ -722,11 +722,11 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.KokiriForest]: {
+            [OverworldAreas["Kokiri Forest"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.HyruleField]: {
+            [OverworldAreas["Hyrule Field"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             }
@@ -742,15 +742,15 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.CastleTownEntrance]: {
+            [OverworldAreas["Castle Town Entrance"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.TempleOfTimeEntrance]: {
+            [OverworldAreas["Temple of Time Entrance"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.HyruleGanonsCastle]: {
+            [OverworldAreas["Hyrule/Ganon's Castle"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
@@ -760,47 +760,47 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Houses.PotionShop]: {
+            [Houses["Potion Shop"]]: {
                 "type": EntranceTypes.House,
                 "display": Houses.Shop,
                 "clear": false,
                 "interior": null
             },
-            [Houses.ShootingGallery]: {
+            [Houses["Shooting Gallery"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.BombchuBowling]: {
+            [Houses["Bombchu Bowling"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.BombchuShop]: {
+            [Houses["Bombchu Shop"]]: {
                 "type": EntranceTypes.House,
                 "display": Houses.Shop,
                 "clear": false,
                 "interior": null
             },
-            [Houses.TreasureChestGame]: {
+            [Houses["Treasure Chest Game"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.BackAlleyHouse]: {
+            [Houses["Back Alley House"]]: {
                 "type": EntranceTypes.House,
                 "display": Houses.House,
                 "clear": false,
                 "interior": null
             },
-            [Houses.MaskShop]: {
+            [Houses["Mask Shop"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.SacredForestMeadow]: {
+    [OverworldAreas["Sacred Forest Meadow"]]: {
         "colors": [
             "#72c041",
             "#9caf7c"
@@ -809,36 +809,36 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.LostWoods]: {
+            [OverworldAreas["Lost Woods"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Dungeons.ForestTemple]: {
+            [Dungeons["Forest Temple"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.BombGrotto]: {
+            [Grottos["Bomb Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.WolfosGrotto,
+                "display": Grottos["Wolfos Grotto"],
                 "clear": false,
                 "interior": null
             },
-            [Grottos.OpenGrotto]: {
+            [Grottos["Open Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.FairyFountain,
+                "display": Grottos["Fairy Fountain"],
                 "clear": false,
                 "interior": null
             },
-            [Grottos.StormsGrotto]: {
+            [Grottos["Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.TwoScrubs,
+                "display": Grottos["2 Scrubs"],
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.TempleOfTimeEntrance]: {
+    [OverworldAreas["Temple of Time Entrance"]]: {
         "colors": [
             "#74856e",
             "#83766a"
@@ -851,14 +851,14 @@ export default {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Houses.TempleOfTime]: {
+            [Houses["Temple of Time"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.ZorasDomain]: {
+    [OverworldAreas["Zora's Domain"]]: {
         "colors": [
             "#658285",
             "#cfccec"
@@ -867,15 +867,15 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.ZorasRiver]: {
+            [OverworldAreas["Zora's River"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.ZorasFountain]: {
+            [OverworldAreas["Zora's Fountain"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.LakeHylia]: {
+            [OverworldAreas["Lake Hylia"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
@@ -885,15 +885,15 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Grottos.StormsGrotto]: {
+            [Grottos["Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.FairyFountain,
+                "display": Grottos["Fairy Fountain"],
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.ZorasFountain]: {
+    [OverworldAreas["Zora's Fountain"]]: {
         "colors": [
             "#949cc6",
             "#8e8872"
@@ -902,28 +902,28 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.ZorasDomain]: {
+            [OverworldAreas["Zora's Domain"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Dungeons.JabuJabu]: {
+            [Dungeons["Jabu Jabu's Belly"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             },
-            [Dungeons.IceCavern]: {
+            [Dungeons["Ice Cavern"]]: {
                 "type": EntranceTypes.Dungeon,
                 "clear": false,
                 "interior": null
             },
-            [Houses.GreatFairyFountain]: {
+            [Houses["Great Fairy's Fountain"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
             }
         }
     },
-    [OverworldAreas.ZorasRiver]: {
+    [OverworldAreas["Zora's River"]]: {
         "colors": [
             "#9996c6",
             "#5c8e56"
@@ -932,33 +932,33 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas.HyruleField]: {
+            [OverworldAreas["Hyrule Field"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.ZorasDomain]: {
+            [OverworldAreas["Zora's Domain"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas.LostWoods]: {
+            [OverworldAreas["Lost Woods"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos.StormsGrotto]: {
+            [Grottos["Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.TwoScrubs,
+                "display": Grottos["2 Scrubs"],
                 "clear": false,
                 "interior": null
             },
-            [Grottos.OpenGrotto]: {
+            [Grottos["Open Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto,
                 "clear": false,
                 "interior": null
             },
-            [Grottos.Boulder]: {
+            [Grottos["Boulder Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos.FairyFountain,
+                "display": Grottos["Fairy Fountain"],
                 "clear": false,
                 "interior": null
             }

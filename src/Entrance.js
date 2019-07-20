@@ -25,7 +25,7 @@ export default class Entrance extends React.Component {
                         </span>
                         {/* x icon for resetting an entrance to unchecked */}
                         {/* but once Link's House is set, leave it */}
-                        {entrance.interior === Houses.LinksHouse ?
+                        {entrance.interior === Houses["Link's House"] ?
                             "" :
                             <span className="delete is-pulled-right" onClick={
                                 () => this.props.resetEntrance({...entrance, area: areaName, entrance: entranceName})
@@ -79,7 +79,7 @@ export default class Entrance extends React.Component {
                                     // if its an array, it's areas, houses, or grottos
                                     // map over them and make them options
                                     options.sort().map((interiorName, i) => {
-                                        let objKey = entrance.type === EntranceTypes.KaeporaGaebora ? "area" : "interior";
+                                        let objKey = entrance.type === EntranceTypes["Kaepora Gaebora"] ? "area" : "interior";
                                         return <option key={i} value={JSON.stringify({[objKey]: interiorName})}>
                                             {interiorName}
                                         </option>

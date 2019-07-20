@@ -1,16 +1,16 @@
 
 const Dungeons = {
-    "DekuTree": "Deku Tree",
-    "DodongosCavern": "Dodongo's Cavern",
-    "JabuJabu": "Jabu Jabu's Belly",
-    "ForestTemple": "Forest Temple",
-    "FireTemple": "Fire Temple",
-    "IceCavern": "Ice Cavern",
-    "WaterTemple": "Water Temple",
-    "BottomOfTheWell": "Bottom of the Well",
-    "ShadowTemple": "Shadow Temple",
-    "GerudoTrainingGrounds": "Gerudo Training Grounds",
-    "SpiritTemple": "Spirit Temple"
+    "Deku Tree": "Deku Tree",
+    "Dodongo's Cavern": "Dodongo's Cavern",
+    "Jabu Jabu's Belly": "Jabu Jabu's Belly",
+    "Forest Temple": "Forest Temple",
+    "Fire Temple": "Fire Temple",
+    "Ice Cavern": "Ice Cavern",
+    "Water Temple": "Water Temple",
+    "Bottom of the Well": "Bottom of the Well",
+    "Shadow Temple": "Shadow Temple",
+    "Gerudo Training Grounds": "Gerudo Training Grounds",
+    "Spirit Temple": "Spirit Temple"
 };
 
 export default Dungeons;

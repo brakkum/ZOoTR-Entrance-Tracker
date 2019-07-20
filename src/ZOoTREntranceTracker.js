@@ -85,14 +85,14 @@ export default class ZOoTREntranceTracker extends React.Component {
     houseToPromptForBasedOnState = () => {
         let interiorEntrances = this.state.interiorEntrances;
         let songs = this.state.songs;
-        if (interiorEntrances[Houses.LinksHouse] === undefined) {
-            return Houses.LinksHouse;
-        } else if (interiorEntrances[Grottos.DampesGrave] !== undefined &&
+        if (interiorEntrances[Houses["Link's House"]] === undefined) {
+            return Houses["Link's House"];
+        } else if (interiorEntrances[Grottos["Dampe's Grave"]] !== undefined &&
             interiorEntrances[Houses.Windmill].length <= 1) {
             return Houses.Windmill;
         } else if (songs["Prelude of Light"].collected &&
-            interiorEntrances[Houses.TempleOfTime].length === 1) {
-            return Houses.TempleOfTime;
+            interiorEntrances[Houses["Temple of Time"]].length === 1) {
+            return Houses["Temple of Time"];
         }
         return null;
     };
@@ -219,9 +219,9 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     setKaeporaLanding = (sourceArea, destinationArea) => {
         let hyrule = this.state.hyrule;
-        if (sourceArea === OverworldAreas.DeathMountainTrail) {
+        if (sourceArea === OverworldAreas["Death Mountain Trail"]) {
             hyrule[destinationArea].hasKaeporaDeathMountainTrailLanding = true;
-        } else if (sourceArea === OverworldAreas.LakeHylia) {
+        } else if (sourceArea === OverworldAreas["Lake Hylia"]) {
             hyrule[destinationArea].hasKaeporaLakeHyliaLanding = true;
         }
         this.setState({hyrule});
@@ -229,9 +229,9 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     removeKaeporaLanding = (sourceArea, destinationArea) => {
         let hyrule = this.state.hyrule;
-        if (sourceArea === OverworldAreas.DeathMountainTrail) {
+        if (sourceArea === OverworldAreas["Death Mountain Trail"]) {
             hyrule[destinationArea].hasKaeporaDeathMountainTrailLanding = false;
-        } else if (sourceArea === OverworldAreas.LakeHylia) {
+        } else if (sourceArea === OverworldAreas["Lake Hylia"]) {
             hyrule[destinationArea].hasKaeporaLakeHyliaLanding = false;
         }
         this.setState({hyrule});
@@ -393,14 +393,14 @@ export default class ZOoTREntranceTracker extends React.Component {
                 }
                 break;
             }
-            case EntranceTypes.KaeporaGaebora: {
+            case EntranceTypes["Kaepora Gaebora"]: {
                 let area = obj.area;
                 let leadsToArea = obj.leadsTo.area;
 
                 this.removeKaeporaLanding(area, leadsToArea);
                 this.resetOverworldEntrance(area, obj.entrance);
 
-                this.removeInteriorEntrance(leadsToArea, {area, entrance: EntranceTypes.KaeporaGaebora});
+                this.removeInteriorEntrance(leadsToArea, {area, entrance: EntranceTypes["Kaepora Gaebora"]});
 
                 this.removeAreaIfEmpty(area);
                 this.removeAreaIfEmpty(leadsToArea);
@@ -462,7 +462,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 }
                 break;
             }
-            case EntranceTypes.KaeporaGaebora: {
+            case EntranceTypes["Kaepora Gaebora"]: {
                 let area = vanilla.area;
                 let entrance = vanilla.entrance;
                 let selectedArea = selection.area;

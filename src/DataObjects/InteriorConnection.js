@@ -7,20 +7,20 @@ import OverworldAreas from "./OverworldAreas";
 const InteriorConnection = {
     // one way connection to windmill from dampe's grave
     // when dampe's grave is accessed
-    [Grottos.DampesGrave]: {
+    [Grottos["Dampe's Grave"]]: {
         "location": Houses.Windmill,
         "type": EntranceTypes.House,
         "entranceObject": {
             "area": null,
-            "entrance": Grottos.DampesGrave
+            "entrance": Grottos["Dampe's Grave"]
         }
     },
-    [Dungeons.SpiritTemple]: {
-        "location": OverworldAreas.DesertColossus,
+    [Dungeons["Spirit Temple"]]: {
+        "location": OverworldAreas["Desert Colossus"],
         "type": EntranceTypes.Overworld,
         "entranceObject": {
             "area": null,
-            "entrance": Dungeons.SpiritTemple
+            "entrance": Dungeons["Spirit Temple"]
         }
     }
 };

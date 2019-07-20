@@ -1,6 +1,6 @@
 
 const Entrances = {
-    "KaeporaGaebora": "Kaepora Gaebora",
+    "Kaepora Gaebora": "Kaepora Gaebora",
 };
 
 export default Entrances;
