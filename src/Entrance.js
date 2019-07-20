@@ -94,6 +94,7 @@ export default class Entrance extends React.Component {
                                         // only entrance is the current entrance
                                         if (options[optgroupArea].length === 0 ||
                                             (options[optgroupArea].length === 1 &&
+                                                areaName === optgroupArea &&
                                                 options[optgroupArea][0] === entranceName)) {
                                             return null;
                                         }
