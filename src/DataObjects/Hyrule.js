@@ -247,7 +247,7 @@ export default {
             },
             [Grottos["Open Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos["Three Scrubs"],
+                "display": Grottos["3 Scrubs"],
                 "clear": false,
                 "interior": null
             }
@@ -610,7 +610,7 @@ export default {
             },
             [Grottos.Grave]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos["Three Scrubs"],
+                "display": Grottos["3 Scrubs"],
                 "clear": false,
                 "interior": null
             },
@@ -662,7 +662,7 @@ export default {
             },
             [Grottos["Open Grotto"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos["Three Scrubs"],
+                "display": Grottos["3 Scrubs"],
                 "clear": false,
                 "interior": null
             }

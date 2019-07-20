@@ -32,7 +32,7 @@ export default class RouteFinder extends React.Component {
     };
 
     // start is always the same, as we look for it from end
-    searchAvailableLocationsForStart = (start, end, availableLocations, locationsBeingSearched = [], locationsFullySearched = []) => {
+    searchAvailableLocationsForStart = (start, end, availableLocations, isTopLevelOfSearch, locationsBeingSearched = [], locationsFullySearched = []) => {
         let result = [];
         if (availableLocations[end] === undefined) {
             return result;
@@ -62,22 +62,35 @@ export default class RouteFinder extends React.Component {
                 console.log("area equal to start ",obj.area);
                 return [{area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}];
             } else if (obj.area !== undefined && obj.area !== null) {
-                let r = this.searchAvailableLocationsForStart(start, obj.area, availableLocations, locationsBeingSearched, locationsFullySearched);
+                let r = this.searchAvailableLocationsForStart(start, obj.area, availableLocations, false, locationsBeingSearched, locationsFullySearched);
                 if (r.length > 0) {
-                    result.push(...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song});
+                    if (isTopLevelOfSearch) {
+                        result.push([...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}]);
+                    } else {
+                        result.push(...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song});
+                    }
                 }
             } else if (obj.entrance !== undefined && obj.entrance !== null && obj.interior === start) {
                 console.log("interior equal to start ",obj.interior);
+                console.log(obj)
                 return [{area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}];
             } else if (obj.interior !== undefined && obj.interior !== null && !isHouse) {
-                let r = this.searchAvailableLocationsForStart(start, obj.interior, availableLocations, locationsBeingSearched, locationsFullySearched);
+                let r = this.searchAvailableLocationsForStart(start, obj.interior, availableLocations, false, locationsBeingSearched, locationsFullySearched);
                 if (r.length > 0) {
-                    result.push(...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song});
+                    if (isTopLevelOfSearch) {
+                        result.push([...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}]);
+                    } else {
+                        result.push(...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song});
+                    }
                 }
             } else if (obj.entrance !== undefined && obj.entrance !== null) {
-                let r = this.searchAvailableLocationsForStart(start, obj.entrance, availableLocations, locationsBeingSearched, locationsFullySearched);
+                let r = this.searchAvailableLocationsForStart(start, obj.entrance, availableLocations, false, locationsBeingSearched, locationsFullySearched);
                 if (r.length > 0) {
-                    result.push(...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song});
+                    if (isTopLevelOfSearch) {
+                        result.push([...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}]);
+                    } else {
+                        result.push(...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song});
+                    }
                 }
             }
         }
@@ -92,7 +105,7 @@ export default class RouteFinder extends React.Component {
         if (!end || !start) {
             return null;
         }
-        let result = this.searchAvailableLocationsForStart(start, end, this.props.availableLocations);
+        let result = this.searchAvailableLocationsForStart(start, end, this.props.availableLocations, true);
         console.log(result)
         return result;
     };
