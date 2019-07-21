@@ -1,5 +1,9 @@
 import React from "react";
 import Houses from "./DataObjects/Houses";
+import Grottos from "./DataObjects/Grottos";
+import Dungeons from "./DataObjects/Dungeons";
+import OverworldAreas from "./DataObjects/OverworldAreas";
+import Songs from "./DataObjects/Songs";
 
 export default class RouteFinder extends React.Component {
 
@@ -31,72 +35,134 @@ export default class RouteFinder extends React.Component {
         this.setState({end: null});
     };
 
-    // start is always the same, as we look for it from end
-    searchAvailableLocationsForStart = (start, end, availableLocations, isTopLevelOfSearch, locationsBeingSearched = [], locationsFullySearched = []) => {
-        let result = [];
-        if (availableLocations[end] === undefined) {
-            return result;
+    shuffleArray = array => {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
-        if (locationsFullySearched.includes(end)) {
-            console.log(`${end} already searched fully`)
-            return result;
+    };
+
+    // start is always a string
+    // end is an object
+    // since start could be an area, dungeon, etc.
+    findStartFromEndObject = (startName, endObject, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
+        let startIsHouse = Houses[startName] !== undefined;
+        let startIsGrotto = Grottos[startName] !== undefined;
+        let startIsDungeon = Dungeons[startName] !== undefined;
+        let startIsOverworld = OverworldAreas[startName] !== undefined;
+
+        let locationIsSong = endObject.song !== undefined && Songs[endObject.song] !== undefined;
+        let locationIsGrotto = endObject.entrance !== undefined && endObject.interior !== undefined && Grottos[endObject.interior] !== undefined;
+        let locationIsHouse = endObject.entrance !== undefined && endObject.interior !== undefined && Houses[endObject.interior] !== undefined;
+        let locationIsDungeon = endObject.entrance !== undefined && endObject.interior !== undefined && Dungeons[endObject.interior] !== undefined;
+        let locationIsOverworld = endObject.area !== undefined && endObject.entrance !== undefined && OverworldAreas[endObject.area] !== undefined;
+
+        let nextLocationToSearch = "";
+
+        if (locationIsSong) {
+            return [{song: endObject.song}];
         }
-        if (locationsBeingSearched.includes(end)) {
-            console.log(`${end} already being searched currently`)
-            return result;
+
+        if (locationIsHouse) {
+            if (completelySearched.includes(endObject.interior) || currentlyBeingSearched.includes(endObject.interior)) {
+                return [];
+            }
+
+            if (startIsHouse) {
+                if (endObject.interior === startName) {
+                    return [{area: endObject.area, entrance: endObject.entrance}];
+                }
+            }
+
+            if (endObject.interior === Houses.Windmill) {
+                nextLocationToSearch = Houses.Windmill;
+            }
+        }
+
+        if (locationIsDungeon) {
+            if (completelySearched.includes(endObject.interior) || currentlyBeingSearched.includes(endObject.interior)) {
+                return [];
+            }
+
+            if (startIsDungeon) {
+                if (endObject.interior === startName) {
+                    return [{entrance: endObject.entrance}];
+                }
+            }
+
+            nextLocationToSearch = endObject.interior;
+        }
+
+        if (locationIsGrotto) {
+            if (startIsGrotto) {
+                if (endObject.interior === startName) {
+                    return [{entrance: endObject.entrance, interior: endObject.interior}];
+                }
+            }
+
+            if (endObject.interior === Grottos["Dampe's Grave"]) {
+                nextLocationToSearch = Grottos["Dampe's Grave"];
+            }
+        }
+
+        if (locationIsOverworld) {
+            if (completelySearched.includes(endObject.area) || currentlyBeingSearched.includes(endObject.area)) {
+                return [];
+            }
+
+            if (startIsOverworld) {
+                if (endObject.area === startName) {
+                    return [{area: endObject.area, entrance: endObject.entrance}];
+                }
+            }
+
+            nextLocationToSearch = endObject.area;
+        }
+
+        if (nextLocationToSearch !== "") {
+            currentlyBeingSearched.push(nextLocationToSearch);
+            let nextArray = availableLocations[nextLocationToSearch];
+            this.shuffleArray(nextArray);
+            for (let i = 0; i < nextArray.length; i++) {
+                let result = this.findStartFromEndObject(startName, nextArray[i], availableLocations, currentlyBeingSearched, completelySearched);
+                if (result.length > 0) {
+                    return [...result, endObject];
+                }
+            }
+            currentlyBeingSearched.splice(currentlyBeingSearched.indexOf(nextLocationToSearch), 1);
+            completelySearched.push(nextLocationToSearch);
+            return [];
         } else {
-            console.log(`now beginning search of ${end}`)
-            locationsBeingSearched.push(end);
+            return [];
         }
-        for (let i = 0; i < availableLocations[end].length; i ++ ) {
-            let obj = availableLocations[end][i];
-            if (obj.song !== undefined && obj.song !== null) {
-                return [{song: obj.song}];
-            }
-        }
-        let isHouse = Houses[end] !== undefined;
-        console.log(`${end} is house? ${isHouse}`)
-        for (let i = 0; i < availableLocations[end].length; i ++ ) {
-            let obj = availableLocations[end][i];
-            if (obj.area === start) {
-                console.log("area equal to start ",obj.area);
-                return [{area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}];
-            } else if (obj.area !== undefined && obj.area !== null) {
-                let r = this.searchAvailableLocationsForStart(start, obj.area, availableLocations, false, locationsBeingSearched, locationsFullySearched);
-                if (r.length > 0) {
-                    if (isTopLevelOfSearch) {
-                        result.push([...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}]);
-                    } else {
-                        result.push(...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song});
-                    }
-                }
-            } else if (obj.entrance !== undefined && obj.entrance !== null && obj.interior === start) {
-                console.log("interior equal to start ",obj.interior);
-                console.log(obj)
-                return [{area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}];
-            } else if (obj.interior !== undefined && obj.interior !== null && !isHouse) {
-                let r = this.searchAvailableLocationsForStart(start, obj.interior, availableLocations, false, locationsBeingSearched, locationsFullySearched);
-                if (r.length > 0) {
-                    if (isTopLevelOfSearch) {
-                        result.push([...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}]);
-                    } else {
-                        result.push(...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song});
-                    }
-                }
-            } else if (obj.entrance !== undefined && obj.entrance !== null) {
-                let r = this.searchAvailableLocationsForStart(start, obj.entrance, availableLocations, false, locationsBeingSearched, locationsFullySearched);
-                if (r.length > 0) {
-                    if (isTopLevelOfSearch) {
-                        result.push([...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song}]);
-                    } else {
-                        result.push(...r, {area: obj.area, interior: obj.interior, entrance: obj.entrance, song: obj.song});
-                    }
+    };
+
+    // start is always the same, as we look for it from end, end is current queued item
+    getRoutesFromStartToEnd = (startName, endName) => {
+        let availableLocations = this.props.availableLocations;
+        let endPaths = [];
+        let numberOfTries = 20;
+
+        availableLocations[endName].forEach(endObject => {
+            let pathsForThisEndLocation = [];
+            for (let j = 0; j < numberOfTries; j ++) {
+                let result = this.findStartFromEndObject(startName, endObject, availableLocations);
+                if (result.length > 0) {
+                    let path = [{start: startName}, ...result, {end: endName}];
+                    pathsForThisEndLocation.push(path);
                 }
             }
+            // include shortest path for this end point
+            if (pathsForThisEndLocation.length > 0) {
+                endPaths.push(pathsForThisEndLocation.reduce((a, b) => a.length <= b.length ? a : b));
+            }
+        });
+
+        if (endPaths.length > 0) {
+            return endPaths.reduce((a, b) => a.length <= b.length ? a : b);
+        } else {
+            return [];
         }
-        locationsBeingSearched.splice(locationsBeingSearched.indexOf(end), 1);
-        locationsFullySearched.push(end);
-        return result;
     };
 
     getRoute = () => {
@@ -105,8 +171,8 @@ export default class RouteFinder extends React.Component {
         if (!end || !start) {
             return null;
         }
-        let result = this.searchAvailableLocationsForStart(start, end, this.props.availableLocations, true);
-        console.log(result)
+        let result = this.getRoutesFromStartToEnd(start, end);
+        console.log(result);
         return result;
     };
 
