@@ -15,9 +15,9 @@
     cursor: pointer;
 }
 
-.route-points-select {
+.route-finder {
     width: 95%;
-    max-width: 900px;
+    max-width: 500px;
     margin: auto;
 }
 

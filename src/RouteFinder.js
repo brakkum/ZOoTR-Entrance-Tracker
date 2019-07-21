@@ -4,13 +4,14 @@ import Grottos from "./DataObjects/Grottos";
 import Dungeons from "./DataObjects/Dungeons";
 import OverworldAreas from "./DataObjects/OverworldAreas";
 import Songs from "./DataObjects/Songs";
+import EntranceTypes from "./DataObjects/EntranceTypes";
 
 export default class RouteFinder extends React.Component {
 
     state = {
         start: null,
         end: null,
-        locationsBeingSearched: []
+        ignoreKaeporaGaebora: false
     };
 
     setStart = start => {
@@ -33,6 +34,10 @@ export default class RouteFinder extends React.Component {
 
     resetEnd = () => {
         this.setState({end: null});
+    };
+
+    toggleIgnoreKaeporaGaebora = () => {
+        this.setState({ignoreKaeporaGaebora: !this.state.ignoreKaeporaGaebora});
     };
 
     shuffleArray = array => {
@@ -58,6 +63,10 @@ export default class RouteFinder extends React.Component {
         let locationIsOverworld = currentCheck.area !== undefined && currentCheck.entrance !== undefined && OverworldAreas[currentCheck.area] !== undefined;
 
         let nextLocationToSearch = "";
+
+        if (!currentlyBeingSearched.includes(endName)) {
+            currentlyBeingSearched.push(endName);
+        }
 
         if (locationIsSong) {
             return [{start: startName}, {song: currentCheck.song}];
@@ -90,7 +99,9 @@ export default class RouteFinder extends React.Component {
                 }
             }
 
-            nextLocationToSearch = currentCheck.interior;
+            if (currentCheck.interior === Dungeons["Spirit Temple"]) {
+                nextLocationToSearch = Dungeons["Spirit Temple"];
+            }
         }
 
         if (locationIsGrotto) {
@@ -112,11 +123,16 @@ export default class RouteFinder extends React.Component {
 
             if (startIsOverworld) {
                 if (currentCheck.area === startName) {
-                    return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
+                    console.log(`found match`)
+                    if (currentCheck.entrance !== EntranceTypes["Kaepora Gaebora"] || !this.state.ignoreKaeporaGaebora) {
+                        return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
+                    }
                 }
             }
 
-            nextLocationToSearch = currentCheck.area;
+            if (currentCheck.entrance !== EntranceTypes["Kaepora Gaebora"] || !this.state.ignoreKaeporaGaebora) {
+                nextLocationToSearch = currentCheck.area;
+            }
         }
 
         if (nextLocationToSearch !== "") {
@@ -210,7 +226,7 @@ export default class RouteFinder extends React.Component {
                             </h5>
                         }
                     </div>
-                    <div className="route-select-end is-flex is-centered">
+                    <div className="route-select-end is-flex">
                         <h5 className="is-size-5">End:</h5>
                             {end === null ?
                                 <div className="select is-small">
@@ -233,6 +249,14 @@ export default class RouteFinder extends React.Component {
                                 </h5>
                             }
                     </div>
+                </div>
+                <div className="routing-options buttons is-centered">
+                    <button
+                        onClick={this.toggleIgnoreKaeporaGaebora}
+                        className={"button is-small " + (this.state.ignoreKaeporaGaebora ? "is-primary" : "is-light")}
+                    >
+                        Ignore Kaepora Gaebora
+                    </button>
                 </div>
                 {route !== null ?
                     <div className="result">

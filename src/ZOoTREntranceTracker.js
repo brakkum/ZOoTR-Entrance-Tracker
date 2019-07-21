@@ -383,9 +383,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.addInteriorBackIntoPool(obj.type, interior);
                 this.removeInteriorEntrance(interior, {area, entrance});
                 this.removeInteriorEntrance(area, {entrance, interior});
-                if (obj.type === EntranceTypes.Dungeon) {
-                    this.removeInteriorEntrance(entrance, {interior});
-                }
+                // if (obj.type === EntranceTypes.Dungeon) {
+                //     this.removeInteriorEntrance(entrance, {interior});
+                // }
 
                 this.removeAreaIfEmpty(area);
                 if (obj.type === EntranceTypes.House) {
@@ -450,9 +450,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.removeInteriorFromPool(vanilla.type, interior);
                 this.addInteriorEntrance(interior, {area, entrance});
                 this.addInteriorEntrance(area, {entrance, interior});
-                if (vanilla.type === EntranceTypes.Dungeon) {
-                    this.addInteriorEntrance(entrance, {interior});
-                }
+                // if (vanilla.type === EntranceTypes.Dungeon) {
+                //     this.addInteriorEntrance(entrance, {interior});
+                // }
 
                 this.setAreaToAccessible(area);
                 this.addAdditionalAreas(interior);
