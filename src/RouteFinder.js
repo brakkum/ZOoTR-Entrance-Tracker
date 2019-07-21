@@ -159,7 +159,7 @@ export default class RouteFinder extends React.Component {
         });
 
         if (endPaths.length > 0) {
-            return endPaths.reduce((a, b) => a.length <= b.length ? a : b);
+            return endPaths;
         } else {
             return [];
         }
