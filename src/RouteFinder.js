@@ -45,78 +45,78 @@ export default class RouteFinder extends React.Component {
     // start is always a string
     // end is an object
     // since start could be an area, dungeon, etc.
-    findStartFromEndObject = (startName, endObject, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
+    findStartFromEndObject = (startName, endName, currentCheck, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
         let startIsHouse = Houses[startName] !== undefined;
         let startIsGrotto = Grottos[startName] !== undefined;
         let startIsDungeon = Dungeons[startName] !== undefined;
         let startIsOverworld = OverworldAreas[startName] !== undefined;
 
-        let locationIsSong = endObject.song !== undefined && Songs[endObject.song] !== undefined;
-        let locationIsGrotto = endObject.entrance !== undefined && endObject.interior !== undefined && Grottos[endObject.interior] !== undefined;
-        let locationIsHouse = endObject.entrance !== undefined && endObject.interior !== undefined && Houses[endObject.interior] !== undefined;
-        let locationIsDungeon = endObject.entrance !== undefined && endObject.interior !== undefined && Dungeons[endObject.interior] !== undefined;
-        let locationIsOverworld = endObject.area !== undefined && endObject.entrance !== undefined && OverworldAreas[endObject.area] !== undefined;
+        let locationIsSong = currentCheck.song !== undefined && Songs[currentCheck.song] !== undefined;
+        let locationIsGrotto = currentCheck.entrance !== undefined && currentCheck.interior !== undefined && Grottos[currentCheck.interior] !== undefined;
+        let locationIsHouse = currentCheck.entrance !== undefined && currentCheck.interior !== undefined && Houses[currentCheck.interior] !== undefined;
+        let locationIsDungeon = currentCheck.entrance !== undefined && currentCheck.interior !== undefined && Dungeons[currentCheck.interior] !== undefined;
+        let locationIsOverworld = currentCheck.area !== undefined && currentCheck.entrance !== undefined && OverworldAreas[currentCheck.area] !== undefined;
 
         let nextLocationToSearch = "";
 
         if (locationIsSong) {
-            return [{song: endObject.song}];
+            return [{start: startName}, {song: currentCheck.song}];
         }
 
         if (locationIsHouse) {
-            if (completelySearched.includes(endObject.interior) || currentlyBeingSearched.includes(endObject.interior)) {
+            if (completelySearched.includes(currentCheck.interior) || currentlyBeingSearched.includes(currentCheck.interior)) {
                 return [];
             }
 
             if (startIsHouse) {
-                if (endObject.interior === startName) {
-                    return [{area: endObject.area, entrance: endObject.entrance}];
+                if (currentCheck.interior === startName) {
+                    return [{start: currentCheck.interior}];
                 }
             }
 
-            if (endObject.interior === Houses.Windmill) {
+            if (currentCheck.interior === Houses.Windmill) {
                 nextLocationToSearch = Houses.Windmill;
             }
         }
 
         if (locationIsDungeon) {
-            if (completelySearched.includes(endObject.interior) || currentlyBeingSearched.includes(endObject.interior)) {
+            if (completelySearched.includes(currentCheck.interior) || currentlyBeingSearched.includes(currentCheck.interior)) {
                 return [];
             }
 
             if (startIsDungeon) {
-                if (endObject.interior === startName) {
-                    return [{entrance: endObject.entrance}];
+                if (currentCheck.interior === startName) {
+                    return [{start: startName}, {entrance: currentCheck.entrance}];
                 }
             }
 
-            nextLocationToSearch = endObject.interior;
+            nextLocationToSearch = currentCheck.interior;
         }
 
         if (locationIsGrotto) {
             if (startIsGrotto) {
-                if (endObject.interior === startName) {
-                    return [{entrance: endObject.entrance, interior: endObject.interior}];
+                if (currentCheck.interior === startName) {
+                    return [{start: startName}, {entrance: currentCheck.entrance, interior: currentCheck.interior}];
                 }
             }
 
-            if (endObject.interior === Grottos["Dampe's Grave"]) {
+            if (currentCheck.interior === Grottos["Dampe's Grave"]) {
                 nextLocationToSearch = Grottos["Dampe's Grave"];
             }
         }
 
         if (locationIsOverworld) {
-            if (completelySearched.includes(endObject.area) || currentlyBeingSearched.includes(endObject.area)) {
+            if (completelySearched.includes(currentCheck.area) || currentlyBeingSearched.includes(currentCheck.area)) {
                 return [];
             }
 
             if (startIsOverworld) {
-                if (endObject.area === startName) {
-                    return [{area: endObject.area, entrance: endObject.entrance}];
+                if (currentCheck.area === startName) {
+                    return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
                 }
             }
 
-            nextLocationToSearch = endObject.area;
+            nextLocationToSearch = currentCheck.area;
         }
 
         if (nextLocationToSearch !== "") {
@@ -124,9 +124,9 @@ export default class RouteFinder extends React.Component {
             let nextArray = availableLocations[nextLocationToSearch];
             this.shuffleArray(nextArray);
             for (let i = 0; i < nextArray.length; i++) {
-                let result = this.findStartFromEndObject(startName, nextArray[i], availableLocations, currentlyBeingSearched, completelySearched);
+                let result = this.findStartFromEndObject(startName, endName, nextArray[i], availableLocations, currentlyBeingSearched, completelySearched);
                 if (result.length > 0) {
-                    return [...result, endObject];
+                    return [...result, currentCheck];
                 }
             }
             currentlyBeingSearched.splice(currentlyBeingSearched.indexOf(nextLocationToSearch), 1);
@@ -146,9 +146,9 @@ export default class RouteFinder extends React.Component {
         availableLocations[endName].forEach(endObject => {
             let pathsForThisEndLocation = [];
             for (let j = 0; j < numberOfTries; j ++) {
-                let result = this.findStartFromEndObject(startName, endObject, availableLocations);
+                let result = this.findStartFromEndObject(startName, endName, endObject, availableLocations);
                 if (result.length > 0) {
-                    let path = [{start: startName}, ...result, {end: endName}];
+                    let path = [...result, {end: endName}];
                     pathsForThisEndLocation.push(path);
                 }
             }
