@@ -48,12 +48,20 @@ export default class Menu extends React.Component {
                             <div className="nav-bottom-item has-text-white has-text-weight-bold">
                                 {this.state.message}
                             </div>
-                            <div className="nav-bottom-item has-text-primary" onClick={this.saveState}>
+                            <a className="nav-bottom-item has-text-primary" onClick={this.saveState}>
                                 Save
-                            </div>
-                            <div className="nav-bottom-item has-text-grey-light" onClick={this.resetState}>
+                            </a>
+                            <a className="nav-bottom-item has-text-light" onClick={this.resetState}>
                                 Reset
-                            </div>
+                            </a>
+                            <a
+                                href="https://github.com/brakkum/ZOoTR-Entrance-Tracker"
+                                className="nav-bottom-item has-text-grey-light"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                GitHub
+                            </a>
                         </div>
                     </div>
                 </div>
