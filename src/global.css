@@ -75,6 +75,29 @@
     justify-content: space-between;
 }
 
+.interior {
+    width: 100%;
+}
+
+.area-display {
+    padding: 5px;
+    margin: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.area-display-entrance {
+    width: 100%;
+}
+
+.has-border-red {
+    border: 2px solid #b63e3e;
+}
+
+.has-border-green {
+    border: 2px solid #69b76c;
+}
+
 .entrance {
     width: 100%;
 }

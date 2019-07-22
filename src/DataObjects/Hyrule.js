@@ -212,7 +212,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Houses["Bosses Hut"]]: {
+            [Houses["Carpenters Tent"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
@@ -614,7 +614,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Houses["Lake Hylia Lab"]]: {
+            [Houses["Lakeside Laboratory"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
@@ -782,7 +782,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Houses["Treasure Chest Game"]]: {
+            [Houses["Treasure Box Shop"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null

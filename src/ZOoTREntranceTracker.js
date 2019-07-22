@@ -41,6 +41,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         let availableHouseEntrances = {}; // areas and the houses within them
         let availableGrottos = []; // grottos not yet assigned to grotto entrance
         let songs = Songs; // songs state
+        let showRouteFinder = false; // hide route finder on start
 
         Object.keys(Hyrule).forEach(area => {
             availableOverworldEntrances[area] = [];
@@ -78,7 +79,8 @@ export default class ZOoTREntranceTracker extends React.Component {
             availableHouses,
             availableHouseEntrances,
             availableGrottos,
-            songs
+            songs,
+            showRouteFinder
         });
     };
 
@@ -113,6 +115,12 @@ export default class ZOoTREntranceTracker extends React.Component {
     resetState = () => {
         localStorage.removeItem(LocalStorageKey.state);
         this.setupTracker();
+    };
+
+    toggleClear = (area, entrance) => {
+        let hyrule = this.state.hyrule;
+        hyrule[area].entrances[entrance].clear = !hyrule[area].entrances[entrance].clear;
+        this.setState({hyrule});
     };
 
     addAdditionalAreas = areaName => {
@@ -232,6 +240,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     setInterior = (area, entrance, interior) => {
         let hyrule = this.state.hyrule;
         hyrule[area].entrances[entrance].interior = interior;
+        hyrule[area].entrances[entrance].clear = false;
         this.setState({hyrule});
     };
 
@@ -375,9 +384,6 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.addInteriorBackIntoPool(obj.type, interior);
                 this.removeInteriorEntrance(interior, {area, entrance});
                 this.removeInteriorEntrance(area, {entrance, interior});
-                // if (obj.type === EntranceTypes.Dungeon) {
-                //     this.removeInteriorEntrance(entrance, {interior});
-                // }
 
                 this.removeAreaIfEmpty(area);
                 if (obj.type === EntranceTypes.House) {
@@ -442,9 +448,6 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.removeInteriorFromPool(vanilla.type, interior);
                 this.addInteriorEntrance(interior, {area, entrance});
                 this.addInteriorEntrance(area, {entrance, interior});
-                // if (vanilla.type === EntranceTypes.Dungeon) {
-                //     this.addInteriorEntrance(entrance, {interior});
-                // }
 
                 this.setAreaToAccessible(area);
                 this.addAdditionalAreas(interior);
@@ -534,6 +537,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                             areaName={areaName}
                             setEntrance={this.setEntrance}
                             resetEntrance={this.resetEntrance}
+                            toggleClear={this.toggleClear}
                         />
                     })}
                 </div>

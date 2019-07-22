@@ -16,19 +16,19 @@ const ValidStartPoints = [
     Grottos["Shield Grave"],
     Grottos["Wolfos Grotto"],
     Houses["Bombchu Bowling"],
-    Houses["Bosses Hut"],
+    Houses["Carpenters Tent"],
     Houses["Fishing"],
     Houses["Granny's Potion Shop"],
     Houses["Guard Hut/Poe Collector"],
     Houses["Impa's House Cow"],
-    Houses["Lake Hylia Lab"],
+    Houses["Lakeside Laboratory"],
     Houses["Link's House"],
     Houses["Lon Lon Tower"],
     Houses["Mask Shop"],
     Houses["Skulltula House"],
     Houses["Stable"],
     Houses["Temple of Time"],
-    Houses["Treasure Chest Game"],
+    Houses["Treasure Box Shop"],
     Houses["Windmill"]
 ];
 

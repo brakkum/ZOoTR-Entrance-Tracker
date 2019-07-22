@@ -19,8 +19,14 @@ export default class Entrance extends React.Component {
                 }>{entranceName}</h6>
                 {entrance.interior !== undefined && entrance.interior !== null ?
                     // has an interior defined, so just display it
-                    <div className="interior-display is-flex">
-                        <span>
+                    <div
+                        className={
+                            "interior-display box has-text-centered is-flex " +
+                            ((entrance.clear !== undefined && entrance.clear) ? "has-border-green" : "has-border-red")
+                        }
+                        onClick={() => this.props.toggleClear(areaName, entranceName)}
+                    >
+                        <span className="interior">
                             {entrance.interior}
                         </span>
                         {/* x icon for resetting an entrance to unchecked */}
@@ -36,17 +42,19 @@ export default class Entrance extends React.Component {
                     entrance.leadsTo !== undefined && entrance.leadsTo !== null
                         ?
                         // points to an area, and maybe an entrance
-                        <div className="interior-display has-text-weight-semibold is-flex">
-                            <span>
+                        <div className="area-display box has-text-weight-semibold is-flex">
+                            <div className="area-display-entrance">
                                 {/* show area at least */}
-                                {entrance.leadsTo.area}
+                                <div className="has-text-centered">
+                                    {entrance.leadsTo.area}
+                                </div>
                                 {/* show entrance if defined */}
                                 {entrance.leadsTo.entrance !== undefined &&
-                                <h6 className="entrance-name has-text-weight-normal">
+                                <div className="has-text-centered is-size-7 has-text-weight-normal">
                                     {entrance.leadsTo.entrance} Entrance
-                                </h6>
+                                </div>
                                 }
-                            </span>
+                            </div>
                             <span className="delete is-pulled-right" onClick={() =>
                                 this.props.resetEntrance(
                                     {

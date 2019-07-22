@@ -5,7 +5,7 @@ const Houses = {
     "Bazaar": "Bazaar",
     "Bombchu Bowling": "Bombchu Bowling",
     "Bombchu Shop": "Bombchu Shop",
-    "Bosses Hut": "Bosses Hut",
+    "Carpenters Tent": "Carpenters Tent",
     "Bottom House": "Bottom House",
     "Child Great Fairy's Fountain": "Child Great Fairy's Fountain",
     "Dampe's Hut": "Dampe's Hut",
@@ -18,7 +18,7 @@ const Houses = {
     "Impa's House Cow": "Impa's House Cow",
     "Impa's House Front": "Impa's House Front",
     "Know-It-All House": "Know-It-All House",
-    "Lake Hylia Lab": "Lake Hylia Lab",
+    "Lakeside Laboratory": "Lakeside Laboratory",
     "Link's House": "Link's House",
     "Lon Lon Tower": "Lon Lon Tower",
     "Mask Shop": "Mask Shop",
@@ -31,7 +31,7 @@ const Houses = {
     "Stable": "Stable",
     "Talon's House": "Talon's House",
     "Temple of Time": "Temple of Time",
-    "Treasure Chest Game": "Treasure Chest Game",
+    "Treasure Box Shop": "Treasure Box Shop",
     "Twins House": "Twins House",
     "Windmill": "Windmill"
 };

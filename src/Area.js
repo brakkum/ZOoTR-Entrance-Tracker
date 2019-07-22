@@ -63,6 +63,7 @@ export default class Area extends React.Component {
                                 entranceName={entranceName}
                                 setEntrance={this.props.setEntrance}
                                 resetEntrance={this.props.resetEntrance}
+                                toggleClear={this.props.toggleClear}
                             />
                         );
                         return null;
