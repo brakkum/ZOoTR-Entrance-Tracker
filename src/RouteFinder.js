@@ -155,7 +155,7 @@ export default class RouteFinder extends React.Component {
     getRoutesFromStartToEnd = (startName, endName) => {
         let availableLocations = this.props.availableLocations;
         let endPaths = [];
-        let numberOfTries = 20;
+        let numberOfTries = 100;
 
         availableLocations[endName].forEach(endObject => {
             let pathsForThisEndLocation = [];

@@ -60,11 +60,10 @@
     max-width: 95%;
     margin: auto;
     align-items: flex-start;
+    align-content: space-around;
 }
 
 .area-box {
-    min-width: 48%;
-    max-width: 90%;
     margin: 20px auto 0 auto;
     padding: 5px;
 }
