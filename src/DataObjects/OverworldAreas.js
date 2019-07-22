@@ -4,7 +4,7 @@ const OverworldAreas = {
     "Death Mountain Trail": "Death Mountain Trail",
     "Death Mountain Crater": "Death Mountain Crater",
     "Desert Colossus": "Desert Colossus",
-    "Gerudos Fortress": "Gerudo's Fortress",
+    "Gerudo's Fortress": "Gerudo's Fortress",
     "Gerudo Valley": "Gerudo Valley",
     "Goron City": "Goron City",
     "Graveyard": "Graveyard",

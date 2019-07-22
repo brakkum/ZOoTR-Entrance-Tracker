@@ -29,7 +29,7 @@ const Grottos = {
     "Royal Family's Tomb": "Royal Family's Tomb",
     "Shield Grave": "Shield Grave",
     "Skulltula Grotto": "Skulltula Grotto",
-    "Storms Grotto": "Song of Storms Grotto",
+    "Song of Storms Grotto": "Song of Storms Grotto",
     "Tree Near Kakariko Grotto": "Tree Near Kakariko Grotto",
     "Wolfos Grotto": "Wolfos Grotto"
 };

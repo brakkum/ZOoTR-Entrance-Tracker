@@ -94,7 +94,7 @@ export default {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos["Storms Grotto"]]: {
+            [Grottos["Song of Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto,
                 "clear": false,
@@ -174,7 +174,7 @@ export default {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos["Storms Grotto"]]: {
+            [Grottos["Song of Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos["Fairy Fountain"],
                 "clear": false,
@@ -208,7 +208,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Grottos["Storms Grotto"]]: {
+            [Grottos["Song of Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos["2 Scrubs"],
                 "clear": false,
@@ -347,7 +347,7 @@ export default {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos["Storms Grotto"]]: {
+            [Grottos["Song of Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos["Skulltula Grotto"],
                 "clear": false,
@@ -584,7 +584,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Grottos["Storms Grotto"]]: {
+            [Grottos["Song of Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos.Grotto,
                 "clear": false,
@@ -836,7 +836,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Grottos["Storms Grotto"]]: {
+            [Grottos["Song of Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos["2 Scrubs"],
                 "clear": false,
@@ -893,7 +893,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Grottos["Storms Grotto"]]: {
+            [Grottos["Song of Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos["Fairy Fountain"],
                 "clear": false,
@@ -952,7 +952,7 @@ export default {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos["Storms Grotto"]]: {
+            [Grottos["Song of Storms Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos["2 Scrubs"],
                 "clear": false,
