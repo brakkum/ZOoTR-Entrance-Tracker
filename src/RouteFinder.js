@@ -259,7 +259,7 @@ export default class RouteFinder extends React.Component {
                         Ignore Kaepora Gaebora
                     </button>
                 </div>
-                {routes !== null ?
+                {routes !== null && routes.length > 0 ?
                     <div className="routing-results section">
                         {routes.map((route, i) => {
                             // each individual route
@@ -300,6 +300,10 @@ export default class RouteFinder extends React.Component {
                             </div>
                         })}
                     </div>
+                    :
+                    routes !== null && routes.length === 0
+                    ?
+                        <h4 className="section is-size-4 has-text-centered">Looks like this route isn't possible yet</h4>
                     :
                     ""
                 }
