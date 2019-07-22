@@ -96,7 +96,7 @@ export default class RouteFinder extends React.Component {
                 }
             }
 
-            if (currentCheck.interior === Houses["Temple of Time"]) {
+            if (currentCheck.interior === Houses["Temple of Time"] || currentCheck.interior === Houses["Windmill"]) {
                 nextLocationToSearch = currentCheck.interior;
             }
         }
@@ -272,19 +272,19 @@ export default class RouteFinder extends React.Component {
                 <div className="routing-options buttons is-centered">
                     <button
                         onClick={this.toggleIgnoreKaeporaGaebora}
-                        className={"button is-small " + (this.state.ignoreKaeporaGaebora ? "is-warning" : "is-light")}
+                        className={"button is-small " + (this.state.ignoreKaeporaGaebora ? "is-warning" : "is-dark is-outlined")}
                     >
                         Ignore Kaepora Gaebora
                     </button>
                     <button
                         onClick={this.toggleIgnoreSongs}
-                        className={"button is-small " + (this.state.ignoreSongs ? "is-warning" : "is-light")}
+                        className={"button is-small " + (this.state.ignoreSongs ? "is-warning" : "is-dark is-outlined")}
                     >
                         Ignore Songs
                     </button>
                     <button
                         onClick={this.toggleIgnoreHauntedWasteland}
-                        className={"button is-small " + (this.state.ignoreHauntedWasteland ? "is-warning" : "is-light")}
+                        className={"button is-small " + (this.state.ignoreHauntedWasteland ? "is-warning" : "is-dark is-outlined")}
                     >
                         Ignore Haunted Wasteland
                     </button>

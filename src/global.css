@@ -1,4 +1,8 @@
 
+.zootr-entrance-tracker {
+    background-color: #fffdf8;
+}
+
 .nav-bottom {
     display: flex;
     justify-content: space-between;
