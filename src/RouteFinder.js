@@ -95,6 +95,10 @@ export default class RouteFinder extends React.Component {
                     return [{start: currentCheck.interior}];
                 }
             }
+
+            if (currentCheck.interior === Houses["Temple of Time"]) {
+                nextLocationToSearch = currentCheck.interior;
+            }
         }
 
         if (locationIsDungeon) {
@@ -151,6 +155,9 @@ export default class RouteFinder extends React.Component {
             for (let i = 0; i < nextArray.length; i++) {
                 let result = this.findStartFromEndObject(startName, endName, nextArray[i], availableLocations, currentlyBeingSearched, completelySearched);
                 if (result.length > 0) {
+                    if (locationIsHouse) {
+                        return [...result, {entrance: currentCheck.interior}];
+                    }
                     return [...result, currentCheck];
                 }
             }
