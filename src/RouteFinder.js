@@ -14,7 +14,8 @@ export default class RouteFinder extends React.Component {
         start: null,
         end: null,
         ignoreKaeporaGaebora: false,
-        ignoreSongs: false
+        ignoreSongs: false,
+        ignoreHauntedWasteland: false
     };
 
     setStart = start => {
@@ -45,6 +46,10 @@ export default class RouteFinder extends React.Component {
 
     toggleIgnoreSongs = () => {
         this.setState({ignoreSongs: !this.state.ignoreSongs});
+    };
+
+    toggleIgnoreHauntedWasteland = () => {
+        this.setState({ignoreHauntedWasteland: !this.state.ignoreHauntedWasteland});
     };
 
     shuffleArray = array => {
@@ -129,7 +134,8 @@ export default class RouteFinder extends React.Component {
                 }
             }
 
-            if (currentCheck.entrance !== EntranceTypes["Kaepora Gaebora"] || !this.state.ignoreKaeporaGaebora) {
+            if ((currentCheck.entrance !== EntranceTypes["Kaepora Gaebora"] || !this.state.ignoreKaeporaGaebora) &&
+                (currentCheck.area !== OverworldAreas["Haunted Wasteland"] || !this.state.ignoreHauntedWasteland)) {
                 nextLocationToSearch = currentCheck.area;
             }
         }
@@ -268,6 +274,12 @@ export default class RouteFinder extends React.Component {
                         className={"button is-small " + (this.state.ignoreSongs ? "is-warning" : "is-light")}
                     >
                         Ignore Songs
+                    </button>
+                    <button
+                        onClick={this.toggleIgnoreHauntedWasteland}
+                        className={"button is-small " + (this.state.ignoreHauntedWasteland ? "is-warning" : "is-light")}
+                    >
+                        Ignore Haunted Wasteland
                     </button>
                 </div>
                 {routes !== null && routes.length > 0 ?
