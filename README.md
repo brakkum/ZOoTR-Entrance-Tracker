@@ -18,6 +18,7 @@ Click on 'Show Route Finder' in the top navbar to open it.
 Just select a start location and an end, and the tracker will show the shortest routes to get there.
 For locations that are a single entity, such as overworld areas or dungeons, a single route will be returned.
 For locations that have multiple instances, such as grottos or some houses, the routes to all the discovered locations will be returned.
+There are a few options as well that are located underneath the selection boxes, to try and help avoid some issues that may arise based on location and Link's age.
 
 The naming of some locations in the option menus may be misleading at first.
 For example in the Kokiri Forest area, the names of all the houses are explicitly labeled.
