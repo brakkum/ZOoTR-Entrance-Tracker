@@ -17,7 +17,12 @@
 
 .route-finder {
     width: 95%;
+    margin: auto;
+}
+
+.route-points-select {
     max-width: 500px;
+    width: 95%;
     margin: auto;
 }
 
@@ -27,6 +32,20 @@
     max-width: 600px;
     margin: 10px auto;
     justify-content: space-between;
+}
+
+.routing-results {
+    border-radius: 4px;
+}
+
+.route {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.route-step {
+    width: auto;
+    height: 100%;
 }
 
 .selected-location {

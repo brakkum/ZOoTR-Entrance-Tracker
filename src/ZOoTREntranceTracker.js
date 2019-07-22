@@ -117,7 +117,6 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     addAdditionalAreas = areaName => {
         if (AreasToAdd[areaName] !== undefined) {
-            console.log("add additional area: ",AreasToAdd[areaName])
             this.setAreaToAccessible(AreasToAdd[areaName].name);
             this.addInteriorEntrance(AreasToAdd[areaName].name, AreasToAdd[areaName].entranceObject);
         }
@@ -125,7 +124,6 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     removeAdditionalAreas = areaName => {
         if (AreasToAdd[areaName] !== undefined) {
-            console.log("remove additional area: ",AreasToAdd[areaName])
             this.removeAreaIfEmpty(AreasToAdd[areaName].name);
             this.removeInteriorEntrance(AreasToAdd[areaName].name, AreasToAdd[areaName].entranceObject);
         }
@@ -144,14 +142,12 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     addInteriorEntrance = (location, obj) => {
-        console.log("adding interior entrance: ", location, obj);
         let interiorEntrances = this.state.interiorEntrances;
         if (interiorEntrances[location] === undefined) {
             interiorEntrances[location] = [];
         }
         interiorEntrances[location].push(obj);
         if (InteriorConnection[location] !== undefined) {
-            console.log('add additional int ent: ',InteriorConnection[location])
             this.addInteriorEntrance(
                 InteriorConnection[location].location,
                 InteriorConnection[location].entranceObject
@@ -165,10 +161,8 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     // type is only necessary for songs at the moment
     removeInteriorEntrance = (location, obj) => {
-        console.log("removing interior entrance: ", location, obj);
         let interiorEntrances = this.state.interiorEntrances;
         if (InteriorConnection[location] !== undefined) {
-            console.log('remove additional int ent: ',InteriorConnection[location])
             this.removeInteriorEntrance(
                 InteriorConnection[location].location,
                 InteriorConnection[location].entranceObject
@@ -195,7 +189,6 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     acquireSong = song => {
-        console.log("add song: ", song)
         let songs = this.state.songs;
         songs[song].collected = true;
         if (songs[song].locationType === EntranceTypes.Overworld) {
@@ -207,7 +200,6 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     removeSong = song => {
-        console.log("remove song: ", song)
         let songs = this.state.songs;
         songs[song].collected = false;
         this.removeInteriorEntrance(songs[song].location, songs[song].object);

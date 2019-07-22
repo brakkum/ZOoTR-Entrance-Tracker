@@ -6,6 +6,7 @@ import OverworldAreas from "./DataObjects/OverworldAreas";
 import Songs from "./DataObjects/Songs";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import ValidStartPoints from "./DataObjects/ValidStartPoints";
+import InteriorConnection from "./DataObjects/InteriorConnection";
 
 export default class RouteFinder extends React.Component {
 
@@ -62,6 +63,7 @@ export default class RouteFinder extends React.Component {
         let locationIsHouse = currentCheck.entrance !== undefined && currentCheck.interior !== undefined && Houses[currentCheck.interior] !== undefined;
         let locationIsDungeon = currentCheck.entrance !== undefined && currentCheck.interior !== undefined && Dungeons[currentCheck.interior] !== undefined;
         let locationIsOverworld = currentCheck.area !== undefined && currentCheck.entrance !== undefined && OverworldAreas[currentCheck.area] !== undefined;
+        let locationIsInteriorConnection = currentCheck.area === null && currentCheck.entrance !== undefined && InteriorConnection[currentCheck.entrance] !== undefined;
 
         let nextLocationToSearch = "";
 
@@ -83,10 +85,6 @@ export default class RouteFinder extends React.Component {
                     return [{start: currentCheck.interior}];
                 }
             }
-
-            if (currentCheck.interior === Houses.Windmill) {
-                nextLocationToSearch = Houses.Windmill;
-            }
         }
 
         if (locationIsDungeon) {
@@ -98,10 +96,6 @@ export default class RouteFinder extends React.Component {
                 if (currentCheck.interior === startName) {
                     return [{start: startName}, {entrance: currentCheck.entrance}];
                 }
-            }
-
-            if (currentCheck.interior === Dungeons["Spirit Temple"]) {
-                nextLocationToSearch = Dungeons["Spirit Temple"];
             }
         }
 
@@ -124,7 +118,6 @@ export default class RouteFinder extends React.Component {
 
             if (startIsOverworld) {
                 if (currentCheck.area === startName) {
-                    console.log(`found match`)
                     if (currentCheck.entrance !== EntranceTypes["Kaepora Gaebora"] || !this.state.ignoreKaeporaGaebora) {
                         return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
                     }
@@ -134,6 +127,10 @@ export default class RouteFinder extends React.Component {
             if (currentCheck.entrance !== EntranceTypes["Kaepora Gaebora"] || !this.state.ignoreKaeporaGaebora) {
                 nextLocationToSearch = currentCheck.area;
             }
+        }
+
+        if (locationIsInteriorConnection) {
+            nextLocationToSearch = currentCheck.entrance;
         }
 
         if (nextLocationToSearch !== "") {
@@ -177,7 +174,7 @@ export default class RouteFinder extends React.Component {
 
         if (endPaths.length > 0) {
             if (ValidStartPoints.includes(endName)) {
-                return endPaths.reduce((a, b) => a.length <= b.length ? a : b);
+                return [endPaths.reduce((a, b) => a.length <= b.length ? a : b)];
             } else {
                 return endPaths;
             }
@@ -193,7 +190,6 @@ export default class RouteFinder extends React.Component {
             return null;
         }
         let result = this.getRoutesFromStartToEnd(start, end);
-        console.log(result);
         return result;
     };
 
@@ -204,7 +200,7 @@ export default class RouteFinder extends React.Component {
         }
         let start = this.state.start;
         let end = this.state.end;
-        let route = this.getRoute();
+        let routes = this.getRoute();
         return(
             <div className="route-finder">
                 <div className="route-points-select">
@@ -258,14 +254,51 @@ export default class RouteFinder extends React.Component {
                 <div className="routing-options buttons is-centered">
                     <button
                         onClick={this.toggleIgnoreKaeporaGaebora}
-                        className={"button is-small " + (this.state.ignoreKaeporaGaebora ? "is-primary" : "is-light")}
+                        className={"button is-small " + (this.state.ignoreKaeporaGaebora ? "is-warning" : "is-light")}
                     >
                         Ignore Kaepora Gaebora
                     </button>
                 </div>
-                {route !== null ?
-                    <div className="result">
-
+                {routes !== null ?
+                    <div className="routing-results section">
+                        {routes.map((route, i) => {
+                            // each individual route
+                            return <div key={i} className="route columns is-vcentered">
+                                {route.map((step, j) => {
+                                    // each step of a route
+                                    return <div key={j} className="route-step column has-text-centered">
+                                        {step.start !== undefined &&
+                                            <span>
+                                                {step.start}
+                                            </span>
+                                        }
+                                        {step.song !== undefined &&
+                                            <span
+                                                className="has-text-weight-bold"
+                                                style={{textShadow: `0px 0px 5px ${Songs[step.song].color}, 2px 4px 9px ${Songs[step.song].color}`}}
+                                            >
+                                                {step.song}
+                                            </span>
+                                        }
+                                        {step.area !== undefined &&
+                                            <div className="has-text-weight-semibold">
+                                                {step.area}
+                                            </div>
+                                        }
+                                        {step.entrance !== undefined &&
+                                            <div>
+                                                {step.entrance} {![null, undefined].includes(step.area) && "Entrance"}
+                                            </div>
+                                        }
+                                        {step.end !== undefined &&
+                                            <span>
+                                                {step.end}
+                                            </span>
+                                        }
+                                    </div>
+                                })}
+                            </div>
+                        })}
                     </div>
                     :
                     ""
