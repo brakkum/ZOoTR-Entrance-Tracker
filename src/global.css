@@ -1,6 +1,22 @@
 
+html {
+    background-image: url("/triforce.png");
+    background-repeat: no-repeat;
+    background-size: 30%;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: soft-light;
+    position: relative;
+    height: 100vh;
+    background-color: #eeebe1;
+}
+
 .zootr-entrance-tracker {
-    background-color: #fffdf8;
+    padding-top: 100px;
+}
+
+.bottom-padding {
+    height: 300px;
 }
 
 .nav-bottom {
@@ -40,11 +56,13 @@
 
 .routing-results {
     border-radius: 4px;
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
 }
 
-.route {
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
+.routing-results .route:not(:last-child) {
+    border-bottom: 1px solid #a5a38c;
 }
 
 .route-step {
@@ -60,16 +78,21 @@
     margin-left: 10px;
 }
 
-.app-container {
+.areas-container {
     max-width: 95%;
     margin: auto;
     align-items: flex-start;
     align-content: space-around;
+    padding-bottom: 300px;
+}
+
+.area-box-container {
+    margin: 20px auto 0 auto;
+    padding: 5px;
 }
 
 .area-box {
-    margin: 20px auto 0 auto;
-    padding: 5px;
+    background-color: #fbfbfb;
 }
 
 .interior-display {
@@ -92,10 +115,21 @@
 
 .area-display-entrance {
     width: 100%;
+    margin: 10px;
+}
+
+.has-background-red {
+    background-color: #edbebf;
+    border: 2px solid #b63e3e;
 }
 
 .has-border-red {
     border: 2px solid #b63e3e;
+}
+
+.has-background-green {
+    background-color: #cbf7cd;
+    border: 2px solid #69b76c;
 }
 
 .has-border-green {
@@ -123,12 +157,4 @@
 
 .flex-wraps {
     flex-wrap: wrap;
-}
-
-.top-padding {
-    height: 100px;
-}
-
-.bottom-padding {
-    height: 300px;
 }

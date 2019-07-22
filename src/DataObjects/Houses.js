@@ -5,7 +5,7 @@ const Houses = {
     "Bazaar": "Bazaar",
     "Bombchu Bowling": "Bombchu Bowling",
     "Bombchu Shop": "Bombchu Shop",
-    "Carpenters Tent": "Carpenters Tent",
+    "Carpenter Tent": "Carpenter Tent",
     "Bottom House": "Bottom House",
     "Child Great Fairy's Fountain": "Child Great Fairy's Fountain",
     "Dampe's Hut": "Dampe's Hut",

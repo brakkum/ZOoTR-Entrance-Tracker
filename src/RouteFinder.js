@@ -272,25 +272,25 @@ export default class RouteFinder extends React.Component {
                 <div className="routing-options buttons is-centered">
                     <button
                         onClick={this.toggleIgnoreKaeporaGaebora}
-                        className={"button is-small " + (this.state.ignoreKaeporaGaebora ? "is-warning" : "is-dark is-outlined")}
+                        className={"button is-small " + (this.state.ignoreKaeporaGaebora ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Kaepora Gaebora
                     </button>
                     <button
                         onClick={this.toggleIgnoreSongs}
-                        className={"button is-small " + (this.state.ignoreSongs ? "is-warning" : "is-dark is-outlined")}
+                        className={"button is-small " + (this.state.ignoreSongs ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Songs
                     </button>
                     <button
                         onClick={this.toggleIgnoreHauntedWasteland}
-                        className={"button is-small " + (this.state.ignoreHauntedWasteland ? "is-warning" : "is-dark is-outlined")}
+                        className={"button is-small " + (this.state.ignoreHauntedWasteland ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Haunted Wasteland
                     </button>
                 </div>
                 {routes !== null && routes.length > 0 ?
-                    <div className="routing-results section">
+                    <div className="section routing-results">
                         {routes.map((route, i) => {
                             // each individual route
                             return <div key={i} className="route columns is-vcentered">
@@ -304,8 +304,12 @@ export default class RouteFinder extends React.Component {
                                         }
                                         {step.song !== undefined &&
                                             <span
-                                                className="has-text-weight-bold"
-                                                style={{textShadow: `0px 0px 5px ${Songs[step.song].color}, 2px 4px 9px ${Songs[step.song].color}`}}
+                                                className=""
+                                                style={{textShadow:
+                                                    `0px 0px 10px ${Songs[step.song].color}, 
+                                                    0px 0px 5px ${Songs[step.song].color}, 
+                                                    1px 2px 9px ${Songs[step.song].color}`
+                                                }}
                                             >
                                                 {step.song}
                                             </span>
@@ -333,7 +337,7 @@ export default class RouteFinder extends React.Component {
                     :
                     routes !== null && routes.length === 0
                     ?
-                        <h4 className="section is-size-4 has-text-centered">Looks like this route isn't possible yet</h4>
+                        <h4 className="is-size-4 has-text-centered">Looks like this route isn't possible yet</h4>
                     :
                     ""
                 }

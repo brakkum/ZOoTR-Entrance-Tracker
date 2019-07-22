@@ -4,11 +4,24 @@ import React from "react";
 
 export default class Entrance extends React.Component {
 
+    state = {
+        isHovered: false
+    };
+
+    mouseOverHandle = () => {
+        this.setState({isHovered: true});
+    };
+
+    mouseOutHandle = () => {
+        this.setState({isHovered: false});
+    };
+
     render() {
         let options = this.props.options;
         let entrance = this.props.entrance;
         let areaName = this.props.areaName;
         let entranceName = this.props.entranceName;
+        let isHovered = this.state.isHovered;
 
         return(
             <div className="entrance">
@@ -22,8 +35,16 @@ export default class Entrance extends React.Component {
                     <div
                         className={
                             "interior-display box has-text-centered is-flex " +
-                            ((entrance.clear !== undefined && entrance.clear) ? "has-border-green" : "has-border-red")
+                            (
+                                entrance.clear === undefined ? "" :
+                                entrance.clear && isHovered ? "has-background-green" :
+                                    !entrance.clear && isHovered ? "has-background-red" :
+                                        entrance.clear ? "has-border-green" :
+                                            !entrance.clear ? "has-border-red" : ""
+                            )
                         }
+                        onMouseOver={this.mouseOverHandle}
+                        onMouseOut={this.mouseOutHandle}
                         onClick={() => this.props.toggleClear(areaName, entranceName)}
                     >
                         <span className="interior">

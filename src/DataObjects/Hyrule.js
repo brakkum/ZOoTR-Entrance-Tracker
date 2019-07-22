@@ -9,6 +9,7 @@ export default {
     [OverworldAreas["Castle Town Entrance"]]: {
         "colors": [
             "#dddddd",
+            "#bbbacd",
             "#cdcdcd"
         ],
         "isAccessible": false,
@@ -32,8 +33,8 @@ export default {
     },
     [OverworldAreas["Death Mountain Crater"]]: {
         "colors": [
-            "#633c13",
-            "#90201e"
+            "#7c451c",
+            "#901f11"
         ],
         "isAccessible": false,
         "hasKaeporaLakeHyliaLanding": false,
@@ -73,8 +74,8 @@ export default {
     },
     [OverworldAreas["Death Mountain Trail"]]: {
         "colors": [
-            "#a07136",
-            "#916249"
+            "#a0793c",
+            "#93584a"
         ],
         "isAccessible": false,
         "hasKaeporaLakeHyliaLanding": false,
@@ -122,6 +123,7 @@ export default {
     [OverworldAreas["Desert Colossus"]]: {
         "colors": [
             "#b79f60",
+            "#c6b34e",
             "#c1ad96"
         ],
         "isAccessible": false,
@@ -212,7 +214,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Houses["Carpenters Tent"]]: {
+            [Houses["Carpenter Tent"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
@@ -356,7 +358,8 @@ export default {
     [OverworldAreas["Hyrule Field"]]: {
         "colors": [
             "#7cab61",
-            "#c9bc80"
+            "#c9bc80",
+            "#c9bd61"
         ],
         "isAccessible": false,
         "hasKaeporaLakeHyliaLanding": false,
@@ -442,6 +445,7 @@ export default {
     },
     [OverworldAreas["Kakariko Village"]]: {
         "colors": [
+            "#91aa94",
             "#a5aa9c",
             "#aa9191"
         ],
@@ -526,7 +530,8 @@ export default {
     [OverworldAreas["Kokiri Forest"]]: {
         "colors": [
             "#82b047",
-            "#644e42"
+            "#98b08b",
+            "#866f65"
         ],
         "isAccessible": false,
         "hasKaeporaLakeHyliaLanding": false,
@@ -802,6 +807,7 @@ export default {
     },
     [OverworldAreas["Sacred Forest Meadow"]]: {
         "colors": [
+            "#557356",
             "#72c041",
             "#9caf7c"
         ],
@@ -841,7 +847,8 @@ export default {
     [OverworldAreas["Temple of Time Entrance"]]: {
         "colors": [
             "#74856e",
-            "#83766a"
+            "#83766a",
+            "#d6d5ba"
         ],
         "isAccessible": false,
         "hasKaeporaLakeHyliaLanding": false,
@@ -861,7 +868,8 @@ export default {
     [OverworldAreas["Zora's Domain"]]: {
         "colors": [
             "#658285",
-            "#cfccec"
+            "#b9b7ec",
+            "#7b6753"
         ],
         "isAccessible": false,
         "hasKaeporaLakeHyliaLanding": false,
@@ -895,7 +903,7 @@ export default {
     },
     [OverworldAreas["Zora's Fountain"]]: {
         "colors": [
-            "#949cc6",
+            "#96b0c6",
             "#8e8872"
         ],
         "isAccessible": false,
@@ -926,7 +934,7 @@ export default {
     [OverworldAreas["Zora's River"]]: {
         "colors": [
             "#9996c6",
-            "#5c8e56"
+            "#75b46d"
         ],
         "isAccessible": false,
         "hasKaeporaLakeHyliaLanding": false,

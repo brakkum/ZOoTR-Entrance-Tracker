@@ -16,7 +16,7 @@ const ValidStartPoints = [
     Grottos["Shield Grave"],
     Grottos["Wolfos Grotto"],
     Houses["Bombchu Bowling"],
-    Houses["Carpenters Tent"],
+    Houses["Carpenter Tent"],
     Houses["Fishing"],
     Houses["Granny's Potion Shop"],
     Houses["Guard Hut/Poe Collector"],

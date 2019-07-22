@@ -19,7 +19,7 @@ export default class Area extends React.Component {
         let secondCol = [];
 
         return(
-            <div className="area-box box"
+            <div className="area-box-container box"
                  style={{
                      // set border to selected colors
                      // default solid grey
@@ -30,7 +30,7 @@ export default class Area extends React.Component {
                              : "grey"
                  }}
             >
-                <div className="box">
+                <div className="box area-box">
                     <h4 className="is-size-4 has-text-weight-semibold">{areaName}</h4>
                     {/* iterate through the entrances of the area */}
                     {Object.keys(area.entrances).sort().map((entranceName, i) => {

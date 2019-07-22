@@ -491,6 +491,8 @@ export default class ZOoTREntranceTracker extends React.Component {
         return (
             <div className="zootr-entrance-tracker">
 
+                <div className="app-background" />
+
                 <Menu
                     saveState={this.saveState}
                     resetState={this.resetState}
@@ -520,7 +522,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                     }
                 </div>
 
-                <div className="app-container is-flex-desktop is-flex-tablet is-multiline flex-wraps">
+                <div className="areas-container is-flex-desktop is-flex-tablet is-multiline flex-wraps">
                     {/* iterate through the areas of Hyrule */}
                     {hyrule !== undefined && Object.keys(hyrule).sort().map((areaName, i) => {
                         // get the current areas object from state
@@ -541,8 +543,6 @@ export default class ZOoTREntranceTracker extends React.Component {
                         />
                     })}
                 </div>
-
-                <div className="bottom-padding" />
 
                 {/* display songs that can be collected and may open new areas */}
                 <div className="songs-container navbar is-fixed-bottom has-background-dark">
