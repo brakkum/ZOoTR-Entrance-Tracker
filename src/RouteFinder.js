@@ -196,7 +196,7 @@ export default class RouteFinder extends React.Component {
     render() {
         let availableLocations = Object.keys(this.props.availableLocations);
         if (availableLocations.length < 2) {
-            return <h4 className="is-size-4 has-text-centered">More open areas necessary</h4>;
+            return <h4 className="section is-size-4 has-text-centered">More open areas necessary</h4>;
         }
         let start = this.state.start;
         let end = this.state.end;
