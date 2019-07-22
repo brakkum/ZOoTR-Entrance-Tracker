@@ -13,7 +13,8 @@ export default class RouteFinder extends React.Component {
     state = {
         start: null,
         end: null,
-        ignoreKaeporaGaebora: false
+        ignoreKaeporaGaebora: false,
+        ignoreSongs: false
     };
 
     setStart = start => {
@@ -40,6 +41,10 @@ export default class RouteFinder extends React.Component {
 
     toggleIgnoreKaeporaGaebora = () => {
         this.setState({ignoreKaeporaGaebora: !this.state.ignoreKaeporaGaebora});
+    };
+
+    toggleIgnoreSongs = () => {
+        this.setState({ignoreSongs: !this.state.ignoreSongs});
     };
 
     shuffleArray = array => {
@@ -71,7 +76,7 @@ export default class RouteFinder extends React.Component {
             currentlyBeingSearched.push(endName);
         }
 
-        if (locationIsSong) {
+        if (locationIsSong && !this.state.ignoreSongs) {
             return [{start: startName}, {song: currentCheck.song}];
         }
 
@@ -257,6 +262,12 @@ export default class RouteFinder extends React.Component {
                         className={"button is-small " + (this.state.ignoreKaeporaGaebora ? "is-warning" : "is-light")}
                     >
                         Ignore Kaepora Gaebora
+                    </button>
+                    <button
+                        onClick={this.toggleIgnoreSongs}
+                        className={"button is-small " + (this.state.ignoreSongs ? "is-warning" : "is-light")}
+                    >
+                        Ignore Songs
                     </button>
                 </div>
                 {routes !== null && routes.length > 0 ?
