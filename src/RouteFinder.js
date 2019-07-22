@@ -5,6 +5,7 @@ import Dungeons from "./DataObjects/Dungeons";
 import OverworldAreas from "./DataObjects/OverworldAreas";
 import Songs from "./DataObjects/Songs";
 import EntranceTypes from "./DataObjects/EntranceTypes";
+import ValidStartPoints from "./DataObjects/ValidStartPoints";
 
 export default class RouteFinder extends React.Component {
 
@@ -161,7 +162,7 @@ export default class RouteFinder extends React.Component {
 
         availableLocations[endName].forEach(endObject => {
             let pathsForThisEndLocation = [];
-            for (let j = 0; j < numberOfTries; j ++) {
+            for (let i = 0; i < numberOfTries; i ++) {
                 let result = this.findStartFromEndObject(startName, endName, endObject, availableLocations);
                 if (result.length > 0) {
                     let path = [...result, {end: endName}];
@@ -175,7 +176,11 @@ export default class RouteFinder extends React.Component {
         });
 
         if (endPaths.length > 0) {
-            return endPaths;
+            if (ValidStartPoints.includes(endName)) {
+                return endPaths.reduce((a, b) => a.length <= b.length ? a : b);
+            } else {
+                return endPaths;
+            }
         } else {
             return [];
         }
@@ -210,7 +215,7 @@ export default class RouteFinder extends React.Component {
                                 <select value="Select Location" onChange={e => this.setStart(e.target.value)}>
                                     <option value="">Select Location</option>
                                     {availableLocations.sort().map((location, i) => {
-                                        if (location === end) {
+                                        if (location === end || !ValidStartPoints.includes(location)) {
                                             return null;
                                         }
                                         return <option key={i} value={location}>

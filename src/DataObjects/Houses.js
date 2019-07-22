@@ -18,7 +18,9 @@ const Houses = {
     "Impa's House Cow": "Impa's House Cow",
     "Impa's House Front": "Impa's House Front",
     "Know-It-All House": "Know-It-All House",
+    "Lake Hylia Lab": "Lake Hylia Lab",
     "Link's House": "Link's House",
+    "Lon Lon Tower": "Lon Lon Tower",
     "Mask Shop": "Mask Shop",
     "Mido's House": "Mido's House",
     "Potion Shop": "Potion Shop",
@@ -30,9 +32,7 @@ const Houses = {
     "Talon's House": "Talon's House",
     "Temple of Time": "Temple of Time",
     "Treasure Chest Game": "Treasure Chest Game",
-    "Lon Lon Tower": "Lon Lon Tower",
     "Twins House": "Twins House",
-    "Lake Hylia Lab": "Lake Hylia Lab",
     "Windmill": "Windmill"
 };
 
