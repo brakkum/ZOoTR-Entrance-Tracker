@@ -94,7 +94,8 @@ export default class ZOoTREntranceTracker extends React.Component {
         let prompts = [];
 
         if ((startAsChild && interiorEntrances[Houses["Link's House"]] === undefined) ||
-            (interiorEntrances[Houses["Link's House"]] === undefined && interiorEntrances[Houses["Temple of Time"]] !== undefined)) {
+            (interiorEntrances[Houses["Link's House"]] === undefined &&
+                interiorEntrances[Houses["Temple of Time"]] !== undefined)) {
             prompts.push(Houses["Link's House"]);
         }
 
@@ -507,6 +508,8 @@ export default class ZOoTREntranceTracker extends React.Component {
         let housesToPromptFor = this.housesToPromptForBasedOnState();
         let songs = this.state.songs;
         let showRouteFinder = this.state.showRouteFinder;
+        let interiorEntrances = this.state.interiorEntrances;
+        let startAsChild = this.state.startAsChild;
 
         return (
             <div className="zootr-entrance-tracker">
@@ -524,7 +527,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
                 {showRouteFinder ?
                     <RouteFinder
-                        availableLocations={this.state.interiorEntrances}
+                        availableLocations={interiorEntrances}
                         hyrule={hyrule}
                     />
                     :
@@ -539,8 +542,11 @@ export default class ZOoTREntranceTracker extends React.Component {
                                 houseToPromptFor={house}
                                 availableHouseEntrances={this.state.availableHouseEntrances}
                                 setEntrance={this.setEntrance}
-                                showInitialAgeCheck={Object.keys(this.state.interiorEntrances).length === 0}
-                                startAsChild={this.state.startAsChild}
+                                showInitialAgeCheck={
+                                    startAsChild && interiorEntrances[Houses["Link's House"]] === undefined ||
+                                        !startAsChild && interiorEntrances[Houses["Temple of Time"]] === undefined
+                                }
+                                startAsChild={startAsChild}
                                 toggleStartAsChild={this.toggleStartAsChild}
                             />
                         })
@@ -571,7 +577,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
                 {/* display songs that can be collected and may open new areas */}
                 <div className="songs-container navbar is-fixed-bottom has-background-dark">
-                    {Object.keys(songs).map((song, i) => {
+                    {Object.keys(interiorEntrances).length > 1 && Object.keys(songs).map((song, i) => {
                         return <Song
                             key={i}
                             song={songs[song]}
