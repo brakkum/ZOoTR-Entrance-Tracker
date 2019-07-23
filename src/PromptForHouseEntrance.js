@@ -29,6 +29,8 @@ export default class PromptForHouseEntrance extends React.Component {
     render() {
         let houseToPromptFor = this.props.houseToPromptFor;
         let availableEntrances = this.props.availableHouseEntrances;
+        let showInitialAgeCheck = this.props.showInitialAgeCheck;
+        let startAsChild = this.props.startAsChild;
         if (!availableEntrances) {
             return null;
         }
@@ -69,6 +71,16 @@ export default class PromptForHouseEntrance extends React.Component {
                         Add {houseToPromptFor}
                     </button>
                 </div>
+                {showInitialAgeCheck &&
+                    <div className="has-text-centered">
+                        <button
+                            className="button "
+                            onClick={this.props.toggleStartAsChild}
+                        >
+                            Start as {startAsChild ? "Adult" : "Child"}
+                        </button>
+                    </div>
+                }
             </div>
         )
     }

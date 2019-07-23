@@ -25,7 +25,8 @@ export default class ZOoTREntranceTracker extends React.Component {
         availableHouseEntrances: {}, // house entrances that have not been used
         availableGrottos: [], // grottos not yet assigned to grotto entrance
         songs: {}, // songs state
-        showRouteFinder: false // show route finder
+        showRouteFinder: false, // show route finder
+        startAsChild: true // default start as child
     };
 
     toggleRouteFinder = () => {
@@ -42,6 +43,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         let availableGrottos = []; // grottos not yet assigned to grotto entrance
         let songs = Songs; // songs state
         let showRouteFinder = false; // hide route finder on start
+        let startAsChild = true; // default to starting as child
 
         Object.keys(Hyrule).forEach(area => {
             availableOverworldEntrances[area] = [];
@@ -80,15 +82,19 @@ export default class ZOoTREntranceTracker extends React.Component {
             availableHouseEntrances,
             availableGrottos,
             songs,
-            showRouteFinder
+            showRouteFinder,
+            startAsChild
         });
     };
 
     houseToPromptForBasedOnState = () => {
         let interiorEntrances = this.state.interiorEntrances;
         let songs = this.state.songs;
-        if (interiorEntrances[Houses["Link's House"]] === undefined) {
+        let startAsChild = this.state.startAsChild;
+        if (startAsChild && interiorEntrances[Houses["Link's House"]] === undefined) {
             return Houses["Link's House"];
+        } else if (!startAsChild && interiorEntrances[Houses["Temple of Time"]] === undefined) {
+            return Houses["Temple of Time"];
         } else if (interiorEntrances[Grottos["Dampe's Grave"]] !== undefined &&
             interiorEntrances[Houses.Windmill].length <= 1) {
             return Houses.Windmill;
@@ -97,6 +103,10 @@ export default class ZOoTREntranceTracker extends React.Component {
             return Houses["Temple of Time"];
         }
         return null;
+    };
+
+    toggleStartAsChild = () => {
+        this.setState({startAsChild: !this.state.startAsChild});
     };
 
     saveState = () => {
@@ -517,6 +527,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                             houseToPromptFor={houseToPromptFor}
                             availableHouseEntrances={this.state.availableHouseEntrances}
                             setEntrance={this.setEntrance}
+                            showInitialAgeCheck={Object.keys(this.state.interiorEntrances).length === 0}
+                            startAsChild={this.state.startAsChild}
+                            toggleStartAsChild={this.toggleStartAsChild}
                         />
                         : ""
                     }
