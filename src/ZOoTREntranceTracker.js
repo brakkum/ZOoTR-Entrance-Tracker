@@ -41,7 +41,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         let availableHouses = []; // houses not yet assigned to house entrance
         let availableHouseEntrances = {}; // areas and the houses within them
         let availableGrottos = []; // grottos not yet assigned to grotto entrance
-        let songs = Songs; // songs state
+        let songs = JSON.parse(JSON.stringify(Songs)); // songs state
         let showRouteFinder = false; // hide route finder on start
         let startAsChild = true; // default to starting as child
 
@@ -87,23 +87,32 @@ export default class ZOoTREntranceTracker extends React.Component {
         });
     };
 
-    houseToPromptForBasedOnState = () => {
+    housesToPromptForBasedOnState = () => {
         let interiorEntrances = this.state.interiorEntrances;
         let songs = this.state.songs;
         let startAsChild = this.state.startAsChild;
+        let prompts = [];
+
         if ((startAsChild && interiorEntrances[Houses["Link's House"]] === undefined) ||
             (interiorEntrances[Houses["Link's House"]] === undefined && interiorEntrances[Houses["Temple of Time"]] !== undefined)) {
-            return Houses["Link's House"];
-        } else if (!startAsChild && interiorEntrances[Houses["Temple of Time"]] === undefined) {
-            return Houses["Temple of Time"];
-        } else if (interiorEntrances[Grottos["Dampe's Grave"]] !== undefined &&
-            interiorEntrances[Houses.Windmill].length <= 1) {
-            return Houses.Windmill;
-        } else if (songs["Prelude of Light"].collected &&
-            interiorEntrances[Houses["Temple of Time"]].length === 1) {
-            return Houses["Temple of Time"];
+            prompts.push(Houses["Link's House"]);
         }
-        return null;
+
+        if (!startAsChild && interiorEntrances[Houses["Temple of Time"]] === undefined) {
+            prompts.push(Houses["Temple of Time"]);
+        }
+
+        if (interiorEntrances[Grottos["Dampe's Grave"]] !== undefined &&
+            interiorEntrances[Houses.Windmill].length <= 1) {
+            prompts.push(Houses.Windmill);
+        }
+
+        if (songs["Prelude of Light"] !== undefined &&
+            songs["Prelude of Light"].collected &&
+            interiorEntrances[Houses["Temple of Time"]].length === 1) {
+            prompts.push(Houses["Temple of Time"]);
+        }
+        return prompts;
     };
 
     toggleStartAsChild = () => {
@@ -495,7 +504,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     render() {
         let hyrule = this.state.hyrule;
-        let houseToPromptFor = this.houseToPromptForBasedOnState();
+        let housesToPromptFor = this.housesToPromptForBasedOnState();
         let songs = this.state.songs;
         let showRouteFinder = this.state.showRouteFinder;
 
@@ -523,16 +532,18 @@ export default class ZOoTREntranceTracker extends React.Component {
                 }
 
                 <div className="user-prompts">
-                    {houseToPromptFor !== null ?
-                        <PromptForHouseEntrance
-                            houseToPromptFor={houseToPromptFor}
-                            availableHouseEntrances={this.state.availableHouseEntrances}
-                            setEntrance={this.setEntrance}
-                            showInitialAgeCheck={Object.keys(this.state.interiorEntrances).length === 0}
-                            startAsChild={this.state.startAsChild}
-                            toggleStartAsChild={this.toggleStartAsChild}
-                        />
-                        : ""
+                    {housesToPromptFor.length > 0 &&
+                        housesToPromptFor.map((house, i) => {
+                            return <PromptForHouseEntrance
+                                key={i}
+                                houseToPromptFor={house}
+                                availableHouseEntrances={this.state.availableHouseEntrances}
+                                setEntrance={this.setEntrance}
+                                showInitialAgeCheck={Object.keys(this.state.interiorEntrances).length === 0}
+                                startAsChild={this.state.startAsChild}
+                                toggleStartAsChild={this.toggleStartAsChild}
+                            />
+                        })
                     }
                 </div>
 
