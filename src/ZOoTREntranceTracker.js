@@ -543,8 +543,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                                 availableHouseEntrances={this.state.availableHouseEntrances}
                                 setEntrance={this.setEntrance}
                                 showInitialAgeCheck={
-                                    startAsChild && interiorEntrances[Houses["Link's House"]] === undefined ||
-                                        !startAsChild && interiorEntrances[Houses["Temple of Time"]] === undefined
+                                    (startAsChild && interiorEntrances[Houses["Link's House"]] === undefined) ||
+                                        (!startAsChild && interiorEntrances[Houses["Temple of Time"]] === undefined)
                                 }
                                 startAsChild={startAsChild}
                                 toggleStartAsChild={this.toggleStartAsChild}
