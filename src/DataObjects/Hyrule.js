@@ -152,7 +152,7 @@ export default {
             }
         }
     },
-    [OverworldAreas["Gerudos Fortress"]]: {
+    [OverworldAreas["Gerudo's Fortress"]]: {
         "colors": [
             "#947d5a",
             "#cbb186"
@@ -198,7 +198,7 @@ export default {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [OverworldAreas["Gerudos Fortress"]]: {
+            [OverworldAreas["Gerudo's Fortress"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
@@ -311,7 +311,7 @@ export default {
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
-            [OverworldAreas["Gerudos Fortress"]]: {
+            [OverworldAreas["Gerudo's Fortress"]]: {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
