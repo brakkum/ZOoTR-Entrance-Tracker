@@ -34,7 +34,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     setupTracker = () => {
-        let hyrule = Hyrule; // master world state
+        let hyrule = JSON.parse(JSON.stringify(Hyrule)); // master world state
         let interiorEntrances = {}; // area/interior keys access array of location objects
         let availableOverworldEntrances = {}; // available entrances of type Overworld
         let availableDungeons = []; // dungeons not yet assigned to dungeon entrance
@@ -91,7 +91,8 @@ export default class ZOoTREntranceTracker extends React.Component {
         let interiorEntrances = this.state.interiorEntrances;
         let songs = this.state.songs;
         let startAsChild = this.state.startAsChild;
-        if (startAsChild && interiorEntrances[Houses["Link's House"]] === undefined) {
+        if ((startAsChild && interiorEntrances[Houses["Link's House"]] === undefined) ||
+            (interiorEntrances[Houses["Link's House"]] === undefined && interiorEntrances[Houses["Temple of Time"]] !== undefined)) {
             return Houses["Link's House"];
         } else if (!startAsChild && interiorEntrances[Houses["Temple of Time"]] === undefined) {
             return Houses["Temple of Time"];
