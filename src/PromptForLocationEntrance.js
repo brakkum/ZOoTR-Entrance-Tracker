@@ -1,7 +1,7 @@
 import React from "react";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 
-export default class PromptForHouseEntrance extends React.Component {
+export default class PromptForLocationEntrance extends React.Component {
 
     constructor(props) {
         super(props);
@@ -15,21 +15,26 @@ export default class PromptForHouseEntrance extends React.Component {
     };
 
     setInteriorToAreaAndEntrance = () => {
-        let houseToPromptFor = this.props.houseToPromptFor;
+        let locationToPromptFor = this.props.locationToPromptFor;
         let selectedLocation = this.state.selectedLocation;
         if (selectedLocation === "") {
             return;
         }
         let entranceObj = JSON.parse(selectedLocation);
-        entranceObj.type = EntranceTypes.House;
-        this.props.setEntrance(entranceObj, {interior: houseToPromptFor});
+        if (this.props.type === EntranceTypes.House) {
+            entranceObj.type = EntranceTypes.House;
+            this.props.setEntrance(entranceObj, {interior: locationToPromptFor});
+        } else if (this.props.type === EntranceTypes.Grotto) {
+            entranceObj.type = EntranceTypes.Grotto;
+            this.props.setEntrance(entranceObj, {interior: locationToPromptFor});
+        }
         this.setState({selectedLocation: ""});
     };
 
     render() {
-        let houseToPromptFor = this.props.houseToPromptFor;
-        let availableEntrances = this.props.availableHouseEntrances;
+        let locationToPromptFor = this.props.locationToPromptFor;
         let showInitialAgeCheck = this.props.showInitialAgeCheck;
+        let availableEntrances = this.props.availableEntrances;
         let startAsChild = this.props.startAsChild;
         if (!availableEntrances) {
             return null;
@@ -37,7 +42,7 @@ export default class PromptForHouseEntrance extends React.Component {
         return (
             <div className="prompt section">
                 <h4 className="is-size-4 has-text-centered">
-                    Where does {houseToPromptFor} exit to?
+                    Where is {locationToPromptFor}?
                 </h4>
                 <br />
                 <div className="field is-grouped has-addons has-addons-centered">
@@ -64,11 +69,12 @@ export default class PromptForHouseEntrance extends React.Component {
                                         </option>
                                     })}
                                 </optgroup>
-                            })}
+                                })
+                            }
                         </select>
                     </div>
                     <button className="button is-small control" onClick={this.setInteriorToAreaAndEntrance}>
-                        Add {houseToPromptFor}
+                        Add {locationToPromptFor}
                     </button>
                 </div>
                 {showInitialAgeCheck &&

@@ -1,5 +1,5 @@
+import PromptForLocationEntrance from "./PromptForLocationEntrance";
 import InteriorConnection from "./DataObjects/InteriorConnection";
-import PromptForHouseEntrance from "./PromptForHouseEntrance";
 import LocalStorageKey from "./Constants/LocalStorageKey";
 import OverworldAreas from "./DataObjects/OverworldAreas";
 import EntranceTypes from "./DataObjects/EntranceTypes";
@@ -24,6 +24,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         availableHouses: [], // houses not yet assigned to house entrance
         availableHouseEntrances: {}, // house entrances that have not been used
         availableGrottos: [], // grottos not yet assigned to grotto entrance
+        availableGrottoEntrances: {}, // overworld grotto entrances
         songs: {}, // songs state
         showRouteFinder: false, // show route finder
         startAsChild: true, // default start as child
@@ -46,6 +47,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         let availableHouses = []; // houses not yet assigned to house entrance
         let availableHouseEntrances = {}; // areas and the houses within them
         let availableGrottos = []; // grottos not yet assigned to grotto entrance
+        let availableGrottoEntrances = {}; // overworld grotto entrances
         let songs = JSON.parse(JSON.stringify(Songs)); // songs state
         let showRouteFinder = false; // hide route finder on start
         let startAsChild = true; // default to starting as child
@@ -53,6 +55,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
         Object.keys(Hyrule).forEach(area => {
             availableOverworldEntrances[area] = [];
+            availableGrottoEntrances[area] = [];
 
             Object.keys(Hyrule[area].entrances).forEach(entranceName => {
 
@@ -74,6 +77,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                         availableHouseEntrances[area].push(entranceName);
                     } else if (type === EntranceTypes.Grotto) {
                         availableGrottos.push(displayName);
+                        availableGrottoEntrances[area].push(entranceName);
                     }
                 }
             });
@@ -87,6 +91,7 @@ export default class ZOoTREntranceTracker extends React.Component {
             availableHouses,
             availableHouseEntrances,
             availableGrottos,
+            availableGrottoEntrances,
             songs,
             showRouteFinder,
             startAsChild,
@@ -94,16 +99,23 @@ export default class ZOoTREntranceTracker extends React.Component {
         });
     };
 
-    housesToPromptForBasedOnState = () => {
+    locationsToPromptForBasedOnState = () => {
         let interiorEntrances = this.state.interiorEntrances;
-        let songs = this.state.songs;
+        let overworldOnly = this.state.overworldOnly;
         let startAsChild = this.state.startAsChild;
+        let songs = this.state.songs;
         let prompts = [];
 
         if ((startAsChild && interiorEntrances[Houses["Link's House"]] === undefined) ||
             (interiorEntrances[Houses["Link's House"]] === undefined &&
                 interiorEntrances[Houses["Temple of Time"]] !== undefined)) {
             prompts.push(Houses["Link's House"]);
+        }
+
+        if (overworldOnly && interiorEntrances[Grottos["Dampe's Grave"]] === undefined
+            && (interiorEntrances[Houses["Link's House"]] !== undefined ||
+                interiorEntrances[Houses["Temple of Time"]] !== undefined)) {
+            prompts.push(Grottos["Dampe's Grave"]);
         }
 
         if (!startAsChild && interiorEntrances[Houses["Temple of Time"]] === undefined) {
@@ -120,6 +132,7 @@ export default class ZOoTREntranceTracker extends React.Component {
             interiorEntrances[Houses["Temple of Time"]].length === 1) {
             prompts.push(Houses["Temple of Time"]);
         }
+
         return prompts;
     };
 
@@ -515,7 +528,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     render() {
         let hyrule = this.state.hyrule;
-        let housesToPromptFor = this.housesToPromptForBasedOnState();
+        let locationsToPromptFor = this.locationsToPromptForBasedOnState();
         let songs = this.state.songs;
         let showRouteFinder = this.state.showRouteFinder;
         let interiorEntrances = this.state.interiorEntrances;
@@ -548,12 +561,19 @@ export default class ZOoTREntranceTracker extends React.Component {
                 }
 
                 <div className="user-prompts">
-                    {housesToPromptFor.length > 0 &&
-                        housesToPromptFor.map((house, i) => {
-                            return <PromptForHouseEntrance
+                    {locationsToPromptFor.length > 0 &&
+                        locationsToPromptFor.map((location, i) => {
+                            return <PromptForLocationEntrance
                                 key={i}
-                                houseToPromptFor={house}
+                                locationToPromptFor={location}
+                                availableEntrances={
+                                    Houses[location] !== undefined ?
+                                        this.state.availableHouseEntrances :
+                                        this.state.availableGrottoEntrances
+                                }
                                 availableHouseEntrances={this.state.availableHouseEntrances}
+                                availableGrottoEntrances={this.state.availableGrottoEntrances}
+                                type={Houses[location] !== undefined ? EntranceTypes.House : EntranceTypes.Grotto}
                                 setEntrance={this.setEntrance}
                                 showInitialAgeCheck={
                                     (startAsChild && interiorEntrances[Houses["Link's House"]] === undefined) ||
