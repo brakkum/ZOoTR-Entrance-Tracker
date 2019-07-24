@@ -59,7 +59,7 @@ export default class PromptForLocationEntrance extends React.Component {
                                     key={i}
                                     label={area}
                                 >
-                                    {availableEntrances[area].map((entrance, i) => {
+                                    {availableEntrances[area].sort().map((entrance, i) => {
                                         return <option
                                             key={i}
                                             value={JSON.stringify({area, entrance})}
