@@ -1,6 +1,8 @@
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import Entrance from "./Entrance";
 import React from "react";
+import NavigableAreas from "./DataObjects/NavigableAreas";
+import NavigableInteriors from "./DataObjects/NavigableInteriors";
 
 export default class Area extends React.Component {
 
@@ -11,12 +13,12 @@ export default class Area extends React.Component {
     };
 
     render() {
+        let overworldOnly = this.props.overworldOnly;
         let areaName = this.props.areaName;
         let hyrule = this.props.hyrule;
         let state = this.props.state;
         let area = this.props.area;
-        let firstCol = [];
-        let secondCol = [];
+        let entrances = [];
 
         return(
             <div className="area-box-container box"
@@ -35,10 +37,12 @@ export default class Area extends React.Component {
                     {/* iterate through the entrances of the area */}
                     {Object.keys(area.entrances).sort().map((entranceName, i) => {
                         // column layout
-                        let entrancesLength = Object.keys(area.entrances).length;
-                        let arrayToAddTo = i < entrancesLength / 2 ? firstCol : secondCol;
                         // entrance object derived from the area object
                         let entrance = area.entrances[entranceName];
+                        if (overworldOnly && !(NavigableAreas.includes(entranceName) ||
+                            NavigableInteriors.includes(entrance.interior))) {
+                            return null;
+                        }
                         // the type of entrance determines what
                         // options are displayed to pick from
                         let options = entrance.type === EntranceTypes.House ?
@@ -54,7 +58,7 @@ export default class Area extends React.Component {
                                             : []; // How did you get here??
 
                         // add to the correct column in area container
-                        arrayToAddTo.push(
+                        entrances.push(
                             <Entrance
                                 key={i}
                                 options={options}
@@ -64,6 +68,7 @@ export default class Area extends React.Component {
                                 setEntrance={this.props.setEntrance}
                                 resetEntrance={this.props.resetEntrance}
                                 toggleClear={this.props.toggleClear}
+                                startAsChild={this.props.startAsChild}
                             />
                         );
                         return null;
@@ -71,11 +76,15 @@ export default class Area extends React.Component {
                     {/* output the columns of area entrances */}
                     <div className="columns">
                         <div className="column">
-                            {firstCol}
+                            {entrances.length > 2 ?
+                                entrances.slice(0, Math.ceil(entrances.length / 2))
+                                :
+                                entrances
+                            }
                         </div>
-                        {secondCol.length > 0 ?
+                        {entrances.length > 2 ?
                             <div className="column">
-                                {secondCol}
+                                {entrances.slice(Math.ceil(entrances.length / 2))}
                             </div>
                             : ""
                         }

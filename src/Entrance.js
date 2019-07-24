@@ -51,9 +51,10 @@ export default class Entrance extends React.Component {
                             {entrance.interior}
                         </span>
                         {/* x icon for resetting an entrance to unchecked */}
-                        {/* but once Link's House is set, leave it */}
-                        {entrance.interior === Houses["Link's House"] ?
-                            "" :
+                        {/* unless it's the starting point based on age */}
+                        {((this.props.startAsChild && entrance.interior === Houses["Link's House"]) ||
+                            (!this.props.startAsChild && entrance.interior === Houses["Temple of Time"])) ?
+                            null :
                             <span className="delete is-pulled-right" onClick={
                                 () => this.props.resetEntrance({...entrance, area: areaName, entrance: entranceName})
                             } />
@@ -131,7 +132,7 @@ export default class Entrance extends React.Component {
                                             key={i}
                                             label={optgroupArea}
                                         >
-                                            {options[optgroupArea].map((optgroupEntrance, j) => {
+                                            {options[optgroupArea].sort().map((optgroupEntrance, j) => {
                                                 // don't show current entrance as selectable option
                                                 if (areaName === optgroupArea && entranceName === optgroupEntrance) {
                                                     return null;

@@ -43,6 +43,12 @@ export default class Menu extends React.Component {
                             >
                                 {this.props.routeFinderVisible ? "Hide" : "Show"} Route Finder
                             </div>
+                            <div
+                                className="nav-bottom-item"
+                                onClick={this.props.toggleOverworldOnly}
+                            >
+                                {this.props.overworldOnly ? "Show All Entrances" : "Hide Non-Overworld Entrances"}
+                            </div>
                         </div>
                         <div className="nav-bottom-right">
                             <div className="nav-bottom-item has-text-white has-text-weight-bold">

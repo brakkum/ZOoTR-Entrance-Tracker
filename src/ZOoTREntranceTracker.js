@@ -26,11 +26,16 @@ export default class ZOoTREntranceTracker extends React.Component {
         availableGrottos: [], // grottos not yet assigned to grotto entrance
         songs: {}, // songs state
         showRouteFinder: false, // show route finder
-        startAsChild: true // default start as child
+        startAsChild: true, // default start as child
+        overworldOnly: false // show all entrances
     };
 
     toggleRouteFinder = () => {
         this.setState({showRouteFinder: !this.state.showRouteFinder});
+    };
+
+    toggleOverworldOnly = () => {
+        this.setState({overworldOnly: !this.state.overworldOnly});
     };
 
     setupTracker = () => {
@@ -44,6 +49,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         let songs = JSON.parse(JSON.stringify(Songs)); // songs state
         let showRouteFinder = false; // hide route finder on start
         let startAsChild = true; // default to starting as child
+        let overworldOnly = false; // show all entrances by default
 
         Object.keys(Hyrule).forEach(area => {
             availableOverworldEntrances[area] = [];
@@ -83,7 +89,8 @@ export default class ZOoTREntranceTracker extends React.Component {
             availableGrottos,
             songs,
             showRouteFinder,
-            startAsChild
+            startAsChild,
+            overworldOnly
         });
     };
 
@@ -510,6 +517,7 @@ export default class ZOoTREntranceTracker extends React.Component {
         let showRouteFinder = this.state.showRouteFinder;
         let interiorEntrances = this.state.interiorEntrances;
         let startAsChild = this.state.startAsChild;
+        let overworldOnly = this.state.overworldOnly;
 
         return (
             <div className="zootr-entrance-tracker">
@@ -521,6 +529,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                     resetState={this.resetState}
                     toggleRouteFinder={this.toggleRouteFinder}
                     routeFinderVisible={showRouteFinder}
+                    toggleOverworldOnly={this.toggleOverworldOnly}
+                    overworldOnly={overworldOnly}
                 />
 
                 <div className="top-padding" />
@@ -571,6 +581,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                             setEntrance={this.setEntrance}
                             resetEntrance={this.resetEntrance}
                             toggleClear={this.toggleClear}
+                            overworldOnly={overworldOnly}
+                            startAsChild={startAsChild}
                         />
                     })}
                 </div>
