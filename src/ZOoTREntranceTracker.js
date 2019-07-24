@@ -412,6 +412,9 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.addInteriorBackIntoPool(obj.type, interior);
                 this.removeInteriorEntrance(interior, {area, entrance});
                 this.removeInteriorEntrance(area, {entrance, interior});
+                if (AreasToAdd[area] !== undefined) {
+                    this.removeInteriorEntrance(AreasToAdd[area].name, AreasToAdd[area].entranceObject);
+                }
 
                 this.removeAreaIfEmpty(area);
                 if (obj.type === EntranceTypes.House) {
