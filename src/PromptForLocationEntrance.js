@@ -78,7 +78,7 @@ export default class PromptForLocationEntrance extends React.Component {
                 {showInitialAgeCheck &&
                     <div className="has-text-centered column">
                         <button
-                            className="button "
+                            className="button is-small"
                             onClick={this.props.toggleStartAsChild}
                         >
                             Start as {startAsChild ? "Adult" : "Child"}
