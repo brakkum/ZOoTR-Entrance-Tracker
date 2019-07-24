@@ -38,6 +38,12 @@ Resetting the tracker to default start is done by clicking 'Reset' in the top na
 
 ## How to help
 
-The tracker is built entirely with React/JavaScript. 
-
+The tracker is built entirely with React/JavaScript. All you have to do is run these steps in your console:
+```
+git clone https://github.com/brakkum/ZOoTR-Entrance-Tracker.git zootr-entrance-tracker
+cd zootr-entrance-tracker
+npm install
+npm start
+```
+After that you should be good to go.
 Please feel free to fork, open issues and pull requests, and submit feedback on GitHub.
