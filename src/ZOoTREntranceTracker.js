@@ -122,8 +122,11 @@ export default class ZOoTREntranceTracker extends React.Component {
             prompts.push(Houses["Temple of Time"]);
         }
 
-        if (interiorEntrances[Grottos["Dampe's Grave"]] !== undefined &&
-            interiorEntrances[Houses.Windmill].length <= 1) {
+        if ((interiorEntrances[Grottos["Dampe's Grave"]] !== undefined &&
+            interiorEntrances[Houses.Windmill].length <= 1) ||
+                (overworldOnly && interiorEntrances[Houses.Windmill] === undefined &&
+                    (interiorEntrances[Houses["Link's House"]] !== undefined ||
+                    interiorEntrances[Houses["Temple of Time"]] !== undefined))) {
             prompts.push(Houses.Windmill);
         }
 
