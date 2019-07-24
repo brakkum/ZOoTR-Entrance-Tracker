@@ -31,9 +31,9 @@ export default class Menu extends React.Component {
             <div className="navbar is-fixed-top is-dark">
                 <div style={{width: "100%", maxWidth: "1000px", margin: "auto"}}>
                     <nav>
-                        <h4 className="is-size-4 navbar-item has-text-white has-text-weight-bold">
+                        <h1 className="is-size-4 navbar-item has-text-white has-text-weight-bold">
                             ZOoTR Entrance Tracker
-                        </h4>
+                        </h1>
                     </nav>
                     <div className="has-background-dark nav-bottom">
                         <div className="nav-bottom-left">
