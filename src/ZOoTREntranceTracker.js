@@ -412,6 +412,18 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({availableHouseEntrances});
     };
 
+    removeAvailableGrottoEntrance = (area, entrance) => {
+        let availableGrottoEntrances = this.state.availableGrottoEntrances;
+        availableGrottoEntrances[area].splice(availableGrottoEntrances[area].indexOf(entrance), 1);
+        this.setState({availableGrottoEntrances: availableGrottoEntrances});
+    };
+
+    addAvailableGrottoEntrance = (area, entrance) => {
+        let availableGrottoEntrances = this.state.availableGrottoEntrances;
+        availableGrottoEntrances[area].push(entrance);
+        this.setState({availableGrottoEntrances: availableGrottoEntrances});
+    };
+
     resetEntrance = (obj) => {
         switch (obj.type) {
             case EntranceTypes.Overworld: {
@@ -455,6 +467,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.removeAreaIfEmpty(area);
                 if (obj.type === EntranceTypes.House) {
                     this.addAvailableHouseEntrance(area, entrance);
+                } else if (obj.type === EntranceTypes.Grotto) {
+                    this.addAvailableGrottoEntrance(area, entrance);
                 }
                 break;
             }
@@ -521,6 +535,8 @@ export default class ZOoTREntranceTracker extends React.Component {
                 this.addAdditionalAreas(area);
                 if (vanilla.type === EntranceTypes.House) {
                     this.removeAvailableHouseEntrance(area, entrance);
+                } else if (vanilla.type === EntranceTypes.Grotto) {
+                    this.removeAvailableGrottoEntrance(area, entrance);
                 }
                 break;
             }
