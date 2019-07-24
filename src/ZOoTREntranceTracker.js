@@ -152,6 +152,26 @@ export default class ZOoTREntranceTracker extends React.Component {
         let stringState = localStorage.getItem(LocalStorageKey.state);
         let state = JSON.parse(stringState);
         if (state) {
+            if (state.startAsChild === undefined) {
+                state.startAsChild = true;
+            }
+            if (state.availableGrottoEntrances === undefined) {
+                let availableGrottoEntrances = {};
+                Object.keys(state.hyrule).forEach(area => {
+                    availableGrottoEntrances[area] = [];
+                    Object.keys(state.hyrule[area].entrances).forEach(entranceName => {
+                        let entrance = state.hyrule[area].entrances[entranceName];
+                        let type = entrance.type;
+                        if (type === EntranceTypes.Grotto) {
+                            availableGrottoEntrances[area].push(entranceName);
+                        }
+                    });
+                });
+                state.availableGrottoEntrances = availableGrottoEntrances;
+            }
+            if (state.overworldOnly === undefined) {
+                state.overworldOnly = false;
+            }
             this.setState(state);
         }
     };
