@@ -148,11 +148,24 @@ html {
     margin: 10px;
 }
 
+.user-prompts {
+
+}
+
 .prompt {
     width: 90%;
     min-width: 500px;
     max-width: 900px;
     margin: auto;
+}
+
+.prompt-question {
+
+}
+
+.prompt-select {
+    align-items: center;
+    padding: 0;
 }
 
 .flex-wraps {

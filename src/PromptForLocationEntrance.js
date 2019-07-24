@@ -40,12 +40,11 @@ export default class PromptForLocationEntrance extends React.Component {
             return null;
         }
         return (
-            <div className="prompt section">
-                <h4 className="is-size-4 has-text-centered">
+            <div className="prompt columns">
+                <h4 className="is-size-4 has-text-centered column prompt-question">
                     Where is {locationToPromptFor}?
                 </h4>
-                <br />
-                <div className="field is-grouped has-addons has-addons-centered">
+                <div className="field is-grouped has-addons has-addons-centered is-vcentered column prompt-select">
                     <div className="select is-small control">
                         <select
                             onChange={this.onSelectChange}
@@ -76,9 +75,8 @@ export default class PromptForLocationEntrance extends React.Component {
                     <button className="button is-small control" onClick={this.setInteriorToAreaAndEntrance}>
                         Add {locationToPromptFor}
                     </button>
-                </div>
                 {showInitialAgeCheck &&
-                    <div className="has-text-centered">
+                    <div className="has-text-centered column">
                         <button
                             className="button "
                             onClick={this.props.toggleStartAsChild}
@@ -87,6 +85,7 @@ export default class PromptForLocationEntrance extends React.Component {
                         </button>
                     </div>
                 }
+                </div>
             </div>
         )
     }
