@@ -650,7 +650,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 </div>
 
                 {/* display songs that can be collected and may open new areas */}
-                <div className="songs-container navbar is-fixed-bottom has-background-dark">
+                <div className="songs-container has-background-dark">
                     {Object.keys(interiorEntrances).length > 1 && Object.keys(songs).map((song, i) => {
                         return <Song
                             key={i}

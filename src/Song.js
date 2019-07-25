@@ -26,7 +26,7 @@ export default class Song extends React.Component {
     render() {
         let song = this.props.song;
         return(
-            <div className="navbar-item has-background-dark" style={{margin: "auto"}}>
+            <div className="warp-song">
                 <div
                     style={{
                         color: (song.collected ? song.color : "white"),
