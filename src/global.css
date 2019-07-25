@@ -80,15 +80,16 @@ html {
 
 .areas-container {
     max-width: 95%;
-    margin: auto;
+    margin: 20px auto;
     align-items: flex-start;
     align-content: space-around;
+    justify-content: space-around;
     padding-bottom: 300px;
 }
 
 .area-box-container {
-    margin: 20px auto 0 auto;
     padding: 5px;
+    margin: 10px;
 }
 
 .area-box {

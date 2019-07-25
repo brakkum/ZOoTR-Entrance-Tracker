@@ -28,7 +28,7 @@ export default class Area extends React.Component {
                      background: area.colors.length > 1 ?
                          `linear-gradient(to bottom right, ${area.colors.join(", ")}`
                          : area.colors.length === 1 ?
-                             area.colors.length[0]
+                             area.colors[0]
                              : "grey"
                  }}
             >
