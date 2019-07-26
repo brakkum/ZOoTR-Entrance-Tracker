@@ -108,7 +108,7 @@ export default class RouteFinder extends React.Component {
 
             if (startIsDungeon) {
                 if (currentCheck.interior === startName) {
-                    return [{start: startName}, {entrance: currentCheck.entrance}];
+                    return [{start: startName}];
                 }
             }
         }
@@ -116,7 +116,7 @@ export default class RouteFinder extends React.Component {
         if (locationIsGrotto) {
             if (startIsGrotto) {
                 if (currentCheck.interior === startName) {
-                    return [{start: startName}, {entrance: currentCheck.entrance, interior: currentCheck.interior}];
+                    return [{start: startName}];
                 }
             }
 

@@ -11,8 +11,8 @@ const InteriorConnection = {
         "location": Houses.Windmill,
         "type": EntranceTypes.House,
         "entranceObject": {
-            "area": null,
-            "entrance": Grottos["Dampe's Grave"]
+            "entrance": Grottos["Dampe's Grave"],
+            "interior": Grottos["Dampe's Grave"]
         }
     },
     [Dungeons["Spirit Temple"]]: {
