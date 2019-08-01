@@ -320,15 +320,19 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({availableOverworldEntrances});
     };
 
-    removeInteriorFromPool = (type, interior) => {
-        let array;
+    returnArrayForType = type => {
         if (type === EntranceTypes.House) {
-            array = this.state.availableHouses;
+            return this.state.availableHouses;
         } else if (type === EntranceTypes.Dungeon) {
-            array = this.state.availableDungeons;
+            return this.state.availableDungeons;
         } else if (type === EntranceTypes.Grotto) {
-            array = this.state.availableGrottos;
+            return this.state.availableGrottos;
         }
+        return [];
+    };
+
+    removeInteriorFromPool = (type, interior) => {
+        let array = this.returnArrayForType(type);
         if (!array) {
             return;
         }
@@ -337,14 +341,7 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     addInteriorBackIntoPool = (type, interior) => {
-        let array;
-        if (type === EntranceTypes.House) {
-            array = this.state.availableHouses;
-        } else if (type === EntranceTypes.Dungeon) {
-            array = this.state.availableDungeons;
-        } else if (type === EntranceTypes.Grotto) {
-            array = this.state.availableGrottos;
-        }
+        let array = this.returnArrayForType(type);
         if (!array) {
             return;
         }
