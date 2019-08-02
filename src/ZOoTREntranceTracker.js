@@ -231,7 +231,6 @@ export default class ZOoTREntranceTracker extends React.Component {
         this.setState({interiorEntrances});
     };
 
-    // type is only necessary for songs at the moment
     removeInteriorEntrance = (location, obj) => {
         let interiorEntrances = this.state.interiorEntrances;
         if (InteriorConnection[location] !== undefined) {
