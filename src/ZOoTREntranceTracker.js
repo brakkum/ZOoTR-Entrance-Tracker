@@ -137,6 +137,14 @@ export default class ZOoTREntranceTracker extends React.Component {
             prompts.push(Houses["Temple of Time"]);
         }
 
+        if (interiorEntrances[Houses["Potion Shop Back"]] !== undefined &&
+            interiorEntrances[Houses["Potion Shop Front"]] === undefined) {
+            prompts.push(Houses["Potion Shop Front"]);
+        } else if (interiorEntrances[Houses["Potion Shop Front"]] !== undefined &&
+            interiorEntrances[Houses["Potion Shop Back"]] === undefined) {
+            prompts.push(Houses["Potion Shop Back"]);
+        }
+
         return prompts;
     };
 
@@ -172,6 +180,20 @@ export default class ZOoTREntranceTracker extends React.Component {
             }
             if (state.overworldOnly === undefined) {
                 state.overworldOnly = false;
+            }
+            if (state.hyrule[OverworldAreas["Kakariko Village"]].entrances["Potion Shop Front"] === undefined) {
+                state.hyrule[OverworldAreas["Kakariko Village"]].entrances["Potion Shop Front"] = {
+                    "type": EntranceTypes.House,
+                    "clear": false,
+                    "interior": null
+                };
+                state.hyrule[OverworldAreas["Kakariko Village"]].entrances["Potion Shop Back"] = {
+                    "type": EntranceTypes.House,
+                    "clear": false,
+                    "interior": null
+                };
+                state.availableHouses.push("Potion Shop Front", "Potion Shop Back");
+                state.availableHouseEntrances[OverworldAreas["Kakariko Village"]].push("Potion Shop Front", "Potion Shop Back");
             }
             this.setState(state);
         }

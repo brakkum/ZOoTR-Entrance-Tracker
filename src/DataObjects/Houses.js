@@ -24,6 +24,8 @@ const Houses = {
     "Mask Shop": "Mask Shop",
     "Mido's House": "Mido's House",
     "Potion Shop": "Potion Shop",
+    "Potion Shop Back": "Potion Shop Back",
+    "Potion Shop Front": "Potion Shop Front",
     "Saria's House": "Saria's House",
     "Shooting Gallery": "Shooting Gallery",
     "Shop": "Shop",

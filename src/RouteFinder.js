@@ -96,8 +96,15 @@ export default class RouteFinder extends React.Component {
                 }
             }
 
-            if (currentCheck.interior === Houses["Temple of Time"] || currentCheck.interior === Houses["Windmill"]) {
+            if (currentCheck.interior === Houses["Temple of Time"] ||
+                currentCheck.interior === Houses["Windmill"]) {
                 nextLocationToSearch = currentCheck.interior;
+            }
+
+            if (currentCheck.interior === Houses["Potion Shop Back"]) {
+                nextLocationToSearch = Houses["Potion Shop Front"];
+            } else if (currentCheck.interior === Houses["Potion Shop Front"]) {
+                nextLocationToSearch = Houses["Potion Shop Back"];
             }
         }
 

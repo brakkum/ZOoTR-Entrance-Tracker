@@ -508,6 +508,16 @@ export default {
                 "clear": false,
                 "interior": null
             },
+            [Houses["Potion Shop Back"]]: {
+                "type": EntranceTypes.House,
+                "clear": false,
+                "interior": null
+            },
+            [Houses["Potion Shop Front"]]: {
+                "type": EntranceTypes.House,
+                "clear": false,
+                "interior": null
+            },
             [Houses["Granny's Potion Shop"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
