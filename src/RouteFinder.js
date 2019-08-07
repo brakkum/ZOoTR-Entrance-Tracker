@@ -16,7 +16,8 @@ export default class RouteFinder extends React.Component {
         ignoreKaeporaGaebora: false,
         ignoreSongs: false,
         ignoreHauntedWasteland: false,
-        ignoreLostWoodsToBridge: false
+        ignoreLostWoodsToBridge: false,
+        ignoreGoronCityDMC: false
     };
 
     setStart = start => {
@@ -55,6 +56,10 @@ export default class RouteFinder extends React.Component {
 
     toggleIgnoreLostWoodsToBridge = () => {
         this.setState({ignoreLostWoodsToBridge: !this.state.ignoreLostWoodsToBridge});
+    };
+
+    toggleIgnoreGoronCityDMC = () => {
+        this.setState({ignoreGoronCityDMC: !this.state.ignoreGoronCityDMC});
     };
 
     shuffleArray = array => {
@@ -145,7 +150,8 @@ export default class RouteFinder extends React.Component {
             if (startIsOverworld) {
                 if (currentCheck.area === startName) {
                     if (!(currentCheck.entrance === EntranceTypes["Kaepora Gaebora"] && this.state.ignoreKaeporaGaebora) &&
-                        !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge)) {
+                        !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge) &&
+                        !(currentCheck.area === OverworldAreas["Goron City"] && currentCheck.entrance === OverworldAreas["Death Mountain Crater"] && this.state.ignoreGoronCityDMC)) {
                         return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
                     }
                 }
@@ -153,7 +159,8 @@ export default class RouteFinder extends React.Component {
 
             if (!(currentCheck.entrance === EntranceTypes["Kaepora Gaebora"] && this.state.ignoreKaeporaGaebora) &&
                 !(currentCheck.area === OverworldAreas["Haunted Wasteland"] && this.state.ignoreHauntedWasteland) && 
-                !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge)) {
+                !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge) &&
+                !(currentCheck.area === OverworldAreas["Goron City"] && currentCheck.entrance === OverworldAreas["Death Mountain Crater"] && this.state.ignoreGoronCityDMC)) {
                 nextLocationToSearch = currentCheck.area;
             }
         }
@@ -307,6 +314,12 @@ export default class RouteFinder extends React.Component {
                         className={"button is-small " + (this.state.ignoreLostWoodsToBridge ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Bridge from Lost Woods
+                    </button>
+                    <button
+                        onClick={this.toggleIgnoreGoronCityDMC}
+                        className={"button is-small " + (this.state.ignoreGoronCityDMC ? "is-danger is-outlined" : "is-dark is-outlined")}
+                    >
+                        Ignore Death Mountain Crater Entrance in Goron City
                     </button>
                 </div>
                 {routes !== null && routes.length > 0 ?
