@@ -8,6 +8,13 @@ const AreasToAdd = {
             "area": OverworldAreas["Gerudo Valley"],
             "entrance": OverworldAreas["Lake Hylia"]
         }
+    },
+    [OverworldAreas["Lost Woods"]]: {
+        "name": OverworldAreas["Lost Woods Bridge"],
+        "entranceObject": {
+            "area": OverworldAreas["Lost Woods"],
+            "entrance": OverworldAreas["Lost Woods Bridge"]
+        }
     }
 };
 
