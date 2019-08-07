@@ -15,7 +15,8 @@ export default class RouteFinder extends React.Component {
         end: null,
         ignoreKaeporaGaebora: false,
         ignoreSongs: false,
-        ignoreHauntedWasteland: false
+        ignoreHauntedWasteland: false,
+        ignoreLostWoodsToBridge: false
     };
 
     setStart = start => {
@@ -52,6 +53,10 @@ export default class RouteFinder extends React.Component {
         this.setState({ignoreHauntedWasteland: !this.state.ignoreHauntedWasteland});
     };
 
+    toggleIgnoreLostWoodsToBridge = () => {
+        this.setState({ignoreLostWoodsToBridge: !this.state.ignoreLostWoodsToBridge});
+    };
+
     shuffleArray = array => {
         for (let i = array.length - 1; i > 0; i--) {
             let j = Math.floor(Math.random() * (i + 1));
@@ -62,7 +67,7 @@ export default class RouteFinder extends React.Component {
     // start is always a string
     // end is an object
     // since start could be an area, dungeon, etc.
-    findStartFromEndObject = (startName, endName, currentCheck, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
+    findStartFromEndObject = (startName, endName, previousCheck, currentCheck, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
         let startIsHouse = Houses[startName] !== undefined;
         let startIsGrotto = Grottos[startName] !== undefined;
         let startIsDungeon = Dungeons[startName] !== undefined;
@@ -139,14 +144,16 @@ export default class RouteFinder extends React.Component {
 
             if (startIsOverworld) {
                 if (currentCheck.area === startName) {
-                    if (currentCheck.entrance !== EntranceTypes["Kaepora Gaebora"] || !this.state.ignoreKaeporaGaebora) {
+                    if (!(currentCheck.entrance === EntranceTypes["Kaepora Gaebora"] && this.state.ignoreKaeporaGaebora) &&
+                        !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge)) {
                         return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
                     }
                 }
             }
 
-            if ((currentCheck.entrance !== EntranceTypes["Kaepora Gaebora"] || !this.state.ignoreKaeporaGaebora) &&
-                (currentCheck.area !== OverworldAreas["Haunted Wasteland"] || !this.state.ignoreHauntedWasteland)) {
+            if (!(currentCheck.entrance === EntranceTypes["Kaepora Gaebora"] && this.state.ignoreKaeporaGaebora) &&
+                !(currentCheck.area === OverworldAreas["Haunted Wasteland"] && this.state.ignoreHauntedWasteland) && 
+                !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge)) {
                 nextLocationToSearch = currentCheck.area;
             }
         }
@@ -160,7 +167,7 @@ export default class RouteFinder extends React.Component {
             let nextArray = availableLocations[nextLocationToSearch];
             this.shuffleArray(nextArray);
             for (let i = 0; i < nextArray.length; i++) {
-                let result = this.findStartFromEndObject(startName, endName, nextArray[i], availableLocations, currentlyBeingSearched, completelySearched);
+                let result = this.findStartFromEndObject(startName, endName, currentCheck, nextArray[i], availableLocations, currentlyBeingSearched, completelySearched);
                 if (result.length > 0) {
                     if (locationIsHouse) {
                         return [...result, {entrance: currentCheck.interior}];
@@ -185,7 +192,7 @@ export default class RouteFinder extends React.Component {
         availableLocations[endName].forEach(endObject => {
             let pathsForThisEndLocation = [];
             for (let i = 0; i < numberOfTries; i ++) {
-                let result = this.findStartFromEndObject(startName, endName, endObject, availableLocations);
+                let result = this.findStartFromEndObject(startName, endName, {}, endObject, availableLocations);
                 if (result.length > 0) {
                     let path = [...result, {end: endName}];
                     pathsForThisEndLocation.push(path);
@@ -294,6 +301,12 @@ export default class RouteFinder extends React.Component {
                         className={"button is-small " + (this.state.ignoreHauntedWasteland ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Haunted Wasteland
+                    </button>
+                    <button
+                        onClick={this.toggleIgnoreLostWoodsToBridge}
+                        className={"button is-small " + (this.state.ignoreLostWoodsToBridge ? "is-danger is-outlined" : "is-dark is-outlined")}
+                    >
+                        Ignore Bridge from Lost Woods
                     </button>
                 </div>
                 {routes !== null && routes.length > 0 ?
