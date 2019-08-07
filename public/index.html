@@ -28,5 +28,14 @@
     <body>
         <noscript>Sorry, bro. Gotta use JavaScript</noscript>
         <div id="root"></div>
+        <script>
+            const exportAppState = () => {
+                console.log(localStorage.getItem("zootr-entrance-tracker"));
+            };
+
+            const setAppState = state => {
+                localStorage.setItem("zootr-entrance-tracker", JSON.stringify(state));
+            };
+        </script>
     </body>
 </html>
