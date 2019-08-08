@@ -286,7 +286,7 @@ export default class RouteFinder extends React.Component {
                             }
                     </div>
                 </div>
-                {end && start && <div className="buttons is-centered">
+                {end && start && ValidStartPoints.includes(end) && <div className="buttons is-centered">
                     <button
                         className="button is-small is-primary"
                         onClick={this.newRouteFromEnd}
