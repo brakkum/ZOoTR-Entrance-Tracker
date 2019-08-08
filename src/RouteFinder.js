@@ -56,6 +56,11 @@ export default class RouteFinder extends React.Component {
         }
     };
 
+    newRouteFromEnd = () => {
+        let end = this.state.end;
+        this.setState({start: end, end: null});
+    }
+
     // start is always a string
     // end is an object
     // since start could be an area, dungeon, etc.
@@ -281,6 +286,15 @@ export default class RouteFinder extends React.Component {
                             }
                     </div>
                 </div>
+                {end && start && <div className="buttons is-centered">
+                    <button
+                        className="button is-small is-primary"
+                        onClick={this.newRouteFromEnd}
+                    >
+                            New Route from End
+                        </button>
+                    </div>
+                }
                 <div className="routing-options buttons is-centered">
                     <button
                         onClick={() => this.toggleStateAttribute("ignoreKaeporaGaebora")}
