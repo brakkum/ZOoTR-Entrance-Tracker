@@ -7,6 +7,7 @@ import Songs from "./DataObjects/Songs";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import ValidStartPoints from "./DataObjects/ValidStartPoints";
 import InteriorConnection from "./DataObjects/InteriorConnection";
+import DivingEntrances from "./DataObjects/DivingEntrances";
 
 export default class RouteFinder extends React.Component {
 
@@ -17,7 +18,8 @@ export default class RouteFinder extends React.Component {
         ignoreSongs: false,
         ignoreHauntedWasteland: false,
         ignoreLostWoodsToBridge: false,
-        ignoreGoronCityDMC: false
+        ignoreGoronCityDMC: false,
+        ignoreDivingEntrances: false
     };
 
     setStart = start => {
@@ -60,6 +62,10 @@ export default class RouteFinder extends React.Component {
 
     toggleIgnoreGoronCityDMC = () => {
         this.setState({ignoreGoronCityDMC: !this.state.ignoreGoronCityDMC});
+    };
+
+    toggleIgnoreDivingEntrances = () => {
+        this.setState({ignoreDivingEntrances: !this.state.ignoreDivingEntrances});
     };
 
     shuffleArray = array => {
@@ -147,11 +153,14 @@ export default class RouteFinder extends React.Component {
                 return [];
             }
 
+            let isDivingEntrance = DivingEntrances[currentCheck.area] !== undefined && DivingEntrances[currentCheck.area][currentCheck.entrance] !== undefined;
+
             if (startIsOverworld) {
                 if (currentCheck.area === startName) {
                     if (!(currentCheck.entrance === EntranceTypes["Kaepora Gaebora"] && this.state.ignoreKaeporaGaebora) &&
                         !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge) &&
-                        !(currentCheck.area === OverworldAreas["Goron City"] && currentCheck.entrance === OverworldAreas["Death Mountain Crater"] && this.state.ignoreGoronCityDMC)) {
+                        !(currentCheck.area === OverworldAreas["Goron City"] && currentCheck.entrance === OverworldAreas["Death Mountain Crater"] && this.state.ignoreGoronCityDMC) &&
+                        !(isDivingEntrance && this.state.ignoreDivingEntrances)) {
                         return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
                     }
                 }
@@ -160,7 +169,8 @@ export default class RouteFinder extends React.Component {
             if (!(currentCheck.entrance === EntranceTypes["Kaepora Gaebora"] && this.state.ignoreKaeporaGaebora) &&
                 !(currentCheck.area === OverworldAreas["Haunted Wasteland"] && this.state.ignoreHauntedWasteland) && 
                 !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge) &&
-                !(currentCheck.area === OverworldAreas["Goron City"] && currentCheck.entrance === OverworldAreas["Death Mountain Crater"] && this.state.ignoreGoronCityDMC)) {
+                !(currentCheck.area === OverworldAreas["Goron City"] && currentCheck.entrance === OverworldAreas["Death Mountain Crater"] && this.state.ignoreGoronCityDMC) &&
+                !(isDivingEntrance && this.state.ignoreDivingEntrances)) {
                 nextLocationToSearch = currentCheck.area;
             }
         }
@@ -320,6 +330,12 @@ export default class RouteFinder extends React.Component {
                         className={"button is-small " + (this.state.ignoreGoronCityDMC ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Death Mountain Crater Entrance in Goron City
+                    </button>
+                    <button
+                        onClick={this.toggleIgnoreDivingEntrances}
+                        className={"button is-small " + (this.state.ignoreDivingEntrances ? "is-danger is-outlined" : "is-dark is-outlined")}
+                    >
+                        Ignore Diving Entrances
                     </button>
                 </div>
                 {routes !== null && routes.length > 0 ?
