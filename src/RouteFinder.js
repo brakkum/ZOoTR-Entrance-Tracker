@@ -19,7 +19,8 @@ export default class RouteFinder extends React.Component {
         ignoreHauntedWasteland: false,
         ignoreLostWoodsToBridge: false,
         ignoreGoronCityDMC: false,
-        ignoreDivingEntrances: false
+        ignoreDivingEntrances: false,
+        ignoreWindmillFromDampesGrave: false
     };
 
     setStart = start => {
@@ -44,28 +45,8 @@ export default class RouteFinder extends React.Component {
         this.setState({end: null});
     };
 
-    toggleIgnoreKaeporaGaebora = () => {
-        this.setState({ignoreKaeporaGaebora: !this.state.ignoreKaeporaGaebora});
-    };
-
-    toggleIgnoreSongs = () => {
-        this.setState({ignoreSongs: !this.state.ignoreSongs});
-    };
-
-    toggleIgnoreHauntedWasteland = () => {
-        this.setState({ignoreHauntedWasteland: !this.state.ignoreHauntedWasteland});
-    };
-
-    toggleIgnoreLostWoodsToBridge = () => {
-        this.setState({ignoreLostWoodsToBridge: !this.state.ignoreLostWoodsToBridge});
-    };
-
-    toggleIgnoreGoronCityDMC = () => {
-        this.setState({ignoreGoronCityDMC: !this.state.ignoreGoronCityDMC});
-    };
-
-    toggleIgnoreDivingEntrances = () => {
-        this.setState({ignoreDivingEntrances: !this.state.ignoreDivingEntrances});
+    toggleStateAttribute = attribute => {
+        this.setState({[attribute]: !this.state[attribute]});
     };
 
     shuffleArray = array => {
@@ -143,7 +124,7 @@ export default class RouteFinder extends React.Component {
                 }
             }
 
-            if (currentCheck.interior === Grottos["Dampe's Grave"]) {
+            if (currentCheck.interior === Grottos["Dampe's Grave"] && !this.state.ignoreWindmillFromDampesGrave) {
                 nextLocationToSearch = Grottos["Dampe's Grave"];
             }
         }
@@ -176,7 +157,7 @@ export default class RouteFinder extends React.Component {
         }
 
         if (locationIsInteriorConnection) {
-            nextLocationToSearch = currentCheck.entrance;
+            nextLocationToSearch = currentCheck.entrance;            
         }
 
         if (nextLocationToSearch !== "") {
@@ -302,40 +283,46 @@ export default class RouteFinder extends React.Component {
                 </div>
                 <div className="routing-options buttons is-centered">
                     <button
-                        onClick={this.toggleIgnoreKaeporaGaebora}
+                        onClick={() => this.toggleStateAttribute("ignoreKaeporaGaebora")}
                         className={"button is-small " + (this.state.ignoreKaeporaGaebora ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Kaepora Gaebora
                     </button>
                     <button
-                        onClick={this.toggleIgnoreSongs}
+                        onClick={() => this.toggleStateAttribute("ignoreSongs")}
                         className={"button is-small " + (this.state.ignoreSongs ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Songs
                     </button>
                     <button
-                        onClick={this.toggleIgnoreHauntedWasteland}
+                        onClick={() => this.toggleStateAttribute("ignoreHauntedWasteland")}
                         className={"button is-small " + (this.state.ignoreHauntedWasteland ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Haunted Wasteland
                     </button>
                     <button
-                        onClick={this.toggleIgnoreLostWoodsToBridge}
+                        onClick={() => this.toggleStateAttribute("ignoreLostWoodsToBridge")}
                         className={"button is-small " + (this.state.ignoreLostWoodsToBridge ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Bridge from Lost Woods
                     </button>
                     <button
-                        onClick={this.toggleIgnoreGoronCityDMC}
+                        onClick={() => this.toggleStateAttribute("ignoreGoronCityDMC")}
                         className={"button is-small " + (this.state.ignoreGoronCityDMC ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Death Mountain Crater Entrance in Goron City
                     </button>
                     <button
-                        onClick={this.toggleIgnoreDivingEntrances}
+                        onClick={() => this.toggleStateAttribute("ignoreDivingEntrances")}
                         className={"button is-small " + (this.state.ignoreDivingEntrances ? "is-danger is-outlined" : "is-dark is-outlined")}
                     >
                         Ignore Diving Entrances
+                    </button>
+                    <button
+                        onClick={() => this.toggleStateAttribute("ignoreWindmillFromDampesGrave")}
+                        className={"button is-small " + (this.state.ignoreWindmillFromDampesGrave ? "is-danger is-outlined" : "is-dark is-outlined")}
+                    >
+                        Ignore Windmill from Dampe's Grave
                     </button>
                 </div>
                 {routes !== null && routes.length > 0 ?
