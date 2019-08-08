@@ -298,43 +298,43 @@ export default class RouteFinder extends React.Component {
                 <div className="routing-options buttons is-centered">
                     <button
                         onClick={() => this.toggleStateAttribute("ignoreKaeporaGaebora")}
-                        className={"button is-small " + (this.state.ignoreKaeporaGaebora ? "is-danger is-outlined" : "is-dark is-outlined")}
+                        className={"button is-small is-outlined " + (this.state.ignoreKaeporaGaebora ? "is-danger" : "is-dark")}
                     >
                         Ignore Kaepora Gaebora
                     </button>
                     <button
                         onClick={() => this.toggleStateAttribute("ignoreSongs")}
-                        className={"button is-small " + (this.state.ignoreSongs ? "is-danger is-outlined" : "is-dark is-outlined")}
+                        className={"button is-small is-outlined " + (this.state.ignoreSongs ? "is-danger" : "is-dark")}
                     >
                         Ignore Songs
                     </button>
                     <button
                         onClick={() => this.toggleStateAttribute("ignoreHauntedWasteland")}
-                        className={"button is-small " + (this.state.ignoreHauntedWasteland ? "is-danger is-outlined" : "is-dark is-outlined")}
+                        className={"button is-small is-outlined " + (this.state.ignoreHauntedWasteland ? "is-danger" : "is-dark")}
                     >
                         Ignore Haunted Wasteland
                     </button>
                     <button
                         onClick={() => this.toggleStateAttribute("ignoreLostWoodsToBridge")}
-                        className={"button is-small " + (this.state.ignoreLostWoodsToBridge ? "is-danger is-outlined" : "is-dark is-outlined")}
+                        className={"button is-small is-outlined " + (this.state.ignoreLostWoodsToBridge ? "is-danger" : "is-dark")}
                     >
                         Ignore Bridge from Lost Woods
                     </button>
                     <button
                         onClick={() => this.toggleStateAttribute("ignoreGoronCityDMC")}
-                        className={"button is-small " + (this.state.ignoreGoronCityDMC ? "is-danger is-outlined" : "is-dark is-outlined")}
+                        className={"button is-small is-outlined " + (this.state.ignoreGoronCityDMC ? "is-danger" : "is-dark")}
                     >
                         Ignore Death Mountain Crater Entrance in Goron City
                     </button>
                     <button
                         onClick={() => this.toggleStateAttribute("ignoreDivingEntrances")}
-                        className={"button is-small " + (this.state.ignoreDivingEntrances ? "is-danger is-outlined" : "is-dark is-outlined")}
+                        className={"button is-small is-outlined " + (this.state.ignoreDivingEntrances ? "is-danger" : "is-dark")}
                     >
                         Ignore Diving Entrances
                     </button>
                     <button
                         onClick={() => this.toggleStateAttribute("ignoreWindmillFromDampesGrave")}
-                        className={"button is-small " + (this.state.ignoreWindmillFromDampesGrave ? "is-danger is-outlined" : "is-dark is-outlined")}
+                        className={"button is-small is-outlined " + (this.state.ignoreWindmillFromDampesGrave ? "is-danger" : "is-dark")}
                     >
                         Ignore Windmill from Dampe's Grave
                     </button>
