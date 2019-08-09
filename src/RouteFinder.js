@@ -199,6 +199,10 @@ export default class RouteFinder extends React.Component {
                 if (result.length > 0) {
                     let path = [...result, {end: endName}];
                     pathsForThisEndLocation.push(path);
+                } else if (!ValidStartPoints.includes(endName)) {
+                    // it's a place with many locations, e.g. a grotto
+                    // this patricular path not possible, so use empty array
+                    pathsForThisEndLocation.push([]);
                 }
             }
             // include shortest path for this end point
@@ -343,6 +347,13 @@ export default class RouteFinder extends React.Component {
                     <div className="section routing-results">
                         {routes.map((route, i) => {
                             // each individual route
+                            if (route.length === 0) {
+                                return <div key={i} className="route columns is-vcentered">
+                                    <div className="route-step column has-text-centered">
+                                        Location not reachable from Start
+                                    </div>
+                                </div>
+                            }
                             return <div key={i} className="route columns is-vcentered">
                                 {route.map((step, j) => {
                                     // each step of a route
