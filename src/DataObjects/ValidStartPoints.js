@@ -29,7 +29,8 @@ const ValidStartPoints = [
     Houses["Stable"],
     Houses["Temple of Time"],
     Houses["Treasure Box Shop"],
-    Houses["Windmill"]
+    Houses["Windmill"],
+    Houses["Talon's House"]
 ];
 
 export default ValidStartPoints;

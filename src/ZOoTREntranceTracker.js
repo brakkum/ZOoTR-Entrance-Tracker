@@ -428,6 +428,11 @@ export default class ZOoTREntranceTracker extends React.Component {
         }
         if (empty) {
             hyrule[areaName].isAccessible = false;
+            if (this.state.routeFinderStart === areaName) {
+                this.setRouteFinderStart(null);
+            } else if (this.state.routeFinderEnd === areaName) {
+                this.setRouteFinderEnd(null);
+            }
         }
         this.setState({hyrule});
         if (AreasToAdd[areaName] !== undefined) {
@@ -460,12 +465,14 @@ export default class ZOoTREntranceTracker extends React.Component {
     };
 
     resetEntrance = (obj) => {
+        let searchTerm = null;
         switch (obj.type) {
             case EntranceTypes.Overworld: {
                 let area = obj.area;
                 let entrance = obj.entrance;
                 let leadsToArea = obj.leadsTo.area;
                 let leadsToEntrance = obj.leadsTo.entrance;
+                searchTerm = area;
 
                 this.resetOverworldEntrance(area, entrance);
                 this.resetOverworldEntrance(leadsToArea, leadsToEntrance);
@@ -489,6 +496,7 @@ export default class ZOoTREntranceTracker extends React.Component {
                 let area = obj.area;
                 let entrance = obj.entrance;
                 let interior = obj.interior;
+                searchTerm = interior;
 
                 this.resetInterior(area, entrance);
 
@@ -522,6 +530,13 @@ export default class ZOoTREntranceTracker extends React.Component {
             }
             default: {
                 throw Error("Invalid type: " + obj.type);
+            }
+        }
+        if (searchTerm !== null) {
+            if (this.state.routeFinderStart === searchTerm) {
+                this.setRouteFinderStart(null);
+            } else if (this.state.routeFinderEnd === searchTerm) {
+                this.setRouteFinderEnd(null);
             }
         }
     };

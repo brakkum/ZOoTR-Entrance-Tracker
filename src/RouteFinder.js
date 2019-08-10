@@ -199,6 +199,10 @@ export default class RouteFinder extends React.Component {
         let endPaths = [];
         let numberOfTries = 100;
 
+        if (availableLocations[endName] === undefined) {
+            return [];
+        }
+
         availableLocations[endName].forEach(endObject => {
             let pathsForThisEndLocation = [];
             for (let i = 0; i < numberOfTries; i ++) {
