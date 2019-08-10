@@ -8,6 +8,7 @@ import EntranceTypes from "./DataObjects/EntranceTypes";
 import ValidStartPoints from "./DataObjects/ValidStartPoints";
 import InteriorConnection from "./DataObjects/InteriorConnection";
 import DivingEntrances from "./DataObjects/DivingEntrances";
+import RouteStep from "./RouteStep";
 
 export default class RouteFinder extends React.Component {
 
@@ -251,7 +252,7 @@ export default class RouteFinder extends React.Component {
         let start = this.state.start;
         let end = this.state.end;
         let routes = this.getRoute();
-        return(
+        return (
             <div className="route-finder">
                 <div className="route-points-select">
                     <div className="route-select-start is-flex">
@@ -371,6 +372,7 @@ export default class RouteFinder extends React.Component {
                             let routeIsClear;
                             return <div key={i} className="route columns is-vcentered">
                                 {route.map((step, j) => {
+                                    let isEndStep = j === route.length - 1;
                                     if (j === route.length - 2) {
                                         routeEndArea = step.area;
                                         routeEndEntrance = step.entrance;
@@ -382,49 +384,16 @@ export default class RouteFinder extends React.Component {
                                         routeIsClear = hyrule[routeEndArea].entrances[routeEndEntrance].clear;
                                     }
                                     // each step of a route
-                                    return <div
+                                    return <RouteStep
                                         key={j}
-                                        className={
-                                            "route-step column has-text-centered " +
-                                            (j === route.length - 1 && routeHasClearAttribute && routeIsClear ? "has-border-green"
-                                                : j === route.length - 1 && routeHasClearAttribute && !routeIsClear ? "has-border-red" : "")
-                                        }
-                                        onClick={j === route.length - 1 && routeHasClearAttribute ? () => this.props.toggleClear(routeEndArea, routeEndEntrance) : null}
-                                        style={{borderRadius: "4px"}}
-                                    >
-                                        {step.start !== undefined &&
-                                            <span>
-                                                {step.start}
-                                            </span>
-                                        }
-                                        {step.song !== undefined &&
-                                            <span
-                                                className=""
-                                                style={{textShadow:
-                                                    `0px 0px 10px ${Songs[step.song].color}, 
-                                                    0px 0px 5px ${Songs[step.song].color}, 
-                                                    1px 2px 9px ${Songs[step.song].color}`
-                                                }}
-                                            >
-                                                {step.song}
-                                            </span>
-                                        }
-                                        {step.area !== undefined &&
-                                            <div className="has-text-weight-semibold">
-                                                {step.area}
-                                            </div>
-                                        }
-                                        {step.entrance !== undefined &&
-                                            <div>
-                                                {step.entrance} {![null, undefined].includes(step.area) && "Entrance"}
-                                            </div>
-                                        }
-                                        {step.end !== undefined &&
-                                            <span>
-                                                {step.end}
-                                            </span>
-                                        }
-                                    </div>
+                                        isEndStep={isEndStep}
+                                        routeIsClear={routeIsClear}
+                                        routeHasClearAttribute={routeHasClearAttribute}
+                                        step={step}
+                                        routeEndArea={routeEndArea}
+                                        routeEndEntrance={routeEndEntrance}
+                                        toggleClear={this.props.toggleClear}
+                                    />
                                 })}
                             </div>
                         })}

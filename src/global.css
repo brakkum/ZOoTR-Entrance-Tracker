@@ -68,6 +68,7 @@ html {
 .route-step {
     width: auto;
     height: 100%;
+    border-radius: 4px;
 }
 
 .selected-location {
@@ -149,19 +150,11 @@ html {
     margin: 10px;
 }
 
-.user-prompts {
-
-}
-
 .prompt {
     width: 90%;
     min-width: 500px;
     max-width: 900px;
     margin: auto;
-}
-
-.prompt-question {
-
 }
 
 .prompt-select {
