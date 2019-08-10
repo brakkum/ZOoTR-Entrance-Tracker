@@ -29,7 +29,9 @@ export default class ZOoTREntranceTracker extends React.Component {
         songs: {}, // songs state
         showRouteFinder: false, // show route finder
         startAsChild: true, // default start as child
-        overworldOnly: false // show all entrances
+        overworldOnly: false, // show all entrances
+        routeFinderStart: null,
+        routeFinderEnd: null
     };
 
     toggleRouteFinder = () => {
@@ -38,6 +40,14 @@ export default class ZOoTREntranceTracker extends React.Component {
 
     toggleOverworldOnly = () => {
         this.setState({overworldOnly: !this.state.overworldOnly});
+    };
+
+    setRouteFinderStart = start => {
+        this.setState({routeFinderStart: start});
+    };
+
+    setRouteFinderEnd = end => {
+        this.setState({routeFinderEnd: end});
     };
 
     setupTracker = () => {
@@ -96,7 +106,9 @@ export default class ZOoTREntranceTracker extends React.Component {
             songs,
             showRouteFinder,
             startAsChild,
-            overworldOnly
+            overworldOnly,
+            routeFinderStart: null,
+            routeFinderEnd: null
         });
     };
 
@@ -194,6 +206,10 @@ export default class ZOoTREntranceTracker extends React.Component {
                 };
                 state.availableHouses.push("Potion Shop Front", "Potion Shop Back");
                 state.availableHouseEntrances[OverworldAreas["Kakariko Village"]].push("Potion Shop Front", "Potion Shop Back");
+            }
+            if (state.routeFinderStart === undefined) {
+                state.routeFinderStart = null;
+                state.routeFinderEnd = null;
             }
             this.setState(state);
         }
@@ -612,7 +628,12 @@ export default class ZOoTREntranceTracker extends React.Component {
                 {showRouteFinder ?
                     <RouteFinder
                         availableLocations={interiorEntrances}
+                        toggleClear={this.toggleClear}
                         hyrule={hyrule}
+                        start={this.state.routeFinderStart}
+                        end={this.state.routeFinderEnd}
+                        setRouteFinderStart={this.setRouteFinderStart}
+                        setRouteFinderEnd={this.setRouteFinderEnd}
                     />
                     :
                     ""

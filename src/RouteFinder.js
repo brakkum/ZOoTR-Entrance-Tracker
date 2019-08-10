@@ -27,10 +27,12 @@ export default class RouteFinder extends React.Component {
         if (start === "") {
             return;
         }
+        this.props.setRouteFinderStart(start);
         this.setState({start});
     };
 
     resetStart = () => {
+        this.props.setRouteFinderStart(null);
         this.setState({start: null});
     };
 
@@ -38,10 +40,12 @@ export default class RouteFinder extends React.Component {
         if (end === "") {
             return;
         }
+        this.props.setRouteFinderEnd(end);
         this.setState({end});
     };
 
     resetEnd = () => {
+        this.props.setRouteFinderEnd(null);
         this.setState({end: null});
     };
 
@@ -58,6 +62,8 @@ export default class RouteFinder extends React.Component {
 
     newRouteFromEnd = () => {
         let end = this.state.end;
+        this.props.setRouteFinderStart(end);
+        this.props.setRouteFinderEnd(null);
         this.setState({start: end, end: null});
     }
 
@@ -232,11 +238,16 @@ export default class RouteFinder extends React.Component {
         return result;
     };
 
+    componentDidMount = () => {
+        this.setState({start: this.props.start, end: this.props.end});
+    };
+
     render() {
         let availableLocations = Object.keys(this.props.availableLocations);
         if (availableLocations.length < 3) {
             return <h4 className="section is-size-4 has-text-centered">More open areas necessary</h4>;
         }
+        let hyrule = this.props.hyrule;
         let start = this.state.start;
         let end = this.state.end;
         let routes = this.getRoute();
@@ -354,10 +365,33 @@ export default class RouteFinder extends React.Component {
                                     </div>
                                 </div>
                             }
+                            let routeEndArea = null;
+                            let routeEndEntrance = null;
+                            let routeHasClearAttribute;
+                            let routeIsClear;
                             return <div key={i} className="route columns is-vcentered">
                                 {route.map((step, j) => {
+                                    if (j === route.length - 2) {
+                                        routeEndArea = step.area;
+                                        routeEndEntrance = step.entrance;
+                                    }
+                                    routeHasClearAttribute = hyrule[routeEndArea] !== undefined &&
+                                        hyrule[routeEndArea].entrances[routeEndEntrance] !== undefined &&
+                                            hyrule[routeEndArea].entrances[routeEndEntrance].clear !== undefined;
+                                    if (routeHasClearAttribute) {
+                                        routeIsClear = hyrule[routeEndArea].entrances[routeEndEntrance].clear;
+                                    }
                                     // each step of a route
-                                    return <div key={j} className="route-step column has-text-centered">
+                                    return <div
+                                        key={j}
+                                        className={
+                                            "route-step column has-text-centered " +
+                                            (j === route.length - 1 && routeHasClearAttribute && routeIsClear ? "has-border-green"
+                                                : j === route.length - 1 && routeHasClearAttribute && !routeIsClear ? "has-border-red" : "")
+                                        }
+                                        onClick={j === route.length - 1 && routeHasClearAttribute ? () => this.props.toggleClear(routeEndArea, routeEndEntrance) : null}
+                                        style={{borderRadius: "4px"}}
+                                    >
                                         {step.start !== undefined &&
                                             <span>
                                                 {step.start}
