@@ -147,6 +147,16 @@ export default class RouteFinder extends React.Component {
                 return [];
             }
 
+            let isKaeporaGaeboraEntrance = currentCheck.entrance === EntranceTypes["Kaepora Gaebora"];
+
+            let isHauntedWasteland = currentCheck.area === OverworldAreas["Haunted Wasteland"];
+
+            let isLostWoodsToBridgeEntrance = currentCheck.area === OverworldAreas["Lost Woods"] &&
+                previousCheck.area === OverworldAreas["Lost Woods Bridge"];
+
+            let isGoronCityToDeathMountainCraterEntrance = currentCheck.area === OverworldAreas["Goron City"] &&
+                currentCheck.entrance === OverworldAreas["Death Mountain Crater"];
+
             let isZorasRiverLostWoodsEntrance = DivingEntrances[currentCheck.area] !== undefined && 
                 DivingEntrances[currentCheck.area][currentCheck.entrance] !== undefined &&
                     (currentCheck.area === OverworldAreas["Lost Woods"] || currentCheck.area === OverworldAreas["Zora's River"]);
@@ -157,9 +167,9 @@ export default class RouteFinder extends React.Component {
 
             if (startIsOverworld) {
                 if (currentCheck.area === startName) {
-                    if (!(currentCheck.entrance === EntranceTypes["Kaepora Gaebora"] && this.state.ignoreKaeporaGaebora) &&
-                        !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge) &&
-                        !(currentCheck.area === OverworldAreas["Goron City"] && currentCheck.entrance === OverworldAreas["Death Mountain Crater"] && this.state.ignoreGoronCityDMC) &&
+                    if (!(isKaeporaGaeboraEntrance && this.state.ignoreKaeporaGaebora) &&
+                        !(isLostWoodsToBridgeEntrance && this.state.ignoreLostWoodsToBridge) &&
+                        !(isGoronCityToDeathMountainCraterEntrance && this.state.ignoreGoronCityDMC) &&
                         !(isZorasRiverLostWoodsEntrance && this.state.ignoreLostWoodsZorasRiverEntrances) &&
                         !(isLakeHyliaZorasDomainEntrance && this.state.ignoreLakeHyliaZorasDomainEntrance)) {
                         return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
@@ -167,10 +177,10 @@ export default class RouteFinder extends React.Component {
                 }
             }
 
-            if (!(currentCheck.entrance === EntranceTypes["Kaepora Gaebora"] && this.state.ignoreKaeporaGaebora) &&
-                !(currentCheck.area === OverworldAreas["Haunted Wasteland"] && this.state.ignoreHauntedWasteland) && 
-                !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge) &&
-                !(currentCheck.area === OverworldAreas["Goron City"] && currentCheck.entrance === OverworldAreas["Death Mountain Crater"] && this.state.ignoreGoronCityDMC) &&
+            if (!(isKaeporaGaeboraEntrance && this.state.ignoreKaeporaGaebora) &&
+                !(isHauntedWasteland && this.state.ignoreHauntedWasteland) &&
+                !(isLostWoodsToBridgeEntrance && this.state.ignoreLostWoodsToBridge) &&
+                !(isGoronCityToDeathMountainCraterEntrance && this.state.ignoreGoronCityDMC) &&
                 !(isZorasRiverLostWoodsEntrance && this.state.ignoreLostWoodsZorasRiverEntrances) &&
                 !(isLakeHyliaZorasDomainEntrance && this.state.ignoreLakeHyliaZorasDomainEntrance)) {
                 nextLocationToSearch = currentCheck.area;
