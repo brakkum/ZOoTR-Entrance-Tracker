@@ -231,7 +231,7 @@ export default class RouteFinder extends React.Component {
                     pathsForThisEndLocation.push(path);
                 } else if (!ValidStartPoints.includes(endName)) {
                     // it's a place with many locations, e.g. a grotto
-                    // this patricular path not possible, so use empty array
+                    // this particular path not possible, so return empty array
                     pathsForThisEndLocation.push([]);
                 }
             }
