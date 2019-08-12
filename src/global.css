@@ -63,6 +63,7 @@ html {
 
 .routing-results .route:not(:last-child) {
     border-bottom: 1px solid #a5a38c;
+    padding: 5px 0;
 }
 
 .route-step {
