@@ -17,7 +17,7 @@ export default class RouteFinder extends React.Component {
         end: null,
         ignoreKaeporaGaebora: false,
         ignoreSongs: false,
-        ignoreHauntedWasteland: false,
+        ignoreCrossingHauntedWasteland: false,
         ignoreLostWoodsToBridge: false,
         ignoreGoronCityDMC: false,
         ignoreLostWoodsZorasRiverEntrances: false,
@@ -149,7 +149,7 @@ export default class RouteFinder extends React.Component {
 
             let isKaeporaGaeboraEntrance = currentCheck.entrance === EntranceTypes["Kaepora Gaebora"];
 
-            let isHauntedWasteland = currentCheck.area === OverworldAreas["Haunted Wasteland"];
+            let previousCheckIsHauntedWasteland = previousCheck.area === OverworldAreas["Haunted Wasteland"];
 
             let isLostWoodsToBridgeEntrance = currentCheck.area === OverworldAreas["Lost Woods"] &&
                 previousCheck.area === OverworldAreas["Lost Woods Bridge"];
@@ -165,6 +165,15 @@ export default class RouteFinder extends React.Component {
                 DivingEntrances[currentCheck.area][currentCheck.entrance] !== undefined &&
                     (currentCheck.area === OverworldAreas["Zora's Domain"] || currentCheck.area === OverworldAreas["Lake Hylia"]);
 
+            if (previousCheckIsHauntedWasteland) {
+                let hauntedWastelandEntraceBeingLedTo = this.props.hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.entrance;
+                let hauntedWastelandEntraceFromPreviousCheck = previousCheck.entrance;
+                if (hauntedWastelandEntraceBeingLedTo !== hauntedWastelandEntraceFromPreviousCheck &&
+                    this.state.ignoreCrossingHauntedWasteland) {
+                    return [];
+                }
+            }
+
             if (startIsOverworld) {
                 if (currentCheck.area === startName) {
                     if (!(isKaeporaGaeboraEntrance && this.state.ignoreKaeporaGaebora) &&
@@ -178,7 +187,6 @@ export default class RouteFinder extends React.Component {
             }
 
             if (!(isKaeporaGaeboraEntrance && this.state.ignoreKaeporaGaebora) &&
-                !(isHauntedWasteland && this.state.ignoreHauntedWasteland) &&
                 !(isLostWoodsToBridgeEntrance && this.state.ignoreLostWoodsToBridge) &&
                 !(isGoronCityToDeathMountainCraterEntrance && this.state.ignoreGoronCityDMC) &&
                 !(isZorasRiverLostWoodsEntrance && this.state.ignoreLostWoodsZorasRiverEntrances) &&
@@ -348,10 +356,10 @@ export default class RouteFinder extends React.Component {
                         Ignore Songs
                     </button>
                     <button
-                        onClick={() => this.toggleStateAttribute("ignoreHauntedWasteland")}
-                        className={"button is-small is-outlined " + (this.state.ignoreHauntedWasteland ? "is-danger" : "is-dark")}
+                        onClick={() => this.toggleStateAttribute("ignoreCrossingHauntedWasteland")}
+                        className={"button is-small is-outlined " + (this.state.ignoreCrossingHauntedWasteland ? "is-danger" : "is-dark")}
                     >
-                        Ignore Haunted Wasteland
+                        Ignore Crossing Haunted Wasteland
                     </button>
                     <button
                         onClick={() => this.toggleStateAttribute("ignoreLostWoodsToBridge")}

@@ -14,7 +14,6 @@ import Area from "./Area";
 import Song from "./Song";
 import RouteFinder from "./RouteFinder";
 
-
 export default class ZOoTREntranceTracker extends React.Component {
 
     state = {
@@ -31,7 +30,8 @@ export default class ZOoTREntranceTracker extends React.Component {
         startAsChild: true, // default start as child
         overworldOnly: false, // show all entrances
         routeFinderStart: null,
-        routeFinderEnd: null
+        routeFinderEnd: null,
+        allOverworldEntrances: {} // listing that never changes of all overworld entrances
     };
 
     toggleRouteFinder = () => {
@@ -63,10 +63,12 @@ export default class ZOoTREntranceTracker extends React.Component {
         let showRouteFinder = false; // hide route finder on start
         let startAsChild = true; // default to starting as child
         let overworldOnly = false; // show all entrances by default
+        let allOverworldEntrances = {}; // all entrances, never modified
 
         Object.keys(Hyrule).forEach(area => {
             availableOverworldEntrances[area] = [];
             availableGrottoEntrances[area] = [];
+            allOverworldEntrances[area] = [];
 
             Object.keys(Hyrule[area].entrances).forEach(entranceName => {
 
@@ -75,6 +77,7 @@ export default class ZOoTREntranceTracker extends React.Component {
 
                 if (type === EntranceTypes.Overworld) {
                     availableOverworldEntrances[area].push(entranceName);
+                    allOverworldEntrances[area].push(entranceName);
                 } else if (type === EntranceTypes.Dungeon) {
                     availableDungeons.push(entranceName);
                 } else {
@@ -108,7 +111,8 @@ export default class ZOoTREntranceTracker extends React.Component {
             startAsChild,
             overworldOnly,
             routeFinderStart: null,
-            routeFinderEnd: null
+            routeFinderEnd: null,
+            allOverworldEntrances
         });
     };
 
@@ -210,6 +214,21 @@ export default class ZOoTREntranceTracker extends React.Component {
             if (state.routeFinderStart === undefined) {
                 state.routeFinderStart = null;
                 state.routeFinderEnd = null;
+            }
+            if (state.allOverworldEntrances === undefined) {
+                let allOverworldEntrances = {};
+                Object.keys(state.hyrule).forEach(area => {
+                    allOverworldEntrances[area] = [];
+                    Object.keys(state.hyrule[area].entrances).forEach(entranceName => {
+                        let entrance = state.hyrule[area].entrances[entranceName];
+                        let type = entrance.type;
+
+                        if (type === EntranceTypes.Overworld) {
+                            allOverworldEntrances[area].push(entranceName);
+                        }
+                    });
+                });
+                state.allOverworldEntrances = allOverworldEntrances;
             }
             this.setState(state);
         }
@@ -594,9 +613,10 @@ export default class ZOoTREntranceTracker extends React.Component {
                 let area = vanilla.area;
                 let entrance = vanilla.entrance;
                 let selectedArea = selection.area;
+                let selectedEntrance = selection.entrance;
 
                 this.setKaeporaLanding(area, selectedArea);
-                this.setOverworldEntrance(area, entrance, {area: selectedArea});
+                this.setOverworldEntrance(area, entrance, {area: selectedArea, entrance: selectedEntrance});
 
                 this.addInteriorEntrance(selectedArea, {area, entrance});
 
@@ -693,7 +713,6 @@ export default class ZOoTREntranceTracker extends React.Component {
                             key={i}
                             area={area}
                             state={this.state}
-                            hyrule={hyrule}
                             areaName={areaName}
                             setEntrance={this.setEntrance}
                             resetEntrance={this.resetEntrance}

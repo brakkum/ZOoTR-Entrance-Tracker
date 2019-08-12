@@ -15,7 +15,6 @@ export default class Area extends React.Component {
     render() {
         let overworldOnly = this.props.overworldOnly;
         let areaName = this.props.areaName;
-        let hyrule = this.props.hyrule;
         let state = this.props.state;
         let area = this.props.area;
         let entrances = [];
@@ -54,7 +53,7 @@ export default class Area extends React.Component {
                                     : entrance.type === EntranceTypes.Grotto ?
                                         this.returnUniqueItems(state.availableGrottos)
                                         : entrance.type === EntranceTypes["Kaepora Gaebora"] ?
-                                            Object.keys(hyrule).sort()
+                                            state.allOverworldEntrances
                                             : []; // How did you get here??
 
                         // add to the correct column in area container
