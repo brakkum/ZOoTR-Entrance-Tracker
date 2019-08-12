@@ -20,7 +20,8 @@ export default class RouteFinder extends React.Component {
         ignoreHauntedWasteland: false,
         ignoreLostWoodsToBridge: false,
         ignoreGoronCityDMC: false,
-        ignoreDivingEntrances: false,
+        ignoreLostWoodsZorasRiverEntrances: false,
+        ignoreLakeHyliaZorasDomainEntrance: false,
         ignoreWindmillFromDampesGrave: false
     };
 
@@ -146,14 +147,21 @@ export default class RouteFinder extends React.Component {
                 return [];
             }
 
-            let isDivingEntrance = DivingEntrances[currentCheck.area] !== undefined && DivingEntrances[currentCheck.area][currentCheck.entrance] !== undefined;
+            let isZorasRiverLostWoodsEntrance = DivingEntrances[currentCheck.area] !== undefined && 
+                DivingEntrances[currentCheck.area][currentCheck.entrance] !== undefined &&
+                    (currentCheck.area === OverworldAreas["Lost Woods"] || currentCheck.area === OverworldAreas["Zora's River"]);
+
+            let isLakeHyliaZorasDomainEntrance = DivingEntrances[currentCheck.area] !== undefined && 
+                DivingEntrances[currentCheck.area][currentCheck.entrance] !== undefined &&
+                    (currentCheck.area === OverworldAreas["Zora's Domain"] || currentCheck.area === OverworldAreas["Lake Hylia"]);
 
             if (startIsOverworld) {
                 if (currentCheck.area === startName) {
                     if (!(currentCheck.entrance === EntranceTypes["Kaepora Gaebora"] && this.state.ignoreKaeporaGaebora) &&
                         !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge) &&
                         !(currentCheck.area === OverworldAreas["Goron City"] && currentCheck.entrance === OverworldAreas["Death Mountain Crater"] && this.state.ignoreGoronCityDMC) &&
-                        !(isDivingEntrance && this.state.ignoreDivingEntrances)) {
+                        !(isZorasRiverLostWoodsEntrance && this.state.ignoreLostWoodsZorasRiverEntrances) &&
+                        !(isLakeHyliaZorasDomainEntrance && this.state.ignoreLakeHyliaZorasDomainEntrance)) {
                         return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
                     }
                 }
@@ -163,7 +171,8 @@ export default class RouteFinder extends React.Component {
                 !(currentCheck.area === OverworldAreas["Haunted Wasteland"] && this.state.ignoreHauntedWasteland) && 
                 !(currentCheck.area === OverworldAreas["Lost Woods"] && previousCheck.area === OverworldAreas["Lost Woods Bridge"] && this.state.ignoreLostWoodsToBridge) &&
                 !(currentCheck.area === OverworldAreas["Goron City"] && currentCheck.entrance === OverworldAreas["Death Mountain Crater"] && this.state.ignoreGoronCityDMC) &&
-                !(isDivingEntrance && this.state.ignoreDivingEntrances)) {
+                !(isZorasRiverLostWoodsEntrance && this.state.ignoreLostWoodsZorasRiverEntrances) &&
+                !(isLakeHyliaZorasDomainEntrance && this.state.ignoreLakeHyliaZorasDomainEntrance)) {
                 nextLocationToSearch = currentCheck.area;
             }
         }
@@ -347,10 +356,16 @@ export default class RouteFinder extends React.Component {
                         Ignore Death Mountain Crater Entrance in Goron City
                     </button>
                     <button
-                        onClick={() => this.toggleStateAttribute("ignoreDivingEntrances")}
-                        className={"button is-small is-outlined " + (this.state.ignoreDivingEntrances ? "is-danger" : "is-dark")}
+                        onClick={() => this.toggleStateAttribute("ignoreLostWoodsZorasRiverEntrances")}
+                        className={"button is-small is-outlined " + (this.state.ignoreLostWoodsZorasRiverEntrances ? "is-danger" : "is-dark")}
                     >
-                        Ignore Diving Entrances
+                        Ignore Lost Woods/Zora's River Entrances
+                    </button>
+                    <button
+                        onClick={() => this.toggleStateAttribute("ignoreLakeHyliaZorasDomainEntrance")}
+                        className={"button is-small is-outlined " + (this.state.ignoreLakeHyliaZorasDomainEntrance ? "is-danger" : "is-dark")}
+                    >
+                        Ignore Zora's Domain/Lake Hylia Entrances
                     </button>
                     <button
                         onClick={() => this.toggleStateAttribute("ignoreWindmillFromDampesGrave")}
