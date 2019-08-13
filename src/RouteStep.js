@@ -2,17 +2,10 @@ import React from "react";
 import Songs from "./DataObjects/Songs";
 import useHover from "./Hooks/useHover";
 
-export default function RouteStep(props) {
+export default function RouteStep({step, isEndStep, routeIsClear, routeHasClearAttribute, routeEndArea, routeEndEntrance, ...props}) {
 
     const [hoverRef, isHovered] = useHover();
 
-    let step = props.step;
-    let isEndStep = props.isEndStep;
-    let routeIsClear = props.routeIsClear;
-    let routeHasClearAttribute = props.routeHasClearAttribute;
-    let routeEndArea = props.routeEndArea;
-    let routeEndEntrance = props.routeEndEntrance;
-    
     return <div
         ref={hoverRef}
         className={

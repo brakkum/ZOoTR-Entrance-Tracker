@@ -3,14 +3,9 @@ import Houses from "./DataObjects/Houses";
 import React, { useState } from "react";
 import useHover from "./Hooks/useHover";
 
-export default function Entrance(props) {
+export default function Entrance({options, entrance, areaName, entranceName, ...props}) {
 
     const [hoverRef, isHovered] = useHover();
-
-    let options = props.options;
-    let entrance = props.entrance;
-    let areaName = props.areaName;
-    let entranceName = props.entranceName;
 
     return(
         <div className="entrance">

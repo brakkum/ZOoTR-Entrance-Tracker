@@ -10,12 +10,8 @@ const returnUniqueItems = array => {
     });
 };
 
-export default function Area(props) {
+export default function Area({overworldOnly, areaName, area, state, ...props}) {
 
-    let overworldOnly = props.overworldOnly;
-    let areaName = props.areaName;
-    let state = props.state;
-    let area = props.area;
     let entrances = [];
 
     return(
