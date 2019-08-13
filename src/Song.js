@@ -1,45 +1,31 @@
 import React from "react";
+import useHover from "./Hooks/useHover";
 
-export default class Song extends React.Component {
+export default function Song({song, ...props}) {
 
-    state = {
-        hovered: false
-    };
+    const [hoverRef, isHovered] = useHover();
 
-    mouseOver = () => {
-        this.setState({hovered: true});
-    };
-
-    mouseOut = () => {
-        this.setState({hovered: false});
-    };
-
-    addOrResetSong = () => {
-        let song = this.props.song;
+    const addOrResetSong = () => {
         if (song.collected) {
-            this.props.removeSong(song.name);
+            props.removeSong(song.name);
         } else {
-            this.props.acquireSong(song.name);
+            props.acquireSong(song.name);
         }
     };
 
-    render() {
-        let song = this.props.song;
-        return(
-            <div className="warp-song">
-                <div
-                    style={{
-                        color: (song.collected ? song.color : "white"),
-                        opacity: ((song.collected || this.state.hovered) ? "1" : ".5"),
-                        textAlign: "center"
-                    }}
-                    onMouseOver={this.mouseOver}
-                    onMouseOut={this.mouseOut}
-                    onClick={this.addOrResetSong}
-                >
-                    <h6 className="is-size-6">{song.name}</h6>
-                </div>
+    return(
+        <div className="warp-song">
+            <div
+                style={{
+                    color: (song.collected ? song.color : "white"),
+                    opacity: (isHovered ? "1" : song.collected ? ".8" : ".5"),
+                    textAlign: "center"
+                }}
+                ref={hoverRef}
+                onClick={addOrResetSong}
+            >
+                <h6 className="is-size-6">{song.name}</h6>
             </div>
-        )
-    }
+        </div>
+    )
 }
