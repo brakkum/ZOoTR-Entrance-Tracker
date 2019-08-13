@@ -20,8 +20,7 @@ export default function useHover() {
                     node.removeEventListener('mouseout', handleMouseOut);
                 };
             }
-        },
-        [ref.current] // Recall only if ref changes
+        }
     );
   
     return [ref, value];

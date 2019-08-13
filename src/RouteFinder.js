@@ -9,7 +9,6 @@ import ValidStartPoints from "./DataObjects/ValidStartPoints";
 import InteriorConnection from "./DataObjects/InteriorConnection";
 import DivingEntrances from "./DataObjects/DivingEntrances";
 import RouteStep from "./RouteStep";
-import { voidTypeAnnotation } from "@babel/types";
 
 const shuffleArray = array => {
     for (let i = array.length - 1; i > 0; i--) {

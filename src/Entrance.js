@@ -1,6 +1,6 @@
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import Houses from "./DataObjects/Houses";
-import React, { useState } from "react";
+import React from "react";
 import useHover from "./Hooks/useHover";
 
 export default function Entrance({options, entrance, areaName, entranceName, ...props}) {
