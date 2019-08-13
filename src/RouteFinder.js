@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Houses from "./DataObjects/Houses";
 import Grottos from "./DataObjects/Grottos";
 import Dungeons from "./DataObjects/Dungeons";
@@ -9,12 +9,20 @@ import ValidStartPoints from "./DataObjects/ValidStartPoints";
 import InteriorConnection from "./DataObjects/InteriorConnection";
 import DivingEntrances from "./DataObjects/DivingEntrances";
 import RouteStep from "./RouteStep";
+import { voidTypeAnnotation } from "@babel/types";
 
-export default class RouteFinder extends React.Component {
+const shuffleArray = array => {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+};
 
-    state = {
-        start: null,
-        end: null,
+export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, availableLocations, hyrule, ...props}) {
+
+    const [start, setStart] = useState(props.start);
+    const [end, setEnd] = useState(props.end);
+    const [config, setConfig] = useState({
         ignoreKaeporaGaebora: false,
         ignoreSongs: false,
         ignoreCrossingHauntedWasteland: false,
@@ -23,56 +31,31 @@ export default class RouteFinder extends React.Component {
         ignoreLostWoodsZorasRiverEntrances: false,
         ignoreLakeHyliaZorasDomainEntrance: false,
         ignoreWindmillFromDampesGrave: false
+    });
+
+    const newStart = newStart => {
+        setStart(newStart);
+        setRouteFinderStart(newStart);
     };
 
-    setStart = start => {
-        if (start === "") {
-            return;
-        }
-        this.props.setRouteFinderStart(start);
-        this.setState({start});
+    const newEnd = newEnd => {
+        setEnd(newEnd);
+        setRouteFinderEnd(newEnd);
     };
 
-    resetStart = () => {
-        this.props.setRouteFinderStart(null);
-        this.setState({start: null});
+    const toggleConfigAttribute = attribute => {
+        setConfig({...config, [attribute]: !config[attribute]});
     };
 
-    setEnd = end => {
-        if (end === "") {
-            return;
-        }
-        this.props.setRouteFinderEnd(end);
-        this.setState({end});
-    };
-
-    resetEnd = () => {
-        this.props.setRouteFinderEnd(null);
-        this.setState({end: null});
-    };
-
-    toggleStateAttribute = attribute => {
-        this.setState({[attribute]: !this.state[attribute]});
-    };
-
-    shuffleArray = array => {
-        for (let i = array.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-    };
-
-    newRouteFromEnd = () => {
-        let end = this.state.end;
-        this.props.setRouteFinderStart(end);
-        this.props.setRouteFinderEnd(null);
-        this.setState({start: end, end: null});
+    const newRouteFromEnd = () => {
+        newStart(end);
+        newEnd(null);
     }
 
     // start is always a string
     // end is an object
     // since start could be an area, dungeon, etc.
-    findStartFromEndObject = (startName, endName, previousCheck, currentCheck, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
+    const findStartFromEndObject = (startName, endName, previousCheck, currentCheck, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
         let startIsHouse = Houses[startName] !== undefined;
         let startIsGrotto = Grottos[startName] !== undefined;
         let startIsDungeon = Dungeons[startName] !== undefined;
@@ -91,7 +74,7 @@ export default class RouteFinder extends React.Component {
             currentlyBeingSearched.push(endName);
         }
 
-        if (locationIsSong && !this.state.ignoreSongs) {
+        if (locationIsSong && !config.ignoreSongs) {
             return [{start: startName}, {song: currentCheck.song}];
         }
 
@@ -137,7 +120,7 @@ export default class RouteFinder extends React.Component {
                 }
             }
 
-            if (currentCheck.interior === Grottos["Dampe's Grave"] && !this.state.ignoreWindmillFromDampesGrave) {
+            if (currentCheck.interior === Grottos["Dampe's Grave"] && !config.ignoreWindmillFromDampesGrave) {
                 nextLocationToSearch = Grottos["Dampe's Grave"];
             }
         }
@@ -166,31 +149,31 @@ export default class RouteFinder extends React.Component {
                     (currentCheck.area === OverworldAreas["Zora's Domain"] || currentCheck.area === OverworldAreas["Lake Hylia"]);
 
             if (previousCheckIsHauntedWasteland) {
-                let hauntedWastelandEntraceBeingLedTo = this.props.hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.entrance;
+                let hauntedWastelandEntraceBeingLedTo = hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.entrance;
                 let hauntedWastelandEntraceFromPreviousCheck = previousCheck.entrance;
                 if (hauntedWastelandEntraceBeingLedTo !== hauntedWastelandEntraceFromPreviousCheck &&
-                    this.state.ignoreCrossingHauntedWasteland) {
+                    config.ignoreCrossingHauntedWasteland) {
                     return [];
                 }
             }
 
             if (startIsOverworld) {
                 if (currentCheck.area === startName) {
-                    if (!(isKaeporaGaeboraEntrance && this.state.ignoreKaeporaGaebora) &&
-                        !(isLostWoodsToBridgeEntrance && this.state.ignoreLostWoodsToBridge) &&
-                        !(isGoronCityToDeathMountainCraterEntrance && this.state.ignoreGoronCityDMC) &&
-                        !(isZorasRiverLostWoodsEntrance && this.state.ignoreLostWoodsZorasRiverEntrances) &&
-                        !(isLakeHyliaZorasDomainEntrance && this.state.ignoreLakeHyliaZorasDomainEntrance)) {
+                    if (!(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
+                        !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
+                        !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
+                        !(isZorasRiverLostWoodsEntrance && config.ignoreLostWoodsZorasRiverEntrances) &&
+                        !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrance)) {
                         return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
                     }
                 }
             }
 
-            if (!(isKaeporaGaeboraEntrance && this.state.ignoreKaeporaGaebora) &&
-                !(isLostWoodsToBridgeEntrance && this.state.ignoreLostWoodsToBridge) &&
-                !(isGoronCityToDeathMountainCraterEntrance && this.state.ignoreGoronCityDMC) &&
-                !(isZorasRiverLostWoodsEntrance && this.state.ignoreLostWoodsZorasRiverEntrances) &&
-                !(isLakeHyliaZorasDomainEntrance && this.state.ignoreLakeHyliaZorasDomainEntrance)) {
+            if (!(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
+                !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
+                !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
+                !(isZorasRiverLostWoodsEntrance && config.ignoreLostWoodsZorasRiverEntrances) &&
+                !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrance)) {
                 nextLocationToSearch = currentCheck.area;
             }
         }
@@ -202,9 +185,9 @@ export default class RouteFinder extends React.Component {
         if (nextLocationToSearch !== "") {
             currentlyBeingSearched.push(nextLocationToSearch);
             let nextArray = availableLocations[nextLocationToSearch];
-            this.shuffleArray(nextArray);
+            shuffleArray(nextArray);
             for (let i = 0; i < nextArray.length; i++) {
-                let result = this.findStartFromEndObject(startName, endName, currentCheck, nextArray[i], availableLocations, currentlyBeingSearched, completelySearched);
+                let result = findStartFromEndObject(startName, endName, currentCheck, nextArray[i], availableLocations, currentlyBeingSearched, completelySearched);
                 if (result.length > 0) {
                     if (locationIsHouse) {
                         return [...result, {entrance: currentCheck.interior}];
@@ -221,8 +204,7 @@ export default class RouteFinder extends React.Component {
     };
 
     // start is always the same, as we look for it from end, end is current queued item
-    getRoutesFromStartToEnd = (startName, endName) => {
-        let availableLocations = this.props.availableLocations;
+    const getRoutesFromStartToEnd = (startName, endName) => {
         let endPaths = [];
         let numberOfTries = 100;
 
@@ -233,7 +215,7 @@ export default class RouteFinder extends React.Component {
         availableLocations[endName].forEach(endObject => {
             let pathsForThisEndLocation = [];
             for (let i = 0; i < numberOfTries; i ++) {
-                let result = this.findStartFromEndObject(startName, endName, {}, endObject, availableLocations);
+                let result = findStartFromEndObject(startName, endName, {}, endObject, availableLocations);
                 if (result.length > 0) {
                     let path = [...result, {end: endName}];
                     pathsForThisEndLocation.push(path);
@@ -260,40 +242,53 @@ export default class RouteFinder extends React.Component {
         }
     };
 
-    getRoute = () => {
-        let end = this.state.end;
-        let start = this.state.start;
+    const getRoute = () => {
         if (!end || !start) {
             return null;
         }
-        let result = this.getRoutesFromStartToEnd(start, end);
+        let result = getRoutesFromStartToEnd(start, end);
         return result;
     };
 
-    componentDidMount = () => {
-        this.setState({start: this.props.start, end: this.props.end});
-    };
-
-    render() {
-        let availableLocations = Object.keys(this.props.availableLocations);
-        if (availableLocations.length < 3) {
-            return <h4 className="section is-size-4 has-text-centered">More open areas necessary</h4>;
-        }
-        let hyrule = this.props.hyrule;
-        let start = this.state.start;
-        let end = this.state.end;
-        let routes = this.getRoute();
-        return (
-            <div className="route-finder">
-                <div className="route-points-select">
-                    <div className="route-select-start is-flex">
-                        <h5 className="is-size-5">Start:</h5>
-                        {start === null ?
+    let availableLocationsKeys = Object.keys(availableLocations);
+    if (availableLocationsKeys.length < 3) {
+        return <h4 className="section is-size-4 has-text-centered">More open areas necessary</h4>;
+    }
+    let routes = getRoute();
+    return (
+        <div className="route-finder">
+            <div className="route-points-select">
+                <div className="route-select-start is-flex">
+                    <h5 className="is-size-5">Start:</h5>
+                    {start === null ?
+                        <div className="select is-small">
+                            <select value="Select Location" onChange={e => newStart(e.target.value)}>
+                                <option value="">Select Location</option>
+                                {availableLocationsKeys.sort().map((location, i) => {
+                                    if (location === end || !ValidStartPoints.includes(location)) {
+                                        return null;
+                                    }
+                                    return <option key={i} value={location}>
+                                        {location}
+                                    </option>
+                                })}
+                            </select>
+                        </div>
+                        :
+                        <h5 className="is-size-5 is-flex selected-location">
+                            {start}
+                            <span className="delete" onClick={() => newStart(null)}>x</span>
+                        </h5>
+                    }
+                </div>
+                <div className="route-select-end is-flex">
+                    <h5 className="is-size-5">End:</h5>
+                        {end === null ?
                             <div className="select is-small">
-                                <select value="Select Location" onChange={e => this.setStart(e.target.value)}>
+                                <select value="Select Location" onChange={e => newEnd(e.target.value)}>
                                     <option value="">Select Location</option>
-                                    {availableLocations.sort().map((location, i) => {
-                                        if (location === end || !ValidStartPoints.includes(location)) {
+                                    {availableLocationsKeys.sort().map((location, i) => {
+                                        if (location === start) {
                                             return null;
                                         }
                                         return <option key={i} value={location}>
@@ -304,145 +299,121 @@ export default class RouteFinder extends React.Component {
                             </div>
                             :
                             <h5 className="is-size-5 is-flex selected-location">
-                                {start}
-                                <span className="delete" onClick={this.resetStart}>x</span>
+                                {end}
+                                <span className="delete" onClick={() => newEnd(null)}>x</span>
                             </h5>
                         }
-                    </div>
-                    <div className="route-select-end is-flex">
-                        <h5 className="is-size-5">End:</h5>
-                            {end === null ?
-                                <div className="select is-small">
-                                    <select value="Select Location" onChange={e => this.setEnd(e.target.value)}>
-                                        <option value="">Select Location</option>
-                                        {availableLocations.sort().map((location, i) => {
-                                            if (location === start) {
-                                                return null;
-                                            }
-                                            return <option key={i} value={location}>
-                                                {location}
-                                            </option>
-                                        })}
-                                    </select>
-                                </div>
-                                :
-                                <h5 className="is-size-5 is-flex selected-location">
-                                    {end}
-                                    <span className="delete" onClick={this.resetEnd}>x</span>
-                                </h5>
-                            }
-                    </div>
                 </div>
-                {end && start && ValidStartPoints.includes(end) && <div className="buttons is-centered">
-                    <button
-                        className="button is-small is-primary"
-                        onClick={this.newRouteFromEnd}
-                    >
-                            New Route from End
-                        </button>
-                    </div>
-                }
-                <div className="routing-options buttons is-centered">
-                    <button
-                        onClick={() => this.toggleStateAttribute("ignoreKaeporaGaebora")}
-                        className={"button is-small is-outlined " + (this.state.ignoreKaeporaGaebora ? "is-danger" : "is-dark")}
-                    >
-                        Ignore Kaepora Gaebora
-                    </button>
-                    <button
-                        onClick={() => this.toggleStateAttribute("ignoreSongs")}
-                        className={"button is-small is-outlined " + (this.state.ignoreSongs ? "is-danger" : "is-dark")}
-                    >
-                        Ignore Songs
-                    </button>
-                    <button
-                        onClick={() => this.toggleStateAttribute("ignoreCrossingHauntedWasteland")}
-                        className={"button is-small is-outlined " + (this.state.ignoreCrossingHauntedWasteland ? "is-danger" : "is-dark")}
-                    >
-                        Ignore Crossing Haunted Wasteland
-                    </button>
-                    <button
-                        onClick={() => this.toggleStateAttribute("ignoreLostWoodsToBridge")}
-                        className={"button is-small is-outlined " + (this.state.ignoreLostWoodsToBridge ? "is-danger" : "is-dark")}
-                    >
-                        Ignore Bridge from Lost Woods
-                    </button>
-                    <button
-                        onClick={() => this.toggleStateAttribute("ignoreGoronCityDMC")}
-                        className={"button is-small is-outlined " + (this.state.ignoreGoronCityDMC ? "is-danger" : "is-dark")}
-                    >
-                        Ignore Death Mountain Crater Entrance in Goron City
-                    </button>
-                    <button
-                        onClick={() => this.toggleStateAttribute("ignoreLostWoodsZorasRiverEntrances")}
-                        className={"button is-small is-outlined " + (this.state.ignoreLostWoodsZorasRiverEntrances ? "is-danger" : "is-dark")}
-                    >
-                        Ignore Lost Woods/Zora's River Entrances
-                    </button>
-                    <button
-                        onClick={() => this.toggleStateAttribute("ignoreLakeHyliaZorasDomainEntrance")}
-                        className={"button is-small is-outlined " + (this.state.ignoreLakeHyliaZorasDomainEntrance ? "is-danger" : "is-dark")}
-                    >
-                        Ignore Zora's Domain/Lake Hylia Entrances
-                    </button>
-                    <button
-                        onClick={() => this.toggleStateAttribute("ignoreWindmillFromDampesGrave")}
-                        className={"button is-small is-outlined " + (this.state.ignoreWindmillFromDampesGrave ? "is-danger" : "is-dark")}
-                    >
-                        Ignore Windmill from Dampe's Grave
-                    </button>
-                </div>
-                {routes !== null && routes.length > 0 ?
-                    <div className="section routing-results">
-                        {routes.map((route, i) => {
-                            // each individual route
-                            if (route.length === 0) {
-                                return <div key={i} className="route columns is-vcentered">
-                                    <div className="route-step column has-text-centered">
-                                        Location not reachable from Start
-                                    </div>
-                                </div>
-                            }
-                            let routeEndArea = null;
-                            let routeEndEntrance = null;
-                            let routeHasClearAttribute;
-                            let routeIsClear;
-                            return <div key={i} className="route columns is-vcentered">
-                                {route.map((step, j) => {
-                                    let isEndStep = j === route.length - 1;
-                                    if (j === route.length - 2) {
-                                        routeEndArea = step.area;
-                                        routeEndEntrance = step.entrance;
-                                    }
-                                    routeHasClearAttribute = hyrule[routeEndArea] !== undefined &&
-                                        hyrule[routeEndArea].entrances[routeEndEntrance] !== undefined &&
-                                            hyrule[routeEndArea].entrances[routeEndEntrance].clear !== undefined;
-                                    if (routeHasClearAttribute) {
-                                        routeIsClear = hyrule[routeEndArea].entrances[routeEndEntrance].clear;
-                                    }
-                                    // each step of a route
-                                    return <RouteStep
-                                        key={j}
-                                        isEndStep={isEndStep}
-                                        routeIsClear={routeIsClear}
-                                        routeHasClearAttribute={routeHasClearAttribute}
-                                        step={step}
-                                        routeEndArea={routeEndArea}
-                                        routeEndEntrance={routeEndEntrance}
-                                        toggleClear={this.props.toggleClear}
-                                    />
-                                })}
-                            </div>
-                        })}
-                    </div>
-                    :
-                    routes !== null && routes.length === 0
-                    ?
-                        <h4 className="is-size-4 has-text-centered">Looks like this route isn't possible yet</h4>
-                    :
-                    ""
-                }
             </div>
-        )
-    }
+            {end && start && ValidStartPoints.includes(end) && <div className="buttons is-centered">
+                <button
+                    className="button is-small is-primary"
+                    onClick={newRouteFromEnd}
+                >
+                        New Route from End
+                    </button>
+                </div>
+            }
+            <div className="routing-options buttons is-centered">
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreKaeporaGaebora")}
+                    className={"button is-small is-outlined " + (config.ignoreKaeporaGaebora ? "is-danger" : "is-dark")}
+                >
+                    Ignore Kaepora Gaebora
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreSongs")}
+                    className={"button is-small is-outlined " + (config.ignoreSongs ? "is-danger" : "is-dark")}
+                >
+                    Ignore Songs
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreCrossingHauntedWasteland")}
+                    className={"button is-small is-outlined " + (config.ignoreCrossingHauntedWasteland ? "is-danger" : "is-dark")}
+                >
+                    Ignore Crossing Haunted Wasteland
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreLostWoodsToBridge")}
+                    className={"button is-small is-outlined " + (config.ignoreLostWoodsToBridge ? "is-danger" : "is-dark")}
+                >
+                    Ignore Bridge from Lost Woods
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreGoronCityDMC")}
+                    className={"button is-small is-outlined " + (config.ignoreGoronCityDMC ? "is-danger" : "is-dark")}
+                >
+                    Ignore Death Mountain Crater Entrance in Goron City
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreLostWoodsZorasRiverEntrances")}
+                    className={"button is-small is-outlined " + (config.ignoreLostWoodsZorasRiverEntrances ? "is-danger" : "is-dark")}
+                >
+                    Ignore Lost Woods/Zora's River Entrances
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreLakeHyliaZorasDomainEntrance")}
+                    className={"button is-small is-outlined " + (config.ignoreLakeHyliaZorasDomainEntrance ? "is-danger" : "is-dark")}
+                >
+                    Ignore Zora's Domain/Lake Hylia Entrances
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreWindmillFromDampesGrave")}
+                    className={"button is-small is-outlined " + (config.ignoreWindmillFromDampesGrave ? "is-danger" : "is-dark")}
+                >
+                    Ignore Windmill from Dampe's Grave
+                </button>
+            </div>
+            {routes !== null && routes.length > 0 ?
+                <div className="section routing-results">
+                    {routes.map((route, i) => {
+                        // each individual route
+                        if (route.length === 0) {
+                            return <div key={i} className="route columns is-vcentered">
+                                <div className="route-step column has-text-centered">
+                                    Location not reachable from Start
+                                </div>
+                            </div>
+                        }
+                        let routeEndArea = null;
+                        let routeEndEntrance = null;
+                        let routeHasClearAttribute;
+                        let routeIsClear;
+                        return <div key={i} className="route columns is-vcentered">
+                            {route.map((step, j) => {
+                                let isEndStep = j === route.length - 1;
+                                if (j === route.length - 2) {
+                                    routeEndArea = step.area;
+                                    routeEndEntrance = step.entrance;
+                                }
+                                routeHasClearAttribute = hyrule[routeEndArea] !== undefined &&
+                                    hyrule[routeEndArea].entrances[routeEndEntrance] !== undefined &&
+                                        hyrule[routeEndArea].entrances[routeEndEntrance].clear !== undefined;
+                                if (routeHasClearAttribute) {
+                                    routeIsClear = hyrule[routeEndArea].entrances[routeEndEntrance].clear;
+                                }
+                                // each step of a route
+                                return <RouteStep
+                                    key={j}
+                                    isEndStep={isEndStep}
+                                    routeIsClear={routeIsClear}
+                                    routeHasClearAttribute={routeHasClearAttribute}
+                                    step={step}
+                                    routeEndArea={routeEndArea}
+                                    routeEndEntrance={routeEndEntrance}
+                                    toggleClear={props.toggleClear}
+                                />
+                            })}
+                        </div>
+                    })}
+                </div>
+                :
+                routes !== null && routes.length === 0
+                ?
+                    <h4 className="is-size-4 has-text-centered">Looks like this route isn't possible yet</h4>
+                :
+                ""
+            }
+        </div>
+    )
 }
