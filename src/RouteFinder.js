@@ -184,6 +184,9 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
         if (nextLocationToSearch !== "") {
             currentlyBeingSearched.push(nextLocationToSearch);
             let nextArray = availableLocations[nextLocationToSearch];
+            if (!nextArray) {
+                return [];
+            }
             shuffleArray(nextArray);
             for (let i = 0; i < nextArray.length; i++) {
                 let result = findStartFromEndObject(startName, endName, currentCheck, nextArray[i], availableLocations, currentlyBeingSearched, completelySearched);
