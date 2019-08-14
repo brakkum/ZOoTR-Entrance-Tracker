@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default ({routeFinderVisible, overworldOnly, ...props}) => {
+export default function Menu({routeFinderVisible, overworldOnly, ...props}) {
 
     const [message, setMessage] = useState("");
 

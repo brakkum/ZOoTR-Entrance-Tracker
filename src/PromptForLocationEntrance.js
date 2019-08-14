@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default ({locationToPromptFor, showInitialAgeCheck, availableEntrances, startAsChild, type, ...props}) => {
+export default function PromptForLocationEntrance({locationToPromptFor, showInitialAgeCheck, availableEntrances, startAsChild, type, ...props}) {
 
     const [selectedLocation, setSelectedLocation] = useState("");
 
