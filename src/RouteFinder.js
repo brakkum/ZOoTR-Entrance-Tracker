@@ -17,10 +17,8 @@ const shuffleArray = array => {
     }
 };
 
-export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, availableLocations, hyrule, ...props}) {
+export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, availableLocations, hyrule, start, end, ...props}) {
 
-    const [start, setStart] = useState(props.start);
-    const [end, setEnd] = useState(props.end);
     const [config, setConfig] = useState({
         ignoreKaeporaGaebora: false,
         ignoreSongs: false,
@@ -29,32 +27,23 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
         ignoreGoronCityDMC: false,
         ignoreLostWoodsZorasRiverEntrances: false,
         ignoreLakeHyliaZorasDomainEntrance: false,
-        ignoreWindmillFromDampesGrave: false
+        ignoreWindmillFromDampesGrave: false,
+        ignoreSpiritTempleHandsExit: false
     });
-
-    const newStart = newStart => {
-        setStart(newStart);
-        setRouteFinderStart(newStart);
-    };
-
-    const newEnd = newEnd => {
-        setEnd(newEnd);
-        setRouteFinderEnd(newEnd);
-    };
 
     const toggleConfigAttribute = attribute => {
         setConfig({...config, [attribute]: !config[attribute]});
     };
 
     const newRouteFromEnd = () => {
-        newStart(end);
-        newEnd(null);
+        setRouteFinderStart(end);
+        setRouteFinderEnd(null);
     }
 
     // start is always a string
     // end is an object
     // since start could be an area, dungeon, etc.
-    const findStartFromEndObject = (startName, endName, previousCheck, currentCheck, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
+    const findStartFromEndObject = (startName, endName, previousCheck, previousCheckLocation, currentCheck, currentCheckLocation, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
         let startIsHouse = Houses[startName] !== undefined;
         let startIsGrotto = Grottos[startName] !== undefined;
         let startIsDungeon = Dungeons[startName] !== undefined;
@@ -113,13 +102,19 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
         }
 
         if (locationIsGrotto) {
+            let isDampesGraveFromWindmill = currentCheck.interior === Grottos["Dampe's Grave"] &&
+                currentCheck.entrance === Grottos["Dampe's Grave"] &&
+                    currentCheckLocation === Houses.Windmill;
+
             if (startIsGrotto) {
                 if (currentCheck.interior === startName) {
-                    return [{start: startName}];
+                    if (!(isDampesGraveFromWindmill && config.ignoreWindmillFromDampesGrave)) {
+                        return [{start: startName}];
+                    }
                 }
             }
 
-            if (currentCheck.interior === Grottos["Dampe's Grave"] && !config.ignoreWindmillFromDampesGrave) {
+            if (currentCheck.interior === Grottos["Dampe's Grave"] && !(isDampesGraveFromWindmill && config.ignoreWindmillFromDampesGrave)) {
                 nextLocationToSearch = Grottos["Dampe's Grave"];
             }
         }
@@ -134,7 +129,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
             let previousCheckIsHauntedWasteland = previousCheck.area === OverworldAreas["Haunted Wasteland"];
 
             let isLostWoodsToBridgeEntrance = currentCheck.area === OverworldAreas["Lost Woods"] &&
-                previousCheck.area === OverworldAreas["Lost Woods Bridge"];
+                currentCheck.entrance === OverworldAreas["Lost Woods Bridge"];
 
             let isGoronCityToDeathMountainCraterEntrance = currentCheck.area === OverworldAreas["Goron City"] &&
                 currentCheck.entrance === OverworldAreas["Death Mountain Crater"];
@@ -146,6 +141,8 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
             let isLakeHyliaZorasDomainEntrance = DivingEntrances[currentCheck.area] !== undefined && 
                 DivingEntrances[currentCheck.area][currentCheck.entrance] !== undefined &&
                     (currentCheck.area === OverworldAreas["Zora's Domain"] || currentCheck.area === OverworldAreas["Lake Hylia"]);
+
+            let isSpiritTempleHandsEntrance = previousCheck.area === null && previousCheck.entrance === Dungeons["Spirit Temple"];
 
             if (previousCheckIsHauntedWasteland) {
                 let hauntedWastelandEntraceBeingLedTo = hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.entrance;
@@ -160,6 +157,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                 if (currentCheck.area === startName) {
                     if (!(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
                         !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
+                        !(isSpiritTempleHandsEntrance && config.ignoreSpiritTempleHandsExit) &&
                         !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
                         !(isZorasRiverLostWoodsEntrance && config.ignoreLostWoodsZorasRiverEntrances) &&
                         !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrance)) {
@@ -170,6 +168,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
 
             if (!(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
                 !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
+                !(isSpiritTempleHandsEntrance && config.ignoreSpiritTempleHandsExit) &&
                 !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
                 !(isZorasRiverLostWoodsEntrance && config.ignoreLostWoodsZorasRiverEntrances) &&
                 !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrance)) {
@@ -189,7 +188,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
             }
             shuffleArray(nextArray);
             for (let i = 0; i < nextArray.length; i++) {
-                let result = findStartFromEndObject(startName, endName, currentCheck, nextArray[i], availableLocations, currentlyBeingSearched, completelySearched);
+                let result = findStartFromEndObject(startName, endName, currentCheck, currentCheckLocation, nextArray[i], nextLocationToSearch, availableLocations, currentlyBeingSearched, completelySearched);
                 if (result.length > 0) {
                     if (locationIsHouse) {
                         return [...result, {entrance: currentCheck.interior}];
@@ -207,17 +206,16 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
 
     // start is always the same, as we look for it from end, end is current queued item
     const getRoutesFromStartToEnd = (startName, endName) => {
-        let endPaths = [];
-        let numberOfTries = 100;
-
         if (availableLocations[endName] === undefined) {
             return [];
         }
+        let endPaths = [];
+        let numberOfTriesPerEndLocation = 100;
 
         availableLocations[endName].forEach(endObject => {
             let pathsForThisEndLocation = [];
-            for (let i = 0; i < numberOfTries; i ++) {
-                let result = findStartFromEndObject(startName, endName, {}, endObject, availableLocations);
+            for (let i = 0; i < numberOfTriesPerEndLocation; i++) {
+                let result = findStartFromEndObject(startName, endName, {}, null, endObject, endName, availableLocations);
                 if (result.length > 0) {
                     let path = [...result, {end: endName}];
                     pathsForThisEndLocation.push(path);
@@ -264,7 +262,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                     <h5 className="is-size-5">Start:</h5>
                     {start === null ?
                         <div className="select is-small">
-                            <select value="Select Location" onChange={e => newStart(e.target.value)}>
+                            <select value="Select Location" onChange={e => setRouteFinderStart(e.target.value)}>
                                 <option value="">Select Location</option>
                                 {availableLocationsKeys.sort().map((location, i) => {
                                     if (location === end || !ValidStartPoints.includes(location)) {
@@ -279,7 +277,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                         :
                         <h5 className="is-size-5 is-flex selected-location">
                             {start}
-                            <span className="delete" onClick={() => newStart(null)}>x</span>
+                            <span className="delete" onClick={() => setRouteFinderStart(null)}>x</span>
                         </h5>
                     }
                 </div>
@@ -287,7 +285,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                     <h5 className="is-size-5">End:</h5>
                         {end === null ?
                             <div className="select is-small">
-                                <select value="Select Location" onChange={e => newEnd(e.target.value)}>
+                                <select value="Select Location" onChange={e => setRouteFinderEnd(e.target.value)}>
                                     <option value="">Select Location</option>
                                     {availableLocationsKeys.sort().map((location, i) => {
                                         if (location === start) {
@@ -302,7 +300,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                             :
                             <h5 className="is-size-5 is-flex selected-location">
                                 {end}
-                                <span className="delete" onClick={() => newEnd(null)}>x</span>
+                                <span className="delete" onClick={() => setRouteFinderEnd(null)}>x</span>
                             </h5>
                         }
                 </div>
@@ -365,6 +363,12 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                 >
                     Ignore Windmill from Dampe's Grave
                 </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreSpiritTempleHandsExit")}
+                    className={"button is-small is-outlined " + (config.ignoreSpiritTempleHandsExit ? "is-danger" : "is-dark")}
+                >
+                    Ignore Spirit Temple Hands Exit
+                </button>
             </div>
             {routes !== null && routes.length > 0 ?
                 <div className="section routing-results">
@@ -403,7 +407,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                                     step={step}
                                     routeEndArea={routeEndArea}
                                     routeEndEntrance={routeEndEntrance}
-                                    toggleClear={props.toggleClear}
+                                    toggleEntranceClear={props.toggleEntranceClear}
                                 />
                             })}
                         </div>

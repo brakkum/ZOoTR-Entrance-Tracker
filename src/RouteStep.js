@@ -15,7 +15,7 @@ export default function RouteStep({step, isEndStep, routeIsClear, routeHasClearA
             ((isEndStep && isHovered && routeHasClearAttribute && routeIsClear) ? " has-background-green "
                 : (isEndStep && isHovered && routeHasClearAttribute && !routeIsClear) ? " has-background-red " : "")
         }
-        onClick={isEndStep && routeHasClearAttribute ? () => props.toggleClear(routeEndArea, routeEndEntrance) : null}
+        onClick={isEndStep && routeHasClearAttribute ? () => props.toggleEntranceClear(routeEndArea, routeEndEntrance) : null}
     >
         {step.start !== undefined &&
             <span>

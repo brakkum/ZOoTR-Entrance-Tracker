@@ -10,7 +10,18 @@ const returnUniqueItems = array => {
     });
 };
 
-export default function Area({overworldOnly, areaName, area, state, ...props}) {
+export default function Area({
+    overworldOnly,
+    areaName,
+    area,
+    state,
+    availableHouses,
+    availableGrottos,
+    availableDungeons,
+    availableOverworldEntrances,
+    allOverworldEntrances,
+    ...props
+}) {
 
     let entrances = [];
 
@@ -33,6 +44,7 @@ export default function Area({overworldOnly, areaName, area, state, ...props}) {
                     // column layout
                     // entrance object derived from the area object
                     let entrance = area.entrances[entranceName];
+
                     if (overworldOnly && !(NavigableAreas.includes(entranceName) ||
                         NavigableInteriors.includes(entrance.interior))) {
                         return null;
@@ -40,15 +52,15 @@ export default function Area({overworldOnly, areaName, area, state, ...props}) {
                     // the type of entrance determines what
                     // options are displayed to pick from
                     let options = entrance.type === EntranceTypes.House ?
-                        returnUniqueItems(state.availableHouses)
+                        returnUniqueItems(availableHouses)
                         : entrance.type === EntranceTypes.Dungeon ?
-                            state.availableDungeons
+                            availableDungeons
                             : entrance.type === EntranceTypes.Overworld ?
-                                state.availableOverworldEntrances
+                                availableOverworldEntrances
                                 : entrance.type === EntranceTypes.Grotto ?
-                                    returnUniqueItems(state.availableGrottos)
+                                    returnUniqueItems(availableGrottos)
                                     : entrance.type === EntranceTypes["Kaepora Gaebora"] ?
-                                        state.allOverworldEntrances
+                                        allOverworldEntrances
                                         : []; // How did you get here??
 
                     // add to the correct column in area container
@@ -61,7 +73,7 @@ export default function Area({overworldOnly, areaName, area, state, ...props}) {
                             entranceName={entranceName}
                             setEntrance={props.setEntrance}
                             resetEntrance={props.resetEntrance}
-                            toggleClear={props.toggleClear}
+                            toggleEntranceClear={props.toggleEntranceClear}
                             startAsChild={props.startAsChild}
                         />
                     );

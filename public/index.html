@@ -30,11 +30,34 @@
         <div id="root"></div>
         <script>
             const exportAppState = () => {
-                console.log(localStorage.getItem("zootr-entrance-tracker"));
+                let ls = JSON.parse(localStorage.getItem("zootr-entrance-tracker"));
+                if (Object.keys(ls).length > 0) {
+                    console.log(ls);
+                } else {
+                    ls = {
+                        "availableOverworldEntrances": JSON.parse(localStorage.getItem("availableOverworldEntrances")),
+                        "availableGrottoEntrances": JSON.parse(localStorage.getItem("availableGrottoEntrances")),
+                        "availableHouseEntrances": JSON.parse(localStorage.getItem("availableHouseEntrances")),
+                        "allOverworldEntrances": JSON.parse(localStorage.getItem("allOverworldEntrances")),
+                        "availableDungeons": JSON.parse(localStorage.getItem("availableDungeons")),
+                        "interiorEntrances": JSON.parse(localStorage.getItem("interiorEntrances")),
+                        "availableGrottos": JSON.parse(localStorage.getItem("availableGrottos")),
+                        "routeFinderStart": JSON.parse(localStorage.getItem("routeFinderStart")),
+                        "availableHouses": JSON.parse(localStorage.getItem("availableHouses")),
+                        "showRouteFinder": JSON.parse(localStorage.getItem("showRouteFinder")),
+                        "routeFinderEnd": JSON.parse(localStorage.getItem("routeFinderEnd")),
+                        "overworldOnly": JSON.parse(localStorage.getItem("overworldOnly")),
+                        "startAsChild": JSON.parse(localStorage.getItem("startAsChild")),
+                        "hyrule": JSON.parse(localStorage.getItem("hyrule")),
+                        "songs": JSON.parse(localStorage.getItem("songs"))
+                    }
+                    console.log(JSON.stringify(ls));
+                }
             };
 
             const setAppState = state => {
                 localStorage.setItem("zootr-entrance-tracker", JSON.stringify(state));
+                window.location.reload();
             };
         </script>
     </body>

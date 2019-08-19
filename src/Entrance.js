@@ -28,7 +28,7 @@ export default function Entrance({options, entrance, areaName, entranceName, ...
                         )
                     }
                     ref={hoverRef}
-                    onClick={() => props.toggleClear(areaName, entranceName)}
+                    onClick={() => props.toggleEntranceClear(areaName, entranceName)}
                 >
                     <span className="interior">
                         {entrance.interior}
@@ -38,7 +38,7 @@ export default function Entrance({options, entrance, areaName, entranceName, ...
                     {((props.startAsChild && entrance.interior === Houses["Link's House"]) ||
                         (!props.startAsChild && entrance.interior === Houses["Temple of Time"])) ?
                         null :
-                        <span className="delete is-pulled-right" onClick={
+                        <div className="delete is-pulled-right" onClick={
                             () => props.resetEntrance({...entrance, area: areaName, entrance: entranceName})
                         } />
                     }

@@ -5,7 +5,7 @@
 **https://github.com/brakkum/ZOoTR-Entrance-Tracker**
 ## How to use
 
-The tracker is pretty simple to use. When you first visit, you'll be prompted for the location of Link's House.
+The tracker is pretty simple to use. When you first visit, you'll be prompted for the location of Link's House or the Templ of Time (depending on if you start as Child or Adult).
 Once you add that, the area you selected will pop up, and the entrances available will be listed.
 From there you can select where different entrances lead.
 
@@ -32,7 +32,7 @@ Similarly to when the tracker is first opened, there are a few prompts that can 
 When Dampe's Grave is accessed, if the Windmill has not yet been found, the user will be prompted for where it exits to.
 Also, when the user collects the Prelude of Light, if the Temple of Time has not been accessed yet, the user will also be prompted then.
 
-To save your progress, just click 'Save' in the top navbar. This saves your progress to local storage in your browser.
+Progress is automatically saved to your browsers local storage.
 However, this does mean that if you clear your browsing history your progress will be lost.
 Resetting the tracker to default start is done by clicking 'Reset' in the top navbar.
 

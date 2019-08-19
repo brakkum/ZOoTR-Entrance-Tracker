@@ -1,17 +1,9 @@
 import React from "react";
 import useHover from "./Hooks/useHover";
 
-export default function Song({song, ...props}) {
+export default function Song({song, toggleSongCollected, ...props}) {
 
     const [hoverRef, isHovered] = useHover();
-
-    const addOrResetSong = () => {
-        if (song.collected) {
-            props.removeSong(song.name);
-        } else {
-            props.acquireSong(song.name);
-        }
-    };
 
     return(
         <div className="warp-song">
@@ -22,7 +14,7 @@ export default function Song({song, ...props}) {
                     textAlign: "center"
                 }}
                 ref={hoverRef}
-                onClick={addOrResetSong}
+                onClick={() => toggleSongCollected(song.name)}
             >
                 <h6 className="is-size-6">{song.name}</h6>
             </div>

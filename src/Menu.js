@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
+import VanillaHyrule from "./DataObjects/VanillaHyrule";
 
-export default function Menu({routeFinderVisible, overworldOnly, ...props}) {
+export default function Menu({showRouteFinder, overworldOnly, ...props}) {
 
     const [message, setMessage] = useState("");
-
-    const saveState = () => {
-        props.saveState();
-        setMessage("Tracker Saved");
-    };
 
     const resetState = () => {
         if (!window.confirm("Are you sure you want to reset?")) {
@@ -27,6 +23,18 @@ export default function Menu({routeFinderVisible, overworldOnly, ...props}) {
         }
     );
 
+    const setAppState = state => {
+        localStorage.setItem("zootr-entrance-tracker", JSON.stringify(state));
+        window.location.reload();
+    };
+
+    const setVanillaHyrule = () => {
+        if (!window.confirm("Area you sure? This will remove all current settings.")) {
+            return;
+        }
+        setAppState(VanillaHyrule);
+    };
+
     return(
         <div className="navbar is-fixed-top is-dark">
             <div style={{width: "100%", maxWidth: "1000px", margin: "auto"}}>
@@ -41,7 +49,7 @@ export default function Menu({routeFinderVisible, overworldOnly, ...props}) {
                             className="nav-bottom-item"
                             onClick={props.toggleRouteFinder}
                         >
-                            {routeFinderVisible ? "Hide" : "Show"} Route Finder
+                            {showRouteFinder ? "Hide" : "Show"} Route Finder
                         </div>
                         <div
                             className="nav-bottom-item"
@@ -51,11 +59,11 @@ export default function Menu({routeFinderVisible, overworldOnly, ...props}) {
                         </div>
                     </div>
                     <div className="nav-bottom-right">
-                        <div className="nav-bottom-item has-text-white has-text-weight-bold">
+                        <div className="nav-bottom-item has-text-primary has-text-weight-bold">
                             {message}
                         </div>
-                        <a href="#save" className="nav-bottom-item has-text-primary" onClick={saveState}>
-                            Save
+                        <a href="#vanilla" className="nav-bottom-item has-text-light" onClick={setVanillaHyrule}>
+                            Vanilla Hyrule
                         </a>
                         <a href="#reset" className="nav-bottom-item has-text-light" onClick={resetState}>
                             Reset
