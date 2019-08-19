@@ -5,7 +5,7 @@
 **https://github.com/brakkum/ZOoTR-Entrance-Tracker**
 ## How to use
 
-The tracker is pretty simple to use. When you first visit, you'll be prompted for the location of Link's House or the Templ of Time (depending on if you start as Child or Adult).
+The tracker is pretty simple to use. When you first visit, you'll be prompted for the location of Link's House or the Temple of Time (depending on if you start as Child or Adult).
 Once you add that, the area you selected will pop up, and the entrances available will be listed.
 From there you can select where different entrances lead.
 
