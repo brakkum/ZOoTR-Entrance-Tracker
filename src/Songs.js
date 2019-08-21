@@ -1,8 +1,9 @@
-import React, { useRef, useLayoutEffect } from "react";
+import React, { useRef, useLayoutEffect, useState } from "react";
 import Song from "./Song";
 
 export default function Songs({songs, ...props}) {
 
+    const [currentSongsHeight, setCurrentSongsHeight] = useState(0);
     const songsRef = useRef(null);
 
     useLayoutEffect(() => {
@@ -10,7 +11,10 @@ export default function Songs({songs, ...props}) {
     });
 
     const handleResize = () => {
-        props.setSongsHeight(songsRef.current.clientHeight);
+        if (songsRef.current.clientHeight !== currentSongsHeight) {
+            setCurrentSongsHeight(songsRef.current.clientHeight);
+            props.setSongsHeight(songsRef.current.clientHeight);
+        }
     };
 
     return (

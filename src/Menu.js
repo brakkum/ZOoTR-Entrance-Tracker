@@ -4,6 +4,7 @@ import VanillaHyrule from "./DataObjects/VanillaHyrule";
 export default function Menu({showRouteFinder, overworldOnly, ...props}) {
 
     const [message, setMessage] = useState("");
+    const [currentMenuHeight, setCurrentMenuHeight] = useState(0);
     const menuRef = useRef(null);
 
     useEffect(() => {
@@ -19,7 +20,10 @@ export default function Menu({showRouteFinder, overworldOnly, ...props}) {
     });
 
     const handleResize = () => {
-        props.setMenuHeight(menuRef.current.clientHeight);
+        if (menuRef.current.clientHeight !== currentMenuHeight) {
+            setCurrentMenuHeight(menuRef.current.clientHeight);
+            props.setMenuHeight(menuRef.current.clientHeight);
+        }
     };
 
     const resetState = () => {
