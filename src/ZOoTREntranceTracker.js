@@ -1,8 +1,8 @@
 import PromptForLocationEntrance from "./PromptForLocationEntrance";
 import InteriorConnection from "./DataObjects/InteriorConnection";
-import React, { useState, useLayoutEffect } from "react";
 import OverworldAreas from "./DataObjects/OverworldAreas";
 import getInitialState from "./Functions/getInitialState";
+import React, { useState, useLayoutEffect } from "react";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import useLocalStorage from "./Hooks/useLocalStorage";
 import AreasToAdd from "./DataObjects/AreasToAdd";
