@@ -29,7 +29,7 @@ export default function Menu({showRouteFinder, overworldOnly, ...props}) {
     };
 
     const setVanillaHyrule = () => {
-        if (!window.confirm("Area you sure? This will remove all current settings.")) {
+        if (!window.confirm("Are you sure? This will remove all current settings.")) {
             return;
         }
         setAppState(VanillaHyrule);
