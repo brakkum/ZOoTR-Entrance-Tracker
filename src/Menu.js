@@ -1,9 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import VanillaHyrule from "./DataObjects/VanillaHyrule";
 
 export default function Menu({showRouteFinder, overworldOnly, ...props}) {
 
     const [message, setMessage] = useState("");
+    const menuRef = useRef(null);
+
+    useEffect(() => {
+        if (message !== "") {
+            setTimeout(() => {
+                setMessage("");
+            }, 3000);
+        }
+    });
+
+    useLayoutEffect(() => {
+        handleResize();
+    });
+
+    const handleResize = () => {
+        props.setMenuHeight(menuRef.current.clientHeight);
+    };
 
     const resetState = () => {
         if (!window.confirm("Are you sure you want to reset?")) {
@@ -12,16 +29,6 @@ export default function Menu({showRouteFinder, overworldOnly, ...props}) {
         props.resetState();
         setMessage("Tracker Reset");
     };
-
-    useEffect(
-        () => {
-            if (message !== "") {
-                setTimeout(() => {
-                    setMessage("");
-                }, 3000);
-            }
-        }
-    );
 
     const setAppState = state => {
         localStorage.setItem("zootr-entrance-tracker", JSON.stringify(state));
@@ -36,7 +43,7 @@ export default function Menu({showRouteFinder, overworldOnly, ...props}) {
     };
 
     return(
-        <div className="navbar is-fixed-top is-dark">
+        <div ref={menuRef} className="navbar is-fixed-top is-dark">
             <div style={{width: "100%", maxWidth: "1000px", margin: "auto"}}>
                 <nav>
                     <h1 className="is-size-4 navbar-item has-text-white has-text-weight-bold">

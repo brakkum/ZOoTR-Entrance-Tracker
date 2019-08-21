@@ -1,5 +1,6 @@
 import PromptForLocationEntrance from "./PromptForLocationEntrance";
 import InteriorConnection from "./DataObjects/InteriorConnection";
+import React, { useState, useLayoutEffect } from "react";
 import OverworldAreas from "./DataObjects/OverworldAreas";
 import getInitialState from "./Functions/getInitialState";
 import EntranceTypes from "./DataObjects/EntranceTypes";
@@ -8,15 +9,15 @@ import AreasToAdd from "./DataObjects/AreasToAdd";
 import Grottos from "./DataObjects/Grottos";
 import Houses from "./DataObjects/Houses";
 import RouteFinder from "./RouteFinder";
+import Songs from "./Songs";
 import Menu from "./Menu";
 import Area from "./Area";
-import Song from "./Song";
-import React from "react";
 
 export default function ZOoTREntranceTracker() {
 
     let init = getInitialState();
 
+    // state tracked in localStorage
     const [availableOverworldEntrances, setAvailableOverworldEntrances] = useLocalStorage("availableOverworldEntrances", init.availableOverworldEntrances);
     const [availableGrottoEntrances, setAvailableGrottoEntrances] = useLocalStorage("availableGrottoEntrances", init.availableGrottoEntrances);
     const [availableHouseEntrances, setAvailableHouseEntrances] = useLocalStorage("availableHouseEntrances", init.availableHouseEntrances);
@@ -32,6 +33,22 @@ export default function ZOoTREntranceTracker() {
     const [startAsChild, setStartAsChild] = useLocalStorage("startAsChild", init.startAsChild);
     const [hyrule, setHyrule] = useLocalStorage("hyrule", init.hyrule);
     const [songs, setSongs] = useLocalStorage("songs", init.songs);
+
+    // state for app layout
+    const [menuHeight, setMenuHeight] = useState(0);
+    const [songsHeight, setSongsHeight] = useState(0);
+    const [windowChanges, setWindowChanges] = useState(0);
+
+    // trigger re-render when window size changes
+    // cause menu and songs to reassess sizing
+    useLayoutEffect(() => {
+        window.addEventListener("resize", handleResize);
+        return () => { window.removeEventListener("resize", handleResize) };
+    });
+
+    const handleResize = () => {
+        setWindowChanges(windowChanges + 1);
+    };
 
     const getLocationsToPromptForBasedOnState = () => {
         let prompts = [];
@@ -613,6 +630,7 @@ export default function ZOoTREntranceTracker() {
             <div className="app-background" />
 
             <Menu
+                setMenuHeight={setMenuHeight}
                 resetState={resetState}
                 showRouteFinder={showRouteFinder}
                 toggleRouteFinder={() => setShowRouteFinder(!showRouteFinder)}
@@ -620,7 +638,7 @@ export default function ZOoTREntranceTracker() {
                 toggleOverworldOnly={() => setOverworldOnly(!overworldOnly)}
             />
 
-            <div className="top-padding" />
+            <div className="top-padding" style={{height: menuHeight}} />
 
             {showRouteFinder ?
                 <RouteFinder
@@ -688,16 +706,14 @@ export default function ZOoTREntranceTracker() {
                 })}
             </div>
 
+            <div className="bottom-padding" style={{height: songsHeight}} />
+
             {/* display songs that can be collected and may open new areas */}
-            <div className="songs-container has-background-dark">
-                {Object.keys(interiorEntrances).length > 1 && Object.keys(songs).map((song, i) => {
-                    return <Song
-                        key={i}
-                        song={songs[song]}
-                        toggleSongCollected={toggleSongCollected}
-                    />
-                })}
-            </div>
+            {Object.keys(interiorEntrances).length > 1 && <Songs
+                toggleSongCollected={toggleSongCollected}
+                setSongsHeight={setSongsHeight}
+                songs={songs}
+            />}
         </div>
     );
 }

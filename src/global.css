@@ -11,10 +11,6 @@ html {
     background-color: #eeebe1;
 }
 
-.zootr-entrance-tracker {
-    padding-top: 100px;
-}
-
 .bottom-padding {
     height: 300px;
 }
@@ -86,7 +82,6 @@ html {
     align-items: flex-start;
     align-content: space-around;
     justify-content: space-around;
-    padding-bottom: 160px;
 }
 
 .area-box-container {
