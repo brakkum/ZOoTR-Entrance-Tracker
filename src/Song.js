@@ -1,11 +1,11 @@
 import React from "react";
 import useHover from "./Hooks/useHover";
 
-export default function Song({song, toggleSongCollected, ...props}) {
+export default function Song({ song, toggleSongCollected }) {
 
     const [hoverRef, isHovered] = useHover();
 
-    return(
+    return (
         <div className="warp-song">
             <div
                 style={{

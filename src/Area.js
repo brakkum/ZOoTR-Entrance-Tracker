@@ -1,8 +1,8 @@
+import NavigableInteriors from "./DataObjects/NavigableInteriors";
+import NavigableAreas from "./DataObjects/NavigableAreas";
 import EntranceTypes from "./DataObjects/EntranceTypes";
 import Entrance from "./Entrance";
 import React from "react";
-import NavigableAreas from "./DataObjects/NavigableAreas";
-import NavigableInteriors from "./DataObjects/NavigableInteriors";
 
 const returnUniqueItems = array => {
     return array.filter((item, i) => {
@@ -25,7 +25,7 @@ export default function Area({
 
     let entrances = [];
 
-    return(
+    return (
         <div className="area-box-container box"
             style={{
                 // set border to selected colors
@@ -80,21 +80,22 @@ export default function Area({
                     return null;
                 })}
                 {/* output the columns of area entrances */}
-                <div className="columns">
-                    <div className="column">
-                        {entrances.length > 2 ?
-                            entrances.slice(0, Math.ceil(entrances.length / 2))
-                            :
-                            entrances
-                        }
+                {entrances.length <= 2 ?
+                    <div className="columns">
+                        <div className="column">
+                            {entrances}
+                        </div>
                     </div>
-                    {entrances.length > 2 ?
+                    :
+                    <div className="columns">
+                        <div className="column">
+                            {entrances.slice(0, Math.ceil(entrances.length / 2))}
+                        </div>
                         <div className="column">
                             {entrances.slice(Math.ceil(entrances.length / 2))}
                         </div>
-                        : ""
-                    }
-                </div>
+                    </div>
+                }
             </div>
         </div>
     )

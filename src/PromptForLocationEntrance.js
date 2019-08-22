@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PromptForLocationEntrance({locationToPromptFor, showInitialAgeCheck, availableEntrances, startAsChild, type, ...props}) {
+export default function PromptForLocationEntrance({ locationToPromptFor, showInitialAgeCheck, availableEntrances, startAsChild, type, ...props }) {
 
     const [selectedLocation, setSelectedLocation] = useState("");
 
@@ -8,7 +8,7 @@ export default function PromptForLocationEntrance({locationToPromptFor, showInit
         if (selectedLocation === "") {
             return;
         }
-        props.setEntrance(JSON.parse(selectedLocation), {interior: locationToPromptFor});
+        props.setEntrance(JSON.parse(selectedLocation), { interior: locationToPromptFor });
         setSelectedLocation("");
     };
 
@@ -39,29 +39,29 @@ export default function PromptForLocationEntrance({locationToPromptFor, showInit
                                 {availableEntrances[area].sort().map((entrance, i) => {
                                     return <option
                                         key={i}
-                                        value={JSON.stringify({area, entrance, type})}
+                                        value={JSON.stringify({ area, entrance, type })}
                                     >
                                         {entrance}
                                     </option>
                                 })}
                             </optgroup>
-                            })
+                        })
                         }
                     </select>
                 </div>
                 <button className="button is-small control" onClick={setInteriorToAreaAndEntrance}>
                     Add {locationToPromptFor}
                 </button>
-            {showInitialAgeCheck &&
-                <div className="has-text-centered column">
-                    <button
-                        className="button is-small"
-                        onClick={props.toggleStartAsChild}
-                    >
-                        Start as {startAsChild ? "Adult" : "Child"}
-                    </button>
-                </div>
-            }
+                {showInitialAgeCheck &&
+                    <div className="has-text-centered column">
+                        <button
+                            className="button is-small"
+                            onClick={props.toggleStartAsChild}
+                        >
+                            Start as {startAsChild ? "Adult" : "Child"}
+                        </button>
+                    </div>
+                }
             </div>
         </div>
     )

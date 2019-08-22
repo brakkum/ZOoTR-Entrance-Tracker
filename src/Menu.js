@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import VanillaHyrule from "./DataObjects/VanillaHyrule";
 
-export default function Menu({showRouteFinder, overworldOnly, ...props}) {
+export default function Menu({ showRouteFinder, overworldOnly, ...props }) {
 
     const [message, setMessage] = useState("");
     const [currentMenuHeight, setCurrentMenuHeight] = useState(0);
@@ -46,9 +46,9 @@ export default function Menu({showRouteFinder, overworldOnly, ...props}) {
         setAppState(VanillaHyrule);
     };
 
-    return(
+    return (
         <div ref={menuRef} className="navbar is-fixed-top is-dark">
-            <div style={{width: "100%", maxWidth: "1000px", margin: "auto"}}>
+            <div style={{ width: "100%", maxWidth: "1000px", margin: "auto" }}>
                 <nav>
                     <h1 className="is-size-4 navbar-item has-text-white has-text-weight-bold">
                         ZOoTR Entrance Tracker

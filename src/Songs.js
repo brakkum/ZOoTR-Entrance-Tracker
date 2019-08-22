@@ -1,7 +1,7 @@
 import React, { useRef, useLayoutEffect, useState } from "react";
 import Song from "./Song";
 
-export default function Songs({songs, ...props}) {
+export default function Songs({ songs, ...props }) {
 
     const [currentSongsHeight, setCurrentSongsHeight] = useState(0);
     const songsRef = useRef(null);

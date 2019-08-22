@@ -17,7 +17,7 @@ const shuffleArray = array => {
     }
 };
 
-export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, availableLocations, hyrule, start, end, ...props}) {
+export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, availableLocations, hyrule, start, end, ...props }) {
 
     const [config, setConfig] = useState({
         ignoreKaeporaGaebora: false,
@@ -32,7 +32,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
     });
 
     const toggleConfigAttribute = attribute => {
-        setConfig({...config, [attribute]: !config[attribute]});
+        setConfig({ ...config, [attribute]: !config[attribute] });
     };
 
     const newRouteFromEnd = () => {
@@ -63,7 +63,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
         }
 
         if (locationIsSong && !config.ignoreSongs) {
-            return [{start: startName}, {song: currentCheck.song}];
+            return [{ start: startName }, { song: currentCheck.song }];
         }
 
         if (locationIsHouse) {
@@ -73,7 +73,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
 
             if (startIsHouse) {
                 if (currentCheck.interior === startName) {
-                    return [{start: currentCheck.interior}];
+                    return [{ start: currentCheck.interior }];
                 }
             }
 
@@ -96,7 +96,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
 
             if (startIsDungeon) {
                 if (currentCheck.interior === startName) {
-                    return [{start: startName}];
+                    return [{ start: startName }];
                 }
             }
         }
@@ -104,12 +104,12 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
         if (locationIsGrotto) {
             let isDampesGraveFromWindmill = currentCheck.interior === Grottos["Dampe's Grave"] &&
                 currentCheck.entrance === Grottos["Dampe's Grave"] &&
-                    currentCheckLocation === Houses.Windmill;
+                currentCheckLocation === Houses.Windmill;
 
             if (startIsGrotto) {
                 if (currentCheck.interior === startName) {
                     if (!(isDampesGraveFromWindmill && config.ignoreWindmillFromDampesGrave)) {
-                        return [{start: startName}];
+                        return [{ start: startName }];
                     }
                 }
             }
@@ -134,13 +134,13 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
             let isGoronCityToDeathMountainCraterEntrance = currentCheck.area === OverworldAreas["Goron City"] &&
                 currentCheck.entrance === OverworldAreas["Death Mountain Crater"];
 
-            let isZorasRiverLostWoodsEntrance = DivingEntrances[currentCheck.area] !== undefined && 
+            let isZorasRiverLostWoodsEntrance = DivingEntrances[currentCheck.area] !== undefined &&
                 DivingEntrances[currentCheck.area][currentCheck.entrance] !== undefined &&
-                    (currentCheck.area === OverworldAreas["Lost Woods"] || currentCheck.area === OverworldAreas["Zora's River"]);
+                (currentCheck.area === OverworldAreas["Lost Woods"] || currentCheck.area === OverworldAreas["Zora's River"]);
 
-            let isLakeHyliaZorasDomainEntrance = DivingEntrances[currentCheck.area] !== undefined && 
+            let isLakeHyliaZorasDomainEntrance = DivingEntrances[currentCheck.area] !== undefined &&
                 DivingEntrances[currentCheck.area][currentCheck.entrance] !== undefined &&
-                    (currentCheck.area === OverworldAreas["Zora's Domain"] || currentCheck.area === OverworldAreas["Lake Hylia"]);
+                (currentCheck.area === OverworldAreas["Zora's Domain"] || currentCheck.area === OverworldAreas["Lake Hylia"]);
 
             let isSpiritTempleHandsEntrance = previousCheck.area === null && previousCheck.entrance === Dungeons["Spirit Temple"];
 
@@ -161,7 +161,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                         !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
                         !(isZorasRiverLostWoodsEntrance && config.ignoreLostWoodsZorasRiverEntrances) &&
                         !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrance)) {
-                        return [{start: startName}, {area: currentCheck.area, entrance: currentCheck.entrance}];
+                        return [{ start: startName }, { area: currentCheck.area, entrance: currentCheck.entrance }];
                     }
                 }
             }
@@ -177,7 +177,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
         }
 
         if (locationIsInteriorConnection) {
-            nextLocationToSearch = currentCheck.entrance;            
+            nextLocationToSearch = currentCheck.entrance;
         }
 
         if (nextLocationToSearch !== "") {
@@ -191,7 +191,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                 let result = findStartFromEndObject(startName, endName, currentCheck, currentCheckLocation, nextArray[i], nextLocationToSearch, availableLocations, currentlyBeingSearched, completelySearched);
                 if (result.length > 0) {
                     if (locationIsHouse) {
-                        return [...result, {entrance: currentCheck.interior}];
+                        return [...result, { entrance: currentCheck.interior }];
                     }
                     return [...result, currentCheck];
                 }
@@ -217,7 +217,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
             for (let i = 0; i < numberOfTriesPerEndLocation; i++) {
                 let result = findStartFromEndObject(startName, endName, {}, null, endObject, endName, availableLocations);
                 if (result.length > 0) {
-                    let path = [...result, {end: endName}];
+                    let path = [...result, { end: endName }];
                     pathsForThisEndLocation.push(path);
                 } else if (!ValidStartPoints.includes(endName)) {
                     // it's a place with many locations, e.g. a grotto
@@ -283,26 +283,26 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                 </div>
                 <div className="route-select-end is-flex">
                     <h5 className="is-size-5">End:</h5>
-                        {end === null ?
-                            <div className="select is-small">
-                                <select value="Select Location" onChange={e => setRouteFinderEnd(e.target.value)}>
-                                    <option value="">Select Location</option>
-                                    {availableLocationsKeys.sort().map((location, i) => {
-                                        if (location === start) {
-                                            return null;
-                                        }
-                                        return <option key={i} value={location}>
-                                            {location}
-                                        </option>
-                                    })}
-                                </select>
-                            </div>
-                            :
-                            <h5 className="is-size-5 is-flex selected-location">
-                                {end}
-                                <span className="delete" onClick={() => setRouteFinderEnd(null)}>x</span>
-                            </h5>
-                        }
+                    {end === null ?
+                        <div className="select is-small">
+                            <select value="Select Location" onChange={e => setRouteFinderEnd(e.target.value)}>
+                                <option value="">Select Location</option>
+                                {availableLocationsKeys.sort().map((location, i) => {
+                                    if (location === start) {
+                                        return null;
+                                    }
+                                    return <option key={i} value={location}>
+                                        {location}
+                                    </option>
+                                })}
+                            </select>
+                        </div>
+                        :
+                        <h5 className="is-size-5 is-flex selected-location">
+                            {end}
+                            <span className="delete" onClick={() => setRouteFinderEnd(null)}>x</span>
+                        </h5>
+                    }
                 </div>
             </div>
             {end && start && ValidStartPoints.includes(end) && <div className="buttons is-centered">
@@ -310,9 +310,9 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                     className="button is-small is-primary"
                     onClick={newRouteFromEnd}
                 >
-                        New Route from End
-                    </button>
-                </div>
+                    New Route from End
+                </button>
+            </div>
             }
             <div className="routing-options buttons is-centered">
                 <button
@@ -394,7 +394,7 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                                 }
                                 routeHasClearAttribute = hyrule[routeEndArea] !== undefined &&
                                     hyrule[routeEndArea].entrances[routeEndEntrance] !== undefined &&
-                                        hyrule[routeEndArea].entrances[routeEndEntrance].clear !== undefined;
+                                    hyrule[routeEndArea].entrances[routeEndEntrance].clear !== undefined;
                                 if (routeHasClearAttribute) {
                                     routeIsClear = hyrule[routeEndArea].entrances[routeEndEntrance].clear;
                                 }
@@ -414,11 +414,10 @@ export default function RouteFinder({setRouteFinderStart, setRouteFinderEnd, ava
                     })}
                 </div>
                 :
-                routes !== null && routes.length === 0
-                ?
+                routes !== null && routes.length === 0 ?
                     <h4 className="is-size-4 has-text-centered">Looks like this route isn't possible yet</h4>
-                :
-                ""
+                    :
+                    ""
             }
         </div>
     )

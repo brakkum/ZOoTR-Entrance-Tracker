@@ -1,13 +1,12 @@
-import EntranceTypes from "./DataObjects/EntranceTypes";
 import Houses from "./DataObjects/Houses";
-import React from "react";
 import useHover from "./Hooks/useHover";
+import React from "react";
 
-export default function Entrance({options, entrance, areaName, entranceName, ...props}) {
+export default function Entrance({ options, entrance, areaName, entranceName, ...props }) {
 
     const [hoverRef, isHovered] = useHover();
 
-    return(
+    return (
         <div className="entrance">
             <h6 className={
                 "is-size-6 has-text-weight-bold " +
@@ -21,10 +20,10 @@ export default function Entrance({options, entrance, areaName, entranceName, ...
                         "interior-display box has-text-centered is-flex " +
                         (
                             entrance.clear === undefined ? "" :
-                            entrance.clear && isHovered ? "has-background-green" :
-                                !entrance.clear && isHovered ? "has-background-red" :
-                                    entrance.clear ? "has-border-green" :
-                                        !entrance.clear ? "has-border-red" : ""
+                                entrance.clear && isHovered ? "has-background-green" :
+                                    !entrance.clear && isHovered ? "has-background-red" :
+                                        entrance.clear ? "has-border-green" :
+                                            !entrance.clear ? "has-border-red" : ""
                         )
                     }
                     ref={hoverRef}
@@ -39,7 +38,7 @@ export default function Entrance({options, entrance, areaName, entranceName, ...
                         (!props.startAsChild && entrance.interior === Houses["Temple of Time"])) ?
                         null :
                         <div className="delete is-pulled-right" onClick={
-                            () => props.resetEntrance({...entrance, area: areaName, entrance: entranceName})
+                            () => props.resetEntrance({ ...entrance, area: areaName, entrance: entranceName })
                         } />
                     }
                 </div>
@@ -49,16 +48,14 @@ export default function Entrance({options, entrance, areaName, entranceName, ...
                     // points to an area, and maybe an entrance
                     <div className="area-display box has-text-weight-semibold is-flex">
                         <div className="area-display-entrance">
-                            {/* show area at least */}
+                            {/* show area */}
                             <div className="has-text-centered">
                                 {entrance.leadsTo.area}
                             </div>
-                            {/* show entrance if defined */}
-                            {entrance.leadsTo.entrance !== undefined &&
+                            {/* show entrance */}
                             <div className="has-text-centered is-size-7 has-text-weight-normal">
                                 {entrance.leadsTo.entrance} Entrance
                             </div>
-                            }
                         </div>
                         <span className="delete is-pulled-right" onClick={() =>
                             props.resetEntrance(
@@ -92,8 +89,7 @@ export default function Entrance({options, entrance, areaName, entranceName, ...
                                 // if its an array, it's areas, houses, or grottos
                                 // map over them and make them options
                                 options.sort().map((interiorName, i) => {
-                                    let objKey = entrance.type === EntranceTypes["Kaepora Gaebora"] ? "area" : "interior";
-                                    return <option key={i} value={JSON.stringify({[objKey]: interiorName})}>
+                                    return <option key={i} value={JSON.stringify({ "interior": interiorName })}>
                                         {interiorName}
                                     </option>
                                 })

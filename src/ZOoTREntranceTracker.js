@@ -34,7 +34,7 @@ export default function ZOoTREntranceTracker() {
     const [hyrule, setHyrule] = useLocalStorage("hyrule", init.hyrule);
     const [songs, setSongs] = useLocalStorage("songs", init.songs);
 
-    // state for app layout
+    // state for app layout, reset on page load
     const [menuHeight, setMenuHeight] = useState(0);
     const [songsHeight, setSongsHeight] = useState(0);
     const [windowChanges, setWindowChanges] = useState(0);
@@ -90,7 +90,7 @@ export default function ZOoTREntranceTracker() {
 
         if (songs["Prelude of Light"].collected &&
             (interiorEntrances[Houses["Temple of Time"]] === undefined ||
-            interiorEntrances[Houses["Temple of Time"]].length === 1)) {
+                interiorEntrances[Houses["Temple of Time"]].length === 1)) {
             prompts.push(Houses["Temple of Time"]);
         }
 
@@ -130,7 +130,7 @@ export default function ZOoTREntranceTracker() {
         Object.keys(obj).forEach((prop) => {
             _area.entrances[entrance][prop] = obj[prop];
         })
-        return {..._hyrule, [area]: _area};
+        return { ..._hyrule, [area]: _area };
     };
 
     const setPropertiesOfArea = (_hyrule, area, obj) => {
@@ -141,17 +141,17 @@ export default function ZOoTREntranceTracker() {
         Object.keys(obj).forEach(prop => {
             _area[prop] = obj[prop];
         });
-        return {...hyrule, [area]: _area};
+        return { ...hyrule, [area]: _area };
     };
 
     const toggleEntranceClear = (area, entrance) => {
         let _hyrule = hyrule;
-        _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, {"clear": !hyrule[area].entrances[entrance].clear});
-        setHyrule({..._hyrule});
+        _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, { "clear": !hyrule[area].entrances[entrance].clear });
+        setHyrule({ ..._hyrule });
     };
 
     const setOverworldEntrance = (_hyrule, area, entrance, obj) => {
-        _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, {"leadsTo": obj});
+        _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, { "leadsTo": obj });
         return _hyrule;
     };
 
@@ -168,24 +168,24 @@ export default function ZOoTREntranceTracker() {
                 _hyrule,
                 _interiorEntrances,
                 {
-                    [_song.location]: {"song": song}
+                    [_song.location]: { "song": song }
                 }
             );
         } else {
             [_hyrule, _interiorEntrances] = removeInteriorEntrances(
                 _hyrule,
-                _interiorEntrances, 
+                _interiorEntrances,
                 {
-                    [_song.location]: [{"song": song}]
+                    [_song.location]: [{ "song": song }]
                 }
             );
             if (_song.locationType === EntranceTypes.Overworld) {
                 [_hyrule, _interiorEntrances] = hideAreasIfEmpty(_hyrule, _interiorEntrances, [_song.location]);
             }
         }
-        setSongs({...songs, [song]: _song});
-        setInteriorEntrances({..._interiorEntrances});
-        setHyrule({..._hyrule});
+        setSongs({ ...songs, [song]: _song });
+        setInteriorEntrances({ ..._interiorEntrances });
+        setHyrule({ ..._hyrule });
     };
 
     const addInteriorEntrance = (_hyrule, _interiorEntrances, obj) => {
@@ -200,7 +200,7 @@ export default function ZOoTREntranceTracker() {
                 }
                 _interiorEntrances[InteriorConnection[location].location].push(InteriorConnection[location].entranceObject);
                 if (InteriorConnection[location].type === EntranceTypes.Overworld) {
-                    setPropertiesOfArea(_hyrule, InteriorConnection[location].location, {"isAccessible": true});
+                    setPropertiesOfArea(_hyrule, InteriorConnection[location].location, { "isAccessible": true });
                 }
             }
         });
@@ -245,21 +245,21 @@ export default function ZOoTREntranceTracker() {
                 _locationsObj[locationBeingFiltered] = _location;
             }
         };
-        _interiorEntrances = {..._interiorEntrances, ..._locationsObj};
+        _interiorEntrances = { ..._interiorEntrances, ..._locationsObj };
         return [_hyrule, _interiorEntrances, Object.keys(_locationsAndObjects)];
     };
 
     const toggleKaeporaLanding = (_hyrule, sourceArea, destinationArea) => {
         if (sourceArea === OverworldAreas["Death Mountain Trail"]) {
-            _hyrule = setPropertiesOfArea(_hyrule, destinationArea, {"hasKaeporaDeathMountainTrailLanding": !hyrule[destinationArea].hasKaeporaDeathMountainTrailLanding});
+            _hyrule = setPropertiesOfArea(_hyrule, destinationArea, { "hasKaeporaDeathMountainTrailLanding": !hyrule[destinationArea].hasKaeporaDeathMountainTrailLanding });
         } else if (sourceArea === OverworldAreas["Lake Hylia"]) {
-            _hyrule = setPropertiesOfArea(_hyrule, destinationArea, {"hasKaeporaLakeHyliaLanding": !hyrule[destinationArea].hasKaeporaLakeHyliaLanding});
+            _hyrule = setPropertiesOfArea(_hyrule, destinationArea, { "hasKaeporaLakeHyliaLanding": !hyrule[destinationArea].hasKaeporaLakeHyliaLanding });
         }
         return _hyrule;
     };
 
     const resetOverworldEntrance = (_hyrule, area, entrance) => {
-        _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, {"leadsTo": null});
+        _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, { "leadsTo": null });
         return _hyrule;
     };
 
@@ -315,11 +315,11 @@ export default function ZOoTREntranceTracker() {
 
     const setObjectForType = (type, object) => {
         if (type === EntranceTypes.Overworld) {
-            setAvailableOverworldEntrances({...object});    
+            setAvailableOverworldEntrances({ ...object });
         } else if (type === EntranceTypes.House) {
-            setAvailableHouseEntrances({...object});
+            setAvailableHouseEntrances({ ...object });
         } else if (type === EntranceTypes.Grotto) {
-            setAvailableGrottoEntrances({...object});
+            setAvailableGrottoEntrances({ ...object });
         }
     };
 
@@ -327,14 +327,14 @@ export default function ZOoTREntranceTracker() {
         let _obj = returnObjectForType(type);
         let _array = _obj[area];
         _array.splice(_obj[area].indexOf(item), 1);
-        setObjectForType(type, {..._obj, [area]: _array});
+        setObjectForType(type, { ..._obj, [area]: _array });
     }
 
     const addItemToObjectArray = (area, type, item) => {
         let _obj = returnObjectForType(type);
         let _array = _obj[area];
         _array.push(item);
-        setObjectForType(type, {..._obj, [area]: _array});
+        setObjectForType(type, { ..._obj, [area]: _array });
     };
 
     const removeAvailableHouseEntrance = (area, entrance) => {
@@ -362,12 +362,12 @@ export default function ZOoTREntranceTracker() {
     };
 
     const setInterior = (_hyrule, area, entrance, interior) => {
-        _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, {"clear": false, "interior": interior});
+        _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, { "clear": false, "interior": interior });
         return _hyrule;
     };
 
     const resetInterior = (_hyrule, area, entrance) => {
-        _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, {"interior": null});
+        _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, { "interior": null });
         return _hyrule;
     };
 
@@ -376,16 +376,16 @@ export default function ZOoTREntranceTracker() {
         if (!_hyrule[area].isAccessible) {
             if (AreasToAdd[area] !== undefined) {
                 [_hyrule, _interiorEntrances] = addInteriorEntrance(
-                    _hyrule, 
-                    _interiorEntrances, 
+                    _hyrule,
+                    _interiorEntrances,
                     {
                         [AreasToAdd[area].name]: AreasToAdd[area].entranceObject
                     }
                 );
-                _hyrule = setPropertiesOfArea(_hyrule, AreasToAdd[area].name, {"isAccessible": true});
+                _hyrule = setPropertiesOfArea(_hyrule, AreasToAdd[area].name, { "isAccessible": true });
             }
         }
-        _hyrule = setPropertiesOfArea(_hyrule, area, {"isAccessible": true});
+        _hyrule = setPropertiesOfArea(_hyrule, area, { "isAccessible": true });
         return [_hyrule, _interiorEntrances];
     };
 
@@ -417,7 +417,7 @@ export default function ZOoTREntranceTracker() {
         for (let i = 0; i < areas.length; i++) {
             let areaName = areas[i];
             if (areaIsEmpty(_hyrule, areaName)) {
-                _hyrule = setPropertiesOfArea(_hyrule, areaName, {"isAccessible": false});
+                _hyrule = setPropertiesOfArea(_hyrule, areaName, { "isAccessible": false });
                 if (AreasToAdd[areaName] !== undefined) {
                     [_hyrule, _interiorEntrances] = removeInteriorEntrances(
                         _hyrule,
@@ -448,8 +448,8 @@ export default function ZOoTREntranceTracker() {
                 let selectedArea = selection.area;
                 let selectedEntrance = selection.entrance;
 
-                _hyrule = setOverworldEntrance(_hyrule, area, entrance, {area: selectedArea, entrance: selectedEntrance});
-                _hyrule = setOverworldEntrance(_hyrule, selectedArea, selectedEntrance, {area, entrance});
+                _hyrule = setOverworldEntrance(_hyrule, area, entrance, { area: selectedArea, entrance: selectedEntrance });
+                _hyrule = setOverworldEntrance(_hyrule, selectedArea, selectedEntrance, { area, entrance });
 
                 removeAvailableOverworldEntrance(area, entrance);
                 removeAvailableOverworldEntrance(selectedArea, selectedEntrance);
@@ -458,8 +458,8 @@ export default function ZOoTREntranceTracker() {
                     _hyrule,
                     _interiorEntrances,
                     {
-                        [area]: {"area": selectedArea, "entrance": selectedEntrance},
-                        [selectedArea]: {"area": area, "entrance": entrance}
+                        [area]: { "area": selectedArea, "entrance": selectedEntrance },
+                        [selectedArea]: { "area": area, "entrance": entrance }
                     }
                 );
 
@@ -485,8 +485,8 @@ export default function ZOoTREntranceTracker() {
                     _hyrule,
                     _interiorEntrances,
                     {
-                        [interior]: {"area": area, "entrance": entrance},
-                        [area]: {"entrance": entrance, "interior": interior}
+                        [interior]: { "area": area, "entrance": entrance },
+                        [area]: { "entrance": entrance, "interior": interior }
                     }
                 );
 
@@ -506,13 +506,13 @@ export default function ZOoTREntranceTracker() {
                 let selectedEntrance = selection.entrance;
 
                 _hyrule = toggleKaeporaLanding(_hyrule, area, selectedArea);
-                _hyrule = setOverworldEntrance(_hyrule, area, entrance, {area: selectedArea, entrance: selectedEntrance});
+                _hyrule = setOverworldEntrance(_hyrule, area, entrance, { area: selectedArea, entrance: selectedEntrance });
 
                 [_hyrule, _interiorEntrances] = addInteriorEntrance(
                     _hyrule,
                     _interiorEntrances,
                     {
-                        [selectedArea]: {"area": area, "entrance": entrance}
+                        [selectedArea]: { "area": area, "entrance": entrance }
                     }
                 );
 
@@ -524,8 +524,8 @@ export default function ZOoTREntranceTracker() {
                 throw Error("Invalid type: " + vanilla.type);
             }
         }
-        setInteriorEntrances({..._interiorEntrances});
-        setHyrule({..._hyrule});
+        setInteriorEntrances({ ..._interiorEntrances });
+        setHyrule({ ..._hyrule });
     };
 
     const resetEntrance = (obj) => {
@@ -547,11 +547,11 @@ export default function ZOoTREntranceTracker() {
                 addAvailableOverworldEntrance(leadsToArea, leadsToEntrance);
                 let areasAffected;
                 [_hyrule, _interiorEntrances, areasAffected] = removeInteriorEntrances(
-                    _hyrule, 
-                    _interiorEntrances, 
+                    _hyrule,
+                    _interiorEntrances,
                     {
-                        [area]: [{"area": leadsToArea, "entrance": leadsToEntrance}],
-                        [leadsToArea]: [{"area": area, "entrance": entrance}]
+                        [area]: [{ "area": leadsToArea, "entrance": leadsToEntrance }],
+                        [leadsToArea]: [{ "area": area, "entrance": entrance }]
                     }
                 );
 
@@ -573,10 +573,10 @@ export default function ZOoTREntranceTracker() {
                 let areasAffected;
                 [_hyrule, _interiorEntrances, areasAffected] = removeInteriorEntrances(
                     _hyrule,
-                    _interiorEntrances, 
+                    _interiorEntrances,
                     {
-                        [interior]: [{"area": area, "entrance": entrance}],
-                        [area]: [{"entrance": entrance, "interior": interior}]
+                        [interior]: [{ "area": area, "entrance": entrance }],
+                        [area]: [{ "entrance": entrance, "interior": interior }]
                     }
                 );
 
@@ -600,7 +600,7 @@ export default function ZOoTREntranceTracker() {
                     _hyrule,
                     _interiorEntrances,
                     {
-                        [leadsToArea]: [{"area": area, "entrance": EntranceTypes["Kaepora Gaebora"]}]
+                        [leadsToArea]: [{ "area": area, "entrance": EntranceTypes["Kaepora Gaebora"] }]
                     }
                 );
 
@@ -618,8 +618,8 @@ export default function ZOoTREntranceTracker() {
                 setRouteFinderEnd(null);
             }
         }
-        setInteriorEntrances({..._interiorEntrances});
-        setHyrule({..._hyrule});
+        setInteriorEntrances({ ..._interiorEntrances });
+        setHyrule({ ..._hyrule });
     };
 
     let locationsToPromptFor = getLocationsToPromptForBasedOnState();
@@ -638,7 +638,7 @@ export default function ZOoTREntranceTracker() {
                 toggleOverworldOnly={() => setOverworldOnly(!overworldOnly)}
             />
 
-            <div className="top-padding" style={{height: menuHeight}} />
+            <div className="top-padding" style={{ height: menuHeight }} />
 
             {showRouteFinder ?
                 <RouteFinder
@@ -669,7 +669,7 @@ export default function ZOoTREntranceTracker() {
                             setEntrance={setEntrance}
                             showInitialAgeCheck={
                                 (startAsChild && interiorEntrances[Houses["Link's House"]] === undefined) ||
-                                    (!startAsChild && interiorEntrances[Houses["Temple of Time"]] === undefined)
+                                (!startAsChild && interiorEntrances[Houses["Temple of Time"]] === undefined)
                             }
                             startAsChild={startAsChild}
                             toggleStartAsChild={() => setStartAsChild(!startAsChild)}
@@ -706,7 +706,7 @@ export default function ZOoTREntranceTracker() {
                 })}
             </div>
 
-            <div className="bottom-padding" style={{height: songsHeight}} />
+            <div className="bottom-padding" style={{ height: songsHeight }} />
 
             {/* display songs that can be collected and may open new areas */}
             {Object.keys(interiorEntrances).length > 1 && <Songs
