@@ -191,6 +191,14 @@ html {
 }
 
 /* Prompts */
+.user-prompts .prompt:first-child {
+    border-top: 1px solid #a5a38c;
+}
+
+.user-prompts .prompt:last-child {
+    border-bottom: 1px solid #a5a38c;
+}
+
 .prompt {
     width: 90%;
     max-width: 900px;
@@ -200,6 +208,10 @@ html {
 .prompt-select {
     align-items: center;
     padding: 0;
+}
+
+.prompt-field {
+    margin-bottom: 0rem !important;
 }
 
 /* Songs */

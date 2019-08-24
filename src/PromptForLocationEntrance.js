@@ -18,10 +18,12 @@ export default function PromptForLocationEntrance({ locationToPromptFor, showIni
 
     return (
         <div className="prompt columns">
-            <h4 className="is-size-4 has-text-centered column prompt-question">
-                Set {locationToPromptFor}
-            </h4>
-            <div className="field is-grouped has-addons has-addons-centered is-vcentered column prompt-select">
+            <div className="column">
+                <h5 className="prompt-field is-size-5 has-text-centered prompt-question">
+                    Set {locationToPromptFor}
+                </h5>
+            </div>
+            <div className="prompt-field field column is-grouped has-addons has-addons-centered is-vcentered">
                 <div className="select is-small control">
                     <select
                         onChange={e => setSelectedLocation(e.target.value)}
@@ -54,7 +56,7 @@ export default function PromptForLocationEntrance({ locationToPromptFor, showIni
                 </button>
             </div>
             {showInitialAgeCheck &&
-                <div className="has-text-centered column">
+                <div className="prompt-field has-text-centered column">
                     <button
                         className="button is-small"
                         onClick={props.toggleStartAsChild}
