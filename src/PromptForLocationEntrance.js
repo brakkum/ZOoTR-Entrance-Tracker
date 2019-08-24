@@ -19,7 +19,7 @@ export default function PromptForLocationEntrance({ locationToPromptFor, showIni
     return (
         <div className="prompt columns">
             <h4 className="is-size-4 has-text-centered column prompt-question">
-                Where is {locationToPromptFor}?
+                Set {locationToPromptFor}
             </h4>
             <div className="field is-grouped has-addons has-addons-centered is-vcentered column prompt-select">
                 <div className="select is-small control">
@@ -52,17 +52,17 @@ export default function PromptForLocationEntrance({ locationToPromptFor, showIni
                 <button className="button is-small control" onClick={setInteriorToAreaAndEntrance}>
                     Add {locationToPromptFor}
                 </button>
-                {showInitialAgeCheck &&
-                    <div className="has-text-centered column">
-                        <button
-                            className="button is-small"
-                            onClick={props.toggleStartAsChild}
-                        >
-                            Start as {startAsChild ? "Adult" : "Child"}
-                        </button>
-                    </div>
-                }
             </div>
+            {showInitialAgeCheck &&
+                <div className="has-text-centered column">
+                    <button
+                        className="button is-small"
+                        onClick={props.toggleStartAsChild}
+                    >
+                        Start as {startAsChild ? "Adult" : "Child"}
+                    </button>
+                </div>
+            }
         </div>
     )
 }

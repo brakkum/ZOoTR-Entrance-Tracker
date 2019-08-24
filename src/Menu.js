@@ -54,27 +54,32 @@ export default function Menu({ showRouteFinder, overworldOnly, ...props }) {
                         ZOoTR Entrance Tracker
                     </h1>
                 </nav>
-                <div className="has-background-dark nav-bottom">
-                    <div className="nav-bottom-right">
-                        <div className="nav-bottom-item has-text-primary has-text-weight-bold">
+                {message === "" ?
+                    <div className="has-background-dark nav-bottom">
+                        <div className="nav-bottom-left">
+                            <a href="#vanilla" className="nav-bottom-item has-text-light" onClick={setVanillaHyrule}>
+                                Vanilla Hyrule
+                            </a>
+                            <a href="#reset" className="nav-bottom-item has-text-light" onClick={resetState}>
+                                Reset
+                            </a>
+                            <a
+                                href="https://github.com/brakkum/ZOoTR-Entrance-Tracker"
+                                className="nav-bottom-item has-text-grey-light"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                    :
+                    <div className="nav-bottom-right nav-right">
+                        <div className="nav-bottom-item nav-bottom-message is-size-6 has-text-primary has-text-weight-bold">
                             {message}
                         </div>
-                        <a href="#vanilla" className="nav-bottom-item has-text-light" onClick={setVanillaHyrule}>
-                            Vanilla Hyrule
-                        </a>
-                        <a href="#reset" className="nav-bottom-item has-text-light" onClick={resetState}>
-                            Reset
-                        </a>
-                        <a
-                            href="https://github.com/brakkum/ZOoTR-Entrance-Tracker"
-                            className="nav-bottom-item has-text-grey-light"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            GitHub
-                        </a>
                     </div>
-                </div>
+                }
             </div>
         </div>
     )

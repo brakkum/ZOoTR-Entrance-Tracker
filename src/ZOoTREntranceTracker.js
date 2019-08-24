@@ -707,7 +707,7 @@ export default function ZOoTREntranceTracker() {
                                     className="button is-outlined is-small"
                                     onClick={expandAllAreas}
                                 >
-                                    Expand All Areas
+                                    Expand All Entrances
                                 </a>
                             </p>
                             <p className="control">
@@ -715,7 +715,7 @@ export default function ZOoTREntranceTracker() {
                                     className="button is-outlined is-small"
                                     onClick={hideAllAreas}
                                 >
-                                    Hide All Areas
+                                    Hide All Entrances
                                 </a>
                             </p>
                         </div>

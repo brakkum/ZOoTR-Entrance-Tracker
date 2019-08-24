@@ -11,6 +11,7 @@ html {
     background-color: #eeebe1;
 }
 
+/* Nav */
 .nav-bottom {
     display: flex;
     justify-content: space-between;
@@ -27,6 +28,11 @@ html {
     cursor: pointer;
 }
 
+.nav-bottom-message {
+
+}
+
+/* App Config */
 .app-config {
     display: flex;
     width: 95%;
@@ -184,9 +190,9 @@ html {
     margin: 0 5px;
 }
 
+/* Prompts */
 .prompt {
     width: 90%;
-    min-width: 500px;
     max-width: 900px;
     margin: auto;
 }
@@ -196,10 +202,7 @@ html {
     padding: 0;
 }
 
-.flex-wraps {
-    flex-wrap: wrap;
-}
-
+/* Songs */
 .songs-container {
     position: fixed;
     display: flex;
@@ -215,4 +218,9 @@ html {
 .warp-song {
     padding: 10px;
     margin: 5px;
+}
+
+/* Helpers */
+.flex-wraps {
+    flex-wrap: wrap;
 }
