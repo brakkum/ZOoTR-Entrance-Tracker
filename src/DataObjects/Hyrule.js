@@ -13,6 +13,7 @@ export default {
             "#cdcdcd"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -37,6 +38,7 @@ export default {
             "#901f11"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -78,6 +80,7 @@ export default {
             "#93584a"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -127,6 +130,7 @@ export default {
             "#c1ad96"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -158,6 +162,7 @@ export default {
             "#cbb186"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -188,6 +193,7 @@ export default {
             "#cbc3ae"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "attachedArea": {
@@ -227,6 +233,7 @@ export default {
             "#c07b50"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -262,6 +269,7 @@ export default {
             "#968299"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -308,6 +316,7 @@ export default {
             "#6e6d82"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -328,6 +337,7 @@ export default {
             "#964145"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -362,6 +372,7 @@ export default {
             "#c9bd61"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -450,6 +461,7 @@ export default {
             "#aa9191"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -544,6 +556,7 @@ export default {
             "#866f65"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -608,6 +621,7 @@ export default {
             "#8cabb0"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -653,6 +667,7 @@ export default {
             "#8fc771"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -689,6 +704,7 @@ export default {
             "#a4af32"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -734,6 +750,7 @@ export default {
             "#a4af32"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -754,6 +771,7 @@ export default {
             "#af9084"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -822,6 +840,7 @@ export default {
             "#9caf7c"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -861,6 +880,7 @@ export default {
             "#d6d5ba"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -882,6 +902,7 @@ export default {
             "#7b6753"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -917,6 +938,7 @@ export default {
             "#8e8872"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {
@@ -947,6 +969,7 @@ export default {
             "#75b46d"
         ],
         "isAccessible": false,
+        "isExpanded": true,
         "hasKaeporaLakeHyliaLanding": false,
         "hasKaeporaDeathMountainTrailLanding": false,
         "entrances": {

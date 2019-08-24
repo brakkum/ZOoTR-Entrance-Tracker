@@ -150,6 +150,28 @@ export default function ZOoTREntranceTracker() {
         setHyrule({ ..._hyrule });
     };
 
+    const toggleAreaExpanded = (area) => {
+        let _hyrule = hyrule;
+        _hyrule = setPropertiesOfArea(_hyrule, area, { "isExpanded": !hyrule[area].isExpanded });
+        setHyrule({..._hyrule});
+    };
+
+    const expandAllAreas = () => {
+        let _hyrule = hyrule;
+        Object.keys(_hyrule).forEach(area => {
+            _hyrule[area].isExpanded = true;
+        });
+        setHyrule({..._hyrule});
+    };
+
+    const hideAllAreas = () => {
+        let _hyrule = hyrule;
+        Object.keys(_hyrule).forEach(area => {
+            _hyrule[area].isExpanded = false;
+        });
+        setHyrule({..._hyrule});
+    };
+
     const setOverworldEntrance = (_hyrule, area, entrance, obj) => {
         _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, { "leadsTo": obj });
         return _hyrule;
@@ -632,13 +654,74 @@ export default function ZOoTREntranceTracker() {
             <Menu
                 setMenuHeight={setMenuHeight}
                 resetState={resetState}
-                showRouteFinder={showRouteFinder}
-                toggleRouteFinder={() => setShowRouteFinder(!showRouteFinder)}
-                overworldOnly={overworldOnly}
-                toggleOverworldOnly={() => setOverworldOnly(!overworldOnly)}
             />
 
             <div className="top-padding" style={{ height: menuHeight }} />
+
+            {Object.keys(interiorEntrances).length >= 1 &&
+                <div className="app-config flex-wraps">
+                    <div className="entrances-control config-control">
+                        <div className="field is-grouped">
+                            <p className="control">
+                                <a
+                                    className={"button is-outlined is-small " + (!overworldOnly ? "is-link" : "is-dark")}
+                                    onClick={() => setOverworldOnly(false)}
+                                >
+                                    All Entrances
+                                </a>
+                            </p>
+                            <p className="control">
+                                <a
+                                    className={"button is-outlined is-small " + (overworldOnly ? "is-link" : "is-dark")}
+                                    onClick={() => setOverworldOnly(true)}
+                                >
+                                    Overworld and Dungeon Entrances
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div className="router-control config-control">
+                        <div className="field is-grouped">
+                            <p className="control">
+                                <a
+                                    className={"button is-outlined is-small " + (showRouteFinder ? "is-link" : "is-dark")}
+                                    onClick={() => setShowRouteFinder(true)}
+                                >
+                                    Show Router
+                                </a>
+                            </p>
+                            <p className="control">
+                                <a
+                                    className={"button is-outlined is-small " + (!showRouteFinder ? "is-link" : "is-dark")}
+                                    onClick={() => setShowRouteFinder(false)}
+                                >
+                                    Hide Router
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div className="area-expansion-control config-control">
+                        <div className="field is-grouped">
+                            <p className="control">
+                                <a
+                                    className="button is-outlined is-small"
+                                    onClick={expandAllAreas}
+                                >
+                                    Expand All Areas
+                                </a>
+                            </p>
+                            <p className="control">
+                                <a
+                                    className="button is-outlined is-small"
+                                    onClick={hideAllAreas}
+                                >
+                                    Hide All Areas
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
 
             {showRouteFinder ?
                 <RouteFinder
@@ -702,6 +785,7 @@ export default function ZOoTREntranceTracker() {
                         toggleEntranceClear={toggleEntranceClear}
                         overworldOnly={overworldOnly}
                         startAsChild={startAsChild}
+                        toggleAreaExpanded={toggleAreaExpanded}
                     />
                 })}
             </div>

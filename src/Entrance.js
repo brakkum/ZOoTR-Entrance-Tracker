@@ -8,22 +8,27 @@ export default function Entrance({ options, entrance, areaName, entranceName, ..
 
     return (
         <div className="entrance">
-            <h6 className={
-                "is-size-6 has-text-weight-bold " +
+            <span className={
+                "entrance-name is-size-6 has-text-weight-bold " +
                 // entrance has no assignment, make it clear
                 (entrance.interior === null || entrance.leadsTo === null ? "has-text-danger" : "")
-            }>{entranceName}</h6>
+            }>{entranceName}</span>
+            <div className="entrance-spacer"></div>
             {entrance.interior !== undefined && entrance.interior !== null ?
                 // has an interior defined, so just display it
                 <div
                     className={
-                        "interior-display box has-text-centered is-flex " +
+                        "interior-display is-flex " +
                         (
-                            entrance.clear === undefined ? "" :
-                                entrance.clear && isHovered ? "has-background-green" :
-                                    !entrance.clear && isHovered ? "has-background-red" :
-                                        entrance.clear ? "has-border-green" :
-                                            !entrance.clear ? "has-border-red" : ""
+                            entrance.clear !== undefined &&
+                                entrance.clear ? "check-cleared " :
+                                    !entrance.clear ? "check-not-cleared " :
+                                        ""
+                        ) +
+                        (
+                            entrance.clear !== undefined &&
+                                isHovered ? "hovered " :
+                                    ""
                         )
                     }
                     ref={hoverRef}
@@ -37,7 +42,7 @@ export default function Entrance({ options, entrance, areaName, entranceName, ..
                     {((props.startAsChild && entrance.interior === Houses["Link's House"]) ||
                         (!props.startAsChild && entrance.interior === Houses["Temple of Time"])) ?
                         null :
-                        <div className="delete is-pulled-right" onClick={
+                        <div className="delete remove-choice is-pulled-right" onClick={
                             () => props.resetEntrance({ ...entrance, area: areaName, entrance: entranceName })
                         } />
                     }
@@ -46,18 +51,18 @@ export default function Entrance({ options, entrance, areaName, entranceName, ..
                 entrance.leadsTo !== undefined && entrance.leadsTo !== null
                     ?
                     // points to an area, and maybe an entrance
-                    <div className="area-display box has-text-weight-semibold is-flex">
+                    <div className="area-display has-text-weight-semibold is-flex">
                         <div className="area-display-entrance">
                             {/* show area */}
-                            <div className="has-text-centered">
+                            <div className="">
                                 {entrance.leadsTo.area}
                             </div>
                             {/* show entrance */}
-                            <div className="has-text-centered is-size-7 has-text-weight-normal">
+                            <div className=" is-size-7 has-text-weight-normal">
                                 {entrance.leadsTo.entrance} Entrance
                             </div>
                         </div>
-                        <span className="delete is-pulled-right" onClick={() =>
+                        <span className="delete remove-choice is-pulled-right" onClick={() =>
                             props.resetEntrance(
                                 {
                                     ...entrance,

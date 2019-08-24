@@ -11,10 +11,6 @@ html {
     background-color: #eeebe1;
 }
 
-.bottom-padding {
-    height: 300px;
-}
-
 .nav-bottom {
     display: flex;
     justify-content: space-between;
@@ -29,6 +25,19 @@ html {
     padding: 4px;
     margin: 6px;
     cursor: pointer;
+}
+
+.app-config {
+    display: flex;
+    width: 95%;
+    max-width: 1000px;
+    margin: auto;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.config-control {
+    margin: 10px;
 }
 
 .route-finder {
@@ -52,9 +61,10 @@ html {
 
 .routing-results {
     border-radius: 4px;
-    width: 90%;
+    width: 95%;
     max-width: 1400px;
     margin: auto;
+    padding: 10px;
 }
 
 .routing-results .route:not(:last-child) {
@@ -76,6 +86,7 @@ html {
     margin-left: 10px;
 }
 
+/* AREAS */
 .areas-container {
     max-width: 95%;
     margin: 20px auto;
@@ -84,66 +95,93 @@ html {
     justify-content: space-around;
 }
 
-.area-box-container {
-    padding: 5px;
+.area-card {
     margin: 10px;
 }
 
-.area-box {
+.area-card-header {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.area-card-name {
+    color: whitesmoke;
+    margin: 2px 10px;
+}
+
+.area-card-content {
     background-color: #fbfbfb;
+    padding: .7rem;
+}
+
+.card-columns {
+
+}
+
+.card-column {
+    padding: .5rem;
 }
 
 .interior-display {
-    padding: 5px;
-    margin: 10px;
+    margin: 5px 0;
     align-items: center;
     justify-content: space-between;
 }
 
 .interior {
     width: 100%;
+    padding: 5px 10px;
 }
 
 .area-display {
-    padding: 5px;
-    margin: 10px;
+    margin: 5px 0;
     align-items: center;
     justify-content: space-evenly;
+    border-right: 4px solid grey;
 }
 
 .area-display-entrance {
     width: 100%;
-    margin: 10px;
+    text-align: right;
 }
 
-.has-background-red {
+.check-not-cleared.hovered {
     background-color: #edbebf;
-    border: 2px solid #b63e3e;
 }
 
-.has-border-red {
-    border: 2px solid #b63e3e;
+.check-not-cleared {
+    border-right: 4px solid #b63e3e;
 }
 
-.has-background-green {
+.check-cleared.hovered {
     background-color: #cbf7cd;
-    border: 2px solid #69b76c;
 }
 
-.has-border-green {
-    border: 2px solid #69b76c;
+.check-cleared {
+    border-right: 4px solid #69b76c;
 }
 
 .entrance {
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
 }
 
-.entrance-name {
-    margin-left: 15px;
+/* .entrance-name {
+
+} */
+
+.entrance-spacer {
+    width: 20px;
 }
 
 .entrance-select {
-    margin: 10px;
+    margin: 5px;
+}
+
+.remove-choice {
+    margin: 0 5px;
 }
 
 .prompt {

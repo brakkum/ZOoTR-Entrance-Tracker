@@ -26,19 +26,31 @@ export default function Area({
     let entrances = [];
 
     return (
-        <div className="area-box-container box"
-            style={{
-                // set border to selected colors
-                // default solid grey
-                background: area.colors.length > 1 ?
-                    `linear-gradient(to bottom right, ${area.colors.join(", ")}`
-                    : area.colors.length === 1 ?
-                        area.colors[0]
-                        : "grey"
-            }}
-        >
-            <div className="box area-box">
-                <h4 className="is-size-4 has-text-weight-semibold">{areaName}</h4>
+        <div className="card area-card">
+            <div className="card-header area-card-header has-background-dark">
+                <h5 className="is-size-5 has-text-weight-semibold area-card-name">{areaName}</h5>
+                <span
+                    className="icon has-text-white"
+                    onClick={() => props.toggleAreaExpanded(areaName)}
+                >
+                    {area.isExpanded ?
+                        <i className="fa fa-minus area-expand-icon"></i> :
+                        <i className="fa fa-plus area-expand-icon"></i>
+                    }
+                </span>
+            </div>
+            <div
+                style={{
+                    background: area.colors.length > 1 ?
+                        `linear-gradient(to right, ${area.colors.join(", ")}`
+                        : area.colors.length === 1 ?
+                            area.colors[0]
+                            : "grey",
+                    height: "5px"
+                }}
+            >
+            </div>
+            {area.isExpanded && <div className="card-content area-card-content">
                 {/* iterate through the entrances of the area */}
                 {Object.keys(area.entrances).sort().map((entranceName, i) => {
                     // column layout
@@ -79,24 +91,13 @@ export default function Area({
                     );
                     return null;
                 })}
-                {/* output the columns of area entrances */}
-                {entrances.length <= 2 ?
-                    <div className="columns">
-                        <div className="column">
-                            {entrances}
-                        </div>
+                <div className="columns card-columns">
+                    <div className="column card-column">
+                        {entrances}
                     </div>
-                    :
-                    <div className="columns">
-                        <div className="column">
-                            {entrances.slice(0, Math.ceil(entrances.length / 2))}
-                        </div>
-                        <div className="column">
-                            {entrances.slice(Math.ceil(entrances.length / 2))}
-                        </div>
-                    </div>
-                }
+                </div>
             </div>
+            }
         </div>
     )
 }

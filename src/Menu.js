@@ -55,20 +55,6 @@ export default function Menu({ showRouteFinder, overworldOnly, ...props }) {
                     </h1>
                 </nav>
                 <div className="has-background-dark nav-bottom">
-                    <div className="nav-bottom-left">
-                        <div
-                            className="nav-bottom-item"
-                            onClick={props.toggleRouteFinder}
-                        >
-                            {showRouteFinder ? "Hide" : "Show"} Route Finder
-                        </div>
-                        <div
-                            className="nav-bottom-item"
-                            onClick={props.toggleOverworldOnly}
-                        >
-                            {overworldOnly ? "Show All Entrances" : "Hide Non-Overworld Entrances"}
-                        </div>
-                    </div>
                     <div className="nav-bottom-right">
                         <div className="nav-bottom-item has-text-primary has-text-weight-bold">
                             {message}

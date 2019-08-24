@@ -11,14 +11,32 @@ export default function useLocalStorage(key, initialValue) {
             // Check for old storage method, and update to new
             let item;
             let oldStorage = window.localStorage.getItem(LocalStorageKey.state);
-            let json = JSON.parse(oldStorage);
-            if (json && json[key] !== undefined) {
-                item = JSON.stringify(json[key]);
-                delete json[key];
-                window.localStorage.setItem(LocalStorageKey.state, JSON.stringify(json));
+            let oldStorageJson = JSON.parse(oldStorage);
+            if (oldStorageJson && oldStorageJson[key] !== undefined) {
+                if (key === "hyrule") {
+                    Object.keys(oldStorageJson[key]).forEach(area => {
+                        // In case of old state, add isExpanded attribute for hyrule areas
+                        if (oldStorageJson[key][area].isExpanded === undefined) {
+                            oldStorageJson[key][area].isExpanded = true;
+                        }
+                    });
+                }
+                item = JSON.stringify(oldStorageJson[key]);
+                delete oldStorageJson[key];
+                window.localStorage.setItem(LocalStorageKey.state, JSON.stringify(oldStorageJson));
                 window.localStorage.setItem(key, item);
             } else {
                 item = window.localStorage.getItem(key);
+                if (key === "hyrule") {
+                    let json = JSON.parse(item);
+                    Object.keys(json).forEach(area => {
+                        // In case of old state, add isExpanded attribute for hyrule areas
+                        if (json[area].isExpanded === undefined) {
+                            json[area].isExpanded = true;
+                        }
+                    });
+                    item = JSON.stringify(json);
+                }
             }
             // Parse stored json or if none return initialValue
             return item ? JSON.parse(item) : initialValue;

@@ -16,7 +16,7 @@ export default function Song({ song, toggleSongCollected }) {
                 ref={hoverRef}
                 onClick={() => toggleSongCollected(song.name)}
             >
-                <h6 className="is-size-6">{song.name}</h6>
+                <h6 className="is-size-7 has-text-weight-semibold">{song.name}</h6>
             </div>
         </div>
     )
