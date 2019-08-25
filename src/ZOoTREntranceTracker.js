@@ -167,7 +167,9 @@ export default function ZOoTREntranceTracker() {
     const hideAllAreas = () => {
         let _hyrule = hyrule;
         Object.keys(_hyrule).forEach(area => {
-            _hyrule[area].isExpanded = false;
+            if (_hyrule[area].isAccessible) {
+                _hyrule[area].isExpanded = false;
+            }
         });
         setHyrule({..._hyrule});
     };
