@@ -664,6 +664,7 @@ export default function ZOoTREntranceTracker() {
                         <div className="field is-grouped">
                             <p className="control">
                                 <a
+                                    href="#overworld"
                                     className={"button is-outlined is-small " + (!overworldOnly ? "is-link" : "is-dark")}
                                     onClick={() => setOverworldOnly(false)}
                                 >
@@ -672,6 +673,7 @@ export default function ZOoTREntranceTracker() {
                             </p>
                             <p className="control">
                                 <a
+                                    href="#overworld"
                                     className={"button is-outlined is-small " + (overworldOnly ? "is-link" : "is-dark")}
                                     onClick={() => setOverworldOnly(true)}
                                 >
@@ -684,6 +686,7 @@ export default function ZOoTREntranceTracker() {
                         <div className="field is-grouped">
                             <p className="control">
                                 <a
+                                    href="#routing"
                                     className={"button is-outlined is-small " + (showRouteFinder ? "is-link" : "is-dark")}
                                     onClick={() => setShowRouteFinder(true)}
                                 >
@@ -692,6 +695,7 @@ export default function ZOoTREntranceTracker() {
                             </p>
                             <p className="control">
                                 <a
+                                    href="#routing"
                                     className={"button is-outlined is-small " + (!showRouteFinder ? "is-link" : "is-dark")}
                                     onClick={() => setShowRouteFinder(false)}
                                 >
@@ -704,6 +708,7 @@ export default function ZOoTREntranceTracker() {
                         <div className="field is-grouped">
                             <p className="control">
                                 <a
+                                    href="#expand"
                                     className="button is-outlined is-small"
                                     onClick={expandAllAreas}
                                 >
@@ -712,6 +717,7 @@ export default function ZOoTREntranceTracker() {
                             </p>
                             <p className="control">
                                 <a
+                                    href="#expand"
                                     className="button is-outlined is-small"
                                     onClick={hideAllAreas}
                                 >
