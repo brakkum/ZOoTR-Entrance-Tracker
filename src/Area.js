@@ -92,7 +92,7 @@ export default function Area({
                     );
                     if (i !== Object.keys(area.entrances).length - 1) {
                         entrances.push(
-                            <div className="entrance-separator"></div>
+                            <div key={`entrance-${i}`} className="entrance-separator"></div>
                         )
                     }
                     return null;
