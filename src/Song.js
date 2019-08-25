@@ -16,7 +16,7 @@ export default function Song({ song, toggleSongCollected }) {
                 ref={hoverRef}
                 onClick={() => toggleSongCollected(song.name)}
             >
-                <h6 className="is-size-6 is-hidden-mobile has-text-weight-semibold">{song.name}</h6>
+                <h6 className="song-name is-hidden-mobile has-text-weight-semibold">{song.name}</h6>
                 <h6 className="is-size-6 is-hidden-desktop is-hidden-tablet">{song.name.split(" ").map(word => word.charAt(0)).join("")}</h6>
             </div>
         </div>

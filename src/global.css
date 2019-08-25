@@ -252,6 +252,10 @@ html {
     margin: 5px;
 }
 
+.song-name {
+    font-size: .85rem;
+}
+
 /* Helpers */
 .flex-wraps {
     flex-wrap: wrap;
