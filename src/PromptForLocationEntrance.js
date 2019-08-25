@@ -20,7 +20,7 @@ export default function PromptForLocationEntrance({ locationToPromptFor, showIni
         <div className="prompt columns">
             <div className="column">
                 <h5 className="prompt-field is-size-5 has-text-centered prompt-question">
-                    Set {locationToPromptFor}
+                    Where is {locationToPromptFor}?
                 </h5>
             </div>
             <div className="prompt-field field column is-grouped has-addons has-addons-centered is-vcentered">

@@ -108,6 +108,7 @@ html {
 .area-card-header {
     justify-content: space-between;
     align-items: center;
+    cursor: pointer;
 }
 
 .area-card-name {
@@ -145,6 +146,18 @@ html {
     align-items: center;
     justify-content: space-evenly;
     border-right: 4px solid grey;
+}
+
+.entrance:first-child .select,
+.entrance:first-child .area-display,
+.entrance:first-child .interior-display {
+    margin-top: 0rem;
+}
+
+.entrance:last-child .select,
+.entrance:last-child .area-display,
+.entrance:last-child .interior-display {
+    margin-bottom: 0rem;
 }
 
 .area-display-entrance {

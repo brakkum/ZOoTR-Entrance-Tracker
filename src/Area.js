@@ -27,11 +27,12 @@ export default function Area({
 
     return (
         <div className="card area-card">
-            <div className="card-header area-card-header has-background-dark">
+            <div className="card-header area-card-header has-background-dark"
+                onClick={() => props.toggleAreaExpanded(areaName)}
+            >
                 <h5 className="is-size-5 has-text-weight-semibold area-card-name">{areaName}</h5>
                 <span
                     className="icon has-text-white"
-                    onClick={() => props.toggleAreaExpanded(areaName)}
                 >
                     {area.isExpanded ?
                         <i className="fa fa-minus area-expand-icon"></i> :
