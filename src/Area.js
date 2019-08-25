@@ -89,6 +89,11 @@ export default function Area({
                             startAsChild={props.startAsChild}
                         />
                     );
+                    if (i !== Object.keys(area.entrances).length - 1) {
+                        entrances.push(
+                            <div className="entrance-separator"></div>
+                        )
+                    }
                     return null;
                 })}
                 <div className="columns card-columns">
