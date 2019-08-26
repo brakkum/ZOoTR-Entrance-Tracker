@@ -34,7 +34,7 @@ export default function Entrance({ options, entrance, areaName, entranceName, ..
                     ref={hoverRef}
                     onClick={() => props.toggleEntranceClear(areaName, entranceName)}
                 >
-                    <span className="interior">
+                    <span className="interior has-text-right">
                         {entrance.interior}
                     </span>
                     {/* x icon for resetting an entrance to unchecked */}
