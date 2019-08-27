@@ -25,6 +25,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         ignoreGoronCityDMC: false,
         ignoreKaeporaGaebora: false,
         ignoreLostWoodsToBridge: false,
+        ignoreCrossingGerudoValley: false,
         ignoreZorasDomainFromRiver: false,
         ignoreSpiritTempleHandsExit: false,
         ignoreWindmillFromDampesGrave: false,
@@ -128,8 +129,6 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
             let isKaeporaGaeboraEntrance = currentCheck.entrance === EntranceTypes["Kaepora Gaebora"];
 
-            let previousCheckIsHauntedWasteland = previousCheck.area === OverworldAreas["Haunted Wasteland"];
-
             let isLostWoodsToBridgeEntrance = currentCheck.area === OverworldAreas["Lost Woods"] &&
                 currentCheck.entrance === OverworldAreas["Lost Woods Bridge"];
 
@@ -150,21 +149,32 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
             let isZorasDomainFromRiver = currentCheck.area === OverworldAreas["Zora's River"] && currentCheck.entrance === OverworldAreas["Zora's Domain"];
 
+            let isCrossingHauntedWasteland = false;
+            let previousCheckIsHauntedWasteland = previousCheck.area === OverworldAreas["Haunted Wasteland"];
             if (previousCheckIsHauntedWasteland) {
                 let hauntedWastelandEntraceBeingLedTo = hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.entrance;
                 let hauntedWastelandEntraceFromPreviousCheck = previousCheck.entrance;
-                if (hauntedWastelandEntraceBeingLedTo !== hauntedWastelandEntraceFromPreviousCheck &&
-                    config.ignoreCrossingHauntedWasteland) {
-                    return [];
-                }
+                isCrossingHauntedWasteland = hauntedWastelandEntraceBeingLedTo !== hauntedWastelandEntraceFromPreviousCheck;
+            }
+
+            let isCrossingGerudoValley = false;
+            let previousCheckIsGerudoValley = previousCheck.area === OverworldAreas["Gerudo Valley"];
+            if (previousCheckIsGerudoValley) {
+                let gerudoValleyEntranceBeingLedTo = hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.entrance;
+                let gerudoValleyEntranceFromPreviousCheck = previousCheck.entrance;
+                isCrossingGerudoValley =
+                    (gerudoValleyEntranceBeingLedTo === OverworldAreas["Gerudo's Fortress"] && gerudoValleyEntranceFromPreviousCheck === OverworldAreas["Hyrule Field"]) ||
+                    (gerudoValleyEntranceBeingLedTo === OverworldAreas["Hyrule Field"] && gerudoValleyEntranceFromPreviousCheck === OverworldAreas["Gerudo's Fortress"]);
             }
 
             let currentCheckPassesOptions = (
                 !(isKakarikoGateEntrance && config.ignoreKakarikoGate) &&
                 !(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
+                !(isCrossingGerudoValley && config.ignoreCrossingGerudoValley) &&
                 !(isZorasDomainFromRiver && config.ignoreZorasDomainFromRiver) &&
                 !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
                 !(isSpiritTempleHandsEntrance && config.ignoreSpiritTempleHandsExit) &&
+                !(isCrossingHauntedWasteland && config.ignoreCrossingHauntedWasteland) &&
                 !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
                 !(isZorasRiverLostWoodsEntrance && config.ignoreLostWoodsZorasRiverEntrances) &&
                 !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrance)
@@ -387,6 +397,13 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                     className={"button is-small is-outlined " + (config.ignoreZorasDomainFromRiver ? "is-danger" : "is-dark")}
                 >
                     Ignore Zora's Domain from Zora's River
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreCrossingGerudoValley")}
+                    className={"button is-small is-outlined " + (config.ignoreCrossingGerudoValley ? "is-danger" : "is-dark")}
+
+                >
+                    Ignore Crossing Gerudo Valley
                 </button>
             </div>
             {routes !== null && routes.length > 0 ?
