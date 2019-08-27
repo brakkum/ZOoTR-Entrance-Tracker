@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import Houses from "./DataObjects/Houses";
-import Grottos from "./DataObjects/Grottos";
-import Dungeons from "./DataObjects/Dungeons";
-import OverworldAreas from "./DataObjects/OverworldAreas";
-import Songs from "./DataObjects/Songs";
-import EntranceTypes from "./DataObjects/EntranceTypes";
-import ValidStartPoints from "./DataObjects/ValidStartPoints";
 import InteriorConnection from "./DataObjects/InteriorConnection";
+import ValidStartPoints from "./DataObjects/ValidStartPoints";
 import DivingEntrances from "./DataObjects/DivingEntrances";
+import OverworldAreas from "./DataObjects/OverworldAreas";
+import EntranceTypes from "./DataObjects/EntranceTypes";
+import useLocalStorage from "./Hooks/useLocalStorage";
+import Dungeons from "./DataObjects/Dungeons";
+import Grottos from "./DataObjects/Grottos";
+import Houses from "./DataObjects/Houses";
+import Songs from "./DataObjects/Songs";
 import RouteStep from "./RouteStep";
+import React from "react";
 
 const shuffleArray = array => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -19,7 +20,7 @@ const shuffleArray = array => {
 
 export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, availableLocations, hyrule, start, end, ...props }) {
 
-    const [config, setConfig] = useState({
+    const [config, setConfig] = useLocalStorage("routingConfig", {
         ignoreSongs: false,
         ignoreKakarikoGate: false,
         ignoreGoronCityDMC: false,
