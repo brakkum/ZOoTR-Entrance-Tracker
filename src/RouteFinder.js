@@ -20,15 +20,16 @@ const shuffleArray = array => {
 export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, availableLocations, hyrule, start, end, ...props }) {
 
     const [config, setConfig] = useState({
-        ignoreKaeporaGaebora: false,
         ignoreSongs: false,
-        ignoreCrossingHauntedWasteland: false,
-        ignoreLostWoodsToBridge: false,
+        ignoreKakarikoGate: false,
         ignoreGoronCityDMC: false,
-        ignoreLostWoodsZorasRiverEntrances: false,
-        ignoreLakeHyliaZorasDomainEntrance: false,
+        ignoreKaeporaGaebora: false,
+        ignoreLostWoodsToBridge: false,
+        ignoreSpiritTempleHandsExit: false,
         ignoreWindmillFromDampesGrave: false,
-        ignoreSpiritTempleHandsExit: false
+        ignoreCrossingHauntedWasteland: false,
+        ignoreLostWoodsZorasRiverEntrances: false,
+        ignoreLakeHyliaZorasDomainEntrance: false
     });
 
     const toggleConfigAttribute = attribute => {
@@ -144,6 +145,8 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
             let isSpiritTempleHandsEntrance = previousCheck.area === null && previousCheck.entrance === Dungeons["Spirit Temple"];
 
+            let isKakarikoGateEntrance = currentCheck.area === OverworldAreas["Kakariko Village"] && currentCheck.entrance === OverworldAreas["Death Mountain Trail"];
+
             if (previousCheckIsHauntedWasteland) {
                 let hauntedWastelandEntraceBeingLedTo = hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.entrance;
                 let hauntedWastelandEntraceFromPreviousCheck = previousCheck.entrance;
@@ -154,6 +157,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             }
 
             let currentCheckPassesOptions = (
+                !(isKakarikoGateEntrance && config.ignoreKakarikoGate) &&
                 !(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
                 !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
                 !(isSpiritTempleHandsEntrance && config.ignoreSpiritTempleHandsExit) &&
@@ -367,6 +371,12 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                     className={"button is-small is-outlined " + (config.ignoreSpiritTempleHandsExit ? "is-danger" : "is-dark")}
                 >
                     Ignore Spirit Temple Hands Exit
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreKakarikoGate")}
+                    className={"button is-small is-outlined " + (config.ignoreKakarikoGate ? "is-danger" : "is-dark")}
+                >
+                    Ignore Kakariko Gate
                 </button>
             </div>
             {routes !== null && routes.length > 0 ?
