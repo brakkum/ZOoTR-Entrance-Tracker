@@ -153,25 +153,24 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                 }
             }
 
+            let currentCheckPassesOptions = (
+                !(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
+                !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
+                !(isSpiritTempleHandsEntrance && config.ignoreSpiritTempleHandsExit) &&
+                !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
+                !(isZorasRiverLostWoodsEntrance && config.ignoreLostWoodsZorasRiverEntrances) &&
+                !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrance)
+            );
+
             if (startIsOverworld) {
                 if (currentCheck.area === startName) {
-                    if (!(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
-                        !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
-                        !(isSpiritTempleHandsEntrance && config.ignoreSpiritTempleHandsExit) &&
-                        !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
-                        !(isZorasRiverLostWoodsEntrance && config.ignoreLostWoodsZorasRiverEntrances) &&
-                        !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrance)) {
+                    if (currentCheckPassesOptions) {
                         return [{ start: startName }, { area: currentCheck.area, entrance: currentCheck.entrance }];
                     }
                 }
             }
 
-            if (!(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
-                !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
-                !(isSpiritTempleHandsEntrance && config.ignoreSpiritTempleHandsExit) &&
-                !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
-                !(isZorasRiverLostWoodsEntrance && config.ignoreLostWoodsZorasRiverEntrances) &&
-                !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrance)) {
+            if (currentCheckPassesOptions) {
                 nextLocationToSearch = currentCheck.area;
             }
         }
