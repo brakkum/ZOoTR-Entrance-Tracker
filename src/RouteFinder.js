@@ -25,6 +25,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         ignoreGoronCityDMC: false,
         ignoreKaeporaGaebora: false,
         ignoreLostWoodsToBridge: false,
+        ignoreZorasDomainFromRiver: false,
         ignoreSpiritTempleHandsExit: false,
         ignoreWindmillFromDampesGrave: false,
         ignoreCrossingHauntedWasteland: false,
@@ -147,6 +148,8 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
             let isKakarikoGateEntrance = currentCheck.area === OverworldAreas["Kakariko Village"] && currentCheck.entrance === OverworldAreas["Death Mountain Trail"];
 
+            let isZorasDomainFromRiver = currentCheck.area === OverworldAreas["Zora's River"] && currentCheck.entrance === OverworldAreas["Zora's Domain"];
+
             if (previousCheckIsHauntedWasteland) {
                 let hauntedWastelandEntraceBeingLedTo = hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.entrance;
                 let hauntedWastelandEntraceFromPreviousCheck = previousCheck.entrance;
@@ -159,6 +162,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             let currentCheckPassesOptions = (
                 !(isKakarikoGateEntrance && config.ignoreKakarikoGate) &&
                 !(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
+                !(isZorasDomainFromRiver && config.ignoreZorasDomainFromRiver) &&
                 !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
                 !(isSpiritTempleHandsEntrance && config.ignoreSpiritTempleHandsExit) &&
                 !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
@@ -377,6 +381,12 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                     className={"button is-small is-outlined " + (config.ignoreKakarikoGate ? "is-danger" : "is-dark")}
                 >
                     Ignore Kakariko Gate
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreZorasDomainFromRiver")}
+                    className={"button is-small is-outlined " + (config.ignoreZorasDomainFromRiver ? "is-danger" : "is-dark")}
+                >
+                    Ignore Zora's Domain from Zora's River
                 </button>
             </div>
             {routes !== null && routes.length > 0 ?
