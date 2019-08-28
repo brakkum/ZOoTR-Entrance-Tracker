@@ -25,12 +25,15 @@ html {
 .nav-bottom-item {
     padding: 4px;
     margin: 6px;
+}
+
+.nav-bottom-left .nav-bottom-item {
     cursor: pointer;
 }
 
-.nav-bottom-message {
+/* .nav-bottom-message {
 
-}
+} */
 
 /* App Config */
 .app-config {
