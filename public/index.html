@@ -32,7 +32,7 @@
         <script>
             const getAppState = () => {
                 let ls = JSON.parse(localStorage.getItem("zootr-entrance-tracker"));
-                if (Object.keys(ls).length > 0) {
+                if (ls && Object.keys(ls).length > 0) {
                     console.log(ls);
                 } else {
                     ls = {
