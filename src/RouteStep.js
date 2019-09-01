@@ -1,6 +1,7 @@
 import React from "react";
 import Songs from "./DataObjects/Songs";
 import useHover from "./Hooks/useHover";
+import Dungeons from "./DataObjects/Dungeons";
 
 export default function RouteStep({ step, isEndStep, routeIsClear, routeHasClearAttribute, routeEndArea, routeEndEntrance, ...props }) {
 
@@ -42,7 +43,9 @@ export default function RouteStep({ step, isEndStep, routeIsClear, routeHasClear
         }
         {step.entrance !== undefined &&
             <div>
-                {step.entrance} {![null, undefined].includes(step.area) && "Entrance"}
+                {step.entrance}
+                {![null, undefined].includes(step.area) && " Entrance"}
+                {step.area === null && step.entrance === Dungeons["Spirit Temple"] && " Hands"}
             </div>
         }
         {step.end !== undefined &&
