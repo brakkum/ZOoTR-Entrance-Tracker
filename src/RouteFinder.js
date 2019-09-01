@@ -445,6 +445,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                                 if (routeHasClearAttribute) {
                                     routeIsClear = hyrule[routeEndArea].entrances[routeEndEntrance].clear;
                                 }
+
                                 // each step of a route
                                 return <RouteStep
                                     key={j}

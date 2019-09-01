@@ -164,12 +164,20 @@ html {
     border-right: 4px solid #b63e3e;
 }
 
+.last-route-step.check-not-cleared {
+    border: 2px solid #b63e3e;
+}
+
 .check-cleared.hovered {
     background-color: #cbf7cd;
 }
 
 .check-cleared {
     border-right: 4px solid #69b76c;
+}
+
+.last-route-step.check-cleared {
+    border: 2px solid #69b76c;
 }
 
 .entrance {

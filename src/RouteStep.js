@@ -11,10 +11,10 @@ export default function RouteStep({ step, isEndStep, routeIsClear, routeHasClear
         ref={hoverRef}
         className={
             "route-step column has-text-centered" +
-            (isEndStep && routeHasClearAttribute && routeIsClear ? " has-border-green "
-                : isEndStep && routeHasClearAttribute && !routeIsClear ? " has-border-red " : "") +
-            ((isEndStep && isHovered && routeHasClearAttribute && routeIsClear) ? " has-background-green "
-                : (isEndStep && isHovered && routeHasClearAttribute && !routeIsClear) ? " has-background-red " : "")
+            (isEndStep ? " last-route-step " : "") +
+            (isEndStep && routeHasClearAttribute && routeIsClear ? " check-cleared "
+                : isEndStep && routeHasClearAttribute && !routeIsClear ? " check-not-cleared " : "") +
+            ((isEndStep && isHovered) ? " hovered " : "")
         }
         onClick={isEndStep && routeHasClearAttribute ? () => props.toggleEntranceClear(routeEndArea, routeEndEntrance) : null}
     >
