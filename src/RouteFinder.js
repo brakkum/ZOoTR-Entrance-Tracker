@@ -22,6 +22,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
     const [config, setConfig] = useLocalStorage("routingConfig", {
         ignoreSongs: false,
+        ignorePotionShop: false,
         ignoreKakarikoGate: false,
         ignoreGoronCityDMC: false,
         ignoreKaeporaGaebora: false,
@@ -86,10 +87,12 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                 nextLocationToSearch = currentCheck.interior;
             }
 
-            if (currentCheck.interior === Houses["Potion Shop Back"]) {
-                nextLocationToSearch = Houses["Potion Shop Front"];
-            } else if (currentCheck.interior === Houses["Potion Shop Front"]) {
-                nextLocationToSearch = Houses["Potion Shop Back"];
+            if (!config.ignorePotionShop) {
+                if (currentCheck.interior === Houses["Potion Shop Back"]) {
+                    nextLocationToSearch = Houses["Potion Shop Front"];
+                } else if (currentCheck.interior === Houses["Potion Shop Front"]) {
+                    nextLocationToSearch = Houses["Potion Shop Back"];
+                }
             }
         }
 
@@ -405,6 +408,13 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
                 >
                     Ignore Crossing Gerudo Valley
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignorePotionShop")}
+                    className={"button is-small is-outlined " + (config.ignorePotionShop ? "is-danger" : "is-dark")}
+
+                >
+                    Ignore Potion Shop
                 </button>
             </div>
             {routes !== null && routes.length > 0 ?
