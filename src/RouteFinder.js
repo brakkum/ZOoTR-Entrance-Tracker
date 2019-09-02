@@ -26,6 +26,8 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         ignoreKakarikoGate: false,
         ignoreGoronCityDMC: false,
         ignoreKaeporaGaebora: false,
+        considerChildSaveWarp: false,
+        considerAdultSaveWarp: false,
         ignoreLostWoodsToBridge: false,
         ignoreCrossingGerudoValley: false,
         ignoreZorasDomainFromRiver: false,
@@ -80,6 +82,12 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                 if (currentCheck.interior === startName) {
                     return [{ start: currentCheck.interior }];
                 }
+            }
+
+            if (currentCheck.interior === Houses["Link's House"] && config.considerChildSaveWarp) {
+                return [{ start: "Child Save Warp" }, {"entrance": Houses["Link's House"]}];
+            } else if (currentCheck.interior === Houses["Temple of Time"] && config.considerAdultSaveWarp) {
+                return [{ start: "Adult Save Warp" }, {"entrance": Houses["Temple of Time"]}];
             }
 
             if (currentCheck.interior === Houses["Temple of Time"] ||
@@ -335,6 +343,20 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                 </button>
             </div>
             }
+            <div className="routing-options buttons is-centered">
+                <button
+                    onClick={() => toggleConfigAttribute("considerChildSaveWarp")}
+                    className={"button is-small is-outlined " + (config.considerChildSaveWarp ? "is-link" : "is-dark")}
+                >
+                    Consider Child Save Warp
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("considerAdultSaveWarp")}
+                    className={"button is-small is-outlined " + (config.considerAdultSaveWarp ? "is-link" : "is-dark")}
+                >
+                    Consider Adult Save Warp
+                </button>
+            </div>
             <div className="routing-options buttons is-centered">
                 <button
                     onClick={() => toggleConfigAttribute("ignoreKaeporaGaebora")}
