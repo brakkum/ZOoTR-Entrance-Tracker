@@ -85,9 +85,9 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             }
 
             if (currentCheck.interior === Houses["Link's House"] && config.considerChildSaveWarp) {
-                return [{ start: "Child Save Warp" }, {"entrance": Houses["Link's House"]}];
+                return [{ start: startName }, { entrance: "Child Save Warp" }, { entrance: Houses["Link's House"]}];
             } else if (currentCheck.interior === Houses["Temple of Time"] && config.considerAdultSaveWarp) {
-                return [{ start: "Adult Save Warp" }, {"entrance": Houses["Temple of Time"]}];
+                return [{ start: startName }, { entrance: "Adult Save Warp" }, { entrance: Houses["Temple of Time"]}];
             }
 
             if (currentCheck.interior === Houses["Temple of Time"] ||
