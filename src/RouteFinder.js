@@ -1,3 +1,4 @@
+import RoutingLocationsToSkip from "./DataObjects/RoutingLocationsToSkip";
 import InteriorConnection from "./DataObjects/InteriorConnection";
 import ValidStartPoints from "./DataObjects/ValidStartPoints";
 import DivingEntrances from "./DataObjects/DivingEntrances";
@@ -22,13 +23,13 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
     const [config, setConfig] = useLocalStorage("routingConfig", {
         ignoreSongs: false,
-        ignorePotionShop: false,
         ignoreKakarikoGate: false,
         ignoreGoronCityDMC: false,
         ignoreKaeporaGaebora: false,
         considerChildSaveWarp: false,
         considerAdultSaveWarp: false,
         ignoreLostWoodsToBridge: false,
+        ignorePotionShopFromFront: false,
         ignoreCrossingGerudoValley: false,
         ignoreZorasDomainFromRiver: false,
         ignoreSpiritTempleHandsExit: false,
@@ -64,6 +65,8 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         let locationIsInteriorConnection = currentCheck.area === null && currentCheck.entrance !== undefined && InteriorConnection[currentCheck.entrance] !== undefined;
 
         let nextLocationToSearch = "";
+        let shopEntrance = "";
+        let shopExit = "";
 
         if (!currentlyBeingSearched.includes(endName)) {
             currentlyBeingSearched.push(endName);
@@ -95,11 +98,20 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                 nextLocationToSearch = currentCheck.interior;
             }
 
-            if (!config.ignorePotionShop) {
-                if (currentCheck.interior === Houses["Potion Shop Back"]) {
-                    nextLocationToSearch = Houses["Potion Shop Front"];
-                } else if (currentCheck.interior === Houses["Potion Shop Front"]) {
-                    nextLocationToSearch = Houses["Potion Shop Back"];
+            let isPotionShop = currentCheck.interior === Houses["Potion Shop Front"] || currentCheck.interior === Houses["Potion Shop Back"];
+
+            if (isPotionShop && !(config.ignorePotionShopFromFront && currentCheck.interior === Houses["Potion Shop Back"])) {
+                let currentPotionShopEntrance = currentCheck.interior;
+                let otherPotionShopEntrance = currentPotionShopEntrance === Houses["Potion Shop Front"] ? Houses["Potion Shop Back"] : Houses["Potion Shop Front"];
+                shopEntrance = otherPotionShopEntrance;
+                shopExit = currentPotionShopEntrance;
+                if (availableLocations[otherPotionShopEntrance] !== undefined) {
+                    let areaOtherEntranceLeadsTo = availableLocations[otherPotionShopEntrance][0].area;
+                    if (startIsOverworld && startName === areaOtherEntranceLeadsTo) {
+                        return [{ start: startName }, availableLocations[otherPotionShopEntrance][0], { entrance: shopExit }];
+                    }
+                    nextLocationToSearch = areaOtherEntranceLeadsTo;
+                    currentlyBeingSearched.push(otherPotionShopEntrance);
                 }
             }
         }
@@ -220,6 +232,9 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                 let result = findStartFromEndObject(startName, endName, currentCheck, currentCheckLocation, nextArray[i], nextLocationToSearch, availableLocations, currentlyBeingSearched, completelySearched);
                 if (result.length > 0) {
                     if (locationIsHouse) {
+                        if (shopEntrance !== "" && shopExit !== "") {
+                            return [...result, availableLocations[shopEntrance][0], { entrance: shopExit }];
+                        }
                         return [...result, { entrance: currentCheck.interior }];
                     }
                     return [...result, currentCheck];
@@ -294,7 +309,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                             <select value="Select Location" onChange={e => setRouteFinderStart(e.target.value)}>
                                 <option value="">Select Location</option>
                                 {availableLocationsKeys.sort().map((location, i) => {
-                                    if (location === end || !ValidStartPoints.includes(location)) {
+                                    if (location === end || !ValidStartPoints.includes(location) || RoutingLocationsToSkip.includes(location)) {
                                         return null;
                                     }
                                     return <option key={i} value={location}>
@@ -317,7 +332,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                             <select value="Select Location" onChange={e => setRouteFinderEnd(e.target.value)}>
                                 <option value="">Select Location</option>
                                 {availableLocationsKeys.sort().map((location, i) => {
-                                    if (location === start) {
+                                    if (location === start || RoutingLocationsToSkip.includes(location)) {
                                         return null;
                                     }
                                     return <option key={i} value={location}>
@@ -432,11 +447,11 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                     Ignore Crossing Gerudo Valley
                 </button>
                 <button
-                    onClick={() => toggleConfigAttribute("ignorePotionShop")}
-                    className={"button is-small is-outlined " + (config.ignorePotionShop ? "is-danger" : "is-dark")}
+                    onClick={() => toggleConfigAttribute("ignorePotionShopFromFront")}
+                    className={"button is-small is-outlined " + (config.ignorePotionShopFromFront ? "is-danger" : "is-dark")}
 
                 >
-                    Ignore Potion Shop
+                    Ignore Potion Shop from Front
                 </button>
             </div>
             {routes !== null && routes.length > 0 ?
