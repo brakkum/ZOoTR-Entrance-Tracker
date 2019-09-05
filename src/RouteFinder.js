@@ -28,6 +28,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         ignoreKaeporaGaebora: false,
         considerChildSaveWarp: false,
         considerAdultSaveWarp: false,
+        ignoreGerudosFortress: false,
         ignoreLostWoodsToBridge: false,
         ignorePotionShopFromFront: false,
         ignoreCrossingGerudoValley: false,
@@ -173,6 +174,8 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
             let isZorasDomainFromRiver = currentCheck.area === OverworldAreas["Zora's River"] && currentCheck.entrance === OverworldAreas["Zora's Domain"];
 
+            let isGerudosFortress = currentCheck.area === OverworldAreas["Gerudo's Fortress"];
+
             let isCrossingHauntedWasteland = false;
             let previousCheckIsHauntedWasteland = previousCheck.area === OverworldAreas["Haunted Wasteland"];
             if (previousCheckIsHauntedWasteland) {
@@ -192,6 +195,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             }
 
             let currentCheckPassesOptions = (
+                !(isGerudosFortress && config.ignoreGerudosFortress) &&
                 !(isKakarikoGateEntrance && config.ignoreKakarikoGate) &&
                 !(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
                 !(isCrossingGerudoValley && config.ignoreCrossingGerudoValley) &&
@@ -452,6 +456,13 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
                 >
                     Ignore Potion Shop from Front
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreGerudosFortress")}
+                    className={"button is-small is-outlined " + (config.ignoreGerudosFortress ? "is-danger" : "is-dark")}
+
+                >
+                    Ignore Gerudo's Fortress
                 </button>
             </div>
             {routes !== null && routes.length > 0 ?
