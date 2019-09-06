@@ -316,6 +316,14 @@ const VanillaHyrule = {
             "interior": "House"
          },
          {
+            "area": "Lost Woods",
+            "entrance": "Kokiri Forest"
+         },
+         {
+            "area": "Lost Woods Bridge",
+            "entrance": "Kokiri Forest"
+         },
+         {
             "entrance": "Mido's House",
             "interior": "House"
          },
@@ -330,14 +338,6 @@ const VanillaHyrule = {
          {
             "entrance": "Twins House",
             "interior": "House"
-         },
-         {
-            "area": "Lost Woods",
-            "entrance": "Kokiri Forest"
-         },
-         {
-            "area": "Lost Woods Bridge",
-            "entrance": "Kokiri Forest"
          },
          {
             "entrance": "Song of Storms Grotto",
@@ -369,6 +369,10 @@ const VanillaHyrule = {
          },
          {
             "area": "Kakariko Village",
+            "entrance": "Impa's House Front"
+         },
+         {
+            "area": "Kakariko Village",
             "entrance": "Bottom House"
          },
          {
@@ -378,40 +382,6 @@ const VanillaHyrule = {
          {
             "area": "Market",
             "entrance": "Back Alley House"
-         },
-         {
-            "area": "Kakariko Village",
-            "entrance": "Impa's House Front"
-         }
-      ],
-      "Shop": [
-         {
-            "area": "Kokiri Forest",
-            "entrance": "Shop"
-         },
-         {
-            "area": "Goron City",
-            "entrance": "Shop"
-         },
-         {
-            "area": "Zora's Domain",
-            "entrance": "Shop"
-         },
-         {
-            "area": "Kakariko Village",
-            "entrance": "Bazaar"
-         },
-         {
-            "area": "Market",
-            "entrance": "Bazaar"
-         },
-         {
-            "area": "Market",
-            "entrance": "Potion Shop"
-         },
-         {
-            "area": "Market",
-            "entrance": "Bombchu Shop"
          }
       ],
       "Lost Woods": [
@@ -420,20 +390,20 @@ const VanillaHyrule = {
             "entrance": "Lost Woods"
          },
          {
-            "area": "Sacred Forest Meadow",
-            "entrance": "Lost Woods"
+            "entrance": "Forest Stage",
+            "interior": "Forest Stage"
          },
          {
             "area": "Zora's River",
             "entrance": "Lost Woods"
          },
          {
-            "area": "Goron City",
+            "area": "Sacred Forest Meadow",
             "entrance": "Lost Woods"
          },
          {
-            "entrance": "Forest Stage",
-            "interior": "Forest Stage"
+            "area": "Goron City",
+            "entrance": "Lost Woods"
          },
          {
             "entrance": "Boulder Near Goron City",
@@ -458,88 +428,9 @@ const VanillaHyrule = {
             "entrance": "Lost Woods Bridge"
          }
       ],
-      "Sacred Forest Meadow": [
-         {
-            "area": "Lost Woods",
-            "entrance": "Sacred Forest Meadow"
-         },
-         {
-            "entrance": "Forest Temple",
-            "interior": "Forest Temple"
-         },
-         {
-            "entrance": "Bomb Grotto",
-            "interior": "Wolfos Grotto"
-         },
-         {
-            "entrance": "Open Grotto",
-            "interior": "Fairy Fountain"
-         },
-         {
-            "entrance": "Song of Storms Grotto",
-            "interior": "2 Scrubs"
-         },
-         {
-            "song": "Minuet of Forest"
-         }
-      ],
-      "Zora's River": [
-         {
-            "area": "Lost Woods",
-            "entrance": "Zora's River"
-         },
-         {
-            "area": "Zora's Domain",
-            "entrance": "Zora's River"
-         },
-         {
-            "area": "Hyrule Field",
-            "entrance": "Zora's River"
-         },
-         {
-            "entrance": "Song of Storms Grotto",
-            "interior": "2 Scrubs"
-         },
-         {
-            "entrance": "Open Grotto",
-            "interior": "Grotto"
-         },
-         {
-            "entrance": "Boulder Grotto",
-            "interior": "Fairy Fountain"
-         }
-      ],
       "Hyrule Field": [
          {
             "area": "Lost Woods Bridge",
-            "entrance": "Hyrule Field"
-         },
-         {
-            "area": "Lon Lon Ranch",
-            "entrance": "Hyrule Field"
-         },
-         {
-            "entrance": "Open Grotto",
-            "interior": "Grotto"
-         },
-         {
-            "entrance": "Near Lake Hylia Bomb Grotto",
-            "interior": "1 Scrub"
-         },
-         {
-            "area": "Kakariko Village",
-            "entrance": "Hyrule Field"
-         },
-         {
-            "area": "Lake Hylia",
-            "entrance": "Hyrule Field"
-         },
-         {
-            "area": "Lake Hylia",
-            "entrance": "Kaepora Gaebora"
-         },
-         {
-            "area": "Zora's River",
             "entrance": "Hyrule Field"
          },
          {
@@ -551,12 +442,24 @@ const VanillaHyrule = {
             "entrance": "Hyrule Field"
          },
          {
-            "entrance": "Boulder Near Gerudo Valley",
-            "interior": "Skulltula Grotto"
+            "area": "Kakariko Village",
+            "entrance": "Hyrule Field"
          },
          {
-            "entrance": "Lone Tree In West Field",
-            "interior": "Diving Grotto"
+            "area": "Lake Hylia",
+            "entrance": "Hyrule Field"
+         },
+         {
+            "area": "Lake Hylia",
+            "entrance": "Kaepora Gaebora"
+         },
+         {
+            "area": "Zora's River",
+            "entrance": "Hyrule Field"
+         },
+         {
+            "area": "Lon Lon Ranch",
+            "entrance": "Hyrule Field"
          },
          {
             "entrance": "Boulder Across River",
@@ -567,7 +470,23 @@ const VanillaHyrule = {
             "interior": "Grotto"
          },
          {
+            "entrance": "Boulder Near Gerudo Valley",
+            "interior": "Skulltula Grotto"
+         },
+         {
             "entrance": "Boulder in Trees",
+            "interior": "Grotto"
+         },
+         {
+            "entrance": "Lone Tree In West Field",
+            "interior": "Diving Grotto"
+         },
+         {
+            "entrance": "Near Lake Hylia Bomb Grotto",
+            "interior": "1 Scrub"
+         },
+         {
+            "entrance": "Open Grotto",
             "interior": "Grotto"
          },
          {
@@ -575,471 +494,34 @@ const VanillaHyrule = {
             "interior": "Skulltula Grotto"
          }
       ],
-      "Lon Lon Ranch": [
-         {
-            "area": "Hyrule Field",
-            "entrance": "Lon Lon Ranch"
-         },
-         {
-            "entrance": "Stable",
-            "interior": "Stable"
-         },
-         {
-            "entrance": "Talon's House",
-            "interior": "Talon's House"
-         },
-         {
-            "entrance": "Lon Lon Tower",
-            "interior": "Lon Lon Tower"
-         },
-         {
-            "entrance": "Open Grotto",
-            "interior": "3 Scrubs"
-         }
-      ],
-      "Grotto": [
-         {
-            "area": "Hyrule Field",
-            "entrance": "Open Grotto"
-         },
-         {
-            "area": "Death Mountain Crater",
-            "entrance": "Boulder Near Death Mountain Trail"
-         },
-         {
-            "area": "Death Mountain Trail",
-            "entrance": "Song of Storms Grotto"
-         },
-         {
-            "area": "Hyrule Field",
-            "entrance": "Boulder Near Castle Town"
-         },
-         {
-            "area": "Hyrule Field",
-            "entrance": "Boulder in Trees"
-         },
-         {
-            "area": "Kakariko Village",
-            "entrance": "Open Grotto"
-         },
+      "Shop": [
          {
             "area": "Kokiri Forest",
-            "entrance": "Song of Storms Grotto"
-         },
-         {
-            "area": "Lost Woods",
-            "entrance": "Boulder Near Goron City"
-         },
-         {
-            "area": "Zora's River",
-            "entrance": "Open Grotto"
-         }
-      ],
-      "1 Scrub": [
-         {
-            "area": "Hyrule Field",
-            "entrance": "Near Lake Hylia Bomb Grotto"
-         }
-      ],
-      "Stable": [
-         {
-            "area": "Lon Lon Ranch",
-            "entrance": "Stable"
-         }
-      ],
-      "Talon's House": [
-         {
-            "area": "Lon Lon Ranch",
-            "entrance": "Talon's House"
-         }
-      ],
-      "Lon Lon Tower": [
-         {
-            "area": "Lon Lon Ranch",
-            "entrance": "Lon Lon Tower"
-         }
-      ],
-      "Goron City": [
-         {
-            "area": "Lost Woods",
-            "entrance": "Goron City"
-         },
-         {
-            "entrance": "Shop",
-            "interior": "Shop"
-         },
-         {
-            "area": "Death Mountain Trail",
-            "entrance": "Goron City"
-         },
-         {
-            "area": "Death Mountain Crater",
-            "entrance": "Goron City"
-         },
-         {
-            "entrance": "Open Grotto",
-            "interior": "3 Scrubs"
-         }
-      ],
-      "Death Mountain Trail": [
-         {
-            "area": "Goron City",
-            "entrance": "Death Mountain Trail"
-         },
-         {
-            "entrance": "Dodongo's Cavern",
-            "interior": "Dodongo's Cavern"
-         },
-         {
-            "area": "Kakariko Village",
-            "entrance": "Death Mountain Trail"
-         },
-         {
-            "entrance": "Great Fairy's Fountain",
-            "interior": "Great Fairy's Fountain"
-         },
-         {
-            "entrance": "Cow Grotto",
-            "interior": "Cow Grotto"
-         },
-         {
-            "area": "Death Mountain Crater",
-            "entrance": "Death Mountain Trail"
-         },
-         {
-            "entrance": "Song of Storms Grotto",
-            "interior": "Grotto"
-         }
-      ],
-      "Dodongo's Cavern": [
-         {
-            "area": "Death Mountain Trail",
-            "entrance": "Dodongo's Cavern"
-         }
-      ],
-      "Kakariko Village": [
-         {
-            "area": "Death Mountain Trail",
-            "entrance": "Kakariko Village"
-         },
-         {
-            "area": "Death Mountain Trail",
-            "entrance": "Kaepora Gaebora"
-         },
-         {
-            "area": "Hyrule Field",
-            "entrance": "Kakariko Village"
-         },
-         {
-            "entrance": "Bazaar",
-            "interior": "Shop"
-         },
-         {
-            "entrance": "Potion Shop Back",
-            "interior": "Potion Shop Back"
-         },
-         {
-            "entrance": "Potion Shop Front",
-            "interior": "Potion Shop Front"
-         },
-         {
-            "entrance": "Bomb Grotto",
-            "interior": "Redead Grotto"
-         },
-         {
-            "entrance": "Bottom House",
-            "interior": "House"
-         },
-         {
-            "entrance": "Skulltula House",
-            "interior": "Skulltula House"
-         },
-         {
-            "entrance": "Windmill",
-            "interior": "Windmill"
-         },
-         {
-            "area": "Graveyard",
-            "entrance": "Kakariko Village"
-         },
-         {
-            "entrance": "Bottom of the Well",
-            "interior": "Bottom of the Well"
-         },
-         {
-            "entrance": "Shooting Gallery",
-            "interior": "Shooting Gallery"
-         },
-         {
-            "entrance": "Granny's Potion Shop",
-            "interior": "Granny's Potion Shop"
-         },
-         {
-            "entrance": "Impa's House Cow",
-            "interior": "Impa's House Cow"
-         },
-         {
-            "entrance": "Impa's House Front",
-            "interior": "House"
-         },
-         {
-            "entrance": "Open Grotto",
-            "interior": "Grotto"
-         }
-      ],
-      "Great Fairy's Fountain": [
-         {
-            "area": "Death Mountain Trail",
-            "entrance": "Great Fairy's Fountain"
-         },
-         {
-            "area": "Death Mountain Crater",
-            "entrance": "Great Fairy's Fountain"
-         },
-         {
-            "area": "Zora's Fountain",
-            "entrance": "Great Fairy's Fountain"
-         },
-         {
-            "area": "Desert Colossus",
-            "entrance": "Great Fairy's Fountain"
-         },
-         {
-            "area": "Hyrule/Ganon's Castle",
-            "entrance": "Adult Great Fairy's Fountain"
-         },
-         {
-            "area": "Hyrule/Ganon's Castle",
-            "entrance": "Child Great Fairy's Fountain"
-         }
-      ],
-      "Cow Grotto": [
-         {
-            "area": "Death Mountain Trail",
-            "entrance": "Cow Grotto"
-         }
-      ],
-      "Death Mountain Crater": [
-         {
-            "area": "Death Mountain Trail",
-            "entrance": "Death Mountain Crater"
-         },
-         {
-            "entrance": "Fire Temple",
-            "interior": "Fire Temple"
-         },
-         {
-            "area": "Goron City",
-            "entrance": "Death Mountain Crater"
-         },
-         {
-            "entrance": "Great Fairy's Fountain",
-            "interior": "Great Fairy's Fountain"
-         },
-         {
-            "entrance": "Boulder Near Death Mountain Trail",
-            "interior": "Grotto"
-         },
-         {
-            "entrance": "Boulder Near Goron City",
-            "interior": "3 Scrubs"
-         },
-         {
-            "song": "Bolero of Fire"
-         }
-      ],
-      "Fire Temple": [
-         {
-            "area": "Death Mountain Crater",
-            "entrance": "Fire Temple"
-         }
-      ],
-      "Lake Hylia": [
-         {
-            "area": "Hyrule Field",
-            "entrance": "Lake Hylia"
-         },
-         {
-            "entrance": "Water Temple",
-            "interior": "Water Temple"
-         },
-         {
-            "entrance": "Lakeside Laboratory",
-            "interior": "Lakeside Laboratory"
-         },
-         {
-            "entrance": "Fishing",
-            "interior": "Fishing"
+            "entrance": "Shop"
          },
          {
             "area": "Zora's Domain",
-            "entrance": "Lake Hylia"
+            "entrance": "Shop"
          },
-         {
-            "area": "Gerudo Valley",
-            "entrance": "Lake Hylia"
-         },
-         {
-            "entrance": "Grave",
-            "interior": "3 Scrubs"
-         },
-         {
-            "song": "Serenade of Water"
-         }
-      ],
-      "Water Temple": [
-         {
-            "area": "Lake Hylia",
-            "entrance": "Water Temple"
-         }
-      ],
-      "Lakeside Laboratory": [
-         {
-            "area": "Lake Hylia",
-            "entrance": "Lakeside Laboratory"
-         }
-      ],
-      "Fishing": [
-         {
-            "area": "Lake Hylia",
-            "entrance": "Fishing"
-         }
-      ],
-      "Zora's Domain": [
-         {
-            "area": "Lake Hylia",
-            "entrance": "Zora's Domain"
-         },
-         {
-            "entrance": "Shop",
-            "interior": "Shop"
-         },
-         {
-            "area": "Zora's Fountain",
-            "entrance": "Zora's Domain"
-         },
-         {
-            "area": "Zora's River",
-            "entrance": "Zora's Domain"
-         },
-         {
-            "entrance": "Song of Storms Grotto",
-            "interior": "Fairy Fountain"
-         }
-      ],
-      "Forest Stage": [
-         {
-            "area": "Lost Woods",
-            "entrance": "Forest Stage"
-         }
-      ],
-      "Forest Temple": [
-         {
-            "area": "Sacred Forest Meadow",
-            "entrance": "Forest Temple"
-         }
-      ],
-      "Wolfos Grotto": [
-         {
-            "area": "Sacred Forest Meadow",
-            "entrance": "Bomb Grotto"
-         }
-      ],
-      "Zora's Fountain": [
-         {
-            "area": "Zora's Domain",
-            "entrance": "Zora's Fountain"
-         },
-         {
-            "entrance": "Jabu Jabu's Belly",
-            "interior": "Jabu Jabu's Belly"
-         },
-         {
-            "entrance": "Ice Cavern",
-            "interior": "Ice Cavern"
-         },
-         {
-            "entrance": "Great Fairy's Fountain",
-            "interior": "Great Fairy's Fountain"
-         }
-      ],
-      "Jabu Jabu's Belly": [
-         {
-            "area": "Zora's Fountain",
-            "entrance": "Jabu Jabu's Belly"
-         }
-      ],
-      "Ice Cavern": [
-         {
-            "area": "Zora's Fountain",
-            "entrance": "Ice Cavern"
-         }
-      ],
-      "Potion Shop Back": [
          {
             "area": "Kakariko Village",
-            "entrance": "Potion Shop Back"
-         }
-      ],
-      "Potion Shop Front": [
-         {
-            "area": "Kakariko Village",
-            "entrance": "Potion Shop Front"
-         }
-      ],
-      "Redead Grotto": [
-         {
-            "area": "Kakariko Village",
-            "entrance": "Bomb Grotto"
-         }
-      ],
-      "Skulltula House": [
-         {
-            "area": "Kakariko Village",
-            "entrance": "Skulltula House"
-         }
-      ],
-      "Windmill": [
-         {
-            "area": "Kakariko Village",
-            "entrance": "Windmill"
+            "entrance": "Bazaar"
          },
          {
-            "entrance": "Dampe's Grave",
-            "interior": "Dampe's Grave"
-         }
-      ],
-      "Graveyard": [
-         {
-            "area": "Kakariko Village",
-            "entrance": "Graveyard"
+            "area": "Goron City",
+            "entrance": "Shop"
          },
          {
-            "entrance": "Dampe's Grave",
-            "interior": "Dampe's Grave"
+            "area": "Market",
+            "entrance": "Bazaar"
          },
          {
-            "entrance": "Royal Family's Tomb",
-            "interior": "Royal Family's Tomb"
+            "area": "Market",
+            "entrance": "Bombchu Shop"
          },
          {
-            "entrance": "Shadow Temple",
-            "interior": "Shadow Temple"
-         },
-         {
-            "entrance": "Shield Grave",
-            "interior": "Shield Grave"
-         },
-         {
-            "entrance": "Dampe's Hut",
-            "interior": "House"
-         },
-         {
-            "entrance": "Redead Grave",
-            "interior": "Redead Grave"
-         },
-         {
-            "song": "Nocturne of Shadow"
+            "area": "Market",
+            "entrance": "Potion Shop"
          }
       ],
       "Gerudo Valley": [
@@ -1052,46 +534,46 @@ const VanillaHyrule = {
             "entrance": "Gerudo Valley"
          },
          {
-            "entrance": "Boulder on Ledge",
-            "interior": "Diving Rupee Grotto"
-         },
-         {
             "entrance": "Carpenter Tent",
             "interior": "Carpenter Tent"
+         },
+         {
+            "entrance": "Boulder on Ledge",
+            "interior": "Diving Rupee Grotto"
          },
          {
             "entrance": "Song of Storms Grotto",
             "interior": "2 Scrubs"
          }
       ],
-      "Dampe's Grave": [
+      "Lake Hylia": [
          {
-            "area": "Graveyard",
-            "entrance": "Dampe's Grave"
-         }
-      ],
-      "Royal Family's Tomb": [
+            "area": "Gerudo Valley",
+            "entrance": "Lake Hylia"
+         },
          {
-            "area": "Graveyard",
-            "entrance": "Royal Family's Tomb"
-         }
-      ],
-      "Shadow Temple": [
+            "entrance": "Fishing",
+            "interior": "Fishing"
+         },
          {
-            "area": "Graveyard",
-            "entrance": "Shadow Temple"
-         }
-      ],
-      "Shield Grave": [
+            "area": "Hyrule Field",
+            "entrance": "Lake Hylia"
+         },
          {
-            "area": "Graveyard",
-            "entrance": "Shield Grave"
-         }
-      ],
-      "Redead Grave": [
+            "entrance": "Lakeside Laboratory",
+            "interior": "Lakeside Laboratory"
+         },
          {
-            "area": "Graveyard",
-            "entrance": "Redead Grave"
+            "entrance": "Water Temple",
+            "interior": "Water Temple"
+         },
+         {
+            "area": "Zora's Domain",
+            "entrance": "Lake Hylia"
+         },
+         {
+            "entrance": "Grave",
+            "interior": "3 Scrubs"
          }
       ],
       "Gerudo's Fortress": [
@@ -1100,40 +582,16 @@ const VanillaHyrule = {
             "entrance": "Gerudo's Fortress"
          },
          {
-            "entrance": "Gerudo Training Grounds",
-            "interior": "Gerudo Training Grounds"
-         },
-         {
             "area": "Haunted Wasteland",
             "entrance": "Gerudo's Fortress"
          },
          {
+            "entrance": "Gerudo Training Grounds",
+            "interior": "Gerudo Training Grounds"
+         },
+         {
             "entrance": "Song of Storms Grotto",
             "interior": "Fairy Fountain"
-         }
-      ],
-      "3 Scrubs": [
-         {
-            "area": "Goron City",
-            "entrance": "Open Grotto"
-         },
-         {
-            "area": "Death Mountain Crater",
-            "entrance": "Boulder Near Goron City"
-         },
-         {
-            "area": "Lon Lon Ranch",
-            "entrance": "Open Grotto"
-         },
-         {
-            "area": "Lake Hylia",
-            "entrance": "Grave"
-         }
-      ],
-      "Gerudo Training Grounds": [
-         {
-            "area": "Gerudo's Fortress",
-            "entrance": "Gerudo Training Grounds"
          }
       ],
       "Haunted Wasteland": [
@@ -1152,10 +610,6 @@ const VanillaHyrule = {
             "entrance": "Desert Colossus"
          },
          {
-            "entrance": "Great Fairy's Fountain",
-            "interior": "Great Fairy's Fountain"
-         },
-         {
             "area": null,
             "entrance": "Spirit Temple"
          },
@@ -1164,51 +618,12 @@ const VanillaHyrule = {
             "interior": "Spirit Temple"
          },
          {
+            "entrance": "Great Fairy's Fountain",
+            "interior": "Great Fairy's Fountain"
+         },
+         {
             "entrance": "Boulder Grotto",
             "interior": "2 Scrubs"
-         },
-         {
-            "song": "Requiem of Spirit"
-         }
-      ],
-      "Spirit Temple": [
-         {
-            "area": "Desert Colossus",
-            "entrance": "Spirit Temple"
-         }
-      ],
-      "Fairy Fountain": [
-         {
-            "area": "Gerudo's Fortress",
-            "entrance": "Song of Storms Grotto"
-         },
-         {
-            "area": "Hyrule Field",
-            "entrance": "Boulder Across River"
-         },
-         {
-            "area": "Sacred Forest Meadow",
-            "entrance": "Open Grotto"
-         },
-         {
-            "area": "Zora's Domain",
-            "entrance": "Song of Storms Grotto"
-         },
-         {
-            "area": "Zora's River",
-            "entrance": "Boulder Grotto"
-         }
-      ],
-      "Diving Rupee Grotto": [
-         {
-            "area": "Gerudo Valley",
-            "entrance": "Boulder on Ledge"
-         }
-      ],
-      "Carpenter Tent": [
-         {
-            "area": "Gerudo Valley",
-            "entrance": "Carpenter Tent"
          }
       ],
       "Castle Town Entrance": [
@@ -1217,12 +632,18 @@ const VanillaHyrule = {
             "entrance": "Castle Town Entrance"
          },
          {
-            "area": "Market",
-            "entrance": "Castle Town Entrance"
-         },
-         {
             "entrance": "Guard Hut/Poe Collector",
             "interior": "Guard Hut/Poe Collector"
+         },
+         {
+            "area": "Market",
+            "entrance": "Castle Town Entrance"
+         }
+      ],
+      "Guard Hut/Poe Collector": [
+         {
+            "area": "Castle Town Entrance",
+            "entrance": "Guard Hut/Poe Collector"
          }
       ],
       "Market": [
@@ -1231,12 +652,28 @@ const VanillaHyrule = {
             "entrance": "Market"
          },
          {
-            "entrance": "Bazaar",
-            "interior": "Shop"
+            "area": "Hyrule/Ganon's Castle",
+            "entrance": "Market"
+         },
+         {
+            "area": "Temple of Time Entrance",
+            "entrance": "Market"
          },
          {
             "entrance": "Back Alley House",
             "interior": "House"
+         },
+         {
+            "entrance": "Bazaar",
+            "interior": "Shop"
+         },
+         {
+            "entrance": "Bombchu Bowling",
+            "interior": "Bombchu Bowling"
+         },
+         {
+            "entrance": "Bombchu Shop",
+            "interior": "Shop"
          },
          {
             "entrance": "Mask Shop",
@@ -1251,68 +688,262 @@ const VanillaHyrule = {
             "interior": "Shooting Gallery"
          },
          {
-            "entrance": "Bombchu Bowling",
-            "interior": "Bombchu Bowling"
+            "entrance": "Treasure Box Shop",
+            "interior": "Treasure Box Shop"
+         }
+      ],
+      "Kakariko Village": [
+         {
+            "area": "Hyrule Field",
+            "entrance": "Kakariko Village"
          },
          {
-            "entrance": "Bombchu Shop",
+            "area": "Death Mountain Trail",
+            "entrance": "Kakariko Village"
+         },
+         {
+            "area": "Graveyard",
+            "entrance": "Kakariko Village"
+         },
+         {
+            "entrance": "Windmill",
+            "interior": "Windmill"
+         },
+         {
+            "entrance": "Skulltula House",
+            "interior": "Skulltula House"
+         },
+         {
+            "entrance": "Potion Shop Back",
+            "interior": "Potion Shop Back"
+         },
+         {
+            "entrance": "Potion Shop Front",
+            "interior": "Potion Shop Front"
+         },
+         {
+            "entrance": "Shooting Gallery",
+            "interior": "Shooting Gallery"
+         },
+         {
+            "entrance": "Impa's House Cow",
+            "interior": "Impa's House Cow"
+         },
+         {
+            "entrance": "Impa's House Front",
+            "interior": "House"
+         },
+         {
+            "entrance": "Granny's Potion Shop",
+            "interior": "Granny's Potion Shop"
+         },
+         {
+            "entrance": "Bottom of the Well",
+            "interior": "Bottom of the Well"
+         },
+         {
+            "entrance": "Bottom House",
+            "interior": "House"
+         },
+         {
+            "entrance": "Bomb Grotto",
+            "interior": "Redead Grotto"
+         },
+         {
+            "entrance": "Bazaar",
             "interior": "Shop"
          },
          {
-            "area": "Temple of Time Entrance",
-            "entrance": "Market"
+            "area": "Death Mountain Trail",
+            "entrance": "Kaepora Gaebora"
          },
          {
-            "entrance": "Treasure Box Shop",
-            "interior": "Treasure Box Shop"
-         },
-         {
-            "area": "Hyrule/Ganon's Castle",
-            "entrance": "Market"
+            "entrance": "Open Grotto",
+            "interior": "Grotto"
          }
       ],
-      "Guard Hut/Poe Collector": [
-         {
-            "area": "Castle Town Entrance",
-            "entrance": "Guard Hut/Poe Collector"
-         }
-      ],
-      "Mask Shop": [
-         {
-            "area": "Market",
-            "entrance": "Mask Shop"
-         }
-      ],
-      "Shooting Gallery": [
-         {
-            "area": "Market",
-            "entrance": "Shooting Gallery"
-         },
+      "Death Mountain Trail": [
          {
             "area": "Kakariko Village",
-            "entrance": "Shooting Gallery"
-         }
-      ],
-      "Bombchu Bowling": [
-         {
-            "area": "Market",
-            "entrance": "Bombchu Bowling"
-         }
-      ],
-      "Temple of Time Entrance": [
-         {
-            "area": "Market",
-            "entrance": "Temple of Time Entrance"
+            "entrance": "Death Mountain Trail"
          },
          {
-            "entrance": "Temple of Time",
-            "interior": "Temple of Time"
+            "area": "Goron City",
+            "entrance": "Death Mountain Trail"
+         },
+         {
+            "area": "Death Mountain Crater",
+            "entrance": "Death Mountain Trail"
+         },
+         {
+            "entrance": "Cow Grotto",
+            "interior": "Cow Grotto"
+         },
+         {
+            "entrance": "Dodongo's Cavern",
+            "interior": "Dodongo's Cavern"
+         },
+         {
+            "entrance": "Great Fairy's Fountain",
+            "interior": "Great Fairy's Fountain"
+         },
+         {
+            "entrance": "Song of Storms Grotto",
+            "interior": "Grotto"
          }
       ],
-      "Treasure Box Shop": [
+      "Graveyard": [
          {
-            "area": "Market",
-            "entrance": "Treasure Box Shop"
+            "area": "Kakariko Village",
+            "entrance": "Graveyard"
+         },
+         {
+            "entrance": "Dampe's Grave",
+            "interior": "Dampe's Grave"
+         },
+         {
+            "entrance": "Royal Family's Tomb",
+            "interior": "Royal Family's Tomb"
+         },
+         {
+            "entrance": "Dampe's Hut",
+            "interior": "House"
+         },
+         {
+            "entrance": "Redead Grave",
+            "interior": "Redead Grave"
+         },
+         {
+            "entrance": "Shadow Temple",
+            "interior": "Shadow Temple"
+         },
+         {
+            "entrance": "Shield Grave",
+            "interior": "Shield Grave"
+         }
+      ],
+      "Fishing": [
+         {
+            "area": "Lake Hylia",
+            "entrance": "Fishing"
+         }
+      ],
+      "Lakeside Laboratory": [
+         {
+            "area": "Lake Hylia",
+            "entrance": "Lakeside Laboratory"
+         }
+      ],
+      "Water Temple": [
+         {
+            "area": "Lake Hylia",
+            "entrance": "Water Temple"
+         }
+      ],
+      "Zora's Domain": [
+         {
+            "area": "Lake Hylia",
+            "entrance": "Zora's Domain"
+         },
+         {
+            "area": "Zora's River",
+            "entrance": "Zora's Domain"
+         },
+         {
+            "area": "Zora's Fountain",
+            "entrance": "Zora's Domain"
+         },
+         {
+            "entrance": "Shop",
+            "interior": "Shop"
+         },
+         {
+            "entrance": "Song of Storms Grotto",
+            "interior": "Fairy Fountain"
+         }
+      ],
+      "Forest Stage": [
+         {
+            "area": "Lost Woods",
+            "entrance": "Forest Stage"
+         }
+      ],
+      "Zora's River": [
+         {
+            "area": "Lost Woods",
+            "entrance": "Zora's River"
+         },
+         {
+            "area": "Hyrule Field",
+            "entrance": "Zora's River"
+         },
+         {
+            "area": "Zora's Domain",
+            "entrance": "Zora's River"
+         },
+         {
+            "entrance": "Boulder Grotto",
+            "interior": "Fairy Fountain"
+         },
+         {
+            "entrance": "Open Grotto",
+            "interior": "Grotto"
+         },
+         {
+            "entrance": "Song of Storms Grotto",
+            "interior": "2 Scrubs"
+         }
+      ],
+      "Sacred Forest Meadow": [
+         {
+            "area": "Lost Woods",
+            "entrance": "Sacred Forest Meadow"
+         },
+         {
+            "entrance": "Bomb Grotto",
+            "interior": "Wolfos Grotto"
+         },
+         {
+            "entrance": "Forest Temple",
+            "interior": "Forest Temple"
+         },
+         {
+            "entrance": "Open Grotto",
+            "interior": "Fairy Fountain"
+         },
+         {
+            "entrance": "Song of Storms Grotto",
+            "interior": "2 Scrubs"
+         }
+      ],
+      "Zora's Fountain": [
+         {
+            "area": "Zora's Domain",
+            "entrance": "Zora's Fountain"
+         },
+         {
+            "entrance": "Ice Cavern",
+            "interior": "Ice Cavern"
+         },
+         {
+            "entrance": "Jabu Jabu's Belly",
+            "interior": "Jabu Jabu's Belly"
+         },
+         {
+            "entrance": "Great Fairy's Fountain",
+            "interior": "Great Fairy's Fountain"
+         }
+      ],
+      "Ice Cavern": [
+         {
+            "area": "Zora's Fountain",
+            "entrance": "Ice Cavern"
+         }
+      ],
+      "Jabu Jabu's Belly": [
+         {
+            "area": "Zora's Fountain",
+            "entrance": "Jabu Jabu's Belly"
          }
       ],
       "Hyrule/Ganon's Castle": [
@@ -1333,30 +964,58 @@ const VanillaHyrule = {
             "interior": "Skulltula Grotto"
          }
       ],
-      "Skulltula Grotto": [
+      "Temple of Time Entrance": [
          {
-            "area": "Hyrule/Ganon's Castle",
-            "entrance": "Song of Storms Grotto"
+            "area": "Market",
+            "entrance": "Temple of Time Entrance"
          },
          {
-            "area": "Hyrule Field",
-            "entrance": "Boulder Near Gerudo Valley"
+            "entrance": "Temple of Time",
+            "interior": "Temple of Time"
+         }
+      ],
+      "Temple of Time": [
+         {
+            "area": "Temple of Time Entrance",
+            "entrance": "Temple of Time"
+         }
+      ],
+      "Windmill": [
+         {
+            "area": "Kakariko Village",
+            "entrance": "Windmill"
          },
          {
-            "area": "Hyrule Field",
-            "entrance": "Tree Near Kakariko Grotto"
+            "entrance": "Dampe's Grave",
+            "interior": "Dampe's Grave"
          }
       ],
-      "Bottom of the Well": [
+      "Skulltula House": [
          {
             "area": "Kakariko Village",
-            "entrance": "Bottom of the Well"
+            "entrance": "Skulltula House"
          }
       ],
-      "Granny's Potion Shop": [
+      "Potion Shop Back": [
          {
             "area": "Kakariko Village",
-            "entrance": "Granny's Potion Shop"
+            "entrance": "Potion Shop Back"
+         }
+      ],
+      "Potion Shop Front": [
+         {
+            "area": "Kakariko Village",
+            "entrance": "Potion Shop Front"
+         }
+      ],
+      "Shooting Gallery": [
+         {
+            "area": "Kakariko Village",
+            "entrance": "Shooting Gallery"
+         },
+         {
+            "area": "Market",
+            "entrance": "Shooting Gallery"
          }
       ],
       "Impa's House Cow": [
@@ -1365,13 +1024,240 @@ const VanillaHyrule = {
             "entrance": "Impa's House Cow"
          }
       ],
-      "Temple of Time": [
+      "Granny's Potion Shop": [
          {
-            "area": "Temple of Time Entrance",
-            "entrance": "Temple of Time"
+            "area": "Kakariko Village",
+            "entrance": "Granny's Potion Shop"
+         }
+      ],
+      "Bottom of the Well": [
+         {
+            "area": "Kakariko Village",
+            "entrance": "Bottom of the Well"
+         }
+      ],
+      "Redead Grotto": [
+         {
+            "area": "Kakariko Village",
+            "entrance": "Bomb Grotto"
+         }
+      ],
+      "Lon Lon Ranch": [
+         {
+            "area": "Hyrule Field",
+            "entrance": "Lon Lon Ranch"
          },
          {
-            "song": "Prelude of Light"
+            "entrance": "Lon Lon Tower",
+            "interior": "Lon Lon Tower"
+         },
+         {
+            "entrance": "Open Grotto",
+            "interior": "3 Scrubs"
+         },
+         {
+            "entrance": "Stable",
+            "interior": "Stable"
+         },
+         {
+            "entrance": "Talon's House",
+            "interior": "Talon's House"
+         }
+      ],
+      "Gerudo Training Grounds": [
+         {
+            "area": "Gerudo's Fortress",
+            "entrance": "Gerudo Training Grounds"
+         }
+      ],
+      "Dampe's Grave": [
+         {
+            "area": "Graveyard",
+            "entrance": "Dampe's Grave"
+         }
+      ],
+      "Royal Family's Tomb": [
+         {
+            "area": "Graveyard",
+            "entrance": "Royal Family's Tomb"
+         }
+      ],
+      "Redead Grave": [
+         {
+            "area": "Graveyard",
+            "entrance": "Redead Grave"
+         }
+      ],
+      "Shadow Temple": [
+         {
+            "area": "Graveyard",
+            "entrance": "Shadow Temple"
+         }
+      ],
+      "Shield Grave": [
+         {
+            "area": "Graveyard",
+            "entrance": "Shield Grave"
+         }
+      ],
+      "Carpenter Tent": [
+         {
+            "area": "Gerudo Valley",
+            "entrance": "Carpenter Tent"
+         }
+      ],
+      "Spirit Temple": [
+         {
+            "area": "Desert Colossus",
+            "entrance": "Spirit Temple"
+         }
+      ],
+      "Great Fairy's Fountain": [
+         {
+            "area": "Desert Colossus",
+            "entrance": "Great Fairy's Fountain"
+         },
+         {
+            "area": "Death Mountain Crater",
+            "entrance": "Great Fairy's Fountain"
+         },
+         {
+            "area": "Death Mountain Trail",
+            "entrance": "Great Fairy's Fountain"
+         },
+         {
+            "area": "Hyrule/Ganon's Castle",
+            "entrance": "Adult Great Fairy's Fountain"
+         },
+         {
+            "area": "Hyrule/Ganon's Castle",
+            "entrance": "Child Great Fairy's Fountain"
+         },
+         {
+            "area": "Zora's Fountain",
+            "entrance": "Great Fairy's Fountain"
+         }
+      ],
+      "Goron City": [
+         {
+            "area": "Death Mountain Trail",
+            "entrance": "Goron City"
+         },
+         {
+            "area": "Death Mountain Crater",
+            "entrance": "Goron City"
+         },
+         {
+            "area": "Lost Woods",
+            "entrance": "Goron City"
+         },
+         {
+            "entrance": "Shop",
+            "interior": "Shop"
+         },
+         {
+            "entrance": "Open Grotto",
+            "interior": "3 Scrubs"
+         }
+      ],
+      "Death Mountain Crater": [
+         {
+            "area": "Goron City",
+            "entrance": "Death Mountain Crater"
+         },
+         {
+            "area": "Death Mountain Trail",
+            "entrance": "Death Mountain Crater"
+         },
+         {
+            "entrance": "Fire Temple",
+            "interior": "Fire Temple"
+         },
+         {
+            "entrance": "Great Fairy's Fountain",
+            "interior": "Great Fairy's Fountain"
+         },
+         {
+            "entrance": "Boulder Near Death Mountain Trail",
+            "interior": "Grotto"
+         },
+         {
+            "entrance": "Boulder Near Goron City",
+            "interior": "3 Scrubs"
+         }
+      ],
+      "Fire Temple": [
+         {
+            "area": "Death Mountain Crater",
+            "entrance": "Fire Temple"
+         }
+      ],
+      "Grotto": [
+         {
+            "area": "Death Mountain Crater",
+            "entrance": "Boulder Near Death Mountain Trail"
+         },
+         {
+            "area": "Death Mountain Trail",
+            "entrance": "Song of Storms Grotto"
+         },
+         {
+            "area": "Hyrule Field",
+            "entrance": "Boulder Near Castle Town"
+         },
+         {
+            "area": "Hyrule Field",
+            "entrance": "Boulder in Trees"
+         },
+         {
+            "area": "Hyrule Field",
+            "entrance": "Open Grotto"
+         },
+         {
+            "area": "Kakariko Village",
+            "entrance": "Open Grotto"
+         },
+         {
+            "area": "Kokiri Forest",
+            "entrance": "Song of Storms Grotto"
+         },
+         {
+            "area": "Lost Woods",
+            "entrance": "Boulder Near Goron City"
+         },
+         {
+            "area": "Zora's River",
+            "entrance": "Open Grotto"
+         }
+      ],
+      "3 Scrubs": [
+         {
+            "area": "Death Mountain Crater",
+            "entrance": "Boulder Near Goron City"
+         },
+         {
+            "area": "Goron City",
+            "entrance": "Open Grotto"
+         },
+         {
+            "area": "Lake Hylia",
+            "entrance": "Grave"
+         },
+         {
+            "area": "Lon Lon Ranch",
+            "entrance": "Open Grotto"
+         }
+      ],
+      "Cow Grotto": [
+         {
+            "area": "Death Mountain Trail",
+            "entrance": "Cow Grotto"
+         }
+      ],
+      "Dodongo's Cavern": [
+         {
+            "area": "Death Mountain Trail",
+            "entrance": "Dodongo's Cavern"
          }
       ],
       "2 Scrubs": [
@@ -1396,10 +1282,106 @@ const VanillaHyrule = {
             "entrance": "Song of Storms Grotto"
          }
       ],
+      "Diving Rupee Grotto": [
+         {
+            "area": "Gerudo Valley",
+            "entrance": "Boulder on Ledge"
+         }
+      ],
+      "Fairy Fountain": [
+         {
+            "area": "Gerudo's Fortress",
+            "entrance": "Song of Storms Grotto"
+         },
+         {
+            "area": "Hyrule Field",
+            "entrance": "Boulder Across River"
+         },
+         {
+            "area": "Sacred Forest Meadow",
+            "entrance": "Open Grotto"
+         },
+         {
+            "area": "Zora's Domain",
+            "entrance": "Song of Storms Grotto"
+         },
+         {
+            "area": "Zora's River",
+            "entrance": "Boulder Grotto"
+         }
+      ],
+      "Skulltula Grotto": [
+         {
+            "area": "Hyrule Field",
+            "entrance": "Boulder Near Gerudo Valley"
+         },
+         {
+            "area": "Hyrule Field",
+            "entrance": "Tree Near Kakariko Grotto"
+         },
+         {
+            "area": "Hyrule/Ganon's Castle",
+            "entrance": "Song of Storms Grotto"
+         }
+      ],
       "Diving Grotto": [
          {
             "area": "Hyrule Field",
             "entrance": "Lone Tree In West Field"
+         }
+      ],
+      "1 Scrub": [
+         {
+            "area": "Hyrule Field",
+            "entrance": "Near Lake Hylia Bomb Grotto"
+         }
+      ],
+      "Lon Lon Tower": [
+         {
+            "area": "Lon Lon Ranch",
+            "entrance": "Lon Lon Tower"
+         }
+      ],
+      "Stable": [
+         {
+            "area": "Lon Lon Ranch",
+            "entrance": "Stable"
+         }
+      ],
+      "Talon's House": [
+         {
+            "area": "Lon Lon Ranch",
+            "entrance": "Talon's House"
+         }
+      ],
+      "Bombchu Bowling": [
+         {
+            "area": "Market",
+            "entrance": "Bombchu Bowling"
+         }
+      ],
+      "Mask Shop": [
+         {
+            "area": "Market",
+            "entrance": "Mask Shop"
+         }
+      ],
+      "Treasure Box Shop": [
+         {
+            "area": "Market",
+            "entrance": "Treasure Box Shop"
+         }
+      ],
+      "Wolfos Grotto": [
+         {
+            "area": "Sacred Forest Meadow",
+            "entrance": "Bomb Grotto"
+         }
+      ],
+      "Forest Temple": [
+         {
+            "area": "Sacred Forest Meadow",
+            "entrance": "Forest Temple"
          }
       ]
    },
@@ -1422,6 +1404,7 @@ const VanillaHyrule = {
             "#cdcdcd"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -1452,6 +1435,7 @@ const VanillaHyrule = {
             "#901f11"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -1499,6 +1483,7 @@ const VanillaHyrule = {
             "#93584a"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -1560,6 +1545,7 @@ const VanillaHyrule = {
             "#c1ad96"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -1594,6 +1580,7 @@ const VanillaHyrule = {
             "#cbb186"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -1630,6 +1617,7 @@ const VanillaHyrule = {
             "#cbc3ae"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "attachedArea": {
@@ -1675,6 +1663,7 @@ const VanillaHyrule = {
             "#c07b50"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -1719,6 +1708,7 @@ const VanillaHyrule = {
             "#968299"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -1768,6 +1758,7 @@ const VanillaHyrule = {
             "#6e6d82"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -1794,6 +1785,7 @@ const VanillaHyrule = {
             "#964145"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -1831,6 +1823,7 @@ const VanillaHyrule = {
             "#c9bd61"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": true,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -1940,6 +1933,7 @@ const VanillaHyrule = {
             "#aa9191"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": true,
          "entrances": {
@@ -2043,6 +2037,7 @@ const VanillaHyrule = {
             "#866f65"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2113,6 +2108,7 @@ const VanillaHyrule = {
             "#8cabb0"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2167,6 +2163,7 @@ const VanillaHyrule = {
             "#8fc771"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2206,6 +2203,7 @@ const VanillaHyrule = {
             "#a4af32"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2263,6 +2261,7 @@ const VanillaHyrule = {
             "#a4af32"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2289,6 +2288,7 @@ const VanillaHyrule = {
             "#af9084"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2366,6 +2366,7 @@ const VanillaHyrule = {
             "#9caf7c"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2408,6 +2409,7 @@ const VanillaHyrule = {
             "#d6d5ba"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2432,6 +2434,7 @@ const VanillaHyrule = {
             "#7b6753"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2476,6 +2479,7 @@ const VanillaHyrule = {
             "#8e8872"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2509,6 +2513,7 @@ const VanillaHyrule = {
             "#75b46d"
          ],
          "isAccessible": true,
+         "isExpanded": true,
          "hasKaeporaLakeHyliaLanding": false,
          "hasKaeporaDeathMountainTrailLanding": false,
          "entrances": {
@@ -2563,7 +2568,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Minuet of Forest"
          },
-         "collected": true
+         "collected": false
       },
       "Bolero of Fire": {
          "name": "Bolero of Fire",
@@ -2573,7 +2578,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Bolero of Fire"
          },
-         "collected": true
+         "collected": false
       },
       "Serenade of Water": {
          "name": "Serenade of Water",
@@ -2583,7 +2588,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Serenade of Water"
          },
-         "collected": true
+         "collected": false
       },
       "Requiem of Spirit": {
          "name": "Requiem of Spirit",
@@ -2593,7 +2598,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Requiem of Spirit"
          },
-         "collected": true
+         "collected": false
       },
       "Nocturne of Shadow": {
          "name": "Nocturne of Shadow",
@@ -2603,7 +2608,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Nocturne of Shadow"
          },
-         "collected": true
+         "collected": false
       },
       "Prelude of Light": {
          "name": "Prelude of Light",
@@ -2613,7 +2618,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Prelude of Light"
          },
-         "collected": true
+         "collected": false
       }
    }
 };
