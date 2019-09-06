@@ -38,6 +38,11 @@ export default function useLocalStorage(key, initialValue) {
                     item = JSON.stringify(json);
                 }
             }
+            // songs is last item added, if its empty this is first page load.
+            let songsEmpty = !window.localStorage.getItem("songs");
+            if (!item && songsEmpty) {
+                window.localStorage.setItem(key, JSON.stringify(initialValue));
+            }
             // Parse stored json or if none return initialValue
             return item ? JSON.parse(item) : initialValue;
         } catch (error) {
