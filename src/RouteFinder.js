@@ -77,7 +77,6 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             alert(`Sorry, something went wrong.\nDM @brakkum on the ZOoTR discord with the contents returned\nafter executing 'getAppState()' in the developer console.\nTell him you were trying to go from ${start} to ${end}.`);
             setRouteFinderStart(null);
             setRouteFinderEnd(null);
-            throw Error();
         }
 
         if (locationIsSong && !config.ignoreSongs) {
