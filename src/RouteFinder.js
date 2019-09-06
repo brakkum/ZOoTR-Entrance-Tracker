@@ -73,6 +73,13 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             currentlyBeingSearched.push(endName);
         }
 
+        if (currentlyBeingSearched.length > 200) {
+            alert(`Sorry, something went wrong.\nDM @brakkum on the ZOoTR discord with the contents returned\nafter executing 'getAppState()' in the developer console.\nTell him you were trying to go from ${start} to ${end}.`);
+            setRouteFinderStart(null);
+            setRouteFinderEnd(null);
+            throw Error();
+        }
+
         if (locationIsSong && !config.ignoreSongs) {
             return [{ start: startName }, { song: currentCheck.song }];
         }
@@ -112,7 +119,9 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                         return [{ start: startName }, availableLocations[otherPotionShopEntrance][0], { entrance: shopExit }];
                     }
                     nextLocationToSearch = areaOtherEntranceLeadsTo;
-                    currentlyBeingSearched.push(otherPotionShopEntrance);
+                    if (!currentlyBeingSearched.includes(otherPotionShopEntrance)) {
+                        currentlyBeingSearched.push(otherPotionShopEntrance);
+                    }
                 }
             }
         }
@@ -209,6 +218,10 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             );
 
             if (startIsOverworld) {
+                if (completelySearched.includes(currentCheck.area) || currentlyBeingSearched.includes(currentCheck.area)) {
+                    return [];
+                }
+
                 if (currentCheck.area === startName) {
                     if (currentCheckPassesOptions) {
                         return [{ start: startName }, { area: currentCheck.area, entrance: currentCheck.entrance }];
@@ -226,7 +239,11 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         }
 
         if (nextLocationToSearch !== "") {
-            currentlyBeingSearched.push(nextLocationToSearch);
+            if (!currentlyBeingSearched.includes(nextLocationToSearch)) {
+                currentlyBeingSearched.push(nextLocationToSearch);
+            } else {
+                return [];
+            }
             let nextArray = availableLocations[nextLocationToSearch];
             if (!nextArray) {
                 return [];
