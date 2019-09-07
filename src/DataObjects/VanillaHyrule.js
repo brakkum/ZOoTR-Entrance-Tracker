@@ -574,6 +574,9 @@ const VanillaHyrule = {
          {
             "entrance": "Grave",
             "interior": "3 Scrubs"
+         },
+         {
+            "song": "Serenade of Water"
          }
       ],
       "Gerudo's Fortress": [
@@ -624,6 +627,9 @@ const VanillaHyrule = {
          {
             "entrance": "Boulder Grotto",
             "interior": "2 Scrubs"
+         },
+         {
+            "song": "Requiem of Spirit"
          }
       ],
       "Castle Town Entrance": [
@@ -820,6 +826,9 @@ const VanillaHyrule = {
          {
             "entrance": "Shield Grave",
             "interior": "Shield Grave"
+         },
+         {
+            "song": "Nocturne of Shadow"
          }
       ],
       "Fishing": [
@@ -914,6 +923,9 @@ const VanillaHyrule = {
          {
             "entrance": "Song of Storms Grotto",
             "interior": "2 Scrubs"
+         },
+         {
+            "song": "Minuet of Forest"
          }
       ],
       "Zora's Fountain": [
@@ -978,6 +990,9 @@ const VanillaHyrule = {
          {
             "area": "Temple of Time Entrance",
             "entrance": "Temple of Time"
+         },
+         {
+            "song": "Prelude of Light"
          }
       ],
       "Windmill": [
@@ -1184,6 +1199,9 @@ const VanillaHyrule = {
          {
             "entrance": "Boulder Near Goron City",
             "interior": "3 Scrubs"
+         },
+         {
+            "song": "Bolero of Fire"
          }
       ],
       "Fire Temple": [
@@ -2568,7 +2586,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Minuet of Forest"
          },
-         "collected": false
+         "collected": true
       },
       "Bolero of Fire": {
          "name": "Bolero of Fire",
@@ -2578,7 +2596,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Bolero of Fire"
          },
-         "collected": false
+         "collected": true
       },
       "Serenade of Water": {
          "name": "Serenade of Water",
@@ -2588,7 +2606,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Serenade of Water"
          },
-         "collected": false
+         "collected": true
       },
       "Requiem of Spirit": {
          "name": "Requiem of Spirit",
@@ -2598,7 +2616,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Requiem of Spirit"
          },
-         "collected": false
+         "collected": true
       },
       "Nocturne of Shadow": {
          "name": "Nocturne of Shadow",
@@ -2608,7 +2626,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Nocturne of Shadow"
          },
-         "collected": false
+         "collected": true
       },
       "Prelude of Light": {
          "name": "Prelude of Light",
@@ -2618,7 +2636,7 @@ const VanillaHyrule = {
          "object": {
             "song": "Prelude of Light"
          },
-         "collected": false
+         "collected": true
       }
    }
 };
