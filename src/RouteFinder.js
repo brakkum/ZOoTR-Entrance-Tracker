@@ -52,11 +52,11 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
     // start is always a string
     // end is an object
     // since start could be an area, dungeon, etc.
-    const findStartFromEndObject = (startName, endName, previousCheck, previousCheckLocation, currentCheck, currentCheckLocation, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
-        let startIsHouse = Houses[startName] !== undefined;
-        let startIsGrotto = Grottos[startName] !== undefined;
-        let startIsDungeon = Dungeons[startName] !== undefined;
-        let startIsOverworld = OverworldAreas[startName] !== undefined;
+    const findStartFromEndObject = (previousCheck, previousCheckLocation, currentCheck, currentCheckLocation, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
+        let startIsHouse = Houses[start] !== undefined;
+        let startIsGrotto = Grottos[start] !== undefined;
+        let startIsDungeon = Dungeons[start] !== undefined;
+        let startIsOverworld = OverworldAreas[start] !== undefined;
 
         let locationIsSong = currentCheck.song !== undefined && Songs[currentCheck.song] !== undefined;
         let locationIsGrotto = currentCheck.entrance !== undefined && currentCheck.interior !== undefined && Grottos[currentCheck.interior] !== undefined;
@@ -69,8 +69,8 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         let shopEntrance = "";
         let shopExit = "";
 
-        if (!currentlyBeingSearched.includes(endName)) {
-            currentlyBeingSearched.push(endName);
+        if (!currentlyBeingSearched.includes(end)) {
+            currentlyBeingSearched.push(end);
         }
 
         if (currentlyBeingSearched.length > 200) {
@@ -80,7 +80,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         }
 
         if (locationIsSong && !config.ignoreSongs) {
-            return [{ start: startName }, { song: currentCheck.song }];
+            return [{ start: start }, { song: currentCheck.song }];
         }
 
         if (locationIsHouse) {
@@ -89,15 +89,15 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             }
 
             if (startIsHouse) {
-                if (currentCheck.interior === startName) {
+                if (currentCheck.interior === start) {
                     return [{ start: currentCheck.interior }];
                 }
             }
 
             if (currentCheck.interior === Houses["Link's House"] && config.considerChildSaveWarp) {
-                return [{ start: startName }, { entrance: "Child Save Warp" }, { entrance: Houses["Link's House"]}];
+                return [{ start: start }, { entrance: "Child Save Warp" }, { entrance: Houses["Link's House"]}];
             } else if (currentCheck.interior === Houses["Temple of Time"] && config.considerAdultSaveWarp) {
-                return [{ start: startName }, { entrance: "Adult Save Warp" }, { entrance: Houses["Temple of Time"]}];
+                return [{ start: start }, { entrance: "Adult Save Warp" }, { entrance: Houses["Temple of Time"]}];
             }
 
             if (currentCheck.interior === Houses["Temple of Time"] ||
@@ -114,8 +114,8 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                 shopExit = currentPotionShopEntrance;
                 if (availableLocations[otherPotionShopEntrance] !== undefined) {
                     let areaOtherEntranceLeadsTo = availableLocations[otherPotionShopEntrance][0].area;
-                    if (startIsOverworld && startName === areaOtherEntranceLeadsTo) {
-                        return [{ start: startName }, availableLocations[otherPotionShopEntrance][0], { entrance: shopExit }];
+                    if (startIsOverworld && start === areaOtherEntranceLeadsTo) {
+                        return [{ start: start }, availableLocations[otherPotionShopEntrance][0], { entrance: shopExit }];
                     }
                     nextLocationToSearch = areaOtherEntranceLeadsTo;
                     if (!currentlyBeingSearched.includes(otherPotionShopEntrance)) {
@@ -131,8 +131,8 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             }
 
             if (startIsDungeon) {
-                if (currentCheck.interior === startName) {
-                    return [{ start: startName }];
+                if (currentCheck.interior === start) {
+                    return [{ start: start }];
                 }
             }
         }
@@ -143,9 +143,9 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                 currentCheckLocation === Houses.Windmill;
 
             if (startIsGrotto) {
-                if (currentCheck.interior === startName) {
+                if (currentCheck.interior === start) {
                     if (!(isDampesGraveFromWindmill && config.ignoreWindmillFromDampesGrave)) {
-                        return [{ start: startName }];
+                        return [{ start: start }];
                     }
                 }
             }
@@ -221,9 +221,9 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                     return [];
                 }
 
-                if (currentCheck.area === startName) {
+                if (currentCheck.area === start) {
                     if (currentCheckPassesOptions) {
-                        return [{ start: startName }, { area: currentCheck.area, entrance: currentCheck.entrance }];
+                        return [{ start: start }, { area: currentCheck.area, entrance: currentCheck.entrance }];
                     }
                 }
             }
@@ -249,7 +249,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             }
             shuffleArray(nextArray);
             for (let i = 0; i < nextArray.length; i++) {
-                let result = findStartFromEndObject(startName, endName, currentCheck, currentCheckLocation, nextArray[i], nextLocationToSearch, availableLocations, currentlyBeingSearched, completelySearched);
+                let result = findStartFromEndObject(currentCheck, currentCheckLocation, nextArray[i], nextLocationToSearch, availableLocations, currentlyBeingSearched, completelySearched);
                 if (result.length > 0) {
                     if (locationIsHouse) {
                         if (shopEntrance !== "" && shopExit !== "") {
@@ -269,21 +269,21 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
     };
 
     // start is always the same, as we look for it from end, end is current queued item
-    const getRoutesFromStartToEnd = (startName, endName) => {
-        if (availableLocations[endName] === undefined) {
+    const getRoutesFromStartToEnd = () => {
+        if (availableLocations[end] === undefined) {
             return [];
         }
         let endPaths = [];
         let numberOfTriesPerEndLocation = 100;
 
-        availableLocations[endName].forEach(endObject => {
+        availableLocations[end].forEach(endObject => {
             let pathsForThisEndLocation = [];
             for (let i = 0; i < numberOfTriesPerEndLocation; i++) {
-                let result = findStartFromEndObject(startName, endName, {}, null, endObject, endName, availableLocations);
+                let result = findStartFromEndObject({}, null, endObject, end, availableLocations);
                 if (result.length > 0) {
-                    let path = [...result, { end: endName }];
+                    let path = [...result, { end: end }];
                     pathsForThisEndLocation.push(path);
-                } else if (!ValidStartPoints.includes(endName)) {
+                } else if (!ValidStartPoints.includes(end)) {
                     // it's a place with many locations, e.g. a grotto
                     // this particular path not possible, so return empty array
                     pathsForThisEndLocation.push([]);
@@ -296,7 +296,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         });
 
         if (endPaths.length > 0) {
-            if (ValidStartPoints.includes(endName)) {
+            if (ValidStartPoints.includes(end)) {
                 return [endPaths.reduce((a, b) => a.length <= b.length ? a : b)];
             } else {
                 return endPaths;
@@ -310,7 +310,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         if (!end || !start) {
             return null;
         }
-        let result = getRoutesFromStartToEnd(start, end);
+        let result = getRoutesFromStartToEnd();
         return result;
     };
 
