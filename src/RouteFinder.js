@@ -37,7 +37,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         ignoreWindmillFromDampesGrave: false,
         ignoreCrossingHauntedWasteland: false,
         ignoreLostWoodsZorasRiverEntrances: false,
-        ignoreLakeHyliaZorasDomainEntrance: false
+        ignoreLakeHyliaZorasDomainEntrances: false
     });
 
     const toggleConfigAttribute = attribute => {
@@ -213,7 +213,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                 !(isCrossingHauntedWasteland && config.ignoreCrossingHauntedWasteland) &&
                 !(isGoronCityToDeathMountainCraterEntrance && config.ignoreGoronCityDMC) &&
                 !(isZorasRiverLostWoodsEntrance && config.ignoreLostWoodsZorasRiverEntrances) &&
-                !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrance)
+                !(isLakeHyliaZorasDomainEntrance && config.ignoreLakeHyliaZorasDomainEntrances)
             );
 
             if (startIsOverworld) {
@@ -430,8 +430,8 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                     Ignore Lost Woods/Zora's River Entrances
                 </button>
                 <button
-                    onClick={() => toggleConfigAttribute("ignoreLakeHyliaZorasDomainEntrance")}
-                    className={"button is-small is-outlined " + (config.ignoreLakeHyliaZorasDomainEntrance ? "is-danger" : "is-dark")}
+                    onClick={() => toggleConfigAttribute("ignoreLakeHyliaZorasDomainEntrances")}
+                    className={"button is-small is-outlined " + (config.ignoreLakeHyliaZorasDomainEntrances ? "is-danger" : "is-dark")}
                 >
                     Ignore Zora's Domain/Lake Hylia Entrances
                 </button>
