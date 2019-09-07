@@ -47,7 +47,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
     const newRouteFromEnd = () => {
         setRouteFinderStart(end);
         setRouteFinderEnd(null);
-    }
+    };
 
     // start is always a string
     // end is an object
