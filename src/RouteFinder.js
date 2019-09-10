@@ -23,6 +23,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
     const [config, setConfig] = useLocalStorage("routingConfig", {
         ignoreSongs: false,
+        ignoreKingZora: false,
         ignoreKakarikoGate: false,
         ignoreGoronCityDMC: false,
         ignoreKaeporaGaebora: false,
@@ -184,6 +185,12 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
             let isGerudosFortress = currentCheck.area === OverworldAreas["Gerudo's Fortress"];
 
+            let isZorasDomainToZorasFountainEntrance = (currentCheck.area === OverworldAreas["Zora's Domain"] && currentCheck.entrance === OverworldAreas["Zora's Fountain"]) ||
+                (hyrule[currentCheck.area].entrances[currentCheck.entrance] !== undefined &&
+                    ![null, undefined].includes(hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo) &&
+                    hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.area === OverworldAreas["Zora's Domain"] &&
+                    hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.entrance === OverworldAreas["Zora's Fountain"]);
+
             let isCrossingHauntedWasteland = false;
             let previousCheckIsHauntedWasteland = previousCheck.area === OverworldAreas["Haunted Wasteland"];
             if (previousCheckIsHauntedWasteland) {
@@ -208,6 +215,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                 !(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
                 !(isCrossingGerudoValley && config.ignoreCrossingGerudoValley) &&
                 !(isZorasDomainFromRiver && config.ignoreZorasDomainFromRiver) &&
+                !(isZorasDomainToZorasFountainEntrance && config.ignoreKingZora) &&
                 !(isLostWoodsToBridgeEntrance && config.ignoreLostWoodsToBridge) &&
                 !(isSpiritTempleHandsEntrance && config.ignoreSpiritTempleHandsExit) &&
                 !(isCrossingHauntedWasteland && config.ignoreCrossingHauntedWasteland) &&
@@ -479,6 +487,13 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
                 >
                     Ignore Gerudo's Fortress
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignoreKingZora")}
+                    className={"button is-small is-outlined " + (config.ignoreKingZora ? "is-danger" : "is-dark")}
+
+                >
+                    Ignore King Zora
                 </button>
             </div>
             {routes !== null && routes.length > 0 ?
