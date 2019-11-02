@@ -1,7 +1,6 @@
 
 html {
     height: 100vh;
-    background-color: #eeebe1;
 }
 
 #root {
@@ -24,6 +23,7 @@ html {
     background-position: center;
     background-attachment: fixed;
     background-blend-mode: soft-light;
+    background-color: #eeebe1;
 }
 
 .zootr-entrance-tracker {
