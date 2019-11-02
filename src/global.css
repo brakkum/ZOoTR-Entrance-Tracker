@@ -35,14 +35,14 @@ html {
 /* IE 10 and 11 */
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
     .app-background {
-        opacity: 0.4;
+        opacity: 0.05;
     }
 }
 
 /* Edge */
 @supports not (mix-blend-mode: soft-light) {
     .app-background {
-        opacity: 0.4;
+        opacity: 0.05;
     }
 }
 
