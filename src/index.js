@@ -6,7 +6,7 @@ import React from 'react';
 import "./global.css";
 
 ReactDOM.render(
-    <ZOoTREntranceTracker />,
+    <><div className="app-background" /><ZOoTREntranceTracker /></>,
     document.getElementById('root')
 );
 

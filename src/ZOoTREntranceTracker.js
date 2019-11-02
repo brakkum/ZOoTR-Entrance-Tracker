@@ -651,8 +651,6 @@ export default function ZOoTREntranceTracker() {
     return (
         <div className="zootr-entrance-tracker">
 
-            <div className="app-background" />
-
             <Menu
                 setMenuHeight={setMenuHeight}
                 resetState={resetState}
