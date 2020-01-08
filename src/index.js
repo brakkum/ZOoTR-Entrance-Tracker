@@ -6,7 +6,7 @@ import "bulma/css/bulma.css";
 import React from 'react';
 import "./global.css";
 
-ReactGA.initialize("UA-144567954-7", { debug: true });
+ReactGA.initialize("UA-144567954-1");
 ReactGA.pageview("/");
 
 ReactDOM.render(
