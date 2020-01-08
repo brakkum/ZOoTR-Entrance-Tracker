@@ -113,8 +113,7 @@ export default function ZOoTREntranceTracker({ ReactGA }) {
     };
 
     const resetState = () => {
-        let initialState = getInitialState()
-        trackGaEvent("tracker", "reset tracker");
+        let initialState = getInitialState();
 
         setHyrule(initialState.hyrule);
         setInteriorEntrances(initialState.interiorEntrances);
