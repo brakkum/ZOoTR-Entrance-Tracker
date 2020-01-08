@@ -13,7 +13,7 @@ import Songs from "./Songs";
 import Menu from "./Menu";
 import Area from "./Area";
 
-export default function ZOoTREntranceTracker() {
+export default function ZOoTREntranceTracker({ ReactGA }) {
 
     let init = getInitialState();
 
@@ -37,7 +37,7 @@ export default function ZOoTREntranceTracker() {
     // state for app layout, reset on page load
     const [menuHeight, setMenuHeight] = useState(0);
     const [songsHeight, setSongsHeight] = useState(0);
-    const [windowChanges, setWindowChanges] = useState(0);
+    const [windowChanges, setWindowChanges] = useState(false);
 
     // trigger re-render when window size changes
     // cause menu and songs to reassess sizing
@@ -47,7 +47,14 @@ export default function ZOoTREntranceTracker() {
     });
 
     const handleResize = () => {
-        setWindowChanges(windowChanges + 1);
+        setWindowChanges(!windowChanges);
+    };
+
+    const trackGaEvent = (category, action) => {
+        ReactGA.event({
+            category,
+            action
+        });
     };
 
     const getLocationsToPromptForBasedOnState = () => {
@@ -106,7 +113,8 @@ export default function ZOoTREntranceTracker() {
     };
 
     const resetState = () => {
-        let initialState = getInitialState();
+        let initialState = getInitialState()
+        trackGaEvent("tracker", "reset tracker");
 
         setHyrule(initialState.hyrule);
         setInteriorEntrances(initialState.interiorEntrances);
@@ -147,17 +155,20 @@ export default function ZOoTREntranceTracker() {
     const toggleEntranceClear = (area, entrance) => {
         let _hyrule = hyrule;
         _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, { "clear": !hyrule[area].entrances[entrance].clear });
+        trackGaEvent("tracker", "toggle entrance clear");
         setHyrule({ ..._hyrule });
     };
 
     const toggleAreaExpanded = (area) => {
         let _hyrule = hyrule;
+        trackGaEvent("tracker", `set ${area} isExpanded: ${!hyrule[area].isExpanded}`);
         _hyrule = setPropertiesOfArea(_hyrule, area, { "isExpanded": !hyrule[area].isExpanded });
         setHyrule({..._hyrule});
     };
 
     const expandAllAreas = () => {
         let _hyrule = hyrule;
+        trackGaEvent("tracker", "expand all areas");
         Object.keys(_hyrule).forEach(area => {
             _hyrule[area].isExpanded = true;
         });
@@ -166,6 +177,7 @@ export default function ZOoTREntranceTracker() {
 
     const hideAllAreas = () => {
         let _hyrule = hyrule;
+        trackGaEvent("tracker", "hide all areas");
         Object.keys(_hyrule).forEach(area => {
             if (_hyrule[area].isAccessible) {
                 _hyrule[area].isExpanded = false;
@@ -207,6 +219,7 @@ export default function ZOoTREntranceTracker() {
                 [_hyrule, _interiorEntrances] = hideAreasIfEmpty(_hyrule, _interiorEntrances, [_song.location]);
             }
         }
+        trackGaEvent("tracker", "toggle song collected");
         setSongs({ ...songs, [song]: _song });
         setInteriorEntrances({ ..._interiorEntrances });
         setHyrule({ ..._hyrule });
@@ -279,6 +292,7 @@ export default function ZOoTREntranceTracker() {
         } else if (sourceArea === OverworldAreas["Lake Hylia"]) {
             _hyrule = setPropertiesOfArea(_hyrule, destinationArea, { "hasKaeporaLakeHyliaLanding": !hyrule[destinationArea].hasKaeporaLakeHyliaLanding });
         }
+        trackGaEvent("tracker", "toggle kaepora landing");
         return _hyrule;
     };
 
@@ -489,7 +503,7 @@ export default function ZOoTREntranceTracker() {
 
                 [_hyrule, _interiorEntrances] = setAreaToAccessible(_hyrule, _interiorEntrances, area);
                 [_hyrule, _interiorEntrances] = setAreaToAccessible(_hyrule, _interiorEntrances, selectedArea);
-
+                trackGaEvent("tracker", "set overworld entrance");
                 break;
             }
             // grottos, houses, and dungeons all
@@ -521,6 +535,7 @@ export default function ZOoTREntranceTracker() {
                 } else if (vanilla.type === EntranceTypes.Grotto) {
                     removeAvailableGrottoEntrance(area, entrance);
                 }
+                trackGaEvent("tracker", "set interior entrance");
                 break;
             }
             case EntranceTypes["Kaepora Gaebora"]: {
@@ -541,7 +556,7 @@ export default function ZOoTREntranceTracker() {
                 );
 
                 [_hyrule, _interiorEntrances] = setAreaToAccessible(_hyrule, _interiorEntrances, selectedArea);
-
+                trackGaEvent("tracker", "set kaepora entrance");
                 break;
             }
             default: {
@@ -580,6 +595,7 @@ export default function ZOoTREntranceTracker() {
                 );
 
                 [_hyrule, _interiorEntrances] = hideAreasIfEmpty(_hyrule, _interiorEntrances, areasAffected);
+                trackGaEvent("tracker", "reset overworld entrance");
                 break;
             }
             case EntranceTypes.Grotto:
@@ -610,6 +626,7 @@ export default function ZOoTREntranceTracker() {
                 } else if (obj.type === EntranceTypes.Grotto) {
                     addAvailableGrottoEntrance(area, entrance);
                 }
+                trackGaEvent("tracker", "reset interior entrance");
                 break;
             }
             case EntranceTypes["Kaepora Gaebora"]: {
@@ -629,6 +646,7 @@ export default function ZOoTREntranceTracker() {
                 );
 
                 [_hyrule, _interiorEntrances] = hideAreasIfEmpty(_hyrule, _interiorEntrances, areasAffected);
+                trackGaEvent("tracker", "reset kaepora entrance");
                 break;
             }
             default: {
@@ -654,6 +672,7 @@ export default function ZOoTREntranceTracker() {
             <Menu
                 setMenuHeight={setMenuHeight}
                 resetState={resetState}
+                trackGaEvent={trackGaEvent}
             />
 
             <div className="top-padding" style={{ height: menuHeight }} />
@@ -666,7 +685,10 @@ export default function ZOoTREntranceTracker() {
                                 <a
                                     href="#overworld"
                                     className={"button is-outlined is-small " + (!overworldOnly ? "is-link" : "is-dark")}
-                                    onClick={() => setOverworldOnly(false)}
+                                    onClick={() => {
+                                        trackGaEvent("config", "show all entrances");
+                                        setOverworldOnly(false);
+                                    }}
                                 >
                                     All Entrances
                                 </a>
@@ -675,7 +697,10 @@ export default function ZOoTREntranceTracker() {
                                 <a
                                     href="#overworld"
                                     className={"button is-outlined is-small " + (overworldOnly ? "is-link" : "is-dark")}
-                                    onClick={() => setOverworldOnly(true)}
+                                    onClick={() => {
+                                        trackGaEvent("config", "show overworld only");
+                                        setOverworldOnly(true);
+                                    }}
                                 >
                                     Overworld and Dungeon Entrances
                                 </a>
@@ -688,7 +713,10 @@ export default function ZOoTREntranceTracker() {
                                 <a
                                     href="#routing"
                                     className={"button is-outlined is-small " + (showRouteFinder ? "is-link" : "is-dark")}
-                                    onClick={() => setShowRouteFinder(true)}
+                                    onClick={() => {
+                                        trackGaEvent("config", "show route finder");
+                                        setShowRouteFinder(true);
+                                    }}
                                 >
                                     Show Router
                                 </a>
@@ -697,7 +725,10 @@ export default function ZOoTREntranceTracker() {
                                 <a
                                     href="#routing"
                                     className={"button is-outlined is-small " + (!showRouteFinder ? "is-link" : "is-dark")}
-                                    onClick={() => setShowRouteFinder(false)}
+                                    onClick={() => {
+                                        trackGaEvent("config", "hide route finder");
+                                        setShowRouteFinder(false);
+                                    }}
                                 >
                                     Hide Router
                                 </a>
@@ -710,7 +741,7 @@ export default function ZOoTREntranceTracker() {
                                 <a
                                     href="#expand"
                                     className="button is-outlined is-small"
-                                    onClick={expandAllAreas}
+                                    onClick={expandAllAreas} // tracked in the function
                                 >
                                     Expand All Entrances
                                 </a>
@@ -719,7 +750,7 @@ export default function ZOoTREntranceTracker() {
                                 <a
                                     href="#expand"
                                     className="button is-outlined is-small"
-                                    onClick={hideAllAreas}
+                                    onClick={hideAllAreas} // tracked in the function
                                 >
                                     Hide All Entrances
                                 </a>
@@ -738,6 +769,7 @@ export default function ZOoTREntranceTracker() {
                     end={routeFinderEnd}
                     setRouteFinderStart={setRouteFinderStart}
                     setRouteFinderEnd={setRouteFinderEnd}
+                    trackGaEvent={trackGaEvent}
                 />
                 :
                 ""

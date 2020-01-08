@@ -19,7 +19,7 @@ const shuffleArray = array => {
     }
 };
 
-export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, availableLocations, hyrule, start, end, ...props }) {
+export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, availableLocations, hyrule, start, end, trackGaEvent, ...props }) {
 
     const [config, setConfig] = useLocalStorage("routingConfig", {
         ignoreSongs: false,
@@ -42,6 +42,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
     });
 
     const toggleConfigAttribute = attribute => {
+        trackGaEvent("router", `toggle ${attribute} to ${!config[attribute]}`);
         setConfig({ ...config, [attribute]: !config[attribute] });
     };
 
@@ -319,6 +320,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
             return null;
         }
         let result = getRoutesFromStartToEnd();
+        trackGaEvent("router", "get route");
         return result;
     };
 

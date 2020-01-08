@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import VanillaHyrule from "./DataObjects/VanillaHyrule";
 
-export default function Menu({ showRouteFinder, overworldOnly, ...props }) {
+export default function Menu({ showRouteFinder, overworldOnly, trackGaEvent, ...props }) {
 
     const [message, setMessage] = useState("");
     const [currentMenuHeight, setCurrentMenuHeight] = useState(0);
@@ -32,6 +32,7 @@ export default function Menu({ showRouteFinder, overworldOnly, ...props }) {
         }
         props.resetState();
         setMessage("Tracker Reset");
+        trackGaEvent("menu", "reset app state")
     };
 
     const setAppState = state => {
@@ -44,6 +45,7 @@ export default function Menu({ showRouteFinder, overworldOnly, ...props }) {
             return;
         }
         setAppState(VanillaHyrule);
+        trackGaEvent("menu", "set vanilla hyrule")
     };
 
     return (
@@ -68,6 +70,7 @@ export default function Menu({ showRouteFinder, overworldOnly, ...props }) {
                                 className="nav-bottom-item has-text-grey-light"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                onClick={() => trackGaEvent("menu", "click github link")}
                             >
                                 GitHub
                             </a>
