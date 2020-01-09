@@ -291,7 +291,6 @@ export default function ZOoTREntranceTracker({ ReactGA }) {
         } else if (sourceArea === OverworldAreas["Lake Hylia"]) {
             _hyrule = setPropertiesOfArea(_hyrule, destinationArea, { "hasKaeporaLakeHyliaLanding": !hyrule[destinationArea].hasKaeporaLakeHyliaLanding });
         }
-        trackGaEvent("tracker", "toggle kaepora landing");
         return _hyrule;
     };
 
