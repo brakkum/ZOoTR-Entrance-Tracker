@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import VanillaOverworld from "./DataObjects/VanillaOverworld";
 import VanillaHyrule from "./DataObjects/VanillaHyrule";
 
 export default function Menu({ showRouteFinder, overworldOnly, trackGaEvent, ...props }) {
@@ -45,7 +46,15 @@ export default function Menu({ showRouteFinder, overworldOnly, trackGaEvent, ...
             return;
         }
         setAppState(VanillaHyrule);
-        trackGaEvent("menu", "set vanilla hyrule")
+        trackGaEvent("menu", "set vanilla hyrule");
+    };
+
+    const setVanillaOverworld = () => {
+        if (!window.confirm("Are you sure? This will remove all current settings.")) {
+            return;
+        }
+        setAppState(VanillaOverworld);
+        trackGaEvent("menu", "set vanilla overworld");
     };
 
     return (
@@ -59,8 +68,11 @@ export default function Menu({ showRouteFinder, overworldOnly, trackGaEvent, ...
                 {message === "" ?
                     <div className="has-background-dark nav-bottom">
                         <div className="nav-bottom-left">
-                            <a href="#vanilla" className="nav-bottom-item has-text-light" onClick={setVanillaHyrule}>
+                            <a href="#vanilla-hyrule" className="nav-bottom-item has-text-light" onClick={setVanillaHyrule}>
                                 Vanilla Hyrule
+                            </a>
+                            <a href="#vanilla-overworld" className="nav-bottom-item has-text-light" onClick={setVanillaOverworld}>
+                                Vanilla Overworld
                             </a>
                             <a href="#reset" className="nav-bottom-item has-text-light" onClick={resetState}>
                                 Reset
