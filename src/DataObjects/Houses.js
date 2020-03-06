@@ -1,6 +1,7 @@
 
 const Houses = {
     "Adult Great Fairy's Fountain": "Adult Great Fairy's Fountain",
+    "Adult Shooting Gallery": "Shooting Gallery",
     "Back Alley House": "Back Alley House",
     "Bazaar": "Bazaar",
     "Bombchu Bowling": "Bombchu Bowling",
@@ -8,6 +9,7 @@ const Houses = {
     "Carpenter Tent": "Carpenter Tent",
     "Bottom House": "Bottom House",
     "Child Great Fairy's Fountain": "Child Great Fairy's Fountain",
+    "Child Shooting Gallery": "Shooting Gallery",
     "Dampe's Hut": "Dampe's Hut",
     "Fairy Fountain": "Fairy Fountain",
     "Fishing": "Fishing",
@@ -23,11 +25,10 @@ const Houses = {
     "Lon Lon Tower": "Lon Lon Tower",
     "Mask Shop": "Mask Shop",
     "Mido's House": "Mido's House",
-    "Potion Shop": "Potion Shop",
     "Potion Shop Back": "Potion Shop Back",
     "Potion Shop Front": "Potion Shop Front",
+    "Potion Shop": "Potion Shop",
     "Saria's House": "Saria's House",
-    "Shooting Gallery": "Shooting Gallery",
     "Shop": "Shop",
     "Skulltula House": "Skulltula House",
     "Stable": "Stable",

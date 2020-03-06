@@ -471,18 +471,18 @@ const VanillaHyrule = {
          },
          {
             "entrance": "Boulder Near Gerudo Valley",
-            "interior": "Skulltula Grotto"
+            "interior": "Cow and Skulltula Grotto"
          },
          {
             "entrance": "Boulder in Trees",
             "interior": "Grotto"
          },
          {
-            "entrance": "Lone Tree In West Field",
+            "entrance": "Tektite Grotto",
             "interior": "Diving Grotto"
          },
          {
-            "entrance": "Near Lake Hylia Bomb Grotto",
+            "entrance": "Near Lake Inside Fence Grotto",
             "interior": "1 Scrub"
          },
          {
@@ -691,7 +691,7 @@ const VanillaHyrule = {
          },
          {
             "entrance": "Shooting Gallery",
-            "interior": "Shooting Gallery"
+            "interior": "Child Shooting Gallery"
          },
          {
             "entrance": "Treasure Box Shop",
@@ -729,7 +729,7 @@ const VanillaHyrule = {
          },
          {
             "entrance": "Shooting Gallery",
-            "interior": "Shooting Gallery"
+            "interior": "Adult Shooting Gallery"
          },
          {
             "entrance": "Impa's House Cow",
@@ -808,8 +808,8 @@ const VanillaHyrule = {
             "interior": "Dampe's Grave"
          },
          {
-            "entrance": "Royal Family's Tomb",
-            "interior": "Royal Family's Tomb"
+            "entrance": "Composer Grave",
+            "interior": "Composer Grave"
          },
          {
             "entrance": "Dampe's Hut",
@@ -1023,11 +1023,13 @@ const VanillaHyrule = {
             "entrance": "Potion Shop Front"
          }
       ],
-      "Shooting Gallery": [
+      "Adult Shooting Gallery": [
          {
             "area": "Kakariko Village",
             "entrance": "Shooting Gallery"
-         },
+         }
+      ],
+      "Child Shooting Gallery": [
          {
             "area": "Market",
             "entrance": "Shooting Gallery"
@@ -1091,10 +1093,10 @@ const VanillaHyrule = {
             "entrance": "Dampe's Grave"
          }
       ],
-      "Royal Family's Tomb": [
+      "Composer Grave": [
          {
             "area": "Graveyard",
-            "entrance": "Royal Family's Tomb"
+            "entrance": "Composer Grave"
          }
       ],
       "Redead Grave": [
@@ -1328,11 +1330,13 @@ const VanillaHyrule = {
             "entrance": "Boulder Grotto"
          }
       ],
-      "Skulltula Grotto": [
+      "Cow and Skulltula Grotto": [
          {
             "area": "Hyrule Field",
             "entrance": "Boulder Near Gerudo Valley"
-         },
+         }
+      ],
+      "Skulltula Grotto": [
          {
             "area": "Hyrule Field",
             "entrance": "Tree Near Kakariko Grotto"
@@ -1345,13 +1349,13 @@ const VanillaHyrule = {
       "Diving Grotto": [
          {
             "area": "Hyrule Field",
-            "entrance": "Lone Tree In West Field"
+            "entrance": "Tektite Grotto"
          }
       ],
       "1 Scrub": [
          {
             "area": "Hyrule Field",
-            "entrance": "Near Lake Hylia Bomb Grotto"
+            "entrance": "Near Lake Inside Fence Grotto"
          }
       ],
       "Lon Lon Tower": [
@@ -1748,10 +1752,10 @@ const VanillaHyrule = {
                "clear": true,
                "interior": "House"
             },
-            "Royal Family's Tomb": {
+            "Composer Grave": {
                "type": "Grotto",
                "clear": true,
-               "interior": "Royal Family's Tomb"
+               "interior": "Composer Grave"
             },
             "Shield Grave": {
                "type": "Grotto",
@@ -1898,7 +1902,7 @@ const VanillaHyrule = {
                "clear": true,
                "interior": "Fairy Fountain"
             },
-            "Lone Tree In West Field": {
+            "Tektite Grotto": {
                "type": "Grotto",
                "display": "Diving Grotto",
                "clear": true,
@@ -1906,9 +1910,9 @@ const VanillaHyrule = {
             },
             "Boulder Near Gerudo Valley": {
                "type": "Grotto",
-               "display": "Skulltula Grotto",
+               "display": "Cow and Skulltula Grotto",
                "clear": true,
-               "interior": "Skulltula Grotto"
+               "interior": "Cow and Skulltula Grotto"
             },
             "Gerudo Valley": {
                "type": "Overworld",
@@ -1924,7 +1928,7 @@ const VanillaHyrule = {
                   "entrance": "Hyrule Field"
                }
             },
-            "Near Lake Hylia Bomb Grotto": {
+            "Near Lake Inside Fence Grotto": {
                "type": "Grotto",
                "display": "1 Scrub",
                "clear": true,
@@ -2011,7 +2015,7 @@ const VanillaHyrule = {
             "Shooting Gallery": {
                "type": "House",
                "clear": true,
-               "interior": "Shooting Gallery"
+               "interior": "Adult Shooting Gallery"
             },
             "Bazaar": {
                "type": "House",
@@ -2346,7 +2350,7 @@ const VanillaHyrule = {
             "Shooting Gallery": {
                "type": "House",
                "clear": true,
-               "interior": "Shooting Gallery"
+               "interior": "Child Shooting Gallery"
             },
             "Bombchu Bowling": {
                "type": "House",

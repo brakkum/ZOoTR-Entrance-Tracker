@@ -33,10 +33,10 @@ const VanillaOverworld = {
         "Gerudo's Fortress": ["Song of Storms Grotto"],
         "Gerudo Valley": ["Boulder on Ledge", "Song of Storms Grotto"],
         "Goron City": ["Open Grotto"],
-        "Graveyard": ["Dampe's Grave", "Redead Grave", "Royal Family's Tomb", "Shield Grave"],
+        "Graveyard": ["Dampe's Grave", "Redead Grave", "Composer Grave", "Shield Grave"],
         "Haunted Wasteland": [],
         "Hyrule/Ganon's Castle": ["Song of Storms Grotto"],
-        "Hyrule Field": ["Boulder Across River", "Boulder Near Castle Town", "Boulder Near Gerudo Valley", "Boulder in Trees", "Lone Tree In West Field", "Near Lake Hylia Bomb Grotto", "Open Grotto", "Tree Near Kakariko Grotto"],
+        "Hyrule Field": ["Boulder Across River", "Boulder Near Castle Town", "Boulder Near Gerudo Valley", "Boulder in Trees", "Tektite Grotto", "Near Lake Inside Fence Grotto", "Open Grotto", "Tree Near Kakariko Grotto"],
         "Kakariko Village": ["Bomb Grotto", "Open Grotto"],
         "Kokiri Forest": ["Song of Storms Grotto"],
         "Lake Hylia": ["Grave"],
@@ -185,9 +185,9 @@ const VanillaOverworld = {
             "entrance": "Death Mountain Crater"
         }, {"area": "Death Mountain Trail", "entrance": "Death Mountain Crater"}]
     },
-    "availableGrottos": ["Grotto", "3 Scrubs", "2 Scrubs", "Cow Grotto", "Grotto", "Fairy Fountain", "Diving Rupee Grotto", "2 Scrubs", "3 Scrubs", "Dampe's Grave", "Redead Grave", "Royal Family's Tomb", "Shield Grave", "Fairy Fountain", "Grotto", "Skulltula Grotto", "Grotto", "Diving Grotto", "1 Scrub", "Grotto", "Skulltula Grotto", "Skulltula Grotto", "Redead Grotto", "Grotto", "Grotto", "3 Scrubs", "Grotto", "2 Scrubs", "Forest Stage", "3 Scrubs", "Wolfos Grotto", "Fairy Fountain", "2 Scrubs", "Fairy Fountain", "Fairy Fountain", "Grotto", "2 Scrubs"],
+    "availableGrottos": ["Grotto", "3 Scrubs", "2 Scrubs", "Cow Grotto", "Grotto", "Fairy Fountain", "Diving Rupee Grotto", "2 Scrubs", "3 Scrubs", "Dampe's Grave", "Redead Grave", "Composer Grave", "Shield Grave", "Fairy Fountain", "Grotto", "Skulltula Grotto", "Grotto", "Diving Grotto", "1 Scrub", "Grotto", "Skulltula Grotto", "Cow and Skulltula Grotto", "Redead Grotto", "Grotto", "Grotto", "3 Scrubs", "Grotto", "2 Scrubs", "Forest Stage", "3 Scrubs", "Wolfos Grotto", "Fairy Fountain", "2 Scrubs", "Fairy Fountain", "Fairy Fountain", "Grotto", "2 Scrubs"],
     "routeFinderStart": null,
-    "availableHouses": ["Guard Hut/Poe Collector", "Great Fairy's Fountain", "Great Fairy's Fountain", "Carpenter Tent", "Shop", "House", "Great Fairy's Fountain", "Great Fairy's Fountain", "Shop", "House", "Granny's Potion Shop", "Impa's House Cow", "House", "Potion Shop Back", "Potion Shop Front", "Shooting Gallery", "Skulltula House", "Windmill", "House", "House", "House", "Shop", "House", "Lakeside Laboratory", "Fishing", "Lon Lon Tower", "Stable", "Talon's House", "House", "Shop", "Bombchu Bowling", "Shop", "Mask Shop", "Shop", "Shooting Gallery", "Treasure Box Shop", "Temple of Time", "Shop", "Great Fairy's Fountain", "Great Fairy's Fountain", "Link's House"],
+    "availableHouses": ["Guard Hut/Poe Collector", "Great Fairy's Fountain", "Great Fairy's Fountain", "Carpenter Tent", "Shop", "House", "Great Fairy's Fountain", "Great Fairy's Fountain", "Shop", "House", "Granny's Potion Shop", "Impa's House Cow", "House", "Potion Shop Back", "Potion Shop Front", "Adult Shooting Gallery", "Skulltula House", "Windmill", "House", "House", "House", "Shop", "House", "Lakeside Laboratory", "Fishing", "Lon Lon Tower", "Stable", "Talon's House", "House", "Shop", "Bombchu Bowling", "Shop", "Mask Shop", "Shop", "Child Shooting Gallery", "Treasure Box Shop", "Temple of Time", "Shop", "Great Fairy's Fountain", "Great Fairy's Fountain", "Link's House"],
     "showRouteFinder": false,
     "routeFinderEnd": null,
     "overworldOnly": false,
@@ -362,7 +362,7 @@ const VanillaOverworld = {
                 },
                 "Shadow Temple": {"type": "Dungeon", "clear": false, "interior": null},
                 "Dampe's Hut": {"type": "House", "display": "House", "clear": false, "interior": null},
-                "Royal Family's Tomb": {"type": "Grotto", "clear": false, "interior": null},
+                "Composer Grave": {"type": "Grotto", "clear": false, "interior": null},
                 "Shield Grave": {"type": "Grotto", "clear": false, "interior": null},
                 "Redead Grave": {"type": "Grotto", "clear": false, "interior": null},
                 "Dampe's Grave": {"type": "Grotto", "clear": false, "interior": null}
@@ -450,7 +450,7 @@ const VanillaOverworld = {
                     "clear": false,
                     "interior": null
                 },
-                "Lone Tree In West Field": {
+                "Tektite Grotto": {
                     "type": "Grotto",
                     "display": "Diving Grotto",
                     "clear": false,
@@ -458,7 +458,7 @@ const VanillaOverworld = {
                 },
                 "Boulder Near Gerudo Valley": {
                     "type": "Grotto",
-                    "display": "Skulltula Grotto",
+                    "display": "Cow and Skulltula Grotto",
                     "clear": false,
                     "interior": null
                 },
@@ -467,7 +467,7 @@ const VanillaOverworld = {
                     "leadsTo": {"area": "Gerudo Valley", "entrance": "Hyrule Field"}
                 },
                 "Lake Hylia": {"type": "Overworld", "leadsTo": {"area": "Lake Hylia", "entrance": "Hyrule Field"}},
-                "Near Lake Hylia Bomb Grotto": {
+                "Near Lake Inside Fence Grotto": {
                     "type": "Grotto",
                     "display": "1 Scrub",
                     "clear": false,
