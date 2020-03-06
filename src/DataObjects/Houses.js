@@ -17,6 +17,7 @@ const Houses = {
     "Great Fairy's Fountain": "Great Fairy's Fountain",
     "Guard Hut/Poe Collector": "Guard Hut/Poe Collector",
     "House": "House",
+    "House with Talon": "House with Talon",
     "Impa's House Cow": "Impa's House Cow",
     "Impa's House Front": "Impa's House Front",
     "Know-It-All House": "Know-It-All House",

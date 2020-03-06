@@ -749,7 +749,7 @@ const VanillaHyrule = {
          },
          {
             "entrance": "Bottom House",
-            "interior": "House"
+            "interior": "House with Talon"
          },
          {
             "entrance": "Bomb Grotto",
@@ -2008,9 +2008,9 @@ const VanillaHyrule = {
             },
             "Bottom House": {
                "type": "House",
-               "display": "House",
+               "display": "House with Talon",
                "clear": true,
-               "interior": "House"
+               "interior": "House with Talon"
             },
             "Shooting Gallery": {
                "type": "House",
