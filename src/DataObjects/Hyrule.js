@@ -288,7 +288,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Grottos["Royal Family's Tomb"]]: {
+            [Grottos["Composer Grave"]]: {
                 "type": EntranceTypes.Grotto,
                 "clear": false,
                 "interior": null
@@ -414,7 +414,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Grottos["Lone Tree In West Field"]]: {
+            [Grottos["Tektite Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos["Diving Grotto"],
                 "clear": false,
@@ -422,7 +422,7 @@ export default {
             },
             [Grottos["Boulder Near Gerudo Valley"]]: {
                 "type": EntranceTypes.Grotto,
-                "display": Grottos["Skulltula Grotto"],
+                "display": Grottos["Cow and Skulltula Grotto"],
                 "clear": false,
                 "interior": null
             },
@@ -434,7 +434,7 @@ export default {
                 "type": EntranceTypes.Overworld,
                 "leadsTo": null
             },
-            [Grottos["Near Lake Hylia Bomb Grotto"]]: {
+            [Grottos["Near Lake Inside Fence Grotto"]]: {
                 "type": EntranceTypes.Grotto,
                 "display": Grottos["1 Scrub"],
                 "clear": false,
@@ -509,7 +509,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Houses["Shooting Gallery"]]: {
+            [Houses["Adult Shooting Gallery"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null
@@ -799,7 +799,7 @@ export default {
                 "clear": false,
                 "interior": null
             },
-            [Houses["Shooting Gallery"]]: {
+            [Houses["Child Shooting Gallery"]]: {
                 "type": EntranceTypes.House,
                 "clear": false,
                 "interior": null

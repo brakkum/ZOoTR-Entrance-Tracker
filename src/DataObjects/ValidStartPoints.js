@@ -12,7 +12,7 @@ const ValidStartPoints = [
     Grottos["Forest Stage"],
     Grottos["Redead Grave"],
     Grottos["Redead Grotto"],
-    Grottos["Royal Family's Tomb"],
+    Grottos["Composer Grave"],
     Grottos["Shield Grave"],
     Grottos["Wolfos Grotto"],
     Houses["Bombchu Bowling"],
