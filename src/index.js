@@ -1,5 +1,6 @@
 import ZOoTREntranceTracker from './ZOoTREntranceTracker';
 import * as serviceWorker from './serviceWorker';
+import "font-awesome/css/font-awesome.min.css";
 import ReactDOM from 'react-dom';
 import ReactGA from "react-ga";
 import "bulma/css/bulma.css";

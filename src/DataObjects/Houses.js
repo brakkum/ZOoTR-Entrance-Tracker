@@ -1,7 +1,7 @@
 
 const Houses = {
     "Adult Great Fairy's Fountain": "Adult Great Fairy's Fountain",
-    "Adult Shooting Gallery": "Shooting Gallery",
+    "Adult Shooting Gallery": "Adult Shooting Gallery",
     "Back Alley House": "Back Alley House",
     "Bazaar": "Bazaar",
     "Bombchu Bowling": "Bombchu Bowling",
@@ -9,7 +9,7 @@ const Houses = {
     "Carpenter Tent": "Carpenter Tent",
     "Bottom House": "Bottom House",
     "Child Great Fairy's Fountain": "Child Great Fairy's Fountain",
-    "Child Shooting Gallery": "Shooting Gallery",
+    "Child Shooting Gallery": "Child Shooting Gallery",
     "Dampe's Hut": "Dampe's Hut",
     "Fairy Fountain": "Fairy Fountain",
     "Fishing": "Fishing",

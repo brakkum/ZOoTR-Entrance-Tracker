@@ -89,6 +89,10 @@ html {
     margin: auto;
 }
 
+.routing-options .icon {
+    margin-left: 0 !important;
+}
+
 .route-points-select {
     max-width: 500px;
     width: 95%;

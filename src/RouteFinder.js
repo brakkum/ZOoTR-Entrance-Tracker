@@ -394,12 +394,18 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                     className={"button is-small is-outlined " + (config.considerChildSaveWarp ? "is-link" : "is-dark")}
                 >
                     Consider Child Save Warp
+                    <span className="icon">
+                        <i className={"fa " + (config.considerChildSaveWarp ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("considerAdultSaveWarp")}
                     className={"button is-small is-outlined " + (config.considerAdultSaveWarp ? "is-link" : "is-dark")}
                 >
                     Consider Adult Save Warp
+                    <span className="icon">
+                        <i className={"fa " + (config.considerAdultSaveWarp ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
             </div>
             <div className="routing-options buttons is-centered">
@@ -407,95 +413,140 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                     onClick={() => toggleConfigAttribute("ignoreKaeporaGaebora")}
                     className={"button is-small is-outlined " + (config.ignoreKaeporaGaebora ? "is-danger" : "is-dark")}
                 >
-                    Ignore Kaepora Gaebora
+                    Ignore Owl Rides
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreKaeporaGaebora ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreSongs")}
                     className={"button is-small is-outlined " + (config.ignoreSongs ? "is-danger" : "is-dark")}
                 >
-                    Ignore Songs
+                    Ignore Warp Songs
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreSongs ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreCrossingHauntedWasteland")}
                     className={"button is-small is-outlined " + (config.ignoreCrossingHauntedWasteland ? "is-danger" : "is-dark")}
                 >
-                    Ignore Crossing Haunted Wasteland
+                    Ignore the Haunted Wasteland
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreCrossingHauntedWasteland ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreLostWoodsToBridge")}
                     className={"button is-small is-outlined " + (config.ignoreLostWoodsToBridge ? "is-danger" : "is-dark")}
                 >
-                    Ignore Bridge from Lost Woods
+                    Ignore Longshot to Lost Woods Bridge
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreLostWoodsToBridge ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreGoronCityDMC")}
                     className={"button is-small is-outlined " + (config.ignoreGoronCityDMC ? "is-danger" : "is-dark")}
                 >
-                    Ignore Death Mountain Crater Entrance in Goron City
+                    Ignore Entrance Behind Darunia
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreGoronCityDMC ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreLostWoodsZorasRiverEntrances")}
                     className={"button is-small is-outlined " + (config.ignoreLostWoodsZorasRiverEntrances ? "is-danger" : "is-dark")}
                 >
-                    Ignore Lost Woods/Zora's River Entrances
+                    Ignore Lost Woods/Zora's River Shortcut
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreLostWoodsZorasRiverEntrances ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreLakeHyliaZorasDomainEntrances")}
                     className={"button is-small is-outlined " + (config.ignoreLakeHyliaZorasDomainEntrances ? "is-danger" : "is-dark")}
                 >
-                    Ignore Zora's Domain/Lake Hylia Entrances
+                    Ignore Zora's Domain/Lake Hylia Shortcut
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreLakeHyliaZorasDomainEntrances ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreWindmillFromDampesGrave")}
                     className={"button is-small is-outlined " + (config.ignoreWindmillFromDampesGrave ? "is-danger" : "is-dark")}
                 >
-                    Ignore Windmill from Dampe's Grave
+                    Ignore Dampe Race to Windmill
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreWindmillFromDampesGrave ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreSpiritTempleHandsExit")}
                     className={"button is-small is-outlined " + (config.ignoreSpiritTempleHandsExit ? "is-danger" : "is-dark")}
                 >
-                    Ignore Spirit Temple Hands Exit
+                    Ignore Exiting Spirit Temple from Hands
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreSpiritTempleHandsExit ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreKakarikoGate")}
                     className={"button is-small is-outlined " + (config.ignoreKakarikoGate ? "is-danger" : "is-dark")}
                 >
-                    Ignore Kakariko Gate
+                    Ignore Kakariko Gate to Death Mountain Trail
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreKakarikoGate ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreZorasDomainFromRiver")}
                     className={"button is-small is-outlined " + (config.ignoreZorasDomainFromRiver ? "is-danger" : "is-dark")}
                 >
-                    Ignore Zora's Domain from Zora's River
+                    Ignore Zora's Domain Lullaby Entrance
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreZorasDomainFromRiver ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreCrossingGerudoValley")}
                     className={"button is-small is-outlined " + (config.ignoreCrossingGerudoValley ? "is-danger" : "is-dark")}
 
                 >
-                    Ignore Crossing Gerudo Valley
+                    Ignore Crossing Gerudo Valley Bridge
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreCrossingGerudoValley ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignorePotionShopFromFront")}
                     className={"button is-small is-outlined " + (config.ignorePotionShopFromFront ? "is-danger" : "is-dark")}
 
                 >
-                    Ignore Potion Shop from Front
+                    Ignore Kakariko Potion Shop Front Entrance
+                    <span className="icon">
+                        <i className={"fa " + (config.ignorePotionShopFromFront ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreGerudosFortress")}
                     className={"button is-small is-outlined " + (config.ignoreGerudosFortress ? "is-danger" : "is-dark")}
 
                 >
-                    Ignore Gerudo's Fortress
+                    Ignore Crossing Gerudo's Fortress
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreGerudosFortress ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
                 <button
                     onClick={() => toggleConfigAttribute("ignoreKingZora")}
                     className={"button is-small is-outlined " + (config.ignoreKingZora ? "is-danger" : "is-dark")}
 
                 >
-                    Ignore King Zora
+                    Ignore Passing King Zora
+                    <span className="icon">
+                        <i className={"fa " + (config.ignoreKingZora ? "fa-check" : "fa-close")} />
+                    </span>
                 </button>
             </div>
             {routes !== null && routes.length > 0 ?

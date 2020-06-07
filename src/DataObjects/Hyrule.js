@@ -511,6 +511,7 @@ export default {
             },
             [Houses["Adult Shooting Gallery"]]: {
                 "type": EntranceTypes.House,
+                "display": Houses["Adult Shooting Gallery"],
                 "clear": false,
                 "interior": null
             },
@@ -801,6 +802,7 @@ export default {
             },
             [Houses["Child Shooting Gallery"]]: {
                 "type": EntranceTypes.House,
+                "display": Houses["Child Shooting Gallery"],
                 "clear": false,
                 "interior": null
             },
