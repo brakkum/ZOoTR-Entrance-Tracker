@@ -9,41 +9,10 @@ html {
     width: 100vw;
 }
 
-.app-background {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    background-image: url("/triforce.png");
-    background-repeat: no-repeat;
-    background-size: 30%;
-    background-position: center;
-    background-attachment: fixed;
-    background-blend-mode: soft-light;
-    background-color: #eeebe1;
-}
-
 .zootr-entrance-tracker {
     height: auto;
     width: 100vw;
     position: relative;
-}
-
-/* IE 10 and 11 */
-@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    .app-background {
-        opacity: 0.05;
-    }
-}
-
-/* Edge */
-@supports not (mix-blend-mode: soft-light) {
-    .app-background {
-        opacity: 0.05;
-    }
 }
 
 /* Nav */
@@ -118,12 +87,6 @@ html {
 .routing-results .route:not(:last-child) {
     border-bottom: 1px solid #a5a38c;
     padding: 5px 0;
-}
-
-.route-step {
-    width: auto;
-    height: 100%;
-    border-radius: 4px;
 }
 
 .selected-location {
@@ -273,7 +236,7 @@ html {
     margin-bottom: 0rem !important;
 }
 
-/* Songs */
+/* NormalSongs */
 .songs-container {
     position: fixed;
     display: flex;
