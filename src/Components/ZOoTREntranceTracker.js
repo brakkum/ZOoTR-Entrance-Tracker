@@ -1,15 +1,14 @@
-import { useTrackerContext } from "../Hooks/useTrackerContext";
-import React, { useState, useLayoutEffect } from "react";
+import React, {useState, useLayoutEffect, useContext} from "react";
 import Menu from "./Menu";
-import TypeSection from "./TypeSection";
 import {TrackerBody} from "./TrackerBody";
+import {JsonOutput} from "./Debugging/JsonOutput";
+import {AreaContext} from "../Context/AreaContext";
 
 
 export default function ZOoTREntranceTracker({ ReactGA }) {
 
     const [menuHeight, setMenuHeight] = useState(0);
     const [windowChanges, setWindowChanges] = useState(false);
-
     // trigger re-render when window size changes
     // cause menu and songs to reassess sizing
     useLayoutEffect(() => {
@@ -37,6 +36,8 @@ export default function ZOoTREntranceTracker({ ReactGA }) {
             />
 
             <div className="top-padding" style={{ height: menuHeight + 20 }} />
+
+            <JsonOutput />
 
             <TrackerBody />
 

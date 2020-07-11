@@ -1,13 +1,13 @@
 import { TrackerConfig } from "../Data/Config/TrackerConfig";
 import {useLocalStorage} from "../Hooks/useLocalStorage";
 import { cloneDeep } from "lodash";
-import React, {useState} from "react";
+import React from "react";
 
 let ConfigContext = React.createContext(null);
 
 function ConfigContextProvider(props) {
     // TODO: replace with localStorage hook
-    let [config, setConfig] = useState(cloneDeep(TrackerConfig));//useLocalStorage("item-config", cloneDeep(TrackerConfig));
+    let [config, setConfig] = useLocalStorage("item-config", cloneDeep(TrackerConfig));
 
     const value = {
         config,
