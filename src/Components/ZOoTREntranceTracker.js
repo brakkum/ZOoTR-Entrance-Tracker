@@ -20,28 +20,28 @@ export default function ZOoTREntranceTracker({ ReactGA }) {
         setWindowChanges(!windowChanges);
     };
 
-    const trackGaEvent = (category, action) => {
-        ReactGA.event({
-            category,
-            action
-        });
-    };
+    // const trackGaEvent = (category, action) => {
+    //     ReactGA.event({
+    //         category,
+    //         action
+    //     });
+    // };
 
     return (
         <div className="zootr-entrance-tracker">
 
             <Menu
                 setMenuHeight={setMenuHeight}
-                trackGaEvent={trackGaEvent}
+                // trackGaEvent={trackGaEvent}
             />
 
             <div className="top-padding" style={{ height: menuHeight + 20 }} />
 
-            <JsonOutput />
+            {/*<JsonOutput />*/}
 
             <TrackerBody />
 
-            {/*/!* TODO: change this to be toggle-able router? songs will be with other items *!/*/}
+            {/* TODO: change this to be toggle-able router? songs will be with other items */}
             {/*<div className="bottom-padding" style={{ height: songsHeight }} />*/}
             {/*/!* display songs that can be collected and may open new areas *!/*/}
             {/*{Object.keys(interiorEntrances).length > 1 && <Songs*/}

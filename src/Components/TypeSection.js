@@ -1,6 +1,7 @@
 import { useTrackerContext } from "../Hooks/useTrackerContext";
 import Entrance from "./Entrance";
 import React from "react";
+import {AreaContext} from "../Context/AreaContext";
 
 export default function TypeSection({
     type,
@@ -11,13 +12,12 @@ export default function TypeSection({
         typeShouldBeDisplayed
     } = useTrackerContext();
     let output = [];
-    // console.log(type, section, options)
+
     return (
         <React.Fragment>
             {Object.entries(section).sort().map(([areaName, area], i) => {
                 const entrances = [];
                 Object.entries(area.entrances).sort().map(([entranceName, entrance], j) => {
-                    // console.error(entrance.type, options[entrance.type])
                     entrances.push(<div key={`entrance-${i}-${j}`}>
                         <Entrance
                             entrance={entrance}
@@ -33,7 +33,7 @@ export default function TypeSection({
                 if (entrances.length > 0) {
                     output.push(<div className="card area-card" key={`area-${i}`}>
                         <div className="card-header area-card-header has-background-dark">
-                            <h5 className="is-size-5 has-text-weight-semibold area-card-name">{areaName}</h5>
+                            <h3 className="has-text-weight-semibold area-card-name">{areaName}</h3>
                             <span
                                 className="icon has-text-white"
                             >

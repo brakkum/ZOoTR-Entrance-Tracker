@@ -14,19 +14,21 @@ export const TrackerBody = () => {
         trackerSections,
         possibleEntrances
     } = getTrackerSectionsAndTypePossibilities();
-    // console.log("trackerSections", trackerSections);
-    // console.log("possibleEntrances", possibleEntrances);
-    return Object.entries(trackerSections).map(([sectionType, section], i) => {
-        // console.log(sectionType, possibleEntrances[sectionType])
-        return <React.Fragment key={`section-${i}`}>
-            <h3 className="is-size-3 has-text-centered">{sectionType}</h3>
-            <div key={i} className="areas-container is-flex-desktop is-flex-tablet is-multiline flex-wraps">
-                <TypeSection
-                    type={sectionType}
-                    section={section}
-                    options={possibleEntrances}
-                />
+    if (Object.keys(trackerSections).length === 0) return <h1 className="is-size-1" style={{textAlign: "center"}}>👀</h1>;
+    return <div className="area-sections">
+        {Object.entries(trackerSections).map(([sectionType, section], i) => {
+            return <div key={`section-${i}`} className="area-section">
+                <div>
+                    <h4 className="is-size-4 has-text-centered">{sectionType}</h4>
+                    <div key={i} className="areas-container is-flex-desktop is-flex-tablet is-multiline flex-wraps">
+                        <TypeSection
+                            type={sectionType}
+                            section={section}
+                            options={possibleEntrances}
+                        />
+                    </div>
+                </div>
             </div>
-        </React.Fragment>
-    });
+        })}
+    </div>
 };

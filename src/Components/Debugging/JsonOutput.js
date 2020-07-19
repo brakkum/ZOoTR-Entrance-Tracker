@@ -6,7 +6,7 @@ export const JsonOutput = () => {
     let output = {};
     Object.entries(areas).map(([aName, area]) => {
         Object.entries(area.entrances).map(([eName, entrance]) => {
-            if ((entrance.leadsTo !== null || entrance.comesFrom !== undefined) && !entrance.isImmutable) output[aName] = entrance;
+            if ((entrance.leadsTo !== null || entrance.comesFrom.length !== 0) && !entrance.isImmutable) output[aName] = entrance;
         });
     });
 

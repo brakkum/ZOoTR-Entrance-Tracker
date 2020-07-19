@@ -15,7 +15,8 @@ export const GrottoAreas = {
     //                 area: ,
     //                 entrance:
     //             },
-    //             leadsTo: null
+    //             leadsTo: null,
+    //             comesFrom: []
     //         }
     //     }
     // },
@@ -32,7 +33,8 @@ export const GrottoAreas = {
                         area: OverworldNames.deathMountainCrater,
                         entrance: GrottoEntranceLabels.boulderNearDeathMountainTrail
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -46,7 +48,8 @@ export const GrottoAreas = {
                         area: OverworldNames.deathMountainCrater,
                         entrance: GrottoEntranceLabels.boulderNearGoronCity
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -61,7 +64,8 @@ export const GrottoAreas = {
                         area: OverworldNames.deathMountainTrail,
                         entrance: GrottoEntranceLabels.songOfStormsGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -75,7 +79,8 @@ export const GrottoAreas = {
                         area: OverworldNames.deathMountainTrail,
                         entrance: GrottoEntranceLabels.cowGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -90,7 +95,8 @@ export const GrottoAreas = {
                         area: OverworldNames.desertColossus,
                         entrance: GrottoEntranceLabels.boulderGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -105,7 +111,8 @@ export const GrottoAreas = {
                         area: OverworldNames.gerudoFortress,
                         entrance: GrottoEntranceLabels.songOfStormsGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -120,7 +127,8 @@ export const GrottoAreas = {
                         area: OverworldNames.gerudoValley,
                         entrance: GrottoEntranceLabels.boulderOnLedge
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -134,7 +142,8 @@ export const GrottoAreas = {
                         area: OverworldNames.gerudoValley,
                         entrance: GrottoEntranceLabels.songOfStormsGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -149,7 +158,8 @@ export const GrottoAreas = {
                         area: OverworldNames.goronCity,
                         entrance: GrottoEntranceLabels.openGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -164,7 +174,8 @@ export const GrottoAreas = {
                         area: OverworldNames.graveyard,
                         entrance: GrottoEntranceLabels.composersGrave
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -178,7 +189,8 @@ export const GrottoAreas = {
                         area: OverworldNames.graveyard,
                         entrance: GrottoEntranceLabels.shieldGrave
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -192,7 +204,8 @@ export const GrottoAreas = {
                         area: OverworldNames.graveyard,
                         entrance: GrottoEntranceLabels.redeadGrave
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -206,7 +219,8 @@ export const GrottoAreas = {
                         area: OverworldNames.graveyard,
                         entrance: GrottoEntranceLabels.dampesGrave
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseNames.windmill]: {
                     type: AreaTypes.house,
@@ -228,12 +242,13 @@ export const GrottoAreas = {
             isExpanded: true,
             entrances: {
                 [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.overworld,
+                    type: AreaTypes.grotto,
                     leadsToVanilla: {
                         area: OverworldNames.castleGrounds,
                         entrance: GrottoEntranceLabels.songOfStormsGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -248,7 +263,8 @@ export const GrottoAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: GrottoEntranceLabels.treeNearKakarikoGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -262,7 +278,8 @@ export const GrottoAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: GrottoEntranceLabels.boulderNearCastleTown
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -276,7 +293,8 @@ export const GrottoAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: GrottoEntranceLabels.boulderAcrossRiver
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -290,7 +308,8 @@ export const GrottoAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: GrottoEntranceLabels.tektiteGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -304,7 +323,8 @@ export const GrottoAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: GrottoEntranceLabels.boulderNearGerudoValley
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -318,7 +338,8 @@ export const GrottoAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: GrottoEntranceLabels.nearLakeInsideFenceGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -332,7 +353,8 @@ export const GrottoAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: GrottoEntranceLabels.openGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -346,7 +368,8 @@ export const GrottoAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: GrottoEntranceLabels.boulderInTrees
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -361,7 +384,8 @@ export const GrottoAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: GrottoEntranceLabels.openGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -375,7 +399,8 @@ export const GrottoAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: GrottoEntranceLabels.bombGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -390,7 +415,8 @@ export const GrottoAreas = {
                         area: OverworldNames.kokiriForest,
                         entrance: GrottoEntranceLabels.songOfStormsGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -405,7 +431,8 @@ export const GrottoAreas = {
                         area: OverworldNames.lakeHylia,
                         entrance: GrottoEntranceLabels.grave
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -420,7 +447,8 @@ export const GrottoAreas = {
                         area: OverworldNames.lonLonRanch,
                         entrance: GrottoEntranceLabels.openGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -435,7 +463,8 @@ export const GrottoAreas = {
                         area: OverworldNames.lostWoods,
                         entrance: GrottoEntranceLabels.forestStage
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -449,7 +478,8 @@ export const GrottoAreas = {
                         area: OverworldNames.lostWoods,
                         entrance: GrottoEntranceLabels.boulderNearGoronCity
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -463,7 +493,8 @@ export const GrottoAreas = {
                         area: OverworldNames.lostWoods,
                         entrance: GrottoEntranceLabels.boulderNearSacredForestMeadow
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -478,7 +509,8 @@ export const GrottoAreas = {
                         area: OverworldNames.sacredForestMeadow,
                         entrance: GrottoEntranceLabels.bombGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -492,7 +524,8 @@ export const GrottoAreas = {
                         area: OverworldNames.sacredForestMeadow,
                         entrance: GrottoEntranceLabels.openGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -506,7 +539,8 @@ export const GrottoAreas = {
                         area: OverworldNames.sacredForestMeadow,
                         entrance: GrottoEntranceLabels.songOfStormsGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -521,7 +555,8 @@ export const GrottoAreas = {
                         area: OverworldNames.zorasDomain,
                         entrance: GrottoEntranceLabels.songOfStormsGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -536,7 +571,8 @@ export const GrottoAreas = {
                         area: OverworldNames.zorasRiver,
                         entrance: GrottoEntranceLabels.songOfStormsGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -550,7 +586,8 @@ export const GrottoAreas = {
                         area: OverworldNames.zorasRiver,
                         entrance: GrottoEntranceLabels.openGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -564,7 +601,8 @@ export const GrottoAreas = {
                         area: OverworldNames.zorasRiver,
                         entrance: GrottoEntranceLabels.boulderGrotto
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         }

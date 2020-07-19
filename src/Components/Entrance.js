@@ -9,41 +9,44 @@ export default function Entrance({
     entranceName
 }) {
     const {
-        areas,
-        config,
         setEntrance,
         resetEntrance,
     } = useTrackerContext();
     const selectOptions = [];
-    const [fromArea, fromEntrance] = entrance.comesFrom ? entrance.comesFrom.split(": ") : [null, null];
-
+    if (entrance.comesFrom && entrance.comesFrom.length) console.log(entrance.comesFrom)
     return (
         <div className="entrance">
-            <div className={
-                "entrance-name is-size-6 has-text-weight-bold "
+            <h4 className={
+                "entrance-name has-text-weight-bold"
             }>
                 {entranceName}
-                {entrance.comesFrom &&
-                    <div
-                        className="is-size-7 has-text-success-dark"
-                    >
-                        {fromArea}<br/>
-                        {fromEntrance}
-                    </div>
+                {
+                    entrance.comesFrom !== undefined &&
+                    entrance.comesFrom.length !== 0 &&
+                    entrance.comesFrom.map((source, i) => {
+                        const [fromArea, fromEntrance] = source.split(": ");
+                        return <div
+                            key={i}
+                            className="is-size-7 has-text-success-dark"
+                        >
+                            {fromArea}<br/>
+                            {fromEntrance}
+                        </div>
+                    })
                 }
-            </div>
+            </h4>
             <div className="entrance-spacer" />
-            {entrance.leadsTo !== null ?
+            {(entrance.leadsTo !== null || !options) ?
                 <div className="area-display has-text-weight-semibold is-flex">
                     <div className="area-display-entrance">
-                    <div className="">
-                        {entrance.leadsTo.area}
+                    <div className="chosen-area-name">
+                        {options ? entrance.leadsTo.area : entrance.leadsToVanilla.area}
                     </div>
-                    <div className=" is-size-7 has-text-weight-normal">
-                        {entrance.leadsTo.entrance} Entrance
+                    <div className="has-text-weight-normal chosen-entrance-name">
+                        {options ? entrance.leadsTo.entrance :  entrance.leadsToVanilla.entrance}
                     </div>
                 </div>
-                    {!entrance.isImmutable &&
+                    {!entrance.isImmutable && options &&
                         <span className="delete remove-choice is-pulled-right" onClick={() =>
                             resetEntrance(
                                 {
@@ -77,11 +80,9 @@ export default function Entrance({
                         {
                             Object.entries(options).map(([optionLabel, group], i) => {
                                 const optionSelectOptions = [];
-                                // console.log(group)
 
                                 Object.entries(group).sort().map(([areaLabel, groupArea], j) => {
                                     const areaOptions = [];
-                                    // console.log(groupArea)
 
                                     Object.entries(groupArea.entrances).sort().map(([entranceLabel, areaEntrance], k) => {
                                         if (areaName === areaLabel && entranceName === entranceLabel) return null;

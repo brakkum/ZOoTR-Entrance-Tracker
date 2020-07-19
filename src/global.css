@@ -100,10 +100,20 @@ html {
 /* AREAS */
 .areas-container {
     max-width: 95%;
-    margin: 20px auto;
+    margin: 10px auto;
     align-items: flex-start;
     align-content: space-around;
     justify-content: space-around;
+}
+
+.area-sections {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.area-section {
+    width: 100%;
 }
 
 .area-card {
@@ -190,6 +200,19 @@ html {
     justify-content: space-between
 }
 
+.entrance-name {
+    font-size: .8rem;
+    max-width: 150px;
+}
+
+.chosen-area-name {
+    font-size: .8rem;
+}
+
+.chosen-entrance-name {
+    font-size: .7rem;
+}
+
 .entrance-separator {
     height: 1px;
     margin: auto;
@@ -206,6 +229,7 @@ html {
 
 .entrance-select {
     margin: 5px;
+    max-width: 200px;
 }
 
 .remove-choice {

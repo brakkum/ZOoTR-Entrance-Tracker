@@ -16,7 +16,8 @@ export const WarpSongAreas = {
     //                 area: ,
     //                 entrance:
     //             },
-    //             leadsTo: null
+    //             leadsTo: null,
+    //             comesFrom: []
     //         }
     //     }
     // },
@@ -33,7 +34,8 @@ export const WarpSongAreas = {
                         area: OverworldNames.sacredForestMeadow,
                         entrance: SongEntranceLabels.warpSongPedestal
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -48,7 +50,8 @@ export const WarpSongAreas = {
                         area: OverworldNames.deathMountainCrater,
                         entrance: SongEntranceLabels.warpSongPedestal
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -63,7 +66,8 @@ export const WarpSongAreas = {
                         area: OverworldNames.lakeHylia,
                         entrance: SongEntranceLabels.warpSongPedestal
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -78,7 +82,8 @@ export const WarpSongAreas = {
                         area: OverworldNames.desertColossus,
                         entrance: SongEntranceLabels.warpSongPedestal
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -93,7 +98,8 @@ export const WarpSongAreas = {
                         area: OverworldNames.sacredForestMeadow,
                         entrance: SongEntranceLabels.warpSongPedestal
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -108,7 +114,8 @@ export const WarpSongAreas = {
                         area: HouseNames.templeOfTime,
                         entrance: SongEntranceLabels.warpSongPedestal
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         }

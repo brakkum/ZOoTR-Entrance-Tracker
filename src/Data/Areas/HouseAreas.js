@@ -14,7 +14,8 @@ export const HouseAreas = {
     //                 area: ,
     //                 entrance:
     //             },
-    //             leadsTo: null
+    //             leadsTo: null,
+    //             comesFrom: []
     //         }
     //     }
     // },
@@ -31,7 +32,8 @@ export const HouseAreas = {
                         area: OverworldNames.castleTownEntrance,
                         entrance: HouseEntranceLabels.guardHutPoeShop
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -46,7 +48,8 @@ export const HouseAreas = {
                         area: OverworldNames.deathMountainCrater,
                         entrance: HouseEntranceLabels.greatFairysFountain
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -61,7 +64,8 @@ export const HouseAreas = {
                         area: OverworldNames.deathMountainTrail,
                         entrance: HouseEntranceLabels.greatFairysFountain
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -76,7 +80,8 @@ export const HouseAreas = {
                         area: OverworldNames.desertColossus,
                         entrance: HouseEntranceLabels.greatFairysFountain
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -91,7 +96,8 @@ export const HouseAreas = {
                         area: OverworldNames.gerudoValley,
                         entrance: HouseEntranceLabels.carpenterTent
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -106,7 +112,8 @@ export const HouseAreas = {
                         area: OverworldNames.goronCity,
                         entrance: HouseEntranceLabels.goronShop
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -121,7 +128,8 @@ export const HouseAreas = {
                         area: OverworldNames.graveyard,
                         entrance: HouseEntranceLabels.dampesHut
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -136,7 +144,8 @@ export const HouseAreas = {
                         area: OverworldNames.castleGrounds,
                         entrance: HouseEntranceLabels.childGreatFairysFountain
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -150,7 +159,8 @@ export const HouseAreas = {
                         area: OverworldNames.castleGrounds,
                         entrance: HouseEntranceLabels.adultGreatFairysFountain
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -165,7 +175,8 @@ export const HouseAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.skulltulaHouse
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -179,7 +190,8 @@ export const HouseAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.windmill
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -193,7 +205,8 @@ export const HouseAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.impasHouseFront
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.entrance]: {
                     type: AreaTypes.house,
@@ -201,7 +214,8 @@ export const HouseAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.impasHouseCow
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -215,7 +229,8 @@ export const HouseAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.bottomHouse
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -229,7 +244,8 @@ export const HouseAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.adultShootingGallery
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -243,7 +259,8 @@ export const HouseAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.bazaar
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -257,7 +274,8 @@ export const HouseAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.potionShopFront
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.backEntrance]: {
                     type: AreaTypes.house,
@@ -265,7 +283,8 @@ export const HouseAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.potionShopBack
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
             }
         },
@@ -279,7 +298,8 @@ export const HouseAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.grannysPotionShop
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -294,7 +314,8 @@ export const HouseAreas = {
                         area: OverworldNames.kokiriForest,
                         entrance: HouseEntranceLabels.knowItAllHouse
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -308,7 +329,8 @@ export const HouseAreas = {
                         area: OverworldNames.kokiriForest,
                         entrance: HouseEntranceLabels.midosHouse
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -322,7 +344,8 @@ export const HouseAreas = {
                         area: OverworldNames.kokiriForest,
                         entrance: HouseEntranceLabels.linksHouse
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -336,7 +359,8 @@ export const HouseAreas = {
                         area: OverworldNames.kokiriForest,
                         entrance: HouseEntranceLabels.sariasHouse
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -350,7 +374,8 @@ export const HouseAreas = {
                         area: OverworldNames.kokiriForest,
                         entrance: HouseEntranceLabels.twinsHouse
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -364,7 +389,8 @@ export const HouseAreas = {
                         area: OverworldNames.kokiriForest,
                         entrance: HouseEntranceLabels.kokiriShop
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -379,7 +405,8 @@ export const HouseAreas = {
                         area: OverworldNames.lakeHylia,
                         entrance: HouseNames.lakesideLaboratory
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -393,7 +420,8 @@ export const HouseAreas = {
                         area: OverworldNames.lakeHylia,
                         entrance: HouseEntranceLabels.fishing
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -408,7 +436,8 @@ export const HouseAreas = {
                         area: OverworldNames.lonLonRanch,
                         entrance: HouseEntranceLabels.talonsHouse
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -422,7 +451,8 @@ export const HouseAreas = {
                         area: OverworldNames.lonLonRanch,
                         entrance: HouseEntranceLabels.stable
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -436,7 +466,8 @@ export const HouseAreas = {
                         area: OverworldNames.lonLonRanch,
                         entrance: HouseEntranceLabels.lonLonTower
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -451,7 +482,8 @@ export const HouseAreas = {
                         area: OverworldNames.market,
                         entrance: HouseEntranceLabels.bazaar
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -465,7 +497,8 @@ export const HouseAreas = {
                         area: OverworldNames.market,
                         entrance: HouseEntranceLabels.potionShop
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -479,7 +512,8 @@ export const HouseAreas = {
                         area: OverworldNames.market,
                         entrance: HouseEntranceLabels.childShootingGallery
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -493,7 +527,8 @@ export const HouseAreas = {
                         area: OverworldNames.market,
                         entrance: HouseEntranceLabels.bombchuBowling
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -507,7 +542,8 @@ export const HouseAreas = {
                         area: OverworldNames.market,
                         entrance: HouseEntranceLabels.bombchuShop
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -521,7 +557,8 @@ export const HouseAreas = {
                         area: OverworldNames.market,
                         entrance: HouseEntranceLabels.treasureBoxShop
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -535,7 +572,8 @@ export const HouseAreas = {
                         area: OverworldNames.market,
                         entrance: HouseEntranceLabels.backAlleyHouse
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -549,7 +587,8 @@ export const HouseAreas = {
                         area: OverworldNames.market,
                         entrance: HouseEntranceLabels.maskShop
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -564,7 +603,8 @@ export const HouseAreas = {
                         area: OverworldNames.templeOfTimeEntrance,
                         entrance: HouseEntranceLabels.templeOfTime
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -579,7 +619,8 @@ export const HouseAreas = {
                         area: OverworldNames.zorasDomain,
                         entrance: HouseEntranceLabels.zoraShop
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -594,7 +635,8 @@ export const HouseAreas = {
                         area: OverworldNames.zorasFountain,
                         entrance: HouseEntranceLabels.greatFairysFountain
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         }

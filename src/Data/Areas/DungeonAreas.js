@@ -14,7 +14,8 @@ export const DungeonAreas = {
     //                 area: ,
     //                 entrance:
     //             },
-    //             leadsTo: null
+    //             leadsTo: null,
+    //             comesFrom: []
     //         }
     //     }
     // },
@@ -30,7 +31,8 @@ export const DungeonAreas = {
                         area: OverworldNames.kokiriForest,
                         entrance: DungeonNames.dekuTree
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -44,7 +46,8 @@ export const DungeonAreas = {
                         area: OverworldNames.deathMountainTrail,
                         entrance: DungeonNames.dodongosCavern
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -58,7 +61,8 @@ export const DungeonAreas = {
                         area: OverworldNames.zorasFountain,
                         entrance: DungeonNames.jabuJabusBelly
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -72,7 +76,8 @@ export const DungeonAreas = {
                         area: OverworldNames.sacredForestMeadow,
                         entrance: DungeonNames.forestTemple
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -86,7 +91,8 @@ export const DungeonAreas = {
                         area: OverworldNames.deathMountainCrater,
                         entrance: DungeonNames.fireTemple
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -100,7 +106,8 @@ export const DungeonAreas = {
                         area: OverworldNames.zorasFountain,
                         entrance: DungeonNames.iceCavern
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -114,7 +121,8 @@ export const DungeonAreas = {
                         area: OverworldNames.lakeHylia,
                         entrance: DungeonNames.waterTemple
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -128,7 +136,8 @@ export const DungeonAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: DungeonNames.bottomOfTheWell
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -142,7 +151,8 @@ export const DungeonAreas = {
                         area: OverworldNames.graveyard,
                         entrance: DungeonNames.shadowTemple
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -156,7 +166,8 @@ export const DungeonAreas = {
                         area: OverworldNames.gerudoFortress,
                         entrance: DungeonNames.gerudoTrainingGrounds
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -170,7 +181,8 @@ export const DungeonAreas = {
                         area: OverworldNames.desertColossus,
                         entrance: DungeonNames.spiritTemple
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [DungeonEntranceLabels.childSideHand]: {
                     type: AreaTypes.dungeon,
@@ -182,7 +194,8 @@ export const DungeonAreas = {
                     leadsTo: {
                         area: OverworldNames.desertColossus,
                         entrance: DungeonEntranceLabels.childSideHand
-                    }
+                    },
+                    comesFrom: []
                 },
                 [DungeonEntranceLabels.adultSideHand]: {
                     type: AreaTypes.dungeon,
@@ -194,7 +207,8 @@ export const DungeonAreas = {
                     leadsTo: {
                         area: OverworldNames.desertColossus,
                         entrance: DungeonEntranceLabels.adultSideHand
-                    }
+                    },
+                    comesFrom: []
                 }
             }
         }

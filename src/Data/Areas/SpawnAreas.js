@@ -15,7 +15,8 @@ export const SpawnAreas = {
     //                 area: ,
     //                 entrance:
     //             },
-    //             leadsTo: null
+    //             leadsTo: null,
+    //             comesFrom: []
     //         }
     //     }
     // },
@@ -32,7 +33,8 @@ export const SpawnAreas = {
                         area: HouseNames.linksHouse,
                         entrance: SpawnEntranceLabels.linksBed
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -47,7 +49,8 @@ export const SpawnAreas = {
                         area: HouseNames.templeOfTime,
                         entrance: SpawnEntranceLabels.warpSongPedestal
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         }

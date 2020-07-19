@@ -50,7 +50,7 @@ export default function Menu({ showRouteFinder, overworldOnly, trackGaEvent, ...
                             <a
                                 href="#settings"
                                 className={"nav-bottom-item " + (showSettings ? "has-text-success" : "has-text-white")}
-                                onClick={() => setShowSettings(!showSettings)}
+                                onMouseDown={!showSettings ? () => setShowSettings(true) : null}
                             >
                                 Settings
                             </a>

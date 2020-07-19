@@ -4,6 +4,7 @@ import { AreaTypes } from "../Data/Types/AreaTypes";
 import { useContext } from "react";
 import { cloneDeep } from "lodash";
 import {HouseNames} from "../Data/Names/HouseNames";
+import {HouseEntranceLabels} from "../Data/Names/HouseEntranceLabels";
 
 export const useTrackerContext = () => {
     const { areas, setAreas } = useContext(AreaContext);
@@ -23,9 +24,8 @@ export const useTrackerContext = () => {
         } = to;
         updatedAreas[fromArea].entrances[fromEntrance].leadsTo =
             { area: toArea, entrance: toEntrance };
-        if (config.decoupleEntrances.value) {
-            updatedAreas[toArea].entrances[toEntrance].comesFrom =
-                `${fromArea}: ${fromEntrance}`;
+        if (entrancesAreDecoupled()) {
+            updatedAreas[toArea].entrances[toEntrance].comesFrom.push(`${fromArea}: ${fromEntrance}`);
         } else {
             if (!updatedAreas[fromArea].entrances[fromEntrance].isOneWay) {
                 updatedAreas[toArea].entrances[toEntrance].leadsTo =
@@ -48,8 +48,11 @@ export const useTrackerContext = () => {
             entrance: toEntrance
         } = to;
         updatedAreas[fromArea].entrances[fromEntrance].leadsTo = null;
-        if (config.decoupleEntrances.value) {
-            delete updatedAreas[toArea].entrances[toEntrance].comesFrom
+        if (entrancesAreDecoupled()) {
+            updatedAreas[toArea].entrances[toEntrance].comesFrom =
+                updatedAreas[toArea].entrances[toEntrance].comesFrom.filter((comesFrom) => {
+                    return comesFrom !== `${fromArea}: ${fromEntrance}`;
+                });
         } else {
             if (!updatedAreas[fromArea].entrances[fromEntrance].isOneWay) {
                 updatedAreas[toArea].entrances[toEntrance].leadsTo = null;
@@ -64,18 +67,6 @@ export const useTrackerContext = () => {
         setConfig({...config, [option]: opt});
     };
 
-    // const getAvailableAreaTypes = () => {
-    //     const availableSections = {};
-    //     const decouple = config.decoupleEntrances.value;
-    //     availableSections[AreaTypes.overworld] = areas[AreaTypes.overworld];
-    //     if (decouple && config.shuffleDungeons.value) availableSections[AreaTypes.dungeon] = areas[AreaTypes.dungeon];
-    //     if (decouple && config.shuffleHouses.value) availableSections[AreaTypes.house] = areas[AreaTypes.house];
-    //     if (decouple && config.shuffleGrottos.value) availableSections[AreaTypes.grotto] = areas[AreaTypes.grotto];
-    //     if (config.randomizeSongs.value) availableSections[AreaTypes.warpSong] = areas[AreaTypes.warpSong];
-    //     if (config.randomizeSpawns.value) availableSections[AreaTypes.spawn] = areas[AreaTypes.spawn];
-    //     return availableSections;
-    // };
-
     const typeIsRandomized = type => {
           return {
               [AreaTypes.warpSong]: config.randomizeSongs.value,
@@ -87,43 +78,72 @@ export const useTrackerContext = () => {
           }[type];
     };
 
-    const poolsAreShuffled = () => config.mixEntrancePools.value;
+    const poolsAreMixed = () => config.mixEntrancePools.value;
+    const entrancesAreDecoupled = () => config.decoupleEntrances.value;
+    const owlsAreRandomized = () => config.randomizeOwl.value;
+    const songsAreRandomized = () => config.randomizeSongs.value;
+    const spawnsAreRandomized = () => config.randomizeSpawns.value;
+    const overworldsAreRandomized = () => config.shuffleOverworld.value;
+    const dungeonsAreRandomized = () => config.shuffleDungeons.value;
+    const housesAreRandomized = () => config.shuffleHouses.value;
+    const grottosAreRandomized = () => config.shuffleGrottos.value;
+    const typesThatShouldBeHiddenWhenEntrancesAreNotDecoupled = [
+        AreaTypes.grotto,
+        AreaTypes.house,
+        AreaTypes.dungeon
+    ];
 
     const typeShouldBeDisplayed = ({ type, hideUnlessDecoupled }) => {
-        // console.log(type)
-        if (hideUnlessDecoupled && !config.decoupleEntrances.value) return false;
-        if (type === AreaTypes.kaeporaGaebora && !config.randomizeOwl.value) return false;
-        if (type === AreaTypes.warpSong && !config.randomizeSongs.value) return false;
-        if (type === AreaTypes.spawn && !config.randomizeSpawns.value) return false;
-        if (type === AreaTypes.overworld && !config.shuffleOverworld.value) return false;
-        if (type === AreaTypes.dungeon && !config.shuffleDungeons.value) return false;
-        if (type === AreaTypes.house && !config.shuffleHouses.value) return false;
-        if (type === AreaTypes.grotto && !config.shuffleGrottos.value) return false;
+        if (hideUnlessDecoupled && !entrancesAreDecoupled()) return false;
+        if (type === AreaTypes.kaeporaGaebora && !owlsAreRandomized()) return false;
+        if (type === AreaTypes.warpSong && !songsAreRandomized()) return false;
+        if (type === AreaTypes.spawn && !spawnsAreRandomized()) return false;
+        if (type === AreaTypes.overworld && !overworldsAreRandomized()) return false;
+        if (type === AreaTypes.dungeon && !dungeonsAreRandomized()) return false;
+        if (type === AreaTypes.house && !housesAreRandomized()) return false;
+        if (type === AreaTypes.grotto && !grottosAreRandomized()) return false;
         return true;
     };
 
-    const getSectionTypesToDisplay = () => {
+    const getSectionTypesThatAreShuffled = () => {
         const types = [];
         types.push(AreaTypes.overworld);
-        if (config.randomizeSongs.value) types.push(AreaTypes.warpSong);
-        if (config.randomizeSpawns.value) types.push(AreaTypes.spawn);
-        if (config.shuffleDungeons.value) types.push(AreaTypes.dungeon);
-        if (config.shuffleHouses.value) types.push(AreaTypes.house);
-        if (config.shuffleGrottos.value) types.push(AreaTypes.grotto);
+        if (songsAreRandomized()) types.push(AreaTypes.warpSong);
+        if (spawnsAreRandomized()) types.push(AreaTypes.spawn);
+        if (dungeonsAreRandomized()) types.push(AreaTypes.dungeon);
+        if (housesAreRandomized()) types.push(AreaTypes.house);
+        if (grottosAreRandomized()) types.push(AreaTypes.grotto);
         return types;
     };
 
-    const shouldAreaBeDisplayedAsOptionForType = (sourceType, destinationType) => {
-        const alwaysIncludeAll = [AreaTypes.spawn, AreaTypes.warpSong, AreaTypes.kaeporaGaebora];
-        // console.log((typeIsRandomized(destinationType) && config.mixEntrancePools.value),
-        //     alwaysIncludeAll.includes(sourceType),
-        //     sourceType === destinationType)
-        // spawns, warps, and owls are never selectable locations
-        if (alwaysIncludeAll.includes(destinationType)) return false;
-        if (alwaysIncludeAll.includes(sourceType) && !typeIsRandomized(sourceType)) return false;
-        if (sourceType === destinationType) return true;
-        if (typeIsRandomized(destinationType) && poolsAreShuffled()) return true;
-        return false;
+    const shouldEntranceBeDisplayedAsOptionForType = (typeForSelectOptions, entranceTypeBeingChecked) => {
+        const typesThatAlwaysIncludeAllEntrances = [AreaTypes.spawn, AreaTypes.warpSong, AreaTypes.kaeporaGaebora];
+
+        switch (entranceTypeBeingChecked) {
+            case AreaTypes.overworld:
+            case AreaTypes.dungeon:
+            case AreaTypes.grotto:
+            case AreaTypes.house: {
+                if (
+                    typeIsRandomized(entranceTypeBeingChecked) &&
+                    (
+                        typeForSelectOptions === entranceTypeBeingChecked ||
+                        poolsAreMixed() ||
+                        typesThatAlwaysIncludeAllEntrances.includes(typeForSelectOptions)
+                    )
+                ) {
+                    return true;
+                }
+                return false;
+            }
+            // these should never be shown as 'to' options
+            case AreaTypes.kaeporaGaebora:
+            case AreaTypes.warpSong:
+            case AreaTypes.spawn:
+            default: {
+                return false;
+            }
+        }
     };
 
     const getTrackerSectionsAndTypePossibilities = () => {
@@ -132,44 +152,45 @@ export const useTrackerContext = () => {
         // Used for tracking what sections should displayed for a type
         const possibleEntrances = {};
         // Get the types that should be shown
-        const shownTypes = getSectionTypesToDisplay();
-        for (const type of shownTypes) {
+        const shuffledTypes = getSectionTypesThatAreShuffled();
+        for (const type of shuffledTypes) {
+            possibleEntrances[type] = {};
+            if (!typesThatShouldBeHiddenWhenEntrancesAreNotDecoupled.includes(type) || !entrancesAreDecoupled()) {
+                continue;
+            }
             trackerSections[type] = {};
-            possibleEntrances[type] = {}; // key of type, with an object of keys types
         }
 
-        // Loop over keys/objects of master areas state
         Object.entries(areas).map(([areaName, area]) => {
-            // type of area we're looking at
             const areaType = area.type;
-            // is this area type going to be shown?
-            if (shownTypes.includes(areaType)) {
-                // loop over the areas entrances to determine what should be displayed
-                Object.entries(area.entrances).map(([entranceName, entrance]) => {
-                    const entranceType = entrance.type;
-                    // should it be shown in tracker layout
-                    if (typeIsRandomized(entranceType)) {
-                        if (trackerSections[areaType][areaName] === undefined) {
-                            trackerSections[areaType][areaName] = cloneDeep(area);
-                            trackerSections[areaType][areaName].entrances = {};
+            Object.entries(area.entrances).map(([entranceName, entrance]) => {
+                const entranceType = entrance.type;
+                // should this entrance be shown in tracker layout
+                // if (typeIsRandomized(entranceType) && !entrance.isImmutable) {
+                if (trackerSections[areaType] === undefined) {
+                    trackerSections[areaType] = {};
+                }
+                if (trackerSections[areaType][areaName] === undefined) {
+                    trackerSections[areaType][areaName] = cloneDeep(area);
+                    trackerSections[areaType][areaName].entrances = {};
+                }
+                trackerSections[areaType][areaName].entrances[entranceName] = entrance;
+                // }
+                // should it be shown as option for types available
+                for (const shuffledType of shuffledTypes) {
+                    if (shouldEntranceBeDisplayedAsOptionForType(shuffledType, entranceType)) {
+                        if (entrance.leadsTo !== null) continue;
+                        if (possibleEntrances[shuffledType][entranceType] === undefined) {
+                            possibleEntrances[shuffledType][entranceType] = {};
                         }
-                        trackerSections[areaType][areaName].entrances[entranceName] = entrance;
-                        // should it be shown as option for types available
-                        for (const type of shownTypes) {
-                            // console.warn(areaName, entranceName, type)
-                            if (shouldAreaBeDisplayedAsOptionForType(type, areaType)) {
-                                // console.error('yep')
-                                if (possibleEntrances[type][areaType] === undefined) possibleEntrances[type][areaType] = {};
-                                if (possibleEntrances[type][areaType][areaName] === undefined) {
-                                    possibleEntrances[type][areaType][areaName] = cloneDeep(area);
-                                    possibleEntrances[type][areaType][areaName].entrances = {};
-                                }
-                                possibleEntrances[type][areaType][areaName].entrances[entranceName] = entrance;
-                            }
+                        if (possibleEntrances[shuffledType][entranceType][areaName] === undefined) {
+                            possibleEntrances[shuffledType][entranceType][areaName] = {};
+                            possibleEntrances[shuffledType][entranceType][areaName].entrances = {};
                         }
+                        possibleEntrances[shuffledType][entranceType][areaName].entrances[entranceName] = entrance;
                     }
-                });
-            }
+                }
+            });
             return null;
         });
         return { trackerSections, possibleEntrances };
@@ -182,7 +203,7 @@ export const useTrackerContext = () => {
         resetEntrance,
         updateConfigOption,
         typeShouldBeDisplayed,
-        getSectionTypesToDisplay,
+        getSectionTypesToDisplay: getSectionTypesThatAreShuffled,
         // getPossibleEntrancesForAvailableTypes,
         getTrackerSectionsAndTypePossibilities
     };

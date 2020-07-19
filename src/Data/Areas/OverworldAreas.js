@@ -20,7 +20,8 @@ export const OverworldAreas = {
     //                 area: ,
     //                 entrance:
     //             },
-    //             leadsTo: null
+    //             leadsTo: null,
+    //             comesFrom: []
     //         }
     //     }
     // },
@@ -36,7 +37,8 @@ export const OverworldAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: OverworldNames.castleTownEntrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.market]: {
                     type: AreaTypes.overworld,
@@ -44,7 +46,8 @@ export const OverworldAreas = {
                         area: OverworldNames.market,
                         entrance: OverworldNames.castleTownEntrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.guardHutPoeShop]: {
                     type: AreaTypes.house,
@@ -52,7 +55,8 @@ export const OverworldAreas = {
                         area: HouseNames.guardHutPoeShop,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -66,7 +70,8 @@ export const OverworldAreas = {
                         area: OverworldNames.deathMountainTrail,
                         entrance: OverworldNames.deathMountainCrater
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.goronCity]: {
                     type: AreaTypes.overworld,
@@ -74,7 +79,8 @@ export const OverworldAreas = {
                         area: OverworldNames.goronCity,
                         entrance: OverworldNames.deathMountainCrater
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.boulderNearDeathMountainTrail]: {
                     type: AreaTypes.grotto,
@@ -82,7 +88,8 @@ export const OverworldAreas = {
                         area: GrottoNames.genericGrottoOne,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.boulderNearGoronCity]: {
                     type: AreaTypes.grotto,
@@ -90,7 +97,8 @@ export const OverworldAreas = {
                         area: GrottoNames.threeScrubsOne,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.greatFairysFountain]: {
                     type: AreaTypes.house,
@@ -98,7 +106,8 @@ export const OverworldAreas = {
                         area: HouseNames.greatFairysFountainOne,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [DungeonNames.fireTemple]: {
                     type: AreaTypes.dungeon,
@@ -106,7 +115,8 @@ export const OverworldAreas = {
                         area: DungeonNames.fireTemple,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -120,7 +130,8 @@ export const OverworldAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: OverworldNames.deathMountainTrail
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [DungeonNames.dodongosCavern]: {
                     type: AreaTypes.dungeon,
@@ -128,7 +139,8 @@ export const OverworldAreas = {
                         area: DungeonNames.dodongosCavern,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.goronCity]: {
                     type: AreaTypes.overworld,
@@ -136,7 +148,8 @@ export const OverworldAreas = {
                         area: OverworldNames.goronCity,
                         entrance: OverworldNames.deathMountainTrail
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.songOfStormsGrotto]: {
                     type: AreaTypes.grotto,
@@ -144,7 +157,8 @@ export const OverworldAreas = {
                         area: GrottoNames.genericGrottoTwo,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.cowGrotto]: {
                     type: AreaTypes.grotto,
@@ -152,7 +166,8 @@ export const OverworldAreas = {
                         area: GrottoNames.cowGrotto,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.greatFairysFountain]: {
                     type: AreaTypes.house,
@@ -160,7 +175,8 @@ export const OverworldAreas = {
                         area: HouseNames.greatFairysFountainTwo,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.deathMountainCrater]: {
                     type: AreaTypes.overworld,
@@ -168,7 +184,8 @@ export const OverworldAreas = {
                         area: OverworldNames.deathMountainCrater,
                         entrance: OverworldNames.deathMountainTrail
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [KaeporaNames.kaeporaGaebora]: {
                     type: AreaTypes.kaeporaGaebora,
@@ -177,7 +194,8 @@ export const OverworldAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: HouseEntranceLabels.impasHouseRoof
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -191,7 +209,8 @@ export const OverworldAreas = {
                         area: GrottoNames.twoScrubsOne,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.greatFairysFountain]: {
                     type: AreaTypes.house,
@@ -199,7 +218,8 @@ export const OverworldAreas = {
                         area: HouseNames.greatFairysFountainThree,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [DungeonNames.spiritTemple]: {
                     type: AreaTypes.dungeon,
@@ -207,7 +227,8 @@ export const OverworldAreas = {
                         area: DungeonNames.spiritTemple,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.hauntedWasteland]: {
                     type: AreaTypes.overworld,
@@ -215,7 +236,8 @@ export const OverworldAreas = {
                         area: OverworldNames.hauntedWasteland,
                         entrance: OverworldNames.desertColossus
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -229,7 +251,8 @@ export const OverworldAreas = {
                         area: DungeonNames.gerudoTrainingGrounds,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.gerudoValley]: {
                     type: AreaTypes.overworld,
@@ -237,7 +260,8 @@ export const OverworldAreas = {
                         area: OverworldNames.gerudoValley,
                         entrance: OverworldNames.gerudoFortress
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.hauntedWasteland]: {
                     type: AreaTypes.overworld,
@@ -245,7 +269,8 @@ export const OverworldAreas = {
                         area: OverworldNames.hauntedWasteland,
                         entrance: OverworldNames.gerudoFortress
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.songOfStormsGrotto]: {
                     type: AreaTypes.grotto,
@@ -253,7 +278,8 @@ export const OverworldAreas = {
                         area: GrottoNames.fairyFountainOne,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -267,7 +293,8 @@ export const OverworldAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: OverworldNames.gerudoValley
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.gerudoFortress]: {
                     type: AreaTypes.overworld,
@@ -275,7 +302,8 @@ export const OverworldAreas = {
                         area: OverworldNames.gerudoFortress,
                         entrance: OverworldNames.gerudoValley
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.lakeHylia]: {
                     type: AreaTypes.overworld,
@@ -285,7 +313,8 @@ export const OverworldAreas = {
                         area: OverworldNames.lakeHylia,
                         entrance: OverworldNames.gerudoValley
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.boulderOnLedge]: {
                     type: AreaTypes.grotto,
@@ -293,7 +322,8 @@ export const OverworldAreas = {
                         area: GrottoNames.divingRupeeGrotto,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.songOfStormsGrotto]: {
                     type: AreaTypes.grotto,
@@ -301,7 +331,8 @@ export const OverworldAreas = {
                         area: GrottoNames.twoScrubsTwo,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.carpenterTent]: {
                     type: AreaTypes.house,
@@ -309,7 +340,8 @@ export const OverworldAreas = {
                         area: HouseNames.carpenterTent,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -323,7 +355,8 @@ export const OverworldAreas = {
                         area: OverworldNames.deathMountainTrail,
                         entrance: OverworldNames.goronCity
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.deathMountainCrater]: {
                     type: AreaTypes.overworld,
@@ -331,7 +364,8 @@ export const OverworldAreas = {
                         area: OverworldNames.deathMountainCrater,
                         entrance: OverworldNames.goronCity
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.lostWoods]: {
                     type: AreaTypes.overworld,
@@ -339,7 +373,8 @@ export const OverworldAreas = {
                         area: OverworldNames.lostWoods,
                         entrance: OverworldNames.goronCity
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.goronShop]: {
                     type: AreaTypes.house,
@@ -347,7 +382,8 @@ export const OverworldAreas = {
                         area: HouseNames.goronShop,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.openGrotto]: {
                     type: AreaTypes.grotto,
@@ -355,7 +391,8 @@ export const OverworldAreas = {
                         area: GrottoNames.threeScrubsTwo,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -370,6 +407,7 @@ export const OverworldAreas = {
                         entrance: OverworldNames.graveyard
                     },
                     leadsTo: null,
+                    comesFrom: [],
                 },
                 [DungeonNames.shadowTemple]: {
                     type: AreaTypes.dungeon,
@@ -377,7 +415,8 @@ export const OverworldAreas = {
                         area: DungeonNames.shadowTemple,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.dampesHut]: {
                     type: AreaTypes.house,
@@ -385,7 +424,8 @@ export const OverworldAreas = {
                         area: HouseNames.dampesHut,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.composersGrave]: {
                     type: AreaTypes.grotto,
@@ -393,7 +433,8 @@ export const OverworldAreas = {
                         area: GrottoNames.composersGrave,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.shieldGrave]: {
                     type: AreaTypes.grotto,
@@ -401,7 +442,8 @@ export const OverworldAreas = {
                         area: GrottoNames.shieldGrave,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.redeadGrave]: {
                     type: AreaTypes.grotto,
@@ -409,7 +451,8 @@ export const OverworldAreas = {
                         area: GrottoNames.redeadGrave,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.dampesGrave]: {
                     type: AreaTypes.grotto,
@@ -417,7 +460,8 @@ export const OverworldAreas = {
                         area: GrottoNames.dampesGrave,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -431,7 +475,8 @@ export const OverworldAreas = {
                         area: OverworldNames.gerudoFortress,
                         entrance: OverworldNames.hauntedWasteland
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.desertColossus]: {
                     type: AreaTypes.overworld,
@@ -439,7 +484,8 @@ export const OverworldAreas = {
                         area: OverworldNames.desertColossus,
                         entrance: OverworldNames.hauntedWasteland
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -453,7 +499,8 @@ export const OverworldAreas = {
                         area: HouseNames.greatFairysFountainFour,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.adultGreatFairysFountain]: {
                     type: AreaTypes.house,
@@ -461,7 +508,8 @@ export const OverworldAreas = {
                         area: HouseNames.greatFairysFountainFive,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.market]: {
                     type: AreaTypes.overworld,
@@ -469,7 +517,8 @@ export const OverworldAreas = {
                         area: OverworldNames.market,
                         entrance: OverworldNames.castleGrounds
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.songOfStormsGrotto]: {
                     type: AreaTypes.grotto,
@@ -477,7 +526,8 @@ export const OverworldAreas = {
                         area: GrottoNames.skulltulaGossipStoneGrotto,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -491,7 +541,8 @@ export const OverworldAreas = {
                         area: OverworldNames.lostWoods,
                         entrance: OverworldEntranceLabels.lostWoodsBridgeFromHyrule
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.zorasRiver]: {
                     type: AreaTypes.overworld,
@@ -499,7 +550,8 @@ export const OverworldAreas = {
                         area: OverworldNames.zorasRiver,
                         entrance: OverworldNames.hyruleField
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.kakarikoVillage]: {
                     type: AreaTypes.overworld,
@@ -507,7 +559,8 @@ export const OverworldAreas = {
                         area: OverworldNames.kakarikoVillage,
                         entrance: OverworldNames.hyruleField
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.treeNearKakarikoGrotto]: {
                     type: AreaTypes.grotto,
@@ -515,7 +568,8 @@ export const OverworldAreas = {
                         area: GrottoNames.skulltulaGrotto,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.castleTownEntrance]: {
                     type: AreaTypes.overworld,
@@ -523,7 +577,8 @@ export const OverworldAreas = {
                         area: OverworldNames.castleTownEntrance,
                         entrance: OverworldNames.hyruleField
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.boulderNearCastleTown]: {
                     type: AreaTypes.grotto,
@@ -531,7 +586,8 @@ export const OverworldAreas = {
                         area: GrottoNames.genericGrottoThree,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.lonLonRanch]: {
                     type: AreaTypes.overworld,
@@ -539,7 +595,8 @@ export const OverworldAreas = {
                         area: OverworldNames.lonLonRanch,
                         entrance: OverworldNames.hyruleField
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.boulderAcrossRiver]: {
                     type: AreaTypes.grotto,
@@ -547,7 +604,8 @@ export const OverworldAreas = {
                         area: GrottoNames.fairyFountainTwo,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.tektiteGrotto]: {
                     type: AreaTypes.grotto,
@@ -555,7 +613,8 @@ export const OverworldAreas = {
                         area: GrottoNames.tektiteGrotto,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.boulderNearGerudoValley]: {
                     type: AreaTypes.grotto,
@@ -563,7 +622,8 @@ export const OverworldAreas = {
                         area: GrottoNames.skulltulaGossipStoneCowGrotto,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.gerudoValley]: {
                     type: AreaTypes.overworld,
@@ -571,7 +631,8 @@ export const OverworldAreas = {
                         area: OverworldNames.gerudoValley,
                         entrance: OverworldNames.hyruleField
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.lakeHylia]: {
                     type: AreaTypes.overworld,
@@ -579,7 +640,8 @@ export const OverworldAreas = {
                         area: OverworldNames.lakeHylia,
                         entrance: OverworldNames.hyruleField
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.nearLakeInsideFenceGrotto]: {
                     type: AreaTypes.grotto,
@@ -587,7 +649,8 @@ export const OverworldAreas = {
                         area: GrottoNames.oneScrub,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.openGrotto]: {
                     type: AreaTypes.grotto,
@@ -595,7 +658,8 @@ export const OverworldAreas = {
                         area: GrottoNames.genericGrottoFour,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.boulderInTrees]: {
                     type: AreaTypes.grotto,
@@ -603,7 +667,8 @@ export const OverworldAreas = {
                         area: GrottoNames.genericGrottoFive,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -617,7 +682,8 @@ export const OverworldAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: OverworldNames.kakarikoVillage
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.deathMountainTrail]: {
                     type: AreaTypes.overworld,
@@ -625,7 +691,8 @@ export const OverworldAreas = {
                         area: OverworldNames.deathMountainTrail,
                         entrance: OverworldNames.kakarikoVillage
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.graveyard]: {
                     type: AreaTypes.overworld,
@@ -633,7 +700,8 @@ export const OverworldAreas = {
                         area: OverworldNames.graveyard,
                         entrance: OverworldNames.kakarikoVillage
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [DungeonNames.bottomOfTheWell]: {
                     type: AreaTypes.dungeon,
@@ -641,7 +709,8 @@ export const OverworldAreas = {
                         area: DungeonNames.bottomOfTheWell,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.skulltulaHouse]: {
                     type: AreaTypes.house,
@@ -649,7 +718,8 @@ export const OverworldAreas = {
                         area: HouseNames.skulltulaHouse,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.windmill]: {
                     type: AreaTypes.house,
@@ -657,7 +727,8 @@ export const OverworldAreas = {
                         area: HouseNames.windmill,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.impasHouseFront]: {
                     type: AreaTypes.house,
@@ -665,7 +736,8 @@ export const OverworldAreas = {
                         area: HouseNames.impasHouse,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.impasHouseCow]: {
                     type: AreaTypes.house,
@@ -673,7 +745,8 @@ export const OverworldAreas = {
                         area: HouseNames.impasHouse,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.bottomHouse]: {
                     type: AreaTypes.house,
@@ -681,7 +754,8 @@ export const OverworldAreas = {
                         area: HouseNames.houseWithTalon,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.adultShootingGallery]: {
                     type: AreaTypes.house,
@@ -689,7 +763,8 @@ export const OverworldAreas = {
                         area: HouseNames.adultShootingGallery,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.bazaar]: {
                     type: AreaTypes.house,
@@ -697,7 +772,8 @@ export const OverworldAreas = {
                         area: HouseNames.bazaarOne,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.potionShopBack]: {
                     type: AreaTypes.house,
@@ -705,7 +781,8 @@ export const OverworldAreas = {
                         area: HouseNames.potionShopWithBack,
                         entrance: HouseEntranceLabels.backEntrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.potionShopFront]: {
                     type: AreaTypes.house,
@@ -713,7 +790,8 @@ export const OverworldAreas = {
                         area: HouseNames.potionShopWithBack,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.grannysPotionShop]: {
                     type: AreaTypes.house,
@@ -721,7 +799,8 @@ export const OverworldAreas = {
                         area: HouseNames.grannysPotionShop,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.openGrotto]: {
                     type: AreaTypes.grotto,
@@ -729,7 +808,8 @@ export const OverworldAreas = {
                         area: GrottoNames.genericGrottoSix,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.bombGrotto]: {
                     type: AreaTypes.grotto,
@@ -737,7 +817,8 @@ export const OverworldAreas = {
                         area: GrottoNames.redeadGrotto,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -751,7 +832,8 @@ export const OverworldAreas = {
                         area: OverworldNames.lostWoods,
                         entrance: OverworldEntranceLabels.lostWoodsBridgeFromKokiri
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.lostWoods]: {
                     type: AreaTypes.overworld,
@@ -759,7 +841,8 @@ export const OverworldAreas = {
                         area: OverworldNames.lostWoods,
                         entrance: OverworldNames.kokiriForest
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [DungeonNames.dekuTree]: {
                     type: AreaTypes.dungeon,
@@ -767,7 +850,8 @@ export const OverworldAreas = {
                         area: DungeonNames.dekuTree,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.knowItAllHouse]: {
                     type: AreaTypes.house,
@@ -775,7 +859,8 @@ export const OverworldAreas = {
                         area: HouseNames.knowItAllHouse,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.midosHouse]: {
                     type: AreaTypes.house,
@@ -783,7 +868,8 @@ export const OverworldAreas = {
                         area: HouseNames.midosHouse,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.linksHouse]: {
                     type: AreaTypes.house,
@@ -791,7 +877,8 @@ export const OverworldAreas = {
                         area: HouseNames.linksHouse,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.sariasHouse]: {
                     type: AreaTypes.house,
@@ -799,7 +886,8 @@ export const OverworldAreas = {
                         area: HouseNames.sariasHouse,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.twinsHouse]: {
                     type: AreaTypes.house,
@@ -807,7 +895,8 @@ export const OverworldAreas = {
                         area: HouseNames.twinsHouse,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.kokiriShop]: {
                     type: AreaTypes.house,
@@ -815,7 +904,8 @@ export const OverworldAreas = {
                         area: HouseNames.kokiriShop,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.songOfStormsGrotto]: {
                     type: AreaTypes.grotto,
@@ -823,7 +913,8 @@ export const OverworldAreas = {
                         area: GrottoNames.genericGrottoSeven,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -837,7 +928,8 @@ export const OverworldAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: OverworldNames.lakeHylia
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.zorasDomain]: {
                     type: AreaTypes.overworld,
@@ -845,7 +937,8 @@ export const OverworldAreas = {
                         area: OverworldNames.zorasDomain,
                         entrance: OverworldNames.lakeHylia
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [KaeporaNames.kaeporaGaebora]: {
                     type: AreaTypes.kaeporaGaebora,
@@ -854,7 +947,8 @@ export const OverworldAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: OverworldNames.castleTownEntrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.grave]: {
                     type: AreaTypes.grotto,
@@ -862,7 +956,8 @@ export const OverworldAreas = {
                         area: GrottoNames.threeScrubsThree,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.lakesideLaboratory]: {
                     type: AreaTypes.house,
@@ -870,7 +965,8 @@ export const OverworldAreas = {
                         area: HouseNames.lakesideLaboratory,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.fishing]: {
                     type: AreaTypes.house,
@@ -878,7 +974,8 @@ export const OverworldAreas = {
                         area: HouseNames.fishing,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [DungeonNames.waterTemple]: {
                     type: AreaTypes.dungeon,
@@ -886,7 +983,8 @@ export const OverworldAreas = {
                         area: DungeonNames.waterTemple,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -900,7 +998,8 @@ export const OverworldAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: OverworldNames.lonLonRanch
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.talonsHouse]: {
                     type: AreaTypes.house,
@@ -908,7 +1007,8 @@ export const OverworldAreas = {
                         area: HouseNames.talonsHouse,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.stable]: {
                     type: AreaTypes.house,
@@ -916,7 +1016,8 @@ export const OverworldAreas = {
                         area: HouseNames.stable,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.lonLonTower]: {
                     type: AreaTypes.house,
@@ -924,7 +1025,8 @@ export const OverworldAreas = {
                         area: HouseNames.lonLonTower,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.openGrotto]: {
                     type: AreaTypes.grotto,
@@ -932,7 +1034,8 @@ export const OverworldAreas = {
                         area: GrottoNames.threeScrubsFour,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -946,7 +1049,8 @@ export const OverworldAreas = {
                         area: OverworldNames.kokiriForest,
                         entrance: OverworldNames.lostWoods
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.goronCity]: {
                     type: AreaTypes.overworld,
@@ -954,7 +1058,8 @@ export const OverworldAreas = {
                         area: OverworldNames.goronCity,
                         entrance: OverworldNames.lostWoods
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.sacredForestMeadow]: {
                     type: AreaTypes.overworld,
@@ -962,7 +1067,8 @@ export const OverworldAreas = {
                         area: OverworldNames.sacredForestMeadow,
                         entrance: OverworldNames.lostWoods
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.zorasRiver]: {
                     type: AreaTypes.overworld,
@@ -970,7 +1076,8 @@ export const OverworldAreas = {
                         area: OverworldNames.zorasRiver,
                         entrance: OverworldNames.lostWoods
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.forestStage]: {
                     type: AreaTypes.grotto,
@@ -978,7 +1085,8 @@ export const OverworldAreas = {
                         area: GrottoNames.forestStage,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.boulderNearGoronCity]: {
                     type: AreaTypes.grotto,
@@ -986,7 +1094,8 @@ export const OverworldAreas = {
                         area: GrottoNames.genericGrottoEight,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.boulderNearSacredForestMeadow]: {
                     type: AreaTypes.grotto,
@@ -994,7 +1103,8 @@ export const OverworldAreas = {
                         area: GrottoNames.twoScrubsThree,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 // bridge
                 [OverworldEntranceLabels.kokiriForestFromBridge]: {
@@ -1003,7 +1113,8 @@ export const OverworldAreas = {
                         area: OverworldNames.kokiriForest,
                         entrance: OverworldEntranceLabels.kokiriForestFromBridge
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldEntranceLabels.hyruleFieldFromBridge]: {
                     type: AreaTypes.overworld,
@@ -1011,7 +1122,8 @@ export const OverworldAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: OverworldEntranceLabels.hyruleFieldFromBridge
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -1025,7 +1137,8 @@ export const OverworldAreas = {
                         area: OverworldNames.castleTownEntrance,
                         entrance: OverworldNames.market
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.templeOfTimeEntrance]: {
                     type: AreaTypes.overworld,
@@ -1033,7 +1146,8 @@ export const OverworldAreas = {
                         area: OverworldNames.templeOfTimeEntrance,
                         entrance: OverworldNames.market
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.castleGrounds]: {
                     type: AreaTypes.overworld,
@@ -1041,7 +1155,8 @@ export const OverworldAreas = {
                         area: OverworldNames.castleGrounds,
                         entrance: OverworldNames.market
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.bazaar]: {
                     type: AreaTypes.house,
@@ -1049,7 +1164,8 @@ export const OverworldAreas = {
                         area: HouseNames.bazaarTwo,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.potionShop]: {
                     type: AreaTypes.house,
@@ -1057,7 +1173,8 @@ export const OverworldAreas = {
                         area: HouseNames.potionShop,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.childShootingGallery]: {
                     type: AreaTypes.house,
@@ -1065,7 +1182,8 @@ export const OverworldAreas = {
                         area: HouseNames.childShootingGallery,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.bombchuBowling]: {
                     type: AreaTypes.house,
@@ -1073,7 +1191,8 @@ export const OverworldAreas = {
                         area: HouseNames.bombchuBowling,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.bombchuShop]: {
                     type: AreaTypes.house,
@@ -1081,7 +1200,8 @@ export const OverworldAreas = {
                         area: HouseNames.bombchuShop,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.treasureBoxShop]: {
                     type: AreaTypes.house,
@@ -1089,7 +1209,8 @@ export const OverworldAreas = {
                         area: HouseNames.treasureBoxShop,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.backAlleyHouse]: {
                     type: AreaTypes.house,
@@ -1097,7 +1218,8 @@ export const OverworldAreas = {
                         area: HouseNames.houseOne,
                         entrance: HouseEntranceLabels.door
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.maskShop]: {
                     type: AreaTypes.house,
@@ -1105,7 +1227,8 @@ export const OverworldAreas = {
                         area: HouseNames.maskShop,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -1119,7 +1242,8 @@ export const OverworldAreas = {
                         area: OverworldNames.lostWoods,
                         entrance: OverworldNames.sacredForestMeadow
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [DungeonNames.forestTemple]: {
                     type: AreaTypes.dungeon,
@@ -1127,7 +1251,8 @@ export const OverworldAreas = {
                         area: DungeonNames.forestTemple,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.bombGrotto]: {
                     type: AreaTypes.grotto,
@@ -1135,7 +1260,8 @@ export const OverworldAreas = {
                         area: GrottoNames.wolfosGrotto,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.openGrotto]: {
                     type: AreaTypes.grotto,
@@ -1143,7 +1269,8 @@ export const OverworldAreas = {
                         area: GrottoNames.fairyFountainThree,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.songOfStormsGrotto]: {
                     type: AreaTypes.grotto,
@@ -1151,7 +1278,8 @@ export const OverworldAreas = {
                         area: GrottoNames.twoScrubsFour,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -1165,7 +1293,8 @@ export const OverworldAreas = {
                         area: OverworldNames.market,
                         entrance: OverworldNames.templeOfTimeEntrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.templeOfTime]: {
                     type: AreaTypes.house,
@@ -1173,7 +1302,8 @@ export const OverworldAreas = {
                         area: HouseNames.templeOfTime,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -1187,7 +1317,8 @@ export const OverworldAreas = {
                         area: OverworldNames.zorasRiver,
                         entrance: OverworldNames.zorasDomain
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.zorasFountain]: {
                     type: AreaTypes.overworld,
@@ -1195,7 +1326,8 @@ export const OverworldAreas = {
                         area: OverworldNames.zorasFountain,
                         entrance: OverworldNames.zorasDomain
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.lakeHylia]: {
                     type: AreaTypes.overworld,
@@ -1203,7 +1335,8 @@ export const OverworldAreas = {
                         area: OverworldNames.lakeHylia,
                         entrance: OverworldNames.zorasDomain
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.shop]: {
                     type: AreaTypes.house,
@@ -1211,7 +1344,8 @@ export const OverworldAreas = {
                         area: HouseNames.zoraShop,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.songOfStormsGrotto]: {
                     type: AreaTypes.grotto,
@@ -1219,7 +1353,8 @@ export const OverworldAreas = {
                         area: GrottoNames.fairyFountainFour,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -1233,7 +1368,8 @@ export const OverworldAreas = {
                         area: OverworldNames.zorasDomain,
                         entrance: OverworldNames.zorasFountain
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [DungeonNames.jabuJabusBelly]: {
                     type: AreaTypes.dungeon,
@@ -1241,7 +1377,8 @@ export const OverworldAreas = {
                         area: DungeonNames.jabuJabusBelly,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [DungeonNames.iceCavern]: {
                     type: AreaTypes.dungeon,
@@ -1249,7 +1386,8 @@ export const OverworldAreas = {
                         area: DungeonNames.iceCavern,
                         entrance: DungeonEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [HouseEntranceLabels.greatFairysFountain]: {
                     type: AreaTypes.house,
@@ -1257,7 +1395,8 @@ export const OverworldAreas = {
                         area: HouseNames.greatFairysFountainSix,
                         entrance: HouseEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         },
@@ -1271,7 +1410,8 @@ export const OverworldAreas = {
                         area: OverworldNames.hyruleField,
                         entrance: OverworldNames.zorasRiver
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.zorasDomain]: {
                     type: AreaTypes.overworld,
@@ -1279,7 +1419,8 @@ export const OverworldAreas = {
                         area: OverworldNames.zorasDomain,
                         entrance: OverworldNames.zorasRiver
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [OverworldNames.lostWoods]: {
                     type: AreaTypes.overworld,
@@ -1287,7 +1428,8 @@ export const OverworldAreas = {
                         area: OverworldNames.lostWoods,
                         entrance: OverworldNames.zorasRiver
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.songOfStormsGrotto]: {
                     type: AreaTypes.grotto,
@@ -1295,7 +1437,8 @@ export const OverworldAreas = {
                         area: GrottoNames.twoScrubsFive,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.openGrotto]: {
                     type: AreaTypes.grotto,
@@ -1303,7 +1446,8 @@ export const OverworldAreas = {
                         area: GrottoNames.genericGrottoNine,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 },
                 [GrottoEntranceLabels.boulderGrotto]: {
                     type: AreaTypes.grotto,
@@ -1311,7 +1455,8 @@ export const OverworldAreas = {
                         area: GrottoNames.fairyFountainFive,
                         entrance: GrottoEntranceLabels.entrance
                     },
-                    leadsTo: null
+                    leadsTo: null,
+                    comesFrom: []
                 }
             }
         }
