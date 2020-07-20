@@ -155,6 +155,7 @@ export const useTrackerContext = () => {
         const shuffledTypes = getSectionTypesThatAreShuffled();
         for (const type of shuffledTypes) {
             possibleEntrances[type] = {};
+            // hide sections that should not be shown when entrances aren't decoupled
             if (!typesThatShouldBeHiddenWhenEntrancesAreNotDecoupled.includes(type) || !entrancesAreDecoupled()) {
                 continue;
             }
@@ -166,16 +167,16 @@ export const useTrackerContext = () => {
             Object.entries(area.entrances).map(([entranceName, entrance]) => {
                 const entranceType = entrance.type;
                 // should this entrance be shown in tracker layout
-                // if (typeIsRandomized(entranceType) && !entrance.isImmutable) {
-                if (trackerSections[areaType] === undefined) {
-                    trackerSections[areaType] = {};
+                if ((typeIsRandomized(areaType) && entrancesAreDecoupled()) || areaType === AreaTypes.overworld) {
+                    if (trackerSections[areaType] === undefined) {
+                        trackerSections[areaType] = {};
+                    }
+                    if (trackerSections[areaType][areaName] === undefined) {
+                        trackerSections[areaType][areaName] = cloneDeep(area);
+                        trackerSections[areaType][areaName].entrances = {};
+                    }
+                    trackerSections[areaType][areaName].entrances[entranceName] = entrance;
                 }
-                if (trackerSections[areaType][areaName] === undefined) {
-                    trackerSections[areaType][areaName] = cloneDeep(area);
-                    trackerSections[areaType][areaName].entrances = {};
-                }
-                trackerSections[areaType][areaName].entrances[entranceName] = entrance;
-                // }
                 // should it be shown as option for types available
                 for (const shuffledType of shuffledTypes) {
                     if (shouldEntranceBeDisplayedAsOptionForType(shuffledType, entranceType)) {

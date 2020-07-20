@@ -13,7 +13,8 @@ export default function Entrance({
         resetEntrance,
     } = useTrackerContext();
     const selectOptions = [];
-    if (entrance.comesFrom && entrance.comesFrom.length) console.log(entrance.comesFrom)
+    if (entrance.comesFrom && entrance.comesFrom.length) console.log(entrance.comesFrom);
+    const hasOptions = options && Object.keys(options).length > 0;
     return (
         <div className="entrance">
             <h4 className={
@@ -36,17 +37,17 @@ export default function Entrance({
                 }
             </h4>
             <div className="entrance-spacer" />
-            {(entrance.leadsTo !== null || !options) ?
+            {(entrance.leadsTo !== null || !hasOptions) ?
                 <div className="area-display has-text-weight-semibold is-flex">
                     <div className="area-display-entrance">
                     <div className="chosen-area-name">
-                        {options ? entrance.leadsTo.area : entrance.leadsToVanilla.area}
+                        {!hasOptions ? entrance.leadsToVanilla.area : entrance.leadsTo.area}
                     </div>
                     <div className="has-text-weight-normal chosen-entrance-name">
-                        {options ? entrance.leadsTo.entrance :  entrance.leadsToVanilla.entrance}
+                        {!hasOptions ? entrance.leadsToVanilla.entrance : entrance.leadsTo.entrance}
                     </div>
                 </div>
-                    {!entrance.isImmutable && options &&
+                    {!entrance.isImmutable && hasOptions &&
                         <span className="delete remove-choice is-pulled-right" onClick={() =>
                             resetEntrance(
                                 {
@@ -64,7 +65,7 @@ export default function Entrance({
                     }
                 </div>
                 :
-                // no endpoint set, so display available options to select
+                // no destination set, so display available options to select
                 <div className="select is-small entrance-select">
                     <select value="Not Checked" onChange={event =>
                         setEntrance(
@@ -86,7 +87,6 @@ export default function Entrance({
 
                                     Object.entries(groupArea.entrances).sort().map(([entranceLabel, areaEntrance], k) => {
                                         if (areaName === areaLabel && entranceName === entranceLabel) return null;
-                                        // if (!config.decoupleEntrances.value && areas[optionLabel].areas[areaLabel].entrances[entranceLabel].leadsTo !== null) return null;
 
                                         areaOptions.push(
                                             <option
