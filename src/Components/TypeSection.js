@@ -2,15 +2,13 @@ import { useTrackerContext } from "../Hooks/useTrackerContext";
 import Entrance from "./Entrance";
 import React from "react";
 import {AreaContext} from "../Context/AreaContext";
+import {JsonOutput} from "./Debugging/JsonOutput";
 
 export default function TypeSection({
     type,
     section,
     options
 }) {
-    const {
-        typeShouldBeDisplayed
-    } = useTrackerContext();
     let output = [];
 
     return (
@@ -50,6 +48,7 @@ export default function TypeSection({
                                 </div>
                             </div>
                         </div>
+                        <JsonOutput data={area} />
                     </div>);
                 }
                 return null;

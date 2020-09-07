@@ -1,10 +1,5 @@
 
-export const AreaTypes = {
-    dungeon: "Dungeons",
-    grotto: "Grottos",
-    house: "Houses",
-    overworld: "Overworld",
-    kaeporaGaebora: "Kaepora Gaebora",
-    warpSong: "Warp Songs",
-    spawn: "Spawns"
-};
+export const DUNGEON = "Dungeon";
+export const GROTTO = "Grotto";
+export const HOUSE = "House";
+export const OVERWORLD = "Overworld";

@@ -5,8 +5,6 @@ import React from "react";
 export const TrackerBody = () => {
 
     const {
-        // getSectionTypesToDisplay,
-        // getPossibleEntrancesForAvailableTypes,
         getTrackerSectionsAndTypePossibilities
     } = useTrackerContext();
 

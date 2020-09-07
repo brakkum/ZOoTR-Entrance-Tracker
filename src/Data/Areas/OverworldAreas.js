@@ -1,17 +1,125 @@
-import { OverworldEntranceLabels } from "../Names/OverworldEntranceLabels";
-import { DungeonEntranceLabels } from "../Names/DungeonEntranceLabels";
-import { GrottoEntranceLabels } from "../Names/GrottoEntranceLabels";
-import { HouseEntranceLabels } from "../Names/HouseEntranceLabels";
-import { OverworldNames } from "../Names/OverworldNames";
-import { KaeporaNames } from "../Names/KaeporaNames";
-import { DungeonNames } from "../Names/DungeonNames";
-import { GrottoNames } from "../Names/GrottoNames";
-import { AreaTypes } from "../Types/AreaTypes";
-import { HouseNames } from "../Names/HouseNames";
+import {
+    CASTLE_GROUNDS,
+    CASTLE_TOWN_ENTRANCE,
+    DEATH_MOUNTAIN_CRATER,
+    DEATH_MOUNTAIN_TRAIL,
+    DESERT_COLOSSUS,
+    GERUDO_VALLEY,
+    GERUDOS_FORTRESS,
+    GORON_CITY,
+    GRAVEYARD,
+    HAUNTED_WASTELAND,
+    HYRULE_FIELD, HYRULE_FIELD_FROM_BRIDGE,
+    KAKARIKO_VILLAGE,
+    KOKIRI_FOREST, KOKIRI_FOREST_FROM_BRIDGE,
+    LAKE_HYLIA,
+    LON_LON_RANCH,
+    LOST_WOODS,
+    LOST_WOODS_BRIDGE_FROM_HYRULE_FIELD, LOST_WOODS_BRIDGE_FROM_KOKIRI_FOREST,
+    MARKET, SACRED_FOREST_MEADOW, TEMPLE_OF_TIME_ENTRANCE, ZORAS_DOMAIN, ZORAS_FOUNTAIN,
+    ZORAS_RIVER
+} from "../Names/OverworldNames";
+import {DUNGEON, HOUSE, OVERWORLD} from "../Types/AreaTypes";
+import {
+    OVERWORLD_ENTRANCE,
+    HOUSE_ENTRANCE,
+    GROTTO_ENTRANCE,
+    DUNGEON_ENTRANCE,
+    KAEPORA_GAEBORA
+} from "../Types/EntranceTypes";
+import {
+    ADULT_GREAT_FAIRYS_FOUNTAIN,
+    ADULT_SHOOTING_GALLERY, BACK_ALLEY_HOUSE,
+    BACK_ENTRANCE,
+    BAZAAR,
+    BAZAAR_ONE,
+    BAZAAR_TWO, BOMBCHU_BOWLING, BOMBCHU_SHOP,
+    BOTTOM_HOUSE,
+    CARPENTER_TENT,
+    CHILD_GREAT_FAIRYS_FOUNTAIN, CHILD_SHOOTING_GALLERY,
+    DAMPES_HUT, FISHING,
+    GORON_SHOP,
+    GRANNYS_POTION_SHOP,
+    GREAT_FAIRYS_FOUNTAIN,
+    GREAT_FAIRYS_FOUNTAIN_FIVE,
+    GREAT_FAIRYS_FOUNTAIN_FOUR,
+    GREAT_FAIRYS_FOUNTAIN_ONE, GREAT_FAIRYS_FOUNTAIN_SIX,
+    GREAT_FAIRYS_FOUNTAIN_THREE,
+    GREAT_FAIRYS_FOUNTAIN_TWO,
+    GUARD_HUT_POE_SHOP, HOUSE_ONE,
+    HOUSE_WITH_TALON,
+    IMPAS_HOUSE,
+    IMPAS_HOUSE_COW,
+    IMPAS_HOUSE_FRONT,
+    IMPAS_HOUSE_ROOF,
+    KNOW_IT_ALL_HOUSE, KOKIRI_SHOP, LAKESIDE_LABORATORY,
+    LINKS_HOUSE, LON_LON_TOWER, MASK_SHOP,
+    MIDOS_HOUSE, POTION_SHOP,
+    POTION_SHOP_BACK,
+    POTION_SHOP_FRONT,
+    POTION_SHOP_WITH_BACKDOOR, SARIAS_HOUSE, SHOP,
+    SKULLTULA_HOUSE, STABLE, TALONS_HOUSE, TEMPLE_OF_TIME, TREASURE_BOX_SHOP, TWINS_HOUSE,
+    WINDMILL, ZORA_SHOP
+} from "../Names/HouseNames";
+import {DOOR, ENTRANCE} from "../Names/EntranceNames";
+import {
+    BOMB_GROTTO,
+    BOULDER_ACROSS_RIVER,
+    BOULDER_GROTTO,
+    BOULDER_IN_TREES,
+    BOULDER_NEAR_CASTLE_TOWN,
+    BOULDER_NEAR_DEATH_MOUNTAIN_TRAIL,
+    BOULDER_NEAR_GERUDO_VALLEY,
+    BOULDER_NEAR_GORON_CITY, BOULDER_NEAR_SACRED_FOREST_MEADOW,
+    BOULDER_ON_LEDGE,
+    COMPOSERS_GRAVE,
+    COW_GROTTO,
+    DAMPES_GRAVE,
+    DIVING_RUPEE_GROTTO, FAIRY_FOUNTAIN_FIVE, FAIRY_FOUNTAIN_FOUR,
+    FAIRY_FOUNTAIN_ONE, FAIRY_FOUNTAIN_THREE,
+    FAIRY_FOUNTAIN_TWO,
+    FOREST_STAGE,
+    GENERIC_GROTTO_EIGHT,
+    GENERIC_GROTTO_FIVE,
+    GENERIC_GROTTO_FOUR, GENERIC_GROTTO_NINE,
+    GENERIC_GROTTO_ONE,
+    GENERIC_GROTTO_SEVEN,
+    GENERIC_GROTTO_SIX,
+    GENERIC_GROTTO_THREE,
+    GENERIC_GROTTO_TWO,
+    GRAVE,
+    GROTTO,
+    NEAR_LAKE_INSIDE_FENCE_GROTTO,
+    ONE_SCRUB,
+    OPEN_GROTTO,
+    REDEAD_GRAVE,
+    REDEAD_GROTTO,
+    SHIELD_GRAVE,
+    SKULLTULA_GOSSIP_STONE_COW_GROTTO,
+    SKULLTULA_GOSSIP_STONE_GROTTO,
+    SKULLTULA_GROTTO,
+    SONG_OF_STORMS_GROTTO,
+    TEKTITE_GROTTO,
+    THREE_SCRUBS_FOUR,
+    THREE_SCRUBS_ONE,
+    THREE_SCRUBS_THREE,
+    THREE_SCRUBS_TWO,
+    TREE_NEAR_KAKARIKO_GROTTO, TWO_SCRUBS_FIVE, TWO_SCRUBS_FOUR,
+    TWO_SCRUBS_ONE, TWO_SCRUBS_THREE,
+    TWO_SCRUBS_TWO, WOLFOS_GROTTO
+} from "../Names/GrottoNames";
+import {
+    BOTTOM_OF_THE_WELL, DEKU_TREE,
+    DODONGOS_CAVERN,
+    FIRE_TEMPLE, FOREST_TEMPLE,
+    GERUDO_TRAINING_GROUNDS, ICE_CAVERN, JABU_JABUS_BELLY,
+    SHADOW_TEMPLE,
+    SPIRIT_TEMPLE, WATER_TEMPLE
+} from "../Names/DungeonNames";
 
 export const OverworldAreas = {
     // []: {
-    //     type: AreaTypes.house,
+    //     type: house,
     //     isExpanded: true,
     //     entrances: {
     //         []: {
@@ -25,1439 +133,1436 @@ export const OverworldAreas = {
     //         }
     //     }
     // },
-    displayName: "Overworld",
-    areas: {
-        [OverworldNames.castleTownEntrance]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.hyruleField]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: OverworldNames.castleTownEntrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+    [CASTLE_TOWN_ENTRANCE]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [HYRULE_FIELD]: {
+                type: OVERWORLD_ENTRANCE,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: CASTLE_TOWN_ENTRANCE
                 },
-                [OverworldNames.market]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: OverworldNames.castleTownEntrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [MARKET]: {
+                type: OVERWORLD_ENTRANCE,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: CASTLE_TOWN_ENTRANCE
                 },
-                [HouseEntranceLabels.guardHutPoeShop]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.guardHutPoeShop,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GUARD_HUT_POE_SHOP]: {
+                type: HOUSE_ENTRANCE,
+                leadsToVanilla: {
+                    area: GUARD_HUT_POE_SHOP,
+                    entrance: DOOR
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.deathMountainCrater]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.deathMountainTrail]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainTrail,
-                        entrance: OverworldNames.deathMountainCrater
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [DEATH_MOUNTAIN_CRATER]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [DEATH_MOUNTAIN_TRAIL]: {
+                type: OVERWORLD_ENTRANCE,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_TRAIL,
+                    entrance: DEATH_MOUNTAIN_CRATER
                 },
-                [OverworldNames.goronCity]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.goronCity,
-                        entrance: OverworldNames.deathMountainCrater
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GORON_CITY]: {
+                type: OVERWORLD_ENTRANCE,
+                leadsToVanilla: {
+                    area: GORON_CITY,
+                    entrance: DEATH_MOUNTAIN_CRATER
                 },
-                [GrottoEntranceLabels.boulderNearDeathMountainTrail]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.genericGrottoOne,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOULDER_NEAR_DEATH_MOUNTAIN_TRAIL]: {
+                type: GROTTO_ENTRANCE,
+                leadsToVanilla: {
+                    area: GENERIC_GROTTO_ONE,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.boulderNearGoronCity]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.threeScrubsOne,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOULDER_NEAR_GORON_CITY]: {
+                type: GROTTO_ENTRANCE,
+                leadsToVanilla: {
+                    area: THREE_SCRUBS_ONE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.greatFairysFountain]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.greatFairysFountainOne,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GREAT_FAIRYS_FOUNTAIN]: {
+                type: HOUSE_ENTRANCE,
+                leadsToVanilla: {
+                    area: GREAT_FAIRYS_FOUNTAIN_ONE,
+                    entrance: ENTRANCE
                 },
-                [DungeonNames.fireTemple]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.fireTemple,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [FIRE_TEMPLE]: {
+                type: DUNGEON_ENTRANCE,
+                leadsToVanilla: {
+                    area: FIRE_TEMPLE,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.deathMountainTrail]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.kakarikoVillage]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: OverworldNames.deathMountainTrail
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [DEATH_MOUNTAIN_TRAIL]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [KAKARIKO_VILLAGE]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: DEATH_MOUNTAIN_TRAIL
                 },
-                [DungeonNames.dodongosCavern]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.dodongosCavern,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [DODONGOS_CAVERN]: {
+                type: DUNGEON,
+                leadsToVanilla: {
+                    area: DODONGOS_CAVERN,
+                    entrance: ENTRANCE
                 },
-                [OverworldNames.goronCity]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.goronCity,
-                        entrance: OverworldNames.deathMountainTrail
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GORON_CITY]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: GORON_CITY,
+                    entrance: DEATH_MOUNTAIN_TRAIL
                 },
-                [GrottoEntranceLabels.songOfStormsGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.genericGrottoTwo,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SONG_OF_STORMS_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GENERIC_GROTTO_TWO,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.cowGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.cowGrotto,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [COW_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: COW_GROTTO,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.greatFairysFountain]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.greatFairysFountainTwo,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GREAT_FAIRYS_FOUNTAIN]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: GREAT_FAIRYS_FOUNTAIN_TWO,
+                    entrance: ENTRANCE
                 },
-                [OverworldNames.deathMountainCrater]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainCrater,
-                        entrance: OverworldNames.deathMountainTrail
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [DEATH_MOUNTAIN_CRATER]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_CRATER,
+                    entrance: DEATH_MOUNTAIN_TRAIL
                 },
-                [KaeporaNames.kaeporaGaebora]: {
-                    type: AreaTypes.kaeporaGaebora,
-                    isOneWay: true,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.impasHouseRoof
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [KAEPORA_GAEBORA]: {
+                type: KAEPORA_GAEBORA,
+                isOneWay: true,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: IMPAS_HOUSE_ROOF
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.desertColossus]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.boulderGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.twoScrubsOne,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [DESERT_COLOSSUS]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [BOULDER_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: TWO_SCRUBS_ONE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.greatFairysFountain]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.greatFairysFountainThree,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GREAT_FAIRYS_FOUNTAIN]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: GREAT_FAIRYS_FOUNTAIN_THREE,
+                    entrance: ENTRANCE
                 },
-                [DungeonNames.spiritTemple]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.spiritTemple,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SPIRIT_TEMPLE]: {
+                type: DUNGEON,
+                leadsToVanilla: {
+                    area: SPIRIT_TEMPLE,
+                    entrance: ENTRANCE
                 },
-                [OverworldNames.hauntedWasteland]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.hauntedWasteland,
-                        entrance: OverworldNames.desertColossus
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [HAUNTED_WASTELAND]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: HAUNTED_WASTELAND,
+                    entrance: DESERT_COLOSSUS
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.gerudoFortress]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [DungeonNames.gerudoTrainingGrounds]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.gerudoTrainingGrounds,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [GERUDOS_FORTRESS]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [GERUDO_TRAINING_GROUNDS]: {
+                type: DUNGEON,
+                leadsToVanilla: {
+                    area: GERUDO_TRAINING_GROUNDS,
+                    entrance: ENTRANCE
                 },
-                [OverworldNames.gerudoValley]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.gerudoValley,
-                        entrance: OverworldNames.gerudoFortress
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GERUDO_VALLEY]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: GERUDO_VALLEY,
+                    entrance: GERUDOS_FORTRESS
                 },
-                [OverworldNames.hauntedWasteland]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.hauntedWasteland,
-                        entrance: OverworldNames.gerudoFortress
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [HAUNTED_WASTELAND]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: HAUNTED_WASTELAND,
+                    entrance: GERUDOS_FORTRESS
                 },
-                [GrottoEntranceLabels.songOfStormsGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.fairyFountainOne,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SONG_OF_STORMS_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: FAIRY_FOUNTAIN_ONE,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.gerudoValley]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.hyruleField]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: OverworldNames.gerudoValley
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [GERUDO_VALLEY]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [HYRULE_FIELD]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: GERUDO_VALLEY
                 },
-                [OverworldNames.gerudoFortress]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.gerudoFortress,
-                        entrance: OverworldNames.gerudoValley
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GERUDOS_FORTRESS]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: GERUDOS_FORTRESS,
+                    entrance: GERUDO_VALLEY
                 },
-                [OverworldNames.lakeHylia]: {
-                    type: AreaTypes.overworld,
-                    isOneWay: true,
-                    hideUnlessDecoupled: true,
-                    leadsToVanilla: {
-                        area: OverworldNames.lakeHylia,
-                        entrance: OverworldNames.gerudoValley
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [LAKE_HYLIA]: {
+                type: OVERWORLD,
+                isOneWay: true,
+                hideUnlessDecoupled: true,
+                leadsToVanilla: {
+                    area: LAKE_HYLIA,
+                    entrance: GERUDO_VALLEY
                 },
-                [GrottoEntranceLabels.boulderOnLedge]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.divingRupeeGrotto,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOULDER_ON_LEDGE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: DIVING_RUPEE_GROTTO,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.songOfStormsGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.twoScrubsTwo,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SONG_OF_STORMS_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: TWO_SCRUBS_TWO,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.carpenterTent]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.carpenterTent,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [CARPENTER_TENT]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: CARPENTER_TENT,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.goronCity]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.deathMountainTrail]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainTrail,
-                        entrance: OverworldNames.goronCity
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [GORON_CITY]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [DEATH_MOUNTAIN_TRAIL]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_TRAIL,
+                    entrance: GORON_CITY
                 },
-                [OverworldNames.deathMountainCrater]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainCrater,
-                        entrance: OverworldNames.goronCity
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [DEATH_MOUNTAIN_CRATER]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_CRATER,
+                    entrance: GORON_CITY
                 },
-                [OverworldNames.lostWoods]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.lostWoods,
-                        entrance: OverworldNames.goronCity
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [LOST_WOODS]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: LOST_WOODS,
+                    entrance: GORON_CITY
                 },
-                [HouseEntranceLabels.goronShop]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.goronShop,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GORON_SHOP]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: GORON_SHOP,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.openGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.threeScrubsTwo,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [OPEN_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: THREE_SCRUBS_TWO,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.graveyard]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.kakarikoVillage]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: OverworldNames.graveyard
-                    },
-                    leadsTo: null,
-                    comesFrom: [],
+        }
+    },
+    [GRAVEYARD]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [KAKARIKO_VILLAGE]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: GRAVEYARD
                 },
-                [DungeonNames.shadowTemple]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.shadowTemple,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: [],
+            },
+            [SHADOW_TEMPLE]: {
+                type: DUNGEON,
+                leadsToVanilla: {
+                    area: SHADOW_TEMPLE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.dampesHut]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.dampesHut,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [DAMPES_HUT]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: DAMPES_HUT,
+                    entrance: DOOR
                 },
-                [GrottoEntranceLabels.composersGrave]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.composersGrave,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [COMPOSERS_GRAVE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: COMPOSERS_GRAVE,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.shieldGrave]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.shieldGrave,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SHIELD_GRAVE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: SHIELD_GRAVE,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.redeadGrave]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.redeadGrave,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [REDEAD_GRAVE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: REDEAD_GRAVE,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.dampesGrave]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.dampesGrave,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [DAMPES_GRAVE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: DAMPES_GRAVE,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.hauntedWasteland]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.gerudoFortress]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.gerudoFortress,
-                        entrance: OverworldNames.hauntedWasteland
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [HAUNTED_WASTELAND]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [GERUDOS_FORTRESS]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: GERUDOS_FORTRESS,
+                    entrance: HAUNTED_WASTELAND
                 },
-                [OverworldNames.desertColossus]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.desertColossus,
-                        entrance: OverworldNames.hauntedWasteland
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [DESERT_COLOSSUS]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: DESERT_COLOSSUS,
+                    entrance: HAUNTED_WASTELAND
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.castleGrounds]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.childGreatFairysFountain]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.greatFairysFountainFour,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [CASTLE_GROUNDS]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [CHILD_GREAT_FAIRYS_FOUNTAIN]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: GREAT_FAIRYS_FOUNTAIN_FOUR,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.adultGreatFairysFountain]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.greatFairysFountainFive,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [ADULT_GREAT_FAIRYS_FOUNTAIN]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: GREAT_FAIRYS_FOUNTAIN_FIVE,
+                    entrance: ENTRANCE
                 },
-                [OverworldNames.market]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: OverworldNames.castleGrounds
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [MARKET]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: CASTLE_GROUNDS
                 },
-                [GrottoEntranceLabels.songOfStormsGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.skulltulaGossipStoneGrotto,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SONG_OF_STORMS_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: SKULLTULA_GOSSIP_STONE_GROTTO,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.hyruleField]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldEntranceLabels.lostWoodsBridgeFromHyrule]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.lostWoods,
-                        entrance: OverworldEntranceLabels.lostWoodsBridgeFromHyrule
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [HYRULE_FIELD]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [LOST_WOODS_BRIDGE_FROM_HYRULE_FIELD]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: LOST_WOODS,
+                    entrance: LOST_WOODS_BRIDGE_FROM_HYRULE_FIELD
                 },
-                [OverworldNames.zorasRiver]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasRiver,
-                        entrance: OverworldNames.hyruleField
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [ZORAS_RIVER]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: ZORAS_RIVER,
+                    entrance: HYRULE_FIELD
                 },
-                [OverworldNames.kakarikoVillage]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: OverworldNames.hyruleField
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [KAKARIKO_VILLAGE]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: HYRULE_FIELD
                 },
-                [GrottoEntranceLabels.treeNearKakarikoGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.skulltulaGrotto,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [TREE_NEAR_KAKARIKO_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: SKULLTULA_GROTTO,
+                    entrance: ENTRANCE
                 },
-                [OverworldNames.castleTownEntrance]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.castleTownEntrance,
-                        entrance: OverworldNames.hyruleField
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [CASTLE_TOWN_ENTRANCE]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: CASTLE_TOWN_ENTRANCE,
+                    entrance: HYRULE_FIELD
                 },
-                [GrottoEntranceLabels.boulderNearCastleTown]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.genericGrottoThree,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOULDER_NEAR_CASTLE_TOWN]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GENERIC_GROTTO_THREE,
+                    entrance: ENTRANCE
                 },
-                [OverworldNames.lonLonRanch]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.lonLonRanch,
-                        entrance: OverworldNames.hyruleField
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [LON_LON_RANCH]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: LON_LON_RANCH,
+                    entrance: HYRULE_FIELD
                 },
-                [GrottoEntranceLabels.boulderAcrossRiver]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.fairyFountainTwo,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOULDER_ACROSS_RIVER]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: FAIRY_FOUNTAIN_TWO,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.tektiteGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.tektiteGrotto,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [TEKTITE_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: TEKTITE_GROTTO,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.boulderNearGerudoValley]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.skulltulaGossipStoneCowGrotto,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOULDER_NEAR_GERUDO_VALLEY]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: SKULLTULA_GOSSIP_STONE_COW_GROTTO,
+                    entrance: ENTRANCE
                 },
-                [OverworldNames.gerudoValley]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.gerudoValley,
-                        entrance: OverworldNames.hyruleField
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GERUDO_VALLEY]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: GERUDO_VALLEY,
+                    entrance: HYRULE_FIELD
                 },
-                [OverworldNames.lakeHylia]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.lakeHylia,
-                        entrance: OverworldNames.hyruleField
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [LAKE_HYLIA]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: LAKE_HYLIA,
+                    entrance: HYRULE_FIELD
                 },
-                [GrottoEntranceLabels.nearLakeInsideFenceGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.oneScrub,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [NEAR_LAKE_INSIDE_FENCE_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: ONE_SCRUB,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.openGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.genericGrottoFour,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [OPEN_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GENERIC_GROTTO_FOUR,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.boulderInTrees]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.genericGrottoFive,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOULDER_IN_TREES]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GENERIC_GROTTO_FIVE,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.kakarikoVillage]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.hyruleField]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: OverworldNames.kakarikoVillage
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [KAKARIKO_VILLAGE]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [HYRULE_FIELD]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: KAKARIKO_VILLAGE
                 },
-                [OverworldNames.deathMountainTrail]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainTrail,
-                        entrance: OverworldNames.kakarikoVillage
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [DEATH_MOUNTAIN_TRAIL]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_TRAIL,
+                    entrance: KAKARIKO_VILLAGE
                 },
-                [OverworldNames.graveyard]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.graveyard,
-                        entrance: OverworldNames.kakarikoVillage
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GRAVEYARD]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: GRAVEYARD,
+                    entrance: KAKARIKO_VILLAGE
                 },
-                [DungeonNames.bottomOfTheWell]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.bottomOfTheWell,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOTTOM_OF_THE_WELL]: {
+                type: DUNGEON,
+                leadsToVanilla: {
+                    area: BOTTOM_OF_THE_WELL,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.skulltulaHouse]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.skulltulaHouse,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SKULLTULA_HOUSE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: SKULLTULA_HOUSE,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.windmill]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.windmill,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [WINDMILL]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: WINDMILL,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.impasHouseFront]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.impasHouse,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [IMPAS_HOUSE_FRONT]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: IMPAS_HOUSE,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.impasHouseCow]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.impasHouse,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [IMPAS_HOUSE_COW]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: IMPAS_HOUSE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.bottomHouse]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.houseWithTalon,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOTTOM_HOUSE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: HOUSE_WITH_TALON,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.adultShootingGallery]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.adultShootingGallery,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [ADULT_SHOOTING_GALLERY]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: ADULT_SHOOTING_GALLERY,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.bazaar]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.bazaarOne,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BAZAAR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: BAZAAR_ONE,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.potionShopBack]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.potionShopWithBack,
-                        entrance: HouseEntranceLabels.backEntrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [POTION_SHOP_BACK]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: POTION_SHOP_WITH_BACKDOOR,
+                    entrance: BACK_ENTRANCE
                 },
-                [HouseEntranceLabels.potionShopFront]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.potionShopWithBack,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [POTION_SHOP_FRONT]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: POTION_SHOP_WITH_BACKDOOR,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.grannysPotionShop]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.grannysPotionShop,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GRANNYS_POTION_SHOP]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: GRANNYS_POTION_SHOP,
+                    entrance: DOOR
                 },
-                [GrottoEntranceLabels.openGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.genericGrottoSix,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [OPEN_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GENERIC_GROTTO_SIX,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.bombGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.redeadGrotto,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOMB_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: REDEAD_GROTTO,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.kokiriForest]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldEntranceLabels.lostWoodsBridgeFromKokiri]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.lostWoods,
-                        entrance: OverworldEntranceLabels.lostWoodsBridgeFromKokiri
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [KOKIRI_FOREST]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [LOST_WOODS_BRIDGE_FROM_KOKIRI_FOREST]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: LOST_WOODS,
+                    entrance: LOST_WOODS_BRIDGE_FROM_KOKIRI_FOREST
                 },
-                [OverworldNames.lostWoods]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.lostWoods,
-                        entrance: OverworldNames.kokiriForest
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [LOST_WOODS]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: LOST_WOODS,
+                    entrance: KOKIRI_FOREST
                 },
-                [DungeonNames.dekuTree]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.dekuTree,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [DEKU_TREE]: {
+                type: DUNGEON,
+                leadsToVanilla: {
+                    area: DEKU_TREE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.knowItAllHouse]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.knowItAllHouse,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [KNOW_IT_ALL_HOUSE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KNOW_IT_ALL_HOUSE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.midosHouse]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.midosHouse,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [MIDOS_HOUSE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: MIDOS_HOUSE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.linksHouse]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.linksHouse,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [LINKS_HOUSE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: LINKS_HOUSE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.sariasHouse]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.sariasHouse,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SARIAS_HOUSE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: SARIAS_HOUSE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.twinsHouse]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.twinsHouse,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [TWINS_HOUSE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: TWINS_HOUSE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.kokiriShop]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.kokiriShop,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [KOKIRI_SHOP]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KOKIRI_SHOP,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.songOfStormsGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.genericGrottoSeven,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SONG_OF_STORMS_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GENERIC_GROTTO_SEVEN,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.lakeHylia]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.hyruleField]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: OverworldNames.lakeHylia
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [LAKE_HYLIA]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [HYRULE_FIELD]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: LAKE_HYLIA
                 },
-                [OverworldNames.zorasDomain]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasDomain,
-                        entrance: OverworldNames.lakeHylia
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [ZORAS_DOMAIN]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: ZORAS_DOMAIN,
+                    entrance: LAKE_HYLIA
                 },
-                [KaeporaNames.kaeporaGaebora]: {
-                    type: AreaTypes.kaeporaGaebora,
-                    isOneWay: true,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: OverworldNames.castleTownEntrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [KAEPORA_GAEBORA]: {
+                type: KAEPORA_GAEBORA,
+                isOneWay: true,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: CASTLE_TOWN_ENTRANCE
                 },
-                [GrottoEntranceLabels.grave]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.threeScrubsThree,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GRAVE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: THREE_SCRUBS_THREE,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.lakesideLaboratory]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.lakesideLaboratory,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [LAKESIDE_LABORATORY]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: LAKESIDE_LABORATORY,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.fishing]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.fishing,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [FISHING]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: FISHING,
+                    entrance: DOOR
                 },
-                [DungeonNames.waterTemple]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.waterTemple,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [WATER_TEMPLE]: {
+                type: DUNGEON,
+                leadsToVanilla: {
+                    area: WATER_TEMPLE,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.lonLonRanch]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.hyruleField]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: OverworldNames.lonLonRanch
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [LON_LON_RANCH]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [HYRULE_FIELD]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: LON_LON_RANCH
                 },
-                [HouseEntranceLabels.talonsHouse]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.talonsHouse,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [TALONS_HOUSE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: TALONS_HOUSE,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.stable]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.stable,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [STABLE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: STABLE,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.lonLonTower]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.lonLonTower,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [LON_LON_TOWER]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: LON_LON_TOWER,
+                    entrance: DOOR
                 },
-                [GrottoEntranceLabels.openGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.threeScrubsFour,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [OPEN_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: THREE_SCRUBS_FOUR,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.lostWoods]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.kokiriForest]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.kokiriForest,
-                        entrance: OverworldNames.lostWoods
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [LOST_WOODS]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [KOKIRI_FOREST]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: KOKIRI_FOREST,
+                    entrance: LOST_WOODS
                 },
-                [OverworldNames.goronCity]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.goronCity,
-                        entrance: OverworldNames.lostWoods
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GORON_CITY]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: GORON_CITY,
+                    entrance: LOST_WOODS
                 },
-                [OverworldNames.sacredForestMeadow]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.sacredForestMeadow,
-                        entrance: OverworldNames.lostWoods
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SACRED_FOREST_MEADOW]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: SACRED_FOREST_MEADOW,
+                    entrance: LOST_WOODS
                 },
-                [OverworldNames.zorasRiver]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasRiver,
-                        entrance: OverworldNames.lostWoods
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [ZORAS_RIVER]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: ZORAS_RIVER,
+                    entrance: LOST_WOODS
                 },
-                [GrottoEntranceLabels.forestStage]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.forestStage,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [FOREST_STAGE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: FOREST_STAGE,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.boulderNearGoronCity]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.genericGrottoEight,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOULDER_NEAR_GORON_CITY]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GENERIC_GROTTO_EIGHT,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.boulderNearSacredForestMeadow]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.twoScrubsThree,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOULDER_NEAR_SACRED_FOREST_MEADOW]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: TWO_SCRUBS_THREE,
+                    entrance: ENTRANCE
                 },
-                // bridge
-                [OverworldEntranceLabels.kokiriForestFromBridge]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.kokiriForest,
-                        entrance: OverworldEntranceLabels.kokiriForestFromBridge
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            // bridge
+            [KOKIRI_FOREST_FROM_BRIDGE]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: KOKIRI_FOREST,
+                    entrance: KOKIRI_FOREST_FROM_BRIDGE
                 },
-                [OverworldEntranceLabels.hyruleFieldFromBridge]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: OverworldEntranceLabels.hyruleFieldFromBridge
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [HYRULE_FIELD_FROM_BRIDGE]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: HYRULE_FIELD_FROM_BRIDGE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.market]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.castleTownEntrance]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.castleTownEntrance,
-                        entrance: OverworldNames.market
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [MARKET]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [CASTLE_TOWN_ENTRANCE]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: CASTLE_TOWN_ENTRANCE,
+                    entrance: MARKET
                 },
-                [OverworldNames.templeOfTimeEntrance]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.templeOfTimeEntrance,
-                        entrance: OverworldNames.market
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [TEMPLE_OF_TIME_ENTRANCE]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: TEMPLE_OF_TIME_ENTRANCE,
+                    entrance: MARKET
                 },
-                [OverworldNames.castleGrounds]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.castleGrounds,
-                        entrance: OverworldNames.market
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [CASTLE_GROUNDS]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: CASTLE_GROUNDS,
+                    entrance: MARKET
                 },
-                [HouseEntranceLabels.bazaar]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.bazaarTwo,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BAZAAR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: BAZAAR_TWO,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.potionShop]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.potionShop,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [POTION_SHOP]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: POTION_SHOP,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.childShootingGallery]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.childShootingGallery,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [CHILD_SHOOTING_GALLERY]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: CHILD_SHOOTING_GALLERY,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.bombchuBowling]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.bombchuBowling,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOMBCHU_BOWLING]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: BOMBCHU_BOWLING,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.bombchuShop]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.bombchuShop,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOMBCHU_SHOP]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: BOMBCHU_SHOP,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.treasureBoxShop]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.treasureBoxShop,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [TREASURE_BOX_SHOP]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: TREASURE_BOX_SHOP,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.backAlleyHouse]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.houseOne,
-                        entrance: HouseEntranceLabels.door
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BACK_ALLEY_HOUSE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: HOUSE_ONE,
+                    entrance: DOOR
                 },
-                [HouseEntranceLabels.maskShop]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.maskShop,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [MASK_SHOP]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: MASK_SHOP,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.sacredForestMeadow]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.lostWoods]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.lostWoods,
-                        entrance: OverworldNames.sacredForestMeadow
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [SACRED_FOREST_MEADOW]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [LOST_WOODS]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: LOST_WOODS,
+                    entrance: SACRED_FOREST_MEADOW
                 },
-                [DungeonNames.forestTemple]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.forestTemple,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [FOREST_TEMPLE]: {
+                type: DUNGEON,
+                leadsToVanilla: {
+                    area: FOREST_TEMPLE,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.bombGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.wolfosGrotto,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOMB_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: WOLFOS_GROTTO,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.openGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.fairyFountainThree,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [OPEN_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: FAIRY_FOUNTAIN_THREE,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.songOfStormsGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.twoScrubsFour,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SONG_OF_STORMS_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: TWO_SCRUBS_FOUR,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.templeOfTimeEntrance]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.market]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: OverworldNames.templeOfTimeEntrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [TEMPLE_OF_TIME_ENTRANCE]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [MARKET]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: TEMPLE_OF_TIME_ENTRANCE
                 },
-                [HouseEntranceLabels.templeOfTime]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.templeOfTime,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [TEMPLE_OF_TIME]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: TEMPLE_OF_TIME,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.zorasDomain]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.zorasRiver]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasRiver,
-                        entrance: OverworldNames.zorasDomain
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [ZORAS_DOMAIN]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [ZORAS_RIVER]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: ZORAS_RIVER,
+                    entrance: ZORAS_DOMAIN
                 },
-                [OverworldNames.zorasFountain]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasFountain,
-                        entrance: OverworldNames.zorasDomain
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [ZORAS_FOUNTAIN]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: ZORAS_FOUNTAIN,
+                    entrance: ZORAS_DOMAIN
                 },
-                [OverworldNames.lakeHylia]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.lakeHylia,
-                        entrance: OverworldNames.zorasDomain
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [LAKE_HYLIA]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: LAKE_HYLIA,
+                    entrance: ZORAS_DOMAIN
                 },
-                [HouseEntranceLabels.shop]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.zoraShop,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SHOP]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: ZORA_SHOP,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.songOfStormsGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.fairyFountainFour,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SONG_OF_STORMS_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: FAIRY_FOUNTAIN_FOUR,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.zorasFountain]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.zorasDomain]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasDomain,
-                        entrance: OverworldNames.zorasFountain
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [ZORAS_FOUNTAIN]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [ZORAS_DOMAIN]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: ZORAS_DOMAIN,
+                    entrance: ZORAS_FOUNTAIN
                 },
-                [DungeonNames.jabuJabusBelly]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.jabuJabusBelly,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [JABU_JABUS_BELLY]: {
+                type: DUNGEON,
+                leadsToVanilla: {
+                    area: JABU_JABUS_BELLY,
+                    entrance: ENTRANCE
                 },
-                [DungeonNames.iceCavern]: {
-                    type: AreaTypes.dungeon,
-                    leadsToVanilla: {
-                        area: DungeonNames.iceCavern,
-                        entrance: DungeonEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [ICE_CAVERN]: {
+                type: DUNGEON,
+                leadsToVanilla: {
+                    area: ICE_CAVERN,
+                    entrance: ENTRANCE
                 },
-                [HouseEntranceLabels.greatFairysFountain]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: HouseNames.greatFairysFountainSix,
-                        entrance: HouseEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [GREAT_FAIRYS_FOUNTAIN]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: GREAT_FAIRYS_FOUNTAIN_SIX,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [OverworldNames.zorasRiver]: {
-            type: AreaTypes.overworld,
-            isExpanded: true,
-            entrances: {
-                [OverworldNames.hyruleField]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: OverworldNames.zorasRiver
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    [ZORAS_RIVER]: {
+        type: OVERWORLD,
+        isExpanded: true,
+        entrances: {
+            [HYRULE_FIELD]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: ZORAS_RIVER
                 },
-                [OverworldNames.zorasDomain]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasDomain,
-                        entrance: OverworldNames.zorasRiver
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [ZORAS_DOMAIN]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: ZORAS_DOMAIN,
+                    entrance: ZORAS_RIVER
                 },
-                [OverworldNames.lostWoods]: {
-                    type: AreaTypes.overworld,
-                    leadsToVanilla: {
-                        area: OverworldNames.lostWoods,
-                        entrance: OverworldNames.zorasRiver
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [LOST_WOODS]: {
+                type: OVERWORLD,
+                leadsToVanilla: {
+                    area: LOST_WOODS,
+                    entrance: ZORAS_RIVER
                 },
-                [GrottoEntranceLabels.songOfStormsGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.twoScrubsFive,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [SONG_OF_STORMS_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: TWO_SCRUBS_FIVE,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.openGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.genericGrottoNine,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            },
+            [OPEN_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GENERIC_GROTTO_NINE,
+                    entrance: ENTRANCE
                 },
-                [GrottoEntranceLabels.boulderGrotto]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: GrottoNames.fairyFountainFive,
-                        entrance: GrottoEntranceLabels.entrance
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BOULDER_GROTTO]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: FAIRY_FOUNTAIN_FIVE,
+                    entrance: ENTRANCE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
         }
     }

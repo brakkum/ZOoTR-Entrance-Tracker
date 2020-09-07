@@ -1,5 +1,6 @@
 import { useTrackerContext } from "../Hooks/useTrackerContext";
 import React from "react";
+import {JsonOutput} from "./Debugging/JsonOutput";
 
 export default function Entrance({
     options,
@@ -13,7 +14,6 @@ export default function Entrance({
         resetEntrance,
     } = useTrackerContext();
     const selectOptions = [];
-    if (entrance.comesFrom && entrance.comesFrom.length) console.log(entrance.comesFrom);
     const hasOptions = options && Object.keys(options).length > 0;
     return (
         <div className="entrance">

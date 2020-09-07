@@ -1,7 +1,56 @@
-import { HouseEntranceLabels } from "../Names/HouseEntranceLabels";
-import { OverworldNames } from "../Names/OverworldNames";
-import { HouseNames } from "../Names/HouseNames";
-import { AreaTypes } from "../Types/AreaTypes";
+import { HOUSE } from "../Types/AreaTypes";
+import {DOOR, ENTRANCE} from "../Names/EntranceNames";
+import {
+    ADULT_GREAT_FAIRYS_FOUNTAIN,
+    ADULT_SHOOTING_GALLERY, BACK_ALLEY_HOUSE,
+    BACK_ENTRANCE,
+    BAZAAR,
+    BAZAAR_ONE, BAZAAR_TWO, BOMBCHU_BOWLING, BOMBCHU_SHOP,
+    BOTTOM_HOUSE,
+    CARPENTER_TENT,
+    CHILD_GREAT_FAIRYS_FOUNTAIN, CHILD_SHOOTING_GALLERY,
+    DAMPES_HUT, FISHING,
+    GORON_SHOP,
+    GRANNYS_POTION_SHOP,
+    GREAT_FAIRYS_FOUNTAIN,
+    GREAT_FAIRYS_FOUNTAIN_FIVE,
+    GREAT_FAIRYS_FOUNTAIN_FOUR,
+    GREAT_FAIRYS_FOUNTAIN_ONE, GREAT_FAIRYS_FOUNTAIN_SIX,
+    GREAT_FAIRYS_FOUNTAIN_THREE,
+    GREAT_FAIRYS_FOUNTAIN_TWO,
+    GUARD_HUT_POE_SHOP, HOUSE_ONE,
+    HOUSE_WITH_TALON,
+    IMPAS_HOUSE,
+    IMPAS_HOUSE_COW,
+    IMPAS_HOUSE_FRONT,
+    KNOW_IT_ALL_HOUSE,
+    KOKIRI_SHOP,
+    LAKESIDE_LABORATORY,
+    LINKS_HOUSE, LON_LON_TOWER, MASK_SHOP,
+    MIDOS_HOUSE, POTION_SHOP,
+    POTION_SHOP_BACK,
+    POTION_SHOP_FRONT,
+    POTION_SHOP_WITH_BACKDOOR,
+    SARIAS_HOUSE,
+    SKULLTULA_HOUSE, STABLE, TALONS_HOUSE, TEMPLE_OF_TIME, TREASURE_BOX_SHOP,
+    TWINS_HOUSE,
+    WINDMILL, ZORA_SHOP
+} from "../Names/HouseNames";
+import {
+    CASTLE_GROUNDS,
+    CASTLE_TOWN_ENTRANCE,
+    DEATH_MOUNTAIN_CRATER,
+    DEATH_MOUNTAIN_TRAIL,
+    DESERT_COLOSSUS,
+    GERUDO_VALLEY,
+    GORON_CITY,
+    GRAVEYARD,
+    KAKARIKO_VILLAGE,
+    KOKIRI_FOREST,
+    LAKE_HYLIA,
+    LON_LON_RANCH,
+    MARKET, TEMPLE_OF_TIME_ENTRANCE, ZORAS_DOMAIN, ZORAS_FOUNTAIN
+} from "../Names/OverworldNames";
 
 export const HouseAreas = {
     // []: {
@@ -20,624 +69,621 @@ export const HouseAreas = {
     //     }
     // },
     // castle town entrance
-    displayName: "Houses",
-    areas: {
-        [HouseNames.guardHutPoeShop]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.castleTownEntrance,
-                        entrance: HouseEntranceLabels.guardHutPoeShop
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // death mountain crater
-        [HouseNames.greatFairysFountainOne]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainCrater,
-                        entrance: HouseEntranceLabels.greatFairysFountain
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // death mountain trail
-        [HouseNames.greatFairysFountainTwo]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainTrail,
-                        entrance: HouseEntranceLabels.greatFairysFountain
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // desert colossus
-        [HouseNames.greatFairysFountainThree]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.desertColossus,
-                        entrance: HouseEntranceLabels.greatFairysFountain
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // gerudo valley
-        [HouseNames.carpenterTent]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.gerudoValley,
-                        entrance: HouseEntranceLabels.carpenterTent
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // goron city
-        [HouseNames.goronShop]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.goronCity,
-                        entrance: HouseEntranceLabels.goronShop
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // graveyard
-        [HouseNames.dampesHut]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.graveyard,
-                        entrance: HouseEntranceLabels.dampesHut
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // castle grounds
-        [HouseNames.greatFairysFountainFour]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.castleGrounds,
-                        entrance: HouseEntranceLabels.childGreatFairysFountain
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [HouseNames.greatFairysFountainFive]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.castleGrounds,
-                        entrance: HouseEntranceLabels.adultGreatFairysFountain
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // kakariko village
-        [HouseNames.skulltulaHouse]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.skulltulaHouse
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [HouseNames.windmill]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.windmill
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [HouseNames.impasHouse]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.impasHouseFront
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+    [GUARD_HUT_POE_SHOP]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: CASTLE_TOWN_ENTRANCE,
+                    entrance: GUARD_HUT_POE_SHOP
                 },
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.impasHouseCow
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.houseWithTalon]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.bottomHouse
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [HouseNames.adultShootingGallery]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.adultShootingGallery
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [HouseNames.bazaarOne]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.bazaar
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [HouseNames.potionShopWithBack]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.potionShopFront
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+        }
+    },
+    // death mountain crater
+    [GREAT_FAIRYS_FOUNTAIN_ONE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_CRATER,
+                    entrance: GREAT_FAIRYS_FOUNTAIN
                 },
-                [HouseEntranceLabels.backEntrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.potionShopBack
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // death mountain trail
+    [GREAT_FAIRYS_FOUNTAIN_TWO]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_TRAIL,
+                    entrance: GREAT_FAIRYS_FOUNTAIN
                 },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.grannysPotionShop]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: HouseEntranceLabels.grannysPotionShop
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // desert colossus
+    [GREAT_FAIRYS_FOUNTAIN_THREE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: DESERT_COLOSSUS,
+                    entrance: GREAT_FAIRYS_FOUNTAIN
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // kokiri forest
-        [HouseNames.knowItAllHouse]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kokiriForest,
-                        entrance: HouseEntranceLabels.knowItAllHouse
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // gerudo valley
+    [CARPENTER_TENT]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: GERUDO_VALLEY,
+                    entrance: CARPENTER_TENT
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.midosHouse]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kokiriForest,
-                        entrance: HouseEntranceLabels.midosHouse
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // goron city
+    [GORON_SHOP]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: GORON_CITY,
+                    entrance: GORON_SHOP
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.linksHouse]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kokiriForest,
-                        entrance: HouseEntranceLabels.linksHouse
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // graveyard
+    [DAMPES_HUT]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: GRAVEYARD,
+                    entrance: DAMPES_HUT
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.sariasHouse]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kokiriForest,
-                        entrance: HouseEntranceLabels.sariasHouse
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // castle grounds
+    [GREAT_FAIRYS_FOUNTAIN_FOUR]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: CASTLE_GROUNDS,
+                    entrance: CHILD_GREAT_FAIRYS_FOUNTAIN
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.twinsHouse]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kokiriForest,
-                        entrance: HouseEntranceLabels.twinsHouse
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [GREAT_FAIRYS_FOUNTAIN_FIVE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: CASTLE_GROUNDS,
+                    entrance: ADULT_GREAT_FAIRYS_FOUNTAIN
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.kokiriShop]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.kokiriForest,
-                        entrance: HouseEntranceLabels.kokiriShop
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // kakariko village
+    [SKULLTULA_HOUSE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: SKULLTULA_HOUSE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // lake hylia
-        [HouseNames.lakesideLaboratory]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.lakeHylia,
-                        entrance: HouseNames.lakesideLaboratory
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [WINDMILL]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: WINDMILL
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.fishing]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.lakeHylia,
-                        entrance: HouseEntranceLabels.fishing
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [IMPAS_HOUSE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: IMPAS_HOUSE_FRONT
+                },
+                leadsTo: null,
+                comesFrom: []
+            },
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: IMPAS_HOUSE_COW
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // lon lon ranch
-        [HouseNames.talonsHouse]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.lonLonRanch,
-                        entrance: HouseEntranceLabels.talonsHouse
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [HOUSE_WITH_TALON]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: BOTTOM_HOUSE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.stable]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.lonLonRanch,
-                        entrance: HouseEntranceLabels.stable
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [ADULT_SHOOTING_GALLERY]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: ADULT_SHOOTING_GALLERY
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.lonLonTower]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.lonLonRanch,
-                        entrance: HouseEntranceLabels.lonLonTower
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [BAZAAR_ONE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: BAZAAR
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // market
-        [HouseNames.bazaarTwo]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: HouseEntranceLabels.bazaar
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [POTION_SHOP_WITH_BACKDOOR]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: POTION_SHOP_FRONT
+                },
+                leadsTo: null,
+                comesFrom: []
+            },
+            [BACK_ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: POTION_SHOP_BACK
+                },
+                leadsTo: null,
+                comesFrom: []
+            },
+        }
+    },
+    [GRANNYS_POTION_SHOP]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: GRANNYS_POTION_SHOP
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.potionShop]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: HouseEntranceLabels.potionShop
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // kokiri forest
+    [KNOW_IT_ALL_HOUSE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KOKIRI_FOREST,
+                    entrance: KNOW_IT_ALL_HOUSE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.childShootingGallery]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: HouseEntranceLabels.childShootingGallery
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [MIDOS_HOUSE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KOKIRI_FOREST,
+                    entrance: MIDOS_HOUSE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.bombchuBowling]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: HouseEntranceLabels.bombchuBowling
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [LINKS_HOUSE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KOKIRI_FOREST,
+                    entrance: LINKS_HOUSE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.bombchuShop]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: HouseEntranceLabels.bombchuShop
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [SARIAS_HOUSE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KOKIRI_FOREST,
+                    entrance: SARIAS_HOUSE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.treasureBoxShop]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: HouseEntranceLabels.treasureBoxShop
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [TWINS_HOUSE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KOKIRI_FOREST,
+                    entrance: TWINS_HOUSE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.houseOne]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.door]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: HouseEntranceLabels.backAlleyHouse
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [KOKIRI_SHOP]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: KOKIRI_FOREST,
+                    entrance: KOKIRI_SHOP
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [HouseNames.maskShop]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.market,
-                        entrance: HouseEntranceLabels.maskShop
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // lake hylia
+    [LAKESIDE_LABORATORY]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: LAKE_HYLIA,
+                    entrance: LAKESIDE_LABORATORY
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // temple of time entrance
-        [HouseNames.templeOfTime]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.templeOfTimeEntrance,
-                        entrance: HouseEntranceLabels.templeOfTime
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [FISHING]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: LAKE_HYLIA,
+                    entrance: FISHING
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // zoras domain
-        [HouseNames.zoraShop]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasDomain,
-                        entrance: HouseEntranceLabels.zoraShop
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // lon lon ranch
+    [TALONS_HOUSE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: LON_LON_RANCH,
+                    entrance: TALONS_HOUSE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // zoras fountain
-        [HouseNames.greatFairysFountainSix]: {
-            type: AreaTypes.house,
-            isExpanded: true,
-            entrances: {
-                [HouseEntranceLabels.entrance]: {
-                    type: AreaTypes.house,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasFountain,
-                        entrance: HouseEntranceLabels.greatFairysFountain
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [STABLE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: LON_LON_RANCH,
+                    entrance: STABLE
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [LON_LON_TOWER]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: LON_LON_RANCH,
+                    entrance: LON_LON_TOWER
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // market
+    [BAZAAR_TWO]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: BAZAAR
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [POTION_SHOP]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: POTION_SHOP
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [CHILD_SHOOTING_GALLERY]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: CHILD_SHOOTING_GALLERY
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [BOMBCHU_BOWLING]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: BOMBCHU_BOWLING
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [BOMBCHU_SHOP]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: BOMBCHU_SHOP
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [TREASURE_BOX_SHOP]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: TREASURE_BOX_SHOP
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [HOUSE_ONE]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [DOOR]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: BACK_ALLEY_HOUSE
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [MASK_SHOP]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: MARKET,
+                    entrance: MASK_SHOP
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // temple of time entrance
+    [TEMPLE_OF_TIME]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: TEMPLE_OF_TIME_ENTRANCE,
+                    entrance: TEMPLE_OF_TIME
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // zoras domain
+    [ZORA_SHOP]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: ZORAS_DOMAIN,
+                    entrance: ZORA_SHOP
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // zoras fountain
+    [GREAT_FAIRYS_FOUNTAIN_SIX]: {
+        type: HOUSE,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: HOUSE,
+                leadsToVanilla: {
+                    area: ZORAS_FOUNTAIN,
+                    entrance: GREAT_FAIRYS_FOUNTAIN
+                },
+                leadsTo: null,
+                comesFrom: []
             }
         }
     }

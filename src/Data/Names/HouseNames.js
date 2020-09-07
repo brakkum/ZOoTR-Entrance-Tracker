@@ -1,49 +1,56 @@
 
-export const HouseNames = {
-    adultShootingGallery: "Adult Shooting Gallery",
-    bombchuBowling: "Bombchu Bowling",
-    carpenterTent: "Carpenter Tent",
-    childShootingGallery: "Child Shooting Gallery",
-    dampesHut: "Dampe's Hut",
-    fishing: "Fishing",
-    grannysPotionShop: "Granny's Potion Shop",
-    greatFairysFountain: "Great Fairy's Fountain",
-    greatFairysFountainOne: "Great Fairy's Fountain #1",
-    greatFairysFountainTwo: "Great Fairy's Fountain #2",
-    greatFairysFountainThree: "Great Fairy's Fountain #3",
-    greatFairysFountainFour: "Great Fairy's Fountain #4",
-    greatFairysFountainFive: "Great Fairy's Fountain #5",
-    greatFairysFountainSix: "Great Fairy's Fountain #6",
-    guardHutPoeShop: "Guard Hut/Poe Shop",
-    house: "House",
-    houseOne: "House #1",
-    houseWithTalon: "House with Talon",
-    impasHouse: "Impa's House",
-    impasHouseCow: "Impa's House Cow",
-    impasHouseFront: "Impa's House Front",
-    knowItAllHouse: "Know-It-All House",
-    lakesideLaboratory: "Lakeside Laboratory",
-    linksHouse: "Link's House",
-    lonLonTower: "Lon Lon Tower",
-    maskShop: "Mask Shop",
-    midosHouse: "Mido's House",
-    sariasHouse: "Saria's House",
-    // shops
-    shop: "Shop",
-    potionShop: "Potion Shop",
-    potionShopWithBack: "Potion Shop with Backdoor",
-    bazaarOne: "Bazaar #1",
-    bazaarTwo: "Bazaar #2",
-    kokiriShop: "Kokiri Shop",
-    zoraShop: "Zora Shop",
-    goronShop: "Goron Shop",
-    bombchuShop: "Bombchu Shop",
-    //
-    skulltulaHouse: "Skulltula House",
-    stable: "Stable",
-    talonsHouse: "Talon's House",
-    templeOfTime: "Temple of Time",
-    treasureBoxShop: "Treasure Box Shop",
-    twinsHouse: "Twins House",
-    windmill: "Windmill"
-};
+export const ADULT_SHOOTING_GALLERY = "Adult Shooting Gallery";
+export const BOMBCHU_BOWLING = "Bombchu Bowling";
+export const CARPENTER_TENT = "Carpenter Tent";
+export const CHILD_SHOOTING_GALLERY = "Child Shooting Gallery";
+export const DAMPES_HUT = "Dampe's Hut";
+export const FISHING = "Fishing";
+export const GRANNYS_POTION_SHOP = "Granny's Potion Shop";
+export const GREAT_FAIRYS_FOUNTAIN = "Great Fairy's Fountain";
+export const GREAT_FAIRYS_FOUNTAIN_ONE = "Great Fairy's Fountain #1";
+export const GREAT_FAIRYS_FOUNTAIN_TWO = "Great Fairy's Fountain #2";
+export const GREAT_FAIRYS_FOUNTAIN_THREE = "Great Fairy's Fountain #3";
+export const GREAT_FAIRYS_FOUNTAIN_FOUR = "Great Fairy's Fountain #4";
+export const GREAT_FAIRYS_FOUNTAIN_FIVE = "Great Fairy's Fountain #5";
+export const GREAT_FAIRYS_FOUNTAIN_SIX = "Great Fairy's Fountain #6";
+export const GUARD_HUT_POE_SHOP = "Guard Hut/Poe Shop";
+export const HOUSE_ONE = "House #1";
+export const HOUSE_WITH_TALON = "House with Talon";
+export const IMPAS_HOUSE = "Impa's House";
+export const IMPAS_HOUSE_COW = "Impa's House Cow";
+export const IMPAS_HOUSE_FRONT = "Impa's House Front";
+export const KNOW_IT_ALL_HOUSE = "Know-It-All House";
+export const LAKESIDE_LABORATORY = "Lakeside Laboratory";
+export const LINKS_HOUSE = "Link's House";
+export const LON_LON_TOWER = "Lon Lon Tower";
+export const MASK_SHOP = "Mask Shop";
+export const MIDOS_HOUSE = "Mido's House";
+export const SARIAS_HOUSE = "Saria's House";
+
+export const SHOP = "Shop";
+export const POTION_SHOP = "Potion Shop";
+export const POTION_SHOP_WITH_BACKDOOR = "Potion Shop with Backdoor";
+export const BAZAAR_ONE = "Bazaar #1";
+export const BAZAAR_TWO = "Bazaar #2";
+export const KOKIRI_SHOP = "Kokiri Shop";
+export const ZORA_SHOP = "Zora Shop";
+export const GORON_SHOP = "Goron Shop";
+export const BOMBCHU_SHOP = "Bombchu Shop";
+
+export const SKULLTULA_HOUSE = "Skulltula House";
+export const STABLE = "Stable";
+export const TALONS_HOUSE = "Talon's House";
+export const TEMPLE_OF_TIME = "Temple of Time";
+export const TREASURE_BOX_SHOP = "Treasure Box Shop";
+export const TWINS_HOUSE = "Twins House";
+export const WINDMILL = "Windmill";
+
+export const ADULT_GREAT_FAIRYS_FOUNTAIN = "Adult Great Fairy's Fountain";
+export const BACK_ALLEY_HOUSE = "Back Alley House";
+export const BACK_ENTRANCE = "Back Entrance";
+export const BAZAAR = "Bazaar";
+export const BOTTOM_HOUSE = "Bottom House";
+export const CHILD_GREAT_FAIRYS_FOUNTAIN = "Child Great Fairy's Fountain";
+export const IMPAS_HOUSE_ROOF = "Impa's House Roof";
+export const POTION_SHOP_BACK = "Potion Shop Back";
+export const POTION_SHOP_FRONT = "Potion Shop Front";

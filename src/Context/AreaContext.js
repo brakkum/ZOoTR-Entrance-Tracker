@@ -11,12 +11,12 @@ import {useState} from "react";
 
 const getInitialAreas = () => {
     return {
-        ...cloneDeep(OverworldAreas.areas),
-        ...cloneDeep(WarpSongAreas.areas),
-        ...cloneDeep(DungeonAreas.areas),
-        ...cloneDeep(GrottoAreas.areas),
-        ...cloneDeep(HouseAreas.areas),
-        ...cloneDeep(SpawnAreas.areas),
+        ...cloneDeep(OverworldAreas),
+        ...cloneDeep(WarpSongAreas),
+        ...cloneDeep(DungeonAreas),
+        ...cloneDeep(GrottoAreas),
+        ...cloneDeep(HouseAreas),
+        ...cloneDeep(SpawnAreas),
     };
 };
 

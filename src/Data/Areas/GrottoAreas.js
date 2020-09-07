@@ -1,8 +1,67 @@
-import { GrottoEntranceLabels } from "../Names/GrottoEntranceLabels";
-import { OverworldNames } from "../Names/OverworldNames";
-import { GrottoNames } from "../Names/GrottoNames";
-import { HouseNames } from "../Names/HouseNames";
-import { AreaTypes } from "../Types/AreaTypes";
+import {GROTTO, HOUSE} from "../Types/AreaTypes";
+import {
+    BOMB_GROTTO,
+    BOULDER_ACROSS_RIVER,
+    BOULDER_GROTTO,
+    BOULDER_IN_TREES,
+    BOULDER_NEAR_CASTLE_TOWN,
+    BOULDER_NEAR_DEATH_MOUNTAIN_TRAIL,
+    BOULDER_NEAR_GERUDO_VALLEY,
+    BOULDER_NEAR_GORON_CITY, BOULDER_NEAR_SACRED_FOREST_MEADOW,
+    BOULDER_ON_LEDGE,
+    COMPOSERS_GRAVE,
+    COW_GROTTO,
+    DAMPES_GRAVE,
+    DIVING_RUPEE_GROTTO, FAIRY_FOUNTAIN_FIVE, FAIRY_FOUNTAIN_FOUR,
+    FAIRY_FOUNTAIN_ONE, FAIRY_FOUNTAIN_THREE,
+    FAIRY_FOUNTAIN_TWO,
+    FOREST_STAGE,
+    GENERIC_GROTTO_EIGHT,
+    GENERIC_GROTTO_FIVE,
+    GENERIC_GROTTO_FOUR, GENERIC_GROTTO_NINE,
+    GENERIC_GROTTO_ONE,
+    GENERIC_GROTTO_SEVEN,
+    GENERIC_GROTTO_SIX,
+    GENERIC_GROTTO_THREE,
+    GENERIC_GROTTO_TWO,
+    GRAVE,
+    NEAR_LAKE_INSIDE_FENCE_GROTTO,
+    ONE_SCRUB,
+    OPEN_GROTTO,
+    REDEAD_GRAVE,
+    REDEAD_GROTTO,
+    SHIELD_GRAVE,
+    SKULLTULA_GOSSIP_STONE_COW_GROTTO,
+    SKULLTULA_GOSSIP_STONE_GROTTO,
+    SKULLTULA_GROTTO,
+    SONG_OF_STORMS_GROTTO,
+    TEKTITE_GROTTO,
+    THREE_SCRUBS_FOUR,
+    THREE_SCRUBS_ONE,
+    THREE_SCRUBS_THREE,
+    THREE_SCRUBS_TWO,
+    TREE_NEAR_KAKARIKO_GROTTO, TWO_SCRUBS_FIVE, TWO_SCRUBS_FOUR,
+    TWO_SCRUBS_ONE, TWO_SCRUBS_THREE,
+    TWO_SCRUBS_TWO, WOLFOS_GROTTO
+} from "../Names/GrottoNames";
+import {ENTRANCE} from "../Names/EntranceNames";
+import {
+    CASTLE_GROUNDS,
+    DEATH_MOUNTAIN_CRATER,
+    DEATH_MOUNTAIN_TRAIL,
+    DESERT_COLOSSUS,
+    GERUDO_VALLEY,
+    GERUDOS_FORTRESS,
+    GORON_CITY,
+    GRAVEYARD,
+    HYRULE_FIELD,
+    KAKARIKO_VILLAGE,
+    KOKIRI_FOREST,
+    LAKE_HYLIA,
+    LON_LON_RANCH,
+    LOST_WOODS, SACRED_FOREST_MEADOW, ZORAS_DOMAIN, ZORAS_RIVER
+} from "../Names/OverworldNames";
+import {WINDMILL} from "../Names/HouseNames";
 
 export const GrottoAreas = {
     // []: {
@@ -20,590 +79,587 @@ export const GrottoAreas = {
     //         }
     //     }
     // },
-    displayName: "Grottos",
-    areas: {
-        // death mountain crater
-        [GrottoNames.genericGrottoOne]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainCrater,
-                        entrance: GrottoEntranceLabels.boulderNearDeathMountainTrail
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [GrottoNames.threeScrubsOne]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainCrater,
-                        entrance: GrottoEntranceLabels.boulderNearGoronCity
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // death mountain trail
-        [GrottoNames.genericGrottoTwo]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainTrail,
-                        entrance: GrottoEntranceLabels.songOfStormsGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [GrottoNames.cowGrotto]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.deathMountainTrail,
-                        entrance: GrottoEntranceLabels.cowGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // desert colossus
-        [GrottoNames.twoScrubsOne]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.desertColossus,
-                        entrance: GrottoEntranceLabels.boulderGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // gerudo fortress
-        [GrottoNames.fairyFountainOne]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.gerudoFortress,
-                        entrance: GrottoEntranceLabels.songOfStormsGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // gerudo valley
-        [GrottoNames.divingRupeeGrotto]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.gerudoValley,
-                        entrance: GrottoEntranceLabels.boulderOnLedge
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [GrottoNames.twoScrubsTwo]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.gerudoValley,
-                        entrance: GrottoEntranceLabels.songOfStormsGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // goron city
-        [GrottoNames.threeScrubsTwo]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.goronCity,
-                        entrance: GrottoEntranceLabels.openGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        // graveyard
-        [GrottoNames.composersGrave]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.graveyard,
-                        entrance: GrottoEntranceLabels.composersGrave
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [GrottoNames.shieldGrave]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.graveyard,
-                        entrance: GrottoEntranceLabels.shieldGrave
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [GrottoNames.redeadGrave]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.graveyard,
-                        entrance: GrottoEntranceLabels.redeadGrave
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
-            }
-        },
-        [GrottoNames.dampesGrave]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.graveyard,
-                        entrance: GrottoEntranceLabels.dampesGrave
-                    },
-                    leadsTo: null,
-                    comesFrom: []
+    // death mountain crater
+    [GENERIC_GROTTO_ONE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_CRATER,
+                    entrance: BOULDER_NEAR_DEATH_MOUNTAIN_TRAIL
                 },
-                [HouseNames.windmill]: {
-                    type: AreaTypes.house,
-                    isImmutable: true,
-                    leadsToVanilla: {
-                        area: HouseNames.windmill,
-                        entrance: HouseNames.windmill
-                    },
-                    leadsTo: {
-                        area: HouseNames.windmill,
-                        entrance: HouseNames.windmill
-                    },
-                }
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // castle grounds
-        [GrottoNames.skulltulaGossipStoneGrotto]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.castleGrounds,
-                        entrance: GrottoEntranceLabels.songOfStormsGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [THREE_SCRUBS_ONE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_CRATER,
+                    entrance: BOULDER_NEAR_GORON_CITY
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // hyrule field
-        [GrottoNames.skulltulaGrotto]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: GrottoEntranceLabels.treeNearKakarikoGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // death mountain trail
+    [GENERIC_GROTTO_TWO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_TRAIL,
+                    entrance: SONG_OF_STORMS_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.genericGrottoThree]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: GrottoEntranceLabels.boulderNearCastleTown
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [COW_GROTTO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: DEATH_MOUNTAIN_TRAIL,
+                    entrance: COW_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.fairyFountainTwo]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: GrottoEntranceLabels.boulderAcrossRiver
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // desert colossus
+    [TWO_SCRUBS_ONE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: DESERT_COLOSSUS,
+                    entrance: BOULDER_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.tektiteGrotto]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: GrottoEntranceLabels.tektiteGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // gerudo fortress
+    [FAIRY_FOUNTAIN_ONE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GERUDOS_FORTRESS,
+                    entrance: SONG_OF_STORMS_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.skulltulaGossipStoneCowGrotto]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: GrottoEntranceLabels.boulderNearGerudoValley
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // gerudo valley
+    [DIVING_RUPEE_GROTTO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GERUDO_VALLEY,
+                    entrance: BOULDER_ON_LEDGE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.oneScrub]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: GrottoEntranceLabels.nearLakeInsideFenceGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [TWO_SCRUBS_TWO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GERUDO_VALLEY,
+                    entrance: SONG_OF_STORMS_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.genericGrottoFour]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: GrottoEntranceLabels.openGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // goron city
+    [THREE_SCRUBS_TWO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GORON_CITY,
+                    entrance: OPEN_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.genericGrottoFive]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.hyruleField,
-                        entrance: GrottoEntranceLabels.boulderInTrees
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // graveyard
+    [COMPOSERS_GRAVE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GRAVEYARD,
+                    entrance: COMPOSERS_GRAVE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // kakariko village
-        [GrottoNames.genericGrottoSix]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: GrottoEntranceLabels.openGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [SHIELD_GRAVE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GRAVEYARD,
+                    entrance: SHIELD_GRAVE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.redeadGrotto]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.kakarikoVillage,
-                        entrance: GrottoEntranceLabels.bombGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [REDEAD_GRAVE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GRAVEYARD,
+                    entrance: REDEAD_GRAVE
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // kokiri forest
-        [GrottoNames.genericGrottoSeven]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.kokiriForest,
-                        entrance: GrottoEntranceLabels.songOfStormsGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [DAMPES_GRAVE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: GRAVEYARD,
+                    entrance: DAMPES_GRAVE
+                },
+                leadsTo: null,
+                comesFrom: []
+            },
+            [WINDMILL]: {
+                type: HOUSE,
+                isImmutable: true,
+                leadsToVanilla: {
+                    area: WINDMILL,
+                    entrance: WINDMILL
+                },
+                leadsTo: {
+                    area: WINDMILL,
+                    entrance: WINDMILL
+                },
             }
-        },
-        // lake hylia
-        [GrottoNames.threeScrubsThree]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.lakeHylia,
-                        entrance: GrottoEntranceLabels.grave
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // castle grounds
+    [SKULLTULA_GOSSIP_STONE_GROTTO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: CASTLE_GROUNDS,
+                    entrance: SONG_OF_STORMS_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // lon lon ranch
-        [GrottoNames.threeScrubsFour]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.lonLonRanch,
-                        entrance: GrottoEntranceLabels.openGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // hyrule field
+    [SKULLTULA_GROTTO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: TREE_NEAR_KAKARIKO_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // lost woods
-        [GrottoNames.forestStage]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.lostWoods,
-                        entrance: GrottoEntranceLabels.forestStage
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [GENERIC_GROTTO_THREE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: BOULDER_NEAR_CASTLE_TOWN
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.genericGrottoEight]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.lostWoods,
-                        entrance: GrottoEntranceLabels.boulderNearGoronCity
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [FAIRY_FOUNTAIN_TWO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: BOULDER_ACROSS_RIVER
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.twoScrubsThree]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.lostWoods,
-                        entrance: GrottoEntranceLabels.boulderNearSacredForestMeadow
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [TEKTITE_GROTTO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: TEKTITE_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // sacred forest meadow
-        [GrottoNames.wolfosGrotto]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.sacredForestMeadow,
-                        entrance: GrottoEntranceLabels.bombGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [SKULLTULA_GOSSIP_STONE_COW_GROTTO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: BOULDER_NEAR_GERUDO_VALLEY
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.fairyFountainThree]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.sacredForestMeadow,
-                        entrance: GrottoEntranceLabels.openGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [ONE_SCRUB]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: NEAR_LAKE_INSIDE_FENCE_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.twoScrubsFour]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.sacredForestMeadow,
-                        entrance: GrottoEntranceLabels.songOfStormsGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [GENERIC_GROTTO_FOUR]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: OPEN_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // zoras domain
-        [GrottoNames.fairyFountainFour]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasDomain,
-                        entrance: GrottoEntranceLabels.songOfStormsGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [GENERIC_GROTTO_FIVE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: HYRULE_FIELD,
+                    entrance: BOULDER_IN_TREES
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        // zoras river
-        [GrottoNames.twoScrubsFive]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasRiver,
-                        entrance: GrottoEntranceLabels.songOfStormsGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // kakariko village
+    [GENERIC_GROTTO_SIX]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: OPEN_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.genericGrottoNine]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasRiver,
-                        entrance: GrottoEntranceLabels.openGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    [REDEAD_GROTTO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: KAKARIKO_VILLAGE,
+                    entrance: BOMB_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
-        },
-        [GrottoNames.fairyFountainFive]: {
-            type: AreaTypes.grotto,
-            isExpanded: true,
-            entrances: {
-                [GrottoEntranceLabels.entrance]: {
-                    type: AreaTypes.grotto,
-                    leadsToVanilla: {
-                        area: OverworldNames.zorasRiver,
-                        entrance: GrottoEntranceLabels.boulderGrotto
-                    },
-                    leadsTo: null,
-                    comesFrom: []
-                }
+        }
+    },
+    // kokiri forest
+    [GENERIC_GROTTO_SEVEN]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: KOKIRI_FOREST,
+                    entrance: SONG_OF_STORMS_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // lake hylia
+    [THREE_SCRUBS_THREE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: LAKE_HYLIA,
+                    entrance: GRAVE
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // lon lon ranch
+    [THREE_SCRUBS_FOUR]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: LON_LON_RANCH,
+                    entrance: OPEN_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // lost woods
+    [FOREST_STAGE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: LOST_WOODS,
+                    entrance: FOREST_STAGE
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [GENERIC_GROTTO_EIGHT]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: LOST_WOODS,
+                    entrance: BOULDER_NEAR_GORON_CITY
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [TWO_SCRUBS_THREE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: LOST_WOODS,
+                    entrance: BOULDER_NEAR_SACRED_FOREST_MEADOW
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // sacred forest meadow
+    [WOLFOS_GROTTO]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: SACRED_FOREST_MEADOW,
+                    entrance: BOMB_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [FAIRY_FOUNTAIN_THREE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: SACRED_FOREST_MEADOW,
+                    entrance: OPEN_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [TWO_SCRUBS_FOUR]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: SACRED_FOREST_MEADOW,
+                    entrance: SONG_OF_STORMS_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // zoras domain
+    [FAIRY_FOUNTAIN_FOUR]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: ZORAS_DOMAIN,
+                    entrance: SONG_OF_STORMS_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    // zoras river
+    [TWO_SCRUBS_FIVE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: ZORAS_RIVER,
+                    entrance: SONG_OF_STORMS_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [GENERIC_GROTTO_NINE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: ZORAS_RIVER,
+                    entrance: OPEN_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
+            }
+        }
+    },
+    [FAIRY_FOUNTAIN_FIVE]: {
+        type: GROTTO,
+        isExpanded: true,
+        entrances: {
+            [ENTRANCE]: {
+                type: GROTTO,
+                leadsToVanilla: {
+                    area: ZORAS_RIVER,
+                    entrance: BOULDER_GROTTO
+                },
+                leadsTo: null,
+                comesFrom: []
             }
         }
     }

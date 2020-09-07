@@ -1,46 +1,61 @@
 
-export const GrottoNames = {
-    oneScrub: "1 Scrub",
-    twoScrubs: "2 Scrubs",
-    twoScrubsOne: "2 Scrubs #1",
-    twoScrubsTwo: "2 Scrubs #2",
-    twoScrubsThree: "2 Scrubs #3",
-    twoScrubsFour: "2 Scrubs #4",
-    twoScrubsFive: "2 Scrubs #5",
-    threeScrubs: "3 Scrubs",
-    threeScrubsOne: "3 Scrubs #1",
-    threeScrubsTwo: "3 Scrubs #2",
-    threeScrubsThree: "3 Scrubs #3",
-    threeScrubsFour: "3 Scrubs #4",
-    composersGrave: "Composers Grave",
-    cowAndSkulltulaGrotto: "Cow and Skulltula Grotto",
-    cowGrotto: "Cow Grotto",
-    dampesGrave: "Dampe's Grave",
-    divingHeartpieceGrotto: "Diving Heartpiece Grotto",
-    divingRupeeGrotto: "Diving Rupee Grotto",
-    fairyFountain: "Fairy Fountain",
-    fairyFountainOne: "Fairy Fountain #1",
-    fairyFountainTwo: "Fairy Fountain #2",
-    fairyFountainThree: "Fairy Fountain #3",
-    fairyFountainFour: "Fairy Fountain #4",
-    fairyFountainFive: "Fairy Fountain #5",
-    forestStage: "Forest Stage",
-    genericGrotto: "Generic Grotto",
-    genericGrottoOne: "Generic Grotto #1",
-    genericGrottoTwo: "Generic Grotto #2",
-    genericGrottoThree: "Generic Grotto #3",
-    genericGrottoFour: "Generic Grotto #4",
-    genericGrottoFive: "Generic Grotto #5",
-    genericGrottoSix: "Generic Grotto #6",
-    genericGrottoSeven: "Generic Grotto #7",
-    genericGrottoEight: "Generic Grotto #8",
-    genericGrottoNine: "Generic Grotto #9",
-    redeadGrave: "Redead Grave",
-    redeadGrotto: "Redead Grotto",
-    shieldGrave: "Shield Grave",
-    skulltulaGrotto: "Skulltula Grotto",
-    skulltulaGossipStoneGrotto: "Skulltula and Gossip Stone Grotto",
-    skulltulaGossipStoneCowGrotto: "Skulltula, Gossip Stone, and Cow Grotto",
-    tektiteGrotto: "Tektite Grotto",
-    wolfosGrotto: "Wolfos Grotto"
-};
+export const ONE_SCRUB = "1 Scrub";
+export const TWO_SCRUBS = "2 Scrubs";
+export const TWO_SCRUBS_ONE = "2 Scrubs #1";
+export const TWO_SCRUBS_TWO = "2 Scrubs #2";
+export const TWO_SCRUBS_THREE = "2 Scrubs #3";
+export const TWO_SCRUBS_FOUR = "2 Scrubs #4";
+export const TWO_SCRUBS_FIVE = "2 Scrubs #5";
+export const THREE_SCRUBS = "3 Scrubs";
+export const THREE_SCRUBS_ONE = "3 Scrubs #1";
+export const THREE_SCRUBS_TWO = "3 Scrubs #2";
+export const THREE_SCRUBS_THREE = "3 Scrubs #3";
+export const THREE_SCRUBS_FOUR = "3 Scrubs #4";
+export const COMPOSERS_GRAVE = "Composers Grave";
+export const COW_AND_SKULLTULA_GROTTO = "Cow and Skulltula Grotto";
+export const COW_GROTTO = "Cow Grotto";
+export const DAMPES_GRAVE = "Dampe's Grave";
+export const DIVING_HEARTPIECE_GROTTO = "Diving Heartpiece Grotto";
+export const DIVING_RUPEE_GROTTO = "Diving Rupee Grotto";
+export const FAIRY_FOUNTAIN = "Fairy Fountain";
+export const FAIRY_FOUNTAIN_ONE = "Fairy Fountain #1";
+export const FAIRY_FOUNTAIN_TWO = "Fairy Fountain #2";
+export const FAIRY_FOUNTAIN_THREE = "Fairy Fountain #3";
+export const FAIRY_FOUNTAIN_FOUR = "Fairy Fountain #4";
+export const FAIRY_FOUNTAIN_FIVE = "Fairy Fountain #5";
+export const FOREST_STAGE = "Forest Stage";
+export const GENERIC_GROTTO = "Generic Grotto";
+export const GENERIC_GROTTO_ONE = "Generic Grotto #1";
+export const GENERIC_GROTTO_TWO = "Generic Grotto #2";
+export const GENERIC_GROTTO_THREE = "Generic Grotto #3";
+export const GENERIC_GROTTO_FOUR = "Generic Grotto #4";
+export const GENERIC_GROTTO_FIVE = "Generic Grotto #5";
+export const GENERIC_GROTTO_SIX = "Generic Grotto #6";
+export const GENERIC_GROTTO_SEVEN = "Generic Grotto #7";
+export const GENERIC_GROTTO_EIGHT = "Generic Grotto #8";
+export const GENERIC_GROTTO_NINE = "Generic Grotto #9";
+export const REDEAD_GRAVE = "Redead Grave";
+export const REDEAD_GROTTO = "Redead Grotto";
+export const SHIELD_GRAVE = "Shield Grave";
+export const SKULLTULA_GROTTO = "Skulltula Grotto";
+export const SKULLTULA_GOSSIP_STONE_GROTTO = "Skulltula and Gossip Stone Grotto";
+export const SKULLTULA_GOSSIP_STONE_COW_GROTTO = "Skulltula, Gossip Stone, and Cow Grotto";
+export const TEKTITE_GROTTO = "Tektite Grotto";
+export const WOLFOS_GROTTO = "Wolfos Grotto";
+
+export const BOMB_GROTTO = "Bomb Grotto";
+export const BOULDER_GROTTO = "Boulder Grotto";
+export const BOULDER_ACROSS_RIVER = "Boulder Across River";
+export const BOULDER_IN_TREES = "Boulder in Trees";
+export const BOULDER_ON_LEDGE = "Boulder on Ledge";
+export const BOULDER_NEAR_CASTLE_TOWN = "Boulder Near Castle Town";
+export const BOULDER_NEAR_DEATH_MOUNTAIN_TRAIL = "Boulder Near Death Mountain Trail";
+export const BOULDER_NEAR_GERUDO_VALLEY = "Boulder Near Gerudo Valley";
+export const BOULDER_NEAR_GORON_CITY = "Boulder Near Goron City";
+export const BOULDER_NEAR_SACRED_FOREST_MEADOW = "Boulder Near Sacred Forest Meadow";
+export const GRAVE = "Grave";
+export const GROTTO = "Grotto";
+export const NEAR_LAKE_INSIDE_FENCE_GROTTO = "Near Lake Inside Fence Grotto";
+export const OPEN_GROTTO = "Open Grotto";
+export const SONG_OF_STORMS_GROTTO = "Song of Storms Grotto";
+export const TREE_NEAR_KAKARIKO_GROTTO = "Tree Near Kakariko Grotto";
