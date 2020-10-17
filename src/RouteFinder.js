@@ -33,6 +33,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
         ignoreLostWoodsToBridge: false,
         ignorePotionShopFromFront: false,
         ignoreCrossingGerudoValley: false,
+        ignorePassingMido: false,
         ignoreZorasDomainFromRiver: false,
         ignoreSpiritTempleHandsExit: false,
         ignoreWindmillFromDampesGrave: false,
@@ -54,7 +55,7 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
     // start is always a string
     // end is an object
     // since start could be an area, dungeon, etc.
-    const findStartFromEndObject = (previousCheck, previousCheckLocation, currentCheck, currentCheckLocation, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
+    const findStartFromEndObject = (previousCheck, derp, currentCheck, currentCheckLocation, availableLocations, currentlyBeingSearched = [], completelySearched = []) => {
         let startIsHouse = Houses[start] !== undefined;
         let startIsGrotto = Grottos[start] !== undefined;
         let startIsDungeon = Dungeons[start] !== undefined;
@@ -186,6 +187,8 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
 
             let isGerudosFortress = currentCheck.area === OverworldAreas["Gerudo's Fortress"];
 
+            //let isLostWoodsFromSacredMedow = currentCheck.area === OverworldAreas["Lost Woods"] && currentCheck.entrance === OverworldAreas["Sacred Forest Meadow"];
+
             let isZorasDomainToZorasFountainEntrance = (currentCheck.area === OverworldAreas["Zora's Domain"] && currentCheck.entrance === OverworldAreas["Zora's Fountain"]) ||
                 (hyrule[currentCheck.area].entrances[currentCheck.entrance] !== undefined &&
                     ![null, undefined].includes(hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo) &&
@@ -210,8 +213,26 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                     (gerudoValleyEntranceBeingLedTo === OverworldAreas["Hyrule Field"] && gerudoValleyEntranceFromPreviousCheck === OverworldAreas["Gerudo's Fortress"]);
             }
 
+            let isPassingMido = false;
+            let previousCheckIsLostWoods = previousCheck.area === OverworldAreas["Lost Woods"];
+            if (previousCheckIsLostWoods) {
+                console.log("checking lost woods")
+                let LostWoodsEntranceBeingLedTo = hyrule[currentCheck.area].entrances[currentCheck.entrance].leadsTo.entrance;
+                let LostWoodsEntranceFromPreviousCheck = previousCheck.entrance;
+                console.log("being lead to " + LostWoodsEntranceBeingLedTo)
+                console.log("previous entrance " + LostWoodsEntranceFromPreviousCheck)
+                isPassingMido =
+                    (LostWoodsEntranceBeingLedTo === OverworldAreas["Goron City"] && LostWoodsEntranceFromPreviousCheck === OverworldAreas["Sacred Forest Meadow"]) ||
+                    (LostWoodsEntranceBeingLedTo === OverworldAreas["Sacred Forest Meadow"] && LostWoodsEntranceFromPreviousCheck === OverworldAreas["Goron City"]) ||
+                    (LostWoodsEntranceBeingLedTo === OverworldAreas["Kokiri Forest"] && LostWoodsEntranceFromPreviousCheck === OverworldAreas["Sacred Forest Meadow"]) ||
+                    (LostWoodsEntranceBeingLedTo === OverworldAreas["Sacred Forest Meadow"] && LostWoodsEntranceFromPreviousCheck === OverworldAreas["Kokiri Forest"]) ||
+                    (LostWoodsEntranceBeingLedTo === OverworldAreas["Zora's River"] && LostWoodsEntranceFromPreviousCheck === OverworldAreas["Sacred Forest Meadow"]) ||
+                    (LostWoodsEntranceBeingLedTo === OverworldAreas["Sacred Forest Meadow"] && LostWoodsEntranceFromPreviousCheck === OverworldAreas["Zora's River"]) ;
+            }
+
             let currentCheckPassesOptions = (
                 !(isGerudosFortress && config.ignoreGerudosFortress) &&
+                !(isPassingMido && config.ignorePassingMido) &&
                 !(isKakarikoGateEntrance && config.ignoreKakarikoGate) &&
                 !(isKaeporaGaeboraEntrance && config.ignoreKaeporaGaebora) &&
                 !(isCrossingGerudoValley && config.ignoreCrossingGerudoValley) &&
@@ -470,6 +491,15 @@ export default function RouteFinder({ setRouteFinderStart, setRouteFinderEnd, av
                     Ignore Zora's Domain/Lake Hylia Shortcut
                     <span className="icon">
                         <i className={"fa " + (config.ignoreLakeHyliaZorasDomainEntrances ? "fa-check" : "fa-close")} />
+                    </span>
+                </button>
+                <button
+                    onClick={() => toggleConfigAttribute("ignorePassingMido")}
+                    className={"button is-small is-outlined " + (config.ignorePassingMido ? "is-danger" : "is-dark")}
+                >
+                    Ignore Passing Mido
+                    <span className="icon">
+                        <i className={"fa " + (config.ignorePassingMido ? "fa-check" : "fa-close")} />
                     </span>
                 </button>
                 <button
