@@ -32,7 +32,6 @@ export default function ZOoTREntranceTracker ({ ReactGA }) {
   const [startAsChild, setStartAsChild] = useLocalStorage('startAsChild', init.startAsChild)
   const [hyrule, setHyrule] = useLocalStorage('hyrule', init.hyrule)
   const [songs, setSongs] = useLocalStorage('songs', init.songs)
-  const [keyItems, setKeyItems] = useLocalStorage('items', init.items)
 
   // state for app layout, reset on page load
   const [menuHeight, setMenuHeight] = useState(0)
@@ -376,42 +375,41 @@ export default function ZOoTREntranceTracker ({ ReactGA }) {
   }
 
   const removeAvailableEntrance = (area, entrance, type) => {
-    switch (type){
-        default:
-            break
+    switch (type) {
+      default:
+        break
 
-        case EntranceTypes.House:
-            removeItemFromObjectArray(area, EntranceTypes.House, entrance)
-            break;
-        
-        case EntranceTypes.Grotto:
-            removeItemFromObjectArray(area, EntranceTypes.Grotto, entrance)
-            break;
-        
-        case EntranceTypes.Overworld:
-            removeItemFromObjectArray(area, EntranceTypes.Overworld, entrance)
-            break;
+      case EntranceTypes.House:
+        removeItemFromObjectArray(area, EntranceTypes.House, entrance)
+        break
+
+      case EntranceTypes.Grotto:
+        removeItemFromObjectArray(area, EntranceTypes.Grotto, entrance)
+        break
+
+      case EntranceTypes.Overworld:
+        removeItemFromObjectArray(area, EntranceTypes.Overworld, entrance)
+        break
     }
   }
 
   const addAvailableEntrance = (area, entrance, type) => {
-    switch (type){
-        default:
-            break
-        case EntranceTypes.House:
-            addItemToObjectArray(area, EntranceTypes.House, entrance)
-            break;
-        
-        case EntranceTypes.Grotto:
-            addItemToObjectArray(area, EntranceTypes.Grotto, entrance)
-            break;
-        
-        case EntranceTypes.Overworld:
-            addItemToObjectArray(area, EntranceTypes.Overworld, entrance)
-            break;
+    switch (type) {
+      default:
+        break
+      case EntranceTypes.House:
+        addItemToObjectArray(area, EntranceTypes.House, entrance)
+        break
+
+      case EntranceTypes.Grotto:
+        addItemToObjectArray(area, EntranceTypes.Grotto, entrance)
+        break
+
+      case EntranceTypes.Overworld:
+        addItemToObjectArray(area, EntranceTypes.Overworld, entrance)
+        break
     }
   }
-
 
   const setInterior = (_hyrule, area, entrance, interior) => {
     _hyrule = setPropertiesOfEntrance(_hyrule, area, entrance, { clear: false, interior: interior })
