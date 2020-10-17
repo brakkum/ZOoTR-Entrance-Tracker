@@ -63,6 +63,7 @@ export default function getInitialState () {
     overworldOnly,
     routeFinderStart: null,
     routeFinderEnd: null,
+    routeFinderAge: true,
     allOverworldEntrances
   }
 }
