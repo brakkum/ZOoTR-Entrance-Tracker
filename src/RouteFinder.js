@@ -29,36 +29,6 @@ export default function RouteFinder ({ setRouteFinderStart, setRouteFinderEnd, a
     hasZeldaLetter: false,
     hasSariaSong: false,
     hasZeldasLullaby: false,
-    // needs ocarina
-    ignoreSongs: false,
-    // needs adult or child with ruto letter
-    ignoreKingZora: false,
-    // needs adult or zelda letter
-    ignoreKakarikoGate: false,
-    // needs child
-    considerChildSaveWarp: false,
-    ignoreKaeporaGaebora: false,
-    ignoreGerudosFortress: false,
-    ignorePotionShopFromFront: false,
-    // needs adult
-    ignoreCrossingGerudoValley: false,
-    // needs child or adult with ocarina and saria song
-    ignorePassingMido: false,
-    // needs ocarina and zelda lullaby
-    ignoreZorasDomainFromRiver: false,
-
-    // needs adult
-    ignoreWindmillFromDampesGrave: false,
-    ignoreGoronCityDMC: false,
-    considerAdultSaveWarp: false,
-    // needs adult and long shot
-    ignoreCrossingHauntedWasteland: false,
-    ignoreLostWoodsToBridge: false,
-    // needs zora scale
-    ignoreLostWoodsZorasRiverEntrances: false,
-    ignoreLakeHyliaZorasDomainEntrances: false,
-    // other
-    ignoreSpiritTempleHandsExit: false
   })
 
     const toggleConfigAttribute = attribute => {
